@@ -1,0 +1,73 @@
+* {
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  column-gap: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 1080px;
+  height: 74px;
+  row-gap: 50px;
+
+  .frame7 {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+    border-radius: 20px;
+    background: #bfea52;
+    padding: 5px 5px 5px 15px;
+
+    .abcWeb3Club {
+      flex-shrink: 0;
+      line-height: 12px;
+      letter-spacing: 0.24px;
+      color: #000000;
+      font-family: Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Helvetica, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: UPPERCASE;
+    }
+
+    .arrowRightCircleFill {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      overflow: hidden;
+    }
+  }
+
+  .poweredByWeb3ClubAnd3 {
+    flex-grow: 1;
+    text-align: right;
+    line-height: 15px;
+    letter-spacing: 0;
+    color: #000000;
+    font-family: Inter, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+
+    .poweredByWeb3ClubAnd {
+      letter-spacing: 0;
+      color: #ffffffcc;
+      font-family: Inter, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .poweredByWeb3ClubAnd2 {
+      letter-spacing: 0;
+      color: #bfea52;
+      font-family: Inter, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      text-decoration: underline;
+    }
+  }
+}
