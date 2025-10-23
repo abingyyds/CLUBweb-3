@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { ConnectButton } from "./ConnectButton";
 import { useWeb3ClubService } from "./AppkitProvider";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useAccount } from "wagmi";
 import { formatUnits } from "viem";
+import { parseSearchParams, parseSubdomain } from "@/lib/utils";
 
 const newsData = [
   {
@@ -44,7 +45,9 @@ const newsData = [
 const Web3CommunityResponsive: React.FC = () => {
   const web3ClubService = useWeb3ClubService();
   const { address } = useAccount();
-  const domainName = "xxx";
+  const search = parseSearchParams(window.location.href) as any;
+  const domainName = search.club || parseSubdomain(window.location.host);
+  const [club] = useState(domainName);
 
   const { data: yearPrice } = useQuery({
     queryKey: ["clubYearPrice", domainName],
@@ -110,7 +113,7 @@ const Web3CommunityResponsive: React.FC = () => {
         className="w-full px-5 py-5 text-center text-sm font-bold text-white tracking-wider 
                       lg:flex lg:justify-between lg:items-center lg:px-20 lg:py-5 lg:min-w-[1080px] lg:text-left"
       >
-        <p className="lg:flex-grow">abc.web3.club</p>
+        <p className="lg:flex-grow">{club}.web3.club</p>
         <ConnectButton className="hidden md:inline-flex" />
       </div>
 
@@ -673,7 +676,7 @@ const Web3CommunityResponsive: React.FC = () => {
       <footer className="w-full px-5 py-5 lg:px-20 lg:py-5 lg:max-w-[1080px] lg:mx-auto flex items-center md:justify-between justify-center gap-5 flex-wrap">
         <div className="inline-flex items-center justify-center gap-2.5 rounded-2xl bg-[#bfea52] px-4 py-1.5">
           <p className="text-black text-sm font-bold uppercase tracking-wider">
-            ABC.WEB3.CLUB
+            {club}.WEB3.CLUB
           </p>
           <img src="/arrow.png" className="w-6 h-6" alt="Arrow" />
         </div>
