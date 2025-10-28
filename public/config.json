@@ -1,0 +1,97 @@
+{
+  "metaTitle": "Web3 Club",
+  "favicon": "/favicon.ico",
+  "heroTitle": "Eternal Profit Community",
+  "heroSubtitle": "Fun with us",
+  "clubIntroduction1": "Welcome to the Eternal Profit Community!We are a professional community focused on blockchain technology innovation and DeFi investment.",
+  "clubIntroduction2": "Here, you will gain access to the most cutting-edge Alpha information, professional investment advice, and a wealth of learning resources.",
+  "socials": [
+    {
+      "name": "Twitter/X",
+      "link": "https://twitter.com/web3club",
+      "text": "Follow"
+    },
+    {
+      "name": "Discord",
+      "link": "https://discord.gg/web3club",
+      "text": "Join"
+    },
+    {
+      "name": "Telegram",
+      "link": "https://t.me/web3club",
+      "text": "Join"
+    }
+  ],
+  "news": [
+    {
+      "image": "/news1.png",
+      "title": "Weekly Alpha Information Summary",
+      "category": "designer",
+      "time": "now",
+      "source": "Twitter Alpha",
+      "link": ""
+    },
+    {
+      "image": "/news2.png",
+      "title": "Complete DeFi Beginner's Guide",
+      "category": "designer",
+      "time": "2015",
+      "source": "Twitter Alpha",
+      "link": ""
+    },
+    {
+      "image": "/news3.png",
+      "title": "Latest Project Research Report Analysis",
+      "category": "designer",
+      "time": "2011",
+      "source": "Twitter Alpha",
+      "link": ""
+    },
+    {
+      "image": "/news4.png",
+      "title": "Market Trend Analysis Report",
+      "category": "designer",
+      "time": "2010",
+      "source": "Twitter Alpha",
+      "link": ""
+    },
+    {
+      "image": "/news1.png",
+      "title": "NFT Market Insights and Trends",
+      "category": "analyst",
+      "time": "2024",
+      "source": "Crypto News",
+      "link": ""
+    },
+    {
+      "image": "/news2.png",
+      "title": "Layer 2 Solutions Comparison",
+      "category": "developer",
+      "time": "2024",
+      "source": "Tech Review",
+      "link": ""
+    },
+    {
+      "image": "/news3.png",
+      "title": "Staking Rewards Optimization Guide",
+      "category": "investor",
+      "time": "2024",
+      "source": "DeFi Pulse",
+      "link": ""
+    },
+    {
+      "image": "/news4.png",
+      "title": "Cross-Chain Bridge Security Analysis",
+      "category": "security",
+      "time": "2024",
+      "source": "Security Labs",
+      "link": ""
+    }
+  ],
+  "heroImg": "/hero.png",
+  "lifeTimeImg": "/lifetime.png",
+  "quarterImg": "/quarter.png",
+  "monthImg": "/month.png",
+  "yearImg": "/year.png",
+  "ethImg": "/aave.png"
+}
