@@ -5,49 +5,82 @@ import { useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useAccount } from "wagmi";
 import { formatUnits } from "viem";
-import { parseSearchParams, parseSubdomain } from "@/lib/utils";
+import Pagination from "./Pagination";
+import { ITheme } from "@/types";
 
-const newsData = [
+const socialsData = [
   {
-    image: "/news1.png",
-    title: "Weekly Alpha Information Summary",
-    category: "designer",
-    time: "now",
-    source: "Twitter Alpha",
-    link: "",
+    icon: "/telegram.png",
+    name: "Telegram",
+    action: "Join",
+    bgColor: "bg-[#3088ff]",
+    buttonColor: "bg-[#bfea52]",
+    iconPadding: "p-4",
   },
   {
-    image: "/news2.png",
-    title: "Complete DeFi Beginner's Guide",
-    category: "designer",
-    time: "2015",
-    source: "Twitter Alpha",
-    link: "",
+    icon: "/twitter.png",
+    name: "Twitter/X",
+    action: "Follow",
+    bgColor: "bg-[#6aabe9]",
+    buttonColor: "bg-[#bfea52]",
+    iconPadding: "p-[22px]",
   },
   {
-    image: "/news3.png",
-    title: "Latest Project Research Report Analysis",
-    category: "designer",
-    time: "2011",
-    source: "Twitter Alpha",
-    link: "",
+    icon: "/discord.png",
+    name: "Discord",
+    action: "Join",
+    bgColor: "bg-[#778cd3]",
+    buttonColor: "bg-[#bfea52]",
+    iconPadding: "p-4",
   },
   {
-    image: "/news4.png",
-    title: "Market Trend Analysis Report",
-    category: "designer",
-    time: "2010",
-    source: "Twitter Alpha",
-    link: "",
+    icon: "/youtube.png",
+    name: "YouTube",
+    action: "Subscribe",
+    bgColor: "bg-[#eb3323]",
+    buttonColor: "bg-[#bfea52]",
+    iconPadding: "p-[22px]",
+  },
+  {
+    icon: "/cluber.png",
+    name: "OnlyCluber",
+    action: "Open",
+    bgColor: "bg-[#04231e]",
+    buttonColor: "bg-[#bfea52]",
+    iconPadding: "p-4",
+  },
+  {
+    icon: "/clubbot.png",
+    name: "ClubBot",
+    action: "Mint",
+    bgColor: "bg-[#01cd88]",
+    buttonColor: "bg-[#bfea52]",
+    iconPadding: "p-4",
   },
 ];
 
-const Web3CommunityResponsive: React.FC = () => {
+const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
+  theme,
+  club,
+}) => {
   const web3ClubService = useWeb3ClubService();
   const { address } = useAccount();
-  const search = parseSearchParams(window.location.href) as any;
-  const domainName = search.club || parseSubdomain(window.location.host);
-  const [club] = useState(domainName);
+  const domainName = club;
+  const newsData = theme.news;
+
+  // 分页相关状态
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
+
+  // 计算分页数据
+  const totalPages = Math.ceil(newsData.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentNewsData = newsData.slice(startIndex, endIndex);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
 
   const { data: yearPrice } = useQuery({
     queryKey: ["clubYearPrice", domainName],
@@ -61,14 +94,19 @@ const Web3CommunityResponsive: React.FC = () => {
       web3ClubService.temporaryMembershipClient.getClubPrice(domainName),
   });
 
+  const { data: quarterPrice } = useQuery({
+    queryKey: ["clubQuarterPrice", domainName],
+    queryFn: () =>
+      web3ClubService.temporaryMembershipClient.getClubQuarterPrice(domainName),
+  });
+
   const { data: verifyData } = useQuery({
     queryKey: ["clubCrossChainRequirements", domainName],
     queryFn: () =>
       web3ClubService.tokenBasedAccessClient.getTokenGates(domainName),
   });
 
-  console.log(yearPrice, "year");
-  console.log(monthPrice, verifyData, "month");
+  console.log(yearPrice, quarterPrice, monthPrice, verifyData, "year");
 
   const handleJoin = async (type: string) => {
     try {
@@ -80,6 +118,11 @@ const Web3CommunityResponsive: React.FC = () => {
         await web3ClubService.temporaryMembershipClient.purchaseMembership(
           domainName,
           monthPrice || "0"
+        );
+      } else if (type === "quarter") {
+        await web3ClubService.temporaryMembershipClient.purchaseQuarterMembership(
+          domainName,
+          quarterPrice || "0"
         );
       } else if (type === "year") {
         await web3ClubService.temporaryMembershipClient.purchaseYearMembership(
@@ -124,7 +167,7 @@ const Web3CommunityResponsive: React.FC = () => {
       >
         {/* Desktop Background Image */}
         <img
-          src="/hero.png"
+          src={theme.heroImg}
           alt="Hero Background"
           className="hidden lg:block lg:absolute lg:top-0 lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:w-auto lg:h-full lg:z-0"
         />
@@ -132,25 +175,26 @@ const Web3CommunityResponsive: React.FC = () => {
         {/* Mobile/Tablet Hero Content */}
         <div className="flex flex-col items-center gap-5 lg:hidden">
           <h1 className="text-white text-2xl md:text-3xl font-bold text-center leading-9 md:leading-10 tracking-wider uppercase">
-            Eternal <br />
-            Profit Community
+            {theme.heroTitle?.split(" ").map((it, i) => {
+              return (
+                <React.Fragment key={i}>
+                  {it} <br />
+                </React.Fragment>
+              );
+            })}
           </h1>
           <img
-            src="/hero.png"
+            src={theme.heroImg}
             alt="Community Logo"
             className="w-64 md:w-80 h-auto"
           />
           <p className="text-white text-sm md:text-base tracking-wider">
-            Fun with us
+            {theme.heroSubtitle}
           </p>
           <p className="text-white text-sm md:text-base leading-4 md:leading-5 tracking-wider text-center max-w-sm md:max-w-md">
-            Welcome to the Eternal Profit Community!We are a professional
-            community focused on blockchain technology innovation and DeFi
-            investment. <br />
+            {theme.clubIntroduction1} <br />
             <br />
-            Here, you will gain access to the most cutting-edge Alpha
-            information, professional investment advice, and a wealth of
-            learning resources.
+            {theme.clubIntroduction2}
           </p>
           <ConnectButton className="md:hidden inline-flex" />
         </div>
@@ -158,22 +202,24 @@ const Web3CommunityResponsive: React.FC = () => {
         {/* Desktop Hero Content */}
         <div className="hidden lg:flex lg:flex-col lg:items-start lg:z-10 lg:relative">
           <h1 className="text-white text-5xl xl:text-6xl font-bold leading-12 xl:leading-14 tracking-wider uppercase mb-4">
-            Eternal <br />
-            Profit <br />
-            Community
+            {theme.heroTitle?.split(" ").map((it, i) => {
+              return (
+                <React.Fragment key={i}>
+                  {it} <br />
+                </React.Fragment>
+              );
+            })}
           </h1>
-          <p className="text-white text-lg tracking-wider mb-8">Fun with us</p>
+          <p className="text-white text-lg tracking-wider mb-8">
+            {theme.heroSubtitle}
+          </p>
         </div>
 
         <div className="hidden lg:block lg:z-10 lg:relative md:w-[250px]">
           <p className="text-white text-base xl:text-[14px] leading-6 xl:leading-7 tracking-wider">
-            Welcome to the Eternal Profit Community!We are a professional
-            community focused on blockchain technology innovation and DeFi
-            investment. <br />
+            {theme.clubIntroduction1} <br />
             <br />
-            Here, you will gain access to the most cutting-edge Alpha
-            information, professional investment advice, and a wealth of
-            learning resources.
+            {theme.clubIntroduction2}
           </p>
         </div>
       </div>
@@ -200,7 +246,7 @@ const Web3CommunityResponsive: React.FC = () => {
                 className="w-6 h-6 flex-shrink-0"
               />
               <span className="flex-shrink-0 text-black text-[14px] leading-[14px] tracking-[0.28px] font-bold uppercase">
-                abc.web3.club
+                {club}.web3.club
               </span>
             </React.Fragment>
           ))}
@@ -225,7 +271,7 @@ const Web3CommunityResponsive: React.FC = () => {
                 className="w-6 h-6 flex-shrink-0"
               />
               <span className="flex-shrink-0 text-black text-[14px] leading-[14px] tracking-[0.28px] font-bold uppercase">
-                abc.web3.club
+                {club}.web3.club
               </span>
             </React.Fragment>
           ))}
@@ -233,13 +279,10 @@ const Web3CommunityResponsive: React.FC = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex flex-col w-full gap-12 px-4 md:px-8 lg:px-20 lg:gap-16 lg:max-w-[1080px] lg:mx-auto">
+      <div className="flex flex-col w-full gap-12 px-4 md:px-8 lg:px-6 lg:gap-16 lg:max-w-[1180px] lg:mx-auto">
         {/* Join Options Section */}
         <div className="flex flex-col items-center gap-12 lg:gap-16">
           <div className="flex flex-col gap-2.5 w-full">
-            <p className="text-white text-sm md:text-base lg:text-lg text-center tracking-wider">
-              meta text
-            </p>
             <h2 className="text-white text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-center leading-5 md:leading-6 lg:leading-8 xl:leading-10 tracking-wider uppercase">
               Join the Option
             </h2>
@@ -249,19 +292,25 @@ const Web3CommunityResponsive: React.FC = () => {
           <div className="flex flex-col md:flex-row items-center md:justify-between gap-5 w-full">
             {[
               {
-                icon: "/lifetime.png",
+                icon: theme.lifeTimeImg,
                 title: "Lifetime Member",
                 price: "5.0 ETH",
                 type: "lifetime",
               },
               {
-                icon: "/month.png",
+                icon: theme.monthImg,
                 title: "Monthly Member",
                 price: `${monthPrice} ETH`,
                 type: "month",
               },
               {
-                icon: "/year.png",
+                icon: theme.quarterImg,
+                title: "Quarterly Member",
+                price: `${quarterPrice} ETH`,
+                type: "quarter",
+              },
+              {
+                icon: theme.yearImg,
                 title: "Yearly Member",
                 price: `${yearPrice} ETH`,
                 type: "year",
@@ -309,9 +358,6 @@ const Web3CommunityResponsive: React.FC = () => {
         {/* Position Verification Section */}
         <div className="flex flex-col items-center gap-12 lg:gap-16">
           <div className="flex flex-col gap-2.5 w-full">
-            <p className="text-white text-sm md:text-base lg:text-lg text-center tracking-wider">
-              meta text
-            </p>
             <h2 className="text-white text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-center leading-5 md:leading-6 lg:leading-8 xl:leading-10 tracking-wider uppercase">
               Position Verification
             </h2>
@@ -325,7 +371,7 @@ const Web3CommunityResponsive: React.FC = () => {
                 <React.Fragment key={index}>
                   <div className="flex items-center gap-6">
                     <img
-                      src="/aave.png"
+                      src={theme.ethImg}
                       alt="ETH Chain"
                       className="size-[50px] md:size-20"
                     />
@@ -460,102 +506,54 @@ const Web3CommunityResponsive: React.FC = () => {
         {/* Links & Apps Section */}
         <div className="flex flex-col items-center gap-12 lg:gap-16">
           <div className="flex flex-col gap-2.5 w-full">
-            <p className="text-white text-sm md:text-base lg:text-lg text-center tracking-wider">
-              meta text
-            </p>
             <h2 className="text-white text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-center leading-5 md:leading-6 lg:leading-8 xl:leading-10 tracking-wider uppercase">
               Links & Apps
             </h2>
           </div>
 
-          <div className="grid grid-cols-3 gap-4 w-full lg:grid-cols-6 lg:gap-2.5 px-4 lg:px-16">
-            {[
-              {
-                icon: "/telegram.png",
-                name: "Telegram",
-                action: "Join",
-                bgColor: "bg-[#3088ff]",
-                buttonColor: "bg-[#bfea52]",
-                iconPadding: "p-4",
-              },
-              {
-                icon: "/twitter.png",
-                name: "Twitter/X",
-                action: "Follow",
-                bgColor: "bg-[#6aabe9]",
-                buttonColor: "bg-[#bfea52]",
-                iconPadding: "p-[22px]",
-              },
-              {
-                icon: "/discord.png",
-                name: "Discord",
-                action: "Join",
-                bgColor: "bg-[#778cd3]",
-                buttonColor: "bg-[#bfea52]",
-                iconPadding: "p-4",
-              },
-              {
-                icon: "/youtube.png",
-                name: "YouTube",
-                action: "Subscribe",
-                bgColor: "bg-[#eb3323]",
-                buttonColor: "bg-[#bfea52]",
-                iconPadding: "p-[22px]",
-              },
-              {
-                icon: "/cluber.png",
-                name: "OnlyCluber",
-                action: "Open",
-                bgColor: "bg-[#04231e]",
-                buttonColor: "bg-[#bfea52]",
-                iconPadding: "p-4",
-              },
-              {
-                icon: "/clubbot.png",
-                name: "ClubBot",
-                action: "Mint",
-                bgColor: "bg-[#01cd88]",
-                buttonColor: "bg-[#bfea52]",
-                iconPadding: "p-4",
-              },
-            ].map((app, index) => (
-              <div
-                key={index}
-                className="flex flex-col items-center justify-center px-[20px] py-[30px] gap-5 lg:px-[20px] lg:py-[30px] lg:gap-6 rounded-2xl"
-              >
+          <div className="flex items-center justify-around gap-4 w-full lg:gap-2.5 px-4 lg:px-16">
+            {theme.socials.map((app, index) => {
+              const item = socialsData.find((item) => item.name === app.name);
+              return (
                 <div
-                  className={`flex items-center justify-center w-16 h-16 rounded-2xl ${app.bgColor} ${app.iconPadding}`}
+                  key={index}
+                  className="flex flex-col items-center justify-center px-[20px] py-[30px] gap-5 lg:px-[20px] lg:py-[30px] lg:gap-6 rounded-2xl"
                 >
-                  <img src={app.icon} alt={app.name} className="w-8 h-auto" />
-                </div>
-                <div className="flex flex-col items-center gap-2.5 lg:gap-3">
-                  <p className="text-white text-base md:text-lg lg:text-xl font-bold">
-                    {app.name}
-                  </p>
-                  <button
-                    className={`${app.buttonColor} text-black text-sm md:text-base lg:text-lg font-medium rounded-2xl px-5 py-2 lg:px-6 lg:py-3 hover:opacity-90 transition-opacity`}
+                  <div
+                    className={`flex items-center justify-center w-16 h-16 rounded-2xl ${item.bgColor} ${item.iconPadding}`}
                   >
-                    {app.action}
-                  </button>
+                    <img
+                      src={item.icon}
+                      alt={app.name}
+                      className="w-8 h-auto"
+                    />
+                  </div>
+                  <div className="flex flex-col items-center gap-2.5 lg:gap-3">
+                    <p className="text-white text-base md:text-lg lg:text-xl font-bold">
+                      {app.name}
+                    </p>
+                    <button
+                      className={`${item.buttonColor} text-black text-sm md:text-base lg:text-lg font-medium rounded-2xl px-5 py-2 lg:px-6 lg:py-3 hover:opacity-90 transition-opacity`}
+                    >
+                      {app.text}
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
         {/* Community News Section */}
         <div className="flex flex-col items-center gap-12 lg:gap-16">
           <div className="flex flex-col gap-2.5 w-full">
-            <p className="text-white text-sm md:text-base lg:text-lg text-center tracking-wider">
-              meta text
-            </p>
             <h2 className="text-white text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-center leading-5 md:leading-6 lg:leading-8 xl:leading-10 tracking-wider uppercase">
               Community News
             </h2>
           </div>
 
           <div className="flex flex-col w-full px-5 gap-8 lg:gap-10 lg:px-0">
-            {newsData.map((news, index) => (
+            {currentNewsData.map((news, index) => (
               <div
                 key={index}
                 className="flex flex-col py-5 md:flex-row md: justify-between w-fll gap-6 border-b border-white/40"
@@ -607,16 +605,14 @@ const Web3CommunityResponsive: React.FC = () => {
         </div>
       </div>
 
-      {/* Pagination */}
-      <div className="flex items-center gap-2 px-5 py-8">
-        {[1, 2, 3, 4, 5].map((num) => (
-          <React.Fragment key={num}>
-            <span className="text-white text-sm">{num}</span>
-            {num < 5 && <div className="w-1 h-1 bg-white rounded-full" />}
-          </React.Fragment>
-        ))}
-        <span className="text-white text-sm ml-2">&gt;</span>
-      </div>
+      {/* Pagination - 只在newsData超过4条时显示 */}
+      {newsData.length > 4 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+      )}
 
       {/* Bottom Scrolling Banner */}
       <div className="relative w-full overflow-hidden h-[130px]">
@@ -640,7 +636,7 @@ const Web3CommunityResponsive: React.FC = () => {
                 className="w-6 h-6 flex-shrink-0"
               />
               <span className="flex-shrink-0 text-black text-[14px] leading-[14px] tracking-[0.28px] font-bold uppercase">
-                abc.web3.club
+                {club}.web3.club
               </span>
             </React.Fragment>
           ))}
@@ -665,7 +661,7 @@ const Web3CommunityResponsive: React.FC = () => {
                 className="w-6 h-6 flex-shrink-0"
               />
               <span className="flex-shrink-0 text-black text-[14px] leading-[14px] tracking-[0.28px] font-bold uppercase">
-                abc.web3.club
+                {club}.web3.club
               </span>
             </React.Fragment>
           ))}
@@ -705,4 +701,4 @@ const Web3CommunityResponsive: React.FC = () => {
   );
 };
 
-export default Web3CommunityResponsive;
+export default Web3Community;

@@ -26,11 +26,12 @@ export class TemporaryMembershipClient extends ContractClientBase<
     return formatEther(res);
   }
 
-  getClubQuarterPrice(domainName: string) {
-    return this.readContract({
+  async getClubQuarterPrice(domainName: string) {
+    const res = (await this.readContract({
       functionName: "getClubQuarterPrice",
       args: [domainName],
-    });
+    })) as bigint;
+    return formatEther(res);
   }
 
   async getClubYearPrice(domainName: string) {
