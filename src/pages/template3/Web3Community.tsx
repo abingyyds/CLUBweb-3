@@ -1,157 +1,71 @@
-import React, { useState } from "react";
-import { ConnectButton } from "./ConnectButton";
-import { useWeb3ClubService } from "./AppkitProvider";
-import { useQuery } from "@tanstack/react-query";
-import { toast } from "sonner";
+import React from "react";
+import { ConnectButton } from "../../components/ConnectButton";
 import { useAccount } from "wagmi";
 import { formatUnits } from "viem";
-import Pagination from "./Pagination";
+import Pagination from "../../components/Pagination";
 import { ITheme } from "@/types";
-
-const socialsData = [
-  {
-    icon: "/telegram.png",
-    name: "Telegram",
-    action: "Join",
-    bgColor: "bg-[#3088ff]",
-    buttonColor: "bg-[#bfea52]",
-    iconPadding: "p-4",
-  },
-  {
-    icon: "/twitter.png",
-    name: "Twitter/X",
-    action: "Follow",
-    bgColor: "bg-[#6aabe9]",
-    buttonColor: "bg-[#bfea52]",
-    iconPadding: "p-[22px]",
-  },
-  {
-    icon: "/discord.png",
-    name: "Discord",
-    action: "Join",
-    bgColor: "bg-[#778cd3]",
-    buttonColor: "bg-[#bfea52]",
-    iconPadding: "p-4",
-  },
-  {
-    icon: "/youtube.png",
-    name: "YouTube",
-    action: "Subscribe",
-    bgColor: "bg-[#eb3323]",
-    buttonColor: "bg-[#bfea52]",
-    iconPadding: "p-[22px]",
-  },
-  {
-    icon: "/cluber.png",
-    name: "OnlyCluber",
-    action: "Open",
-    bgColor: "bg-[#04231e]",
-    buttonColor: "bg-[#bfea52]",
-    iconPadding: "p-4",
-  },
-  {
-    icon: "/clubbot.png",
-    name: "ClubBot",
-    action: "Mint",
-    bgColor: "bg-[#01cd88]",
-    buttonColor: "bg-[#bfea52]",
-    iconPadding: "p-4",
-  },
-];
+import { MemberModal } from "./MemberModal";
+import { usePagination } from "../../hooks/usePagination";
+import { useClubData } from "../../hooks/useClubData";
+import { useClubMembership } from "../../hooks/useClubMembership";
 
 const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
   theme,
   club,
 }) => {
-  const web3ClubService = useWeb3ClubService();
   const { address } = useAccount();
   const domainName = club;
-  const newsData = theme.news;
+  const newsData = theme?.news || [];
 
-  // 分页相关状态
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4;
-
-  // 计算分页数据
-  const totalPages = Math.ceil(newsData.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentNewsData = newsData.slice(startIndex, endIndex);
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
-
-  const { data: yearPrice } = useQuery({
-    queryKey: ["clubYearPrice", domainName],
-    queryFn: () =>
-      web3ClubService.temporaryMembershipClient.getClubYearPrice(domainName),
+  // 使用分页 hook
+  const {
+    currentPage,
+    totalPages,
+    currentData: currentNewsData,
+    handlePageChange,
+  } = usePagination({
+    data: newsData,
+    itemsPerPage: 4,
   });
 
-  const { data: monthPrice } = useQuery({
-    queryKey: ["clubMonthPrice", domainName],
-    queryFn: () =>
-      web3ClubService.temporaryMembershipClient.getClubPrice(domainName),
+  // 使用俱乐部数据 hook
+  const {
+    yearPrice,
+    monthPrice,
+    quarterPrice,
+    verifyData,
+    memberData,
+  } = useClubData({
+    domainName,
+    address,
   });
 
-  const { data: quarterPrice } = useQuery({
-    queryKey: ["clubQuarterPrice", domainName],
-    queryFn: () =>
-      web3ClubService.temporaryMembershipClient.getClubQuarterPrice(domainName),
+  // 使用会员管理 hook
+  const {
+    modalOpen,
+    setModalOpen,
+    isVerifyMode,
+    handleJoin,
+    handleVerify,
+    handleConfirmJoin,
+  } = useClubMembership({
+    domainName,
+    memberData,
+    yearPrice,
+    monthPrice,
+    quarterPrice,
   });
 
-  const { data: verifyData } = useQuery({
-    queryKey: ["clubCrossChainRequirements", domainName],
-    queryFn: () =>
-      web3ClubService.tokenBasedAccessClient.getTokenGates(domainName),
-  });
-
-  console.log(yearPrice, quarterPrice, monthPrice, verifyData, "year");
-
-  const handleJoin = async (type: string) => {
-    try {
-      if (type === "lifetime") {
-        await web3ClubService.clubPassFactoryClient.purchaseMembershipFor(
-          domainName
-        );
-      } else if (type === "month") {
-        await web3ClubService.temporaryMembershipClient.purchaseMembership(
-          domainName,
-          monthPrice || "0"
-        );
-      } else if (type === "quarter") {
-        await web3ClubService.temporaryMembershipClient.purchaseQuarterMembership(
-          domainName,
-          quarterPrice || "0"
-        );
-      } else if (type === "year") {
-        await web3ClubService.temporaryMembershipClient.purchaseYearMembership(
-          domainName,
-          yearPrice || "0"
-        );
-      }
-      toast.success("Purchase successful");
-    } catch (error) {
-      toast.error(error.message || "Purchase failed");
-    }
-  };
-
-  const handleVerify = async (it: any) => {
-    try {
-      await web3ClubService.simpleCrossChainVerificationClient.requestVerification(
-        domainName,
-        it.chainId,
-        it.crossChainAddress
-      );
-      toast.success("Verification successful");
-    } catch (error) {
-      console.log(error);
-      toast.error(error.message || "Verification failed");
-    }
-  };
   return (
     <div className="flex flex-col items-center bg-[#0b0b0d] pb-24 w-full min-h-screen overflow-hidden gap-2.5">
       {/* Header */}
+      <MemberModal
+        open={modalOpen}
+        setOpen={setModalOpen}
+        data={memberData}
+        onConfirm={handleConfirmJoin}
+        isVerifyMode={isVerifyMode}
+      />
       <div
         className="w-full px-5 py-5 text-center text-sm font-bold text-white tracking-wider 
                       lg:flex lg:justify-between lg:items-center lg:px-20 lg:py-5 lg:min-w-[1080px] lg:text-left"
@@ -166,11 +80,13 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
                       lg:relative lg:flex-row lg:justify-between lg:items-end lg:px-20 lg:py-20 lg:min-w-[1080px] lg:mx-auto"
       >
         {/* Desktop Background Image */}
-        <img
-          src={theme.heroImg}
-          alt="Hero Background"
-          className="hidden lg:block lg:absolute lg:top-0 lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:w-auto lg:h-full lg:z-0"
-        />
+        <div className="hidden lg:block size-[400px] rounded-full lg:absolute lg:top-0 lg:left-1/2 lg:transform lg:-translate-x-1/2 bg-[#6D8F20]">
+          <img
+            src={theme.heroImg}
+            alt="Hero Background"
+            className="size-[360px]"
+          />
+        </div>
 
         {/* Mobile/Tablet Hero Content */}
         <div className="flex flex-col items-center gap-5 lg:hidden">
@@ -183,11 +99,14 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
               );
             })}
           </h1>
-          <img
-            src={theme.heroImg}
-            alt="Community Logo"
-            className="w-64 md:w-80 h-auto"
-          />
+          <div className="size-[211px] bg-[#6D8F20] rounded-full">
+            <img
+              src={theme.heroImg}
+              alt="Community Logo"
+              className="size-[189px]"
+            />
+          </div>
+
           <p className="text-white text-sm md:text-base tracking-wider">
             {theme.heroSubtitle}
           </p>
@@ -513,19 +432,19 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
 
           <div className="flex items-center justify-around gap-4 w-full lg:gap-2.5 px-4 lg:px-16">
             {theme.socials.map((app, index) => {
-              const item = socialsData.find((item) => item.name === app.name);
+              // const item = socialsData.find((item) => item.name === app.name);
               return (
                 <div
                   key={index}
                   className="flex flex-col items-center justify-center px-[20px] py-[30px] gap-5 lg:px-[20px] lg:py-[30px] lg:gap-6 rounded-2xl"
                 >
                   <div
-                    className={`flex items-center justify-center w-16 h-16 rounded-2xl ${item.bgColor} ${item.iconPadding}`}
+                    className={`flex items-center justify-center size-16 rounded-2xl`}
                   >
                     <img
-                      src={item.icon}
+                      src={app.icon}
                       alt={app.name}
-                      className="w-8 h-auto"
+                      className="w-full h-auto"
                     />
                   </div>
                   <div className="flex flex-col items-center gap-2.5 lg:gap-3">
@@ -533,7 +452,10 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
                       {app.name}
                     </p>
                     <button
-                      className={`${item.buttonColor} text-black text-sm md:text-base lg:text-lg font-medium rounded-2xl px-5 py-2 lg:px-6 lg:py-3 hover:opacity-90 transition-opacity`}
+                      onClick={() => {
+                        window.open(app.link, "_blank");
+                      }}
+                      className={`bg-[#bfea52] text-black text-sm md:text-base lg:text-lg font-medium rounded-2xl px-5 py-2 lg:px-6 lg:py-3 hover:opacity-90 transition-opacity`}
                     >
                       {app.text}
                     </button>

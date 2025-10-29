@@ -9,17 +9,36 @@
     {
       "name": "Twitter/X",
       "link": "https://twitter.com/web3club",
-      "text": "Follow"
+      "text": "Follow",
+      "icon": "/twitter.png"
     },
     {
       "name": "Discord",
       "link": "https://discord.gg/web3club",
-      "text": "Join"
+      "text": "Join",
+      "icon": "/discord.png"
     },
     {
       "name": "Telegram",
       "link": "https://t.me/web3club",
-      "text": "Join"
+      "text": "Join",
+      "icon": "/telegram.png"
+    },
+    {
+      "icon": "/youtube.png",
+      "name": "YouTube",
+      "text": "Subscribe",
+      "link": "https://www.youtube.com/@Web3Club"
+    },
+    {
+      "icon": "/cluber.png",
+      "name": "OnlyCluber",
+      "text": "Open"
+    },
+    {
+      "icon": "/clubbot.png",
+      "name": "ClubBot",
+      "text": "Mint"
     }
   ],
   "news": [

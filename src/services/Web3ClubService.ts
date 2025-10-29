@@ -3,6 +3,7 @@ import { WalletClient } from "viem";
 import { TemporaryMembershipClient } from "./TemporaryMembershipClient";
 import { SimpleCrossChainVerificationClient } from "./SimpleCrossChainVerificationClient";
 import { TokenBasedAccessClient } from "./TokenBasedAccessClient";
+import { ClubMembershipQueryClient } from "./ClubMembershipQueryClient";
 
 export class Web3ClubService {
   walletClient: WalletClient;
@@ -31,6 +32,12 @@ export class Web3ClubService {
 
   get tokenBasedAccessClient() {
     return new TokenBasedAccessClient({
+      walletClient: this.walletClient,
+    });
+  }
+
+  get clubMembershipQueryClient() {
+    return new ClubMembershipQueryClient({
       walletClient: this.walletClient,
     });
   }
