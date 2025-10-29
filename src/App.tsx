@@ -1,4 +1,4 @@
-import Web3Community from "./components/Web3Community";
+import Template3 from "./pages/template3/Web3Community";
 import "./App.css";
 import { parseSearchParams, parseSubdomain } from "./lib/utils";
 import { useEffect, useState } from "react";
@@ -25,7 +25,7 @@ function App() {
 
   return (
     <div className="App">
-      {theme && <Web3Community club={club} theme={theme} />}
+      {theme && <Template3 club={club} theme={theme} />}
     </div>
   );
 }

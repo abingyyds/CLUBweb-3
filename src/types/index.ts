@@ -28,4 +28,5 @@ export interface Social {
   name: string;
   link: string;
   text: string;
+  icon: string;
 }
