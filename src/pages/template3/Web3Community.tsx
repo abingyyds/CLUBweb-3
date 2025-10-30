@@ -29,16 +29,11 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
   });
 
   // 使用俱乐部数据 hook
-  const {
-    yearPrice,
-    monthPrice,
-    quarterPrice,
-    verifyData,
-    memberData,
-  } = useClubData({
-    domainName,
-    address,
-  });
+  const { lifetimePrice, yearPrice, monthPrice, quarterPrice, verifyData, memberData } =
+    useClubData({
+      domainName,
+      address,
+    });
 
   // 使用会员管理 hook
   const {
@@ -200,145 +195,149 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
       {/* Main Content */}
       <div className="flex flex-col w-full gap-12 px-4 md:px-8 lg:px-6 lg:gap-16 lg:max-w-[1180px] lg:mx-auto">
         {/* Join Options Section */}
-        <div className="flex flex-col items-center gap-12 lg:gap-16">
-          <div className="flex flex-col gap-2.5 w-full">
-            <h2 className="text-white text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-center leading-5 md:leading-6 lg:leading-8 xl:leading-10 tracking-wider uppercase">
-              Join the Option
-            </h2>
-          </div>
+        {lifetimePrice || monthPrice || yearPrice || quarterPrice ? (
+          <div className="flex flex-col items-center gap-12 lg:gap-16">
+            <div className="flex flex-col gap-2.5 w-full">
+              <h2 className="text-white text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-center leading-5 md:leading-6 lg:leading-8 xl:leading-10 tracking-wider uppercase">
+                Join the Option
+              </h2>
+            </div>
 
-          {/* Mobile/Tablet Layout */}
-          <div className="flex flex-col md:flex-row items-center md:justify-between gap-5 w-full">
-            {[
-              {
-                icon: theme.lifeTimeImg,
-                title: "Lifetime Member",
-                price: "5.0 ETH",
-                type: "lifetime",
-              },
-              {
-                icon: theme.monthImg,
-                title: "Monthly Member",
-                price: `${monthPrice} ETH`,
-                type: "month",
-              },
-              {
-                icon: theme.quarterImg,
-                title: "Quarterly Member",
-                price: `${quarterPrice} ETH`,
-                type: "quarter",
-              },
-              {
-                icon: theme.yearImg,
-                title: "Yearly Member",
-                price: `${yearPrice} ETH`,
-                type: "year",
-              },
-            ].map((option, index) => (
-              <React.Fragment key={index}>
-                <div className="flex items-center gap-5 px-6 md:px-0">
-                  <img
-                    src={option.icon}
-                    alt="Membership"
-                    className="w-12 h-12 md:size-20 rounded-full"
-                  />
-                  <div className="flex flex-row md:flex-col items-center md:gap-5">
-                    <div className="flex-1 flex flex-col gap-2.5">
-                      <p className="text-[#bfea52] text-[12px] uppercase tracking-wider">
-                        {option.title}
-                      </p>
-                      <p className="text-[#bfea52] text-[20px] font-bold uppercase tracking-wider">
-                        {option.price}
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => {
-                        handleJoin(option.type);
-                      }}
-                      className="flex items-center justify-center gap-2.5 bg-[#bfea52] text-black text-sm md:text-base font-bold uppercase tracking-wider rounded-[20px] pl-[15px] pr-[5px] py-1 hover:bg-[#a8d142] transition-colors"
-                    >
-                      Join now
+            <div className="flex flex-col md:flex-row items-center md:justify-between gap-5 w-full">
+              {[
+                {
+                  icon: theme.lifeTimeImg,
+                  title: "Lifetime Member",
+                  price: `${lifetimePrice} ETH`,
+                  type: "lifetime",
+                },
+                monthPrice && {
+                  icon: theme.monthImg,
+                  title: "Monthly Member",
+                  price: `${monthPrice} ETH`,
+                  type: "month",
+                },
+                quarterPrice && {
+                  icon: theme.quarterImg,
+                  title: "Quarterly Member",
+                  price: `${quarterPrice} ETH`,
+                  type: "quarter",
+                },
+                yearPrice && {
+                  icon: theme.yearImg,
+                  title: "Yearly Member",
+                  price: `${yearPrice} ETH`,
+                  type: "year",
+                },
+              ]
+                .filter(Boolean)
+                .map((option, index) => (
+                  <React.Fragment key={index}>
+                    <div className="flex items-center gap-5 px-6 md:px-0">
                       <img
-                        src={"/arrow_right_circle_fill.png"}
-                        alt="Arrow"
-                        className="w-6 h-6 md:w-7 md:h-7"
+                        src={option.icon}
+                        alt="Membership"
+                        className="w-12 h-12 md:size-20 rounded-full"
                       />
-                    </button>
-                  </div>
-                </div>
-                {index < 2 && (
-                  <div className="w-px h-20 bg-gray-600 hidden md:block"></div>
-                )}
-              </React.Fragment>
-            ))}
+                      <div className="flex flex-row md:flex-col items-center md:gap-5">
+                        <div className="flex-1 flex flex-col gap-2.5">
+                          <p className="text-[#bfea52] text-[12px] uppercase tracking-wider">
+                            {option.title}
+                          </p>
+                          <p className="text-[#bfea52] text-[20px] font-bold uppercase tracking-wider">
+                            {option.price}
+                          </p>
+                        </div>
+                        <button
+                          onClick={() => {
+                            handleJoin(option.type);
+                          }}
+                          className="flex items-center justify-center gap-2.5 bg-[#bfea52] text-black text-sm md:text-base font-bold uppercase tracking-wider rounded-[20px] pl-[15px] pr-[5px] py-1 hover:bg-[#a8d142] transition-colors"
+                        >
+                          Join now
+                          <img
+                            src={"/arrow_right_circle_fill.png"}
+                            alt="Arrow"
+                            className="w-6 h-6 md:w-7 md:h-7"
+                          />
+                        </button>
+                      </div>
+                    </div>
+                    {index < 2 && (
+                      <div className="w-px h-20 bg-gray-600 hidden md:block"></div>
+                    )}
+                  </React.Fragment>
+                ))}
+            </div>
           </div>
-        </div>
+        ) : null}
 
         {/* Position Verification Section */}
-        <div className="flex flex-col items-center gap-12 lg:gap-16">
-          <div className="flex flex-col gap-2.5 w-full">
-            <h2 className="text-white text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-center leading-5 md:leading-6 lg:leading-8 xl:leading-10 tracking-wider uppercase">
-              Position Verification
-            </h2>
-          </div>
+        {verifyData?.length ? (
+          <div className="flex flex-col items-center gap-12 lg:gap-16">
+            <div className="flex flex-col gap-2.5 w-full">
+              <h2 className="text-white text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-center leading-5 md:leading-6 lg:leading-8 xl:leading-10 tracking-wider uppercase">
+                Position Verification
+              </h2>
+            </div>
 
-          {/* Frame 9 - 三链验证：按 Figma 文案与结构实现，使用当前图片资源且不加白色圆底 */}
-          <div className="w-full max-w-[1080px] mx-auto flex flex-col lg:flex-row items-center lg:items-start justify-center gap-6 md:gap-[50px]">
-            {/* ETH Chain */}
-            {verifyData?.map((it, index) => {
-              return (
-                <React.Fragment key={index}>
-                  <div className="flex items-center gap-6">
-                    <img
-                      src={theme.ethImg}
-                      alt="ETH Chain"
-                      className="size-[50px] md:size-20"
-                    />
-                    <div className="flex flex-row items-center md:flex-col md:items-start gap-2.5 flex-1">
-                      <div className="flex flex-col gap-1">
-                        <p className="text-white text-[14px] font-bold leading-[26px]">
-                          {it.chainName} Chain
-                        </p>
-                        <p className="text-white/80 text-xs font-medium">
-                          Hold {it.tokenSymbol} ≥{" "}
-                          {formatUnits(it.threshold, it.decimals)}
-                        </p>
-                      </div>
-                      <button
-                        onClick={() => handleVerify(it)}
-                        className="inline-flex items-center justify-center gap-2.5 rounded-[20px] bg-[#bfea52] pl-[15px] pr-[5px] py-[5px] w-fit"
-                      >
-                        <span className="text-black text-[14px] leading-[14px] tracking-[0.28px] font-bold uppercase">
-                          VERIFY
-                        </span>
-                        {/* 内联箭头图标 */}
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
+            {/* Frame 9 - 三链验证：按 Figma 文案与结构实现，使用当前图片资源且不加白色圆底 */}
+            <div className="w-full max-w-[1080px] mx-auto flex flex-col lg:flex-row items-center lg:items-start justify-center gap-6 md:gap-[50px]">
+              {/* ETH Chain */}
+              {verifyData?.map((it, index) => {
+                return (
+                  <React.Fragment key={index}>
+                    <div className="flex items-center gap-6">
+                      <img
+                        src={theme.ethImg}
+                        alt="ETH Chain"
+                        className="size-[50px] md:size-20"
+                      />
+                      <div className="flex flex-row items-center md:flex-col md:items-start gap-2.5 flex-1">
+                        <div className="flex flex-col gap-1">
+                          <p className="text-white text-[14px] font-bold leading-[26px]">
+                            {it.chainName} Chain
+                          </p>
+                          <p className="text-white/80 text-xs font-medium">
+                            Hold {it.tokenSymbol} ≥{" "}
+                            {formatUnits(it.threshold, it.decimals)}
+                          </p>
+                        </div>
+                        <button
+                          onClick={() => handleVerify(it)}
+                          className="inline-flex items-center justify-center gap-2.5 rounded-[20px] bg-[#bfea52] pl-[15px] pr-[5px] py-[5px] w-fit"
                         >
-                          <circle cx="12" cy="12" r="12" fill="white" />
-                          <path
-                            d="M10 7l5 5-5 5"
-                            stroke="#000"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </button>
+                          <span className="text-black text-[14px] leading-[14px] tracking-[0.28px] font-bold uppercase">
+                            VERIFY
+                          </span>
+                          {/* 内联箭头图标 */}
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <circle cx="12" cy="12" r="12" fill="white" />
+                            <path
+                              d="M10 7l5 5-5 5"
+                              stroke="#000"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                  {index < verifyData?.length - 1 && (
-                    <div className="hidden lg:block w-px h-[100px] bg-white/60" />
-                  )}
-                </React.Fragment>
-              );
-            })}
+                    {index < verifyData?.length - 1 && (
+                      <div className="hidden lg:block w-px h-[100px] bg-white/60" />
+                    )}
+                  </React.Fragment>
+                );
+              })}
 
-            {/* <div className="flex items-center gap-10 flex-1">
+              {/* <div className="flex items-center gap-10 flex-1">
               <img
                 src="/bnb.png"
                 alt="BNB Chain"
@@ -419,8 +418,9 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
                 </button>
               </div>
             </div> */}
+            </div>
           </div>
-        </div>
+        ) : null}
 
         {/* Links & Apps Section */}
         <div className="flex flex-col items-center gap-12 lg:gap-16">

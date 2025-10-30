@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { ConnectButton } from '../../components/ConnectButton';
 import { MemberModal } from '../template3/MemberModal';
@@ -6,6 +6,13 @@ import { usePagination } from '../../hooks/usePagination';
 import { useClubData } from '../../hooks/useClubData';
 import { useClubMembership } from '../../hooks/useClubMembership';
 import { useAccount } from 'wagmi';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface Template2Props {
   club: string;
@@ -79,6 +86,34 @@ export const Template2 = ({ club, theme }: Template2Props) => {
     monthPrice,
     quarterPrice,
   });
+
+  // 选中的计划和价格状态
+  const [selectedPlan, setSelectedPlan] = useState<string>("lifetime");
+  const [selectedPrice, setSelectedPrice] = useState<string>("5.0");
+
+  // 创建会员选项数组（基于template1结构）
+  const membershipOptions = [
+    {
+      title: "Lifetime Member",
+      price: "5.0",
+      type: "lifetime",
+    },
+    monthPrice && {
+      title: "Monthly Member", 
+      price: monthPrice,
+      type: "month",
+    },
+    quarterPrice && {
+      title: "Quarterly Member",
+      price: quarterPrice,
+      type: "quarter",
+    },
+    yearPrice && {
+      title: "Yearly Member",
+      price: yearPrice,
+      type: "year",
+    },
+  ].filter(Boolean);
 
   const socialLinks = [
     { name: 'Telegram', icon: '/telegram.png', color: 'bg-blue-500' },
@@ -179,21 +214,38 @@ export const Template2 = ({ club, theme }: Template2Props) => {
             <div className="space-y-5">
               <div>
                 <label className="block text-white font-bold mb-2">Plan</label>
-                <div className="bg-white rounded-lg px-4 py-3 flex items-center justify-between">
-                  <span className="text-gray-600">Lifetime Member</span>
-                  <ChevronDown className="w-6 h-6 text-gray-400" />
-                </div>
+                <Select
+                  value={selectedPlan}
+                  onValueChange={(value) => {
+                    setSelectedPlan(value);
+                    const selectedOption = membershipOptions.find(option => option.type === value);
+                    if (selectedOption) {
+                      setSelectedPrice(selectedOption.price);
+                    }
+                  }}
+                >
+                  <SelectTrigger className="bg-white rounded-lg px-4 py-3 text-gray-600">
+                    <SelectValue placeholder="选择计划" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {membershipOptions.map((option) => (
+                      <SelectItem key={option.type} value={option.type}>
+                        {option.title}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
               <div>
                 <label className="block text-white font-bold mb-2">Price</label>
                 <div className="bg-white rounded-lg px-4 py-3 flex items-center gap-2">
-                  <span className="text-black">$</span>
-                  <span className="text-gray-600">5.0</span>
+                  <span className="text-black">ETH</span>
+                  <span className="text-gray-600">{selectedPrice}</span>
                 </div>
               </div>
             </div>
             <button 
-              onClick={() => handleJoin('lifetime')}
+              onClick={() => handleJoin(selectedPlan)}
               className="w-full bg-teal-500 text-white font-medium py-3 rounded-lg hover:bg-teal-600 transition-colors"
             >
               Join Now
