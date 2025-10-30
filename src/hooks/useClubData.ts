@@ -10,6 +10,7 @@ export interface UseClubDataReturn {
   yearPrice: string | undefined;
   monthPrice: string | undefined;
   quarterPrice: string | undefined;
+  lifetimePrice: string | undefined;
   verifyData: any;
   memberData: any;
   isLoading: {
@@ -33,6 +34,16 @@ export function useClubData({
   address,
 }: UseClubDataProps): UseClubDataReturn {
   const web3ClubService = useWeb3ClubService();
+
+  const {
+    data: lifetimePrice,
+    isLoading: lifetimePriceLoading,
+    isError: lifetimePriceError,
+  } = useQuery({
+    queryKey: ["clubLifetimePrice", domainName],
+    queryFn: () =>
+      web3ClubService.clubPassFactoryClient.getClubPrice(domainName),
+  });
 
   const {
     data: yearPrice,
@@ -89,6 +100,7 @@ export function useClubData({
   });
 
   return {
+    lifetimePrice,
     yearPrice,
     monthPrice,
     quarterPrice,

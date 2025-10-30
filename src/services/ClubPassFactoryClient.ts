@@ -4,7 +4,7 @@ import {
   ContractClientBaseOptions,
 } from "./ContractClient";
 import { globalConfig } from "@/constants";
-import { Address } from "viem";
+import { Address, formatEther } from "viem";
 
 export class ClubPassFactoryClient extends ContractClientBase<
   typeof ClubPassFactoryABI
@@ -18,12 +18,13 @@ export class ClubPassFactoryClient extends ContractClientBase<
     });
   }
 
-  // getClubPrice(domainName: string) {
-  //   return this.readContract({
-  //     functionName: "getClubPrice",
-  //     args: [domainName],
-  //   });
-  // }
+  async getClubPrice(domainName: string) {
+    const res = (await this.readContract({
+      functionName: "getClubPrice",
+      args: [domainName],
+    })) as bigint;
+    return formatEther(res);
+  }
 
   getClubPassContract(domainName: string) {
     return this.readContract({

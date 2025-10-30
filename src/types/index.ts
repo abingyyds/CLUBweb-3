@@ -1,4 +1,5 @@
 export interface ITheme {
+  templateId: string;
   metaTitle: string;
   favicon: string;
   heroTitle: string;
