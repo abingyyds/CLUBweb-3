@@ -8,6 +8,11 @@ export default {
   		center: true
   	},
   	extend: {
+  		spacing: {
+  			'8.5': '2.125rem', // 34px
+  			'15': '3.75rem',   // 60px
+  			'80': '20rem',     // 320px - 添加 top-80 支持
+  		},
   		animation: {
   			'scroll-right': 'scrollRight 20s linear infinite',
   			'scroll-left': 'scrollLeft 20s linear infinite',

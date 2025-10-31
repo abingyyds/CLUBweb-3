@@ -9,6 +9,11 @@ import { usePagination } from "../../hooks/usePagination";
 import { useClubData } from "../../hooks/useClubData";
 import { useClubMembership } from "../../hooks/useClubMembership";
 import { ArrowRight } from "lucide-react";
+import iconImg from "@/assets/images/Group 6.png";
+import bgImg_1 from "@/assets/images/Group 1.png";
+import bgImg_2 from "@/assets/images/Group 2.png";
+import bgImg_3 from "@/assets/images/Group 3.png";
+import bgImg_4 from "@/assets/images/Group 4.png";
 
 export const Template4 = ({ club, theme }: { club: string; theme: ITheme }) => {
   const { address } = useAccount();
@@ -67,7 +72,7 @@ export const Template4 = ({ club, theme }: { club: string; theme: ITheme }) => {
       />
 
       {/* Header */}
-      <div className="w-full bg-[#9fb471] px-5 py-7 flex justify-center">
+      <div className="w-full max-w-[1280px] bg-[#9fb471] px-5 py-7 flex justify-center">
         <p className="text-white text-base font-bold uppercase tracking-wider">
           {club}.web3.club
         </p>
@@ -75,36 +80,100 @@ export const Template4 = ({ club, theme }: { club: string; theme: ITheme }) => {
 
       {/* Hero Section */}
       <div className="relative w-full max-w-[1280px] px-5 lg:px-20 py-16 lg:py-20">
-        <div className="flex flex-col lg:flex-row items-start justify-between gap-10">
-          {/* Left Content */}
-          <div className="flex-1 lg:max-w-[654px] relative z-10">
-            <div className="relative mb-10">
-              {/* Floating Icon */}
-              <div className="absolute -top-3 -left-10 w-36 h-35 z-0">
+        {/* Floating Icon */}
+              <div className="absolute top-[16%] left-[10%] w-[20vw] h-[20vw] lg:top-[-50px] lg:left-[60px] lg:w-36 lg:h-35 lg:h-35 z-0">
                 <img
-                  src={theme?.heroImg || "/default-hero.png"}
+                  src={iconImg}
                   alt="Hero Icon"
                   className="w-full h-full object-contain"
                 />
               </div>
-              
-              <div className="pl-28">
-                <h1 className="text-6xl lg:text-[80px] font-bold text-black leading-tight mb-10">
-                  Eternal Profit
-                </h1>
-                <h1 className="text-6xl lg:text-[80px] font-bold text-black leading-tight">
+        <div className="flex flex-col lg:flex-row items-start justify-between gap-10">
+          {/* Left Content */}
+          <div className="relative flex-2 w-full lg:max-w-[654px] relative z-10">
+              <div className="lg:pl-28 text-center">
+                <h1 className="w-full text-[40px] lg:text-[80px] font-bold text-black leading-tight mb-10">
+                  Eternal Profit<br />
                   Community
                 </h1>
               </div>
-            </div>
+
+              {/* Right Floating Elements - Mobile Version */}
+              <div className="relative w-full h-[400px] mb-10 lg:hidden">
+                {/* Festival Card */}
+                <div 
+                  className="absolute top-[-20px] right-[8%] w-[54vw] h-[54vw] lg:top-2 lg:right-2 lg:w-[120px] lg:h-[120px] rounded-[10px] rotate-[-5deg] flex flex-col items-center justify-center gap-1"
+                  style={{
+                    backgroundImage: `url(${bgImg_1})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat'
+                  }}
+                >
+                  <p className="text-xs font-semibold text-black text-center">Festival</p>
+                  <p className="text-[10px] text-black text-center">23/04/24</p>
+                </div>
+
+                {/* Charity Event Circle */}
+                <div 
+                  className="absolute top-[160px] right-[30%] w-[64vw] h-[64vw] lg:top-2 lg:right-2 lg:w-[120px] lg:h-[120px] rounded-full rotate-[30deg] flex flex-col items-center justify-center gap-1"
+                  style={{
+                    backgroundImage: `url(${bgImg_4})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat'
+                  }}
+                >
+                  <p className="text-xs font-semibold text-black text-center">Charity event</p>
+                  <p className="text-[10px] text-black text-center">23/04/24</p>
+                </div>
+
+                {/* Opera Star 1 */}
+                <div className="absolute top-[36px] right-[50%] w-[50vw] h-[50vw] lg:top-2 lg:right-2 lg:w-[120px] lg:h-[120px] rotate-[-30deg]">
+                  <div className="relative w-full h-full">
+                    <div 
+                      className="absolute inset-0 rounded-full"
+                      style={{
+                        backgroundImage: `url(${bgImg_2})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat'
+                      }}
+                    ></div>
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+                      <p className="text-xs font-semibold text-black">Opera</p>
+                      <p className="text-[10px] text-black">23/04/24</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Opera Star 2 */}
+                <div className="absolute top-[124px] right-0 w-[50vw] h-[50vw] lg:top-2 lg:right-2 lg:w-[120px] lg:h-[120px] rotate-[45deg]">
+                  <div className="relative w-full h-full">
+                    <div 
+                      className="absolute inset-0 rounded-full"
+                      style={{
+                        backgroundImage: `url(${bgImg_3})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat'
+                      }}
+                    ></div>
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+                      <p className="text-xs font-semibold text-black">Opera</p>
+                      <p className="text-[10px] text-black">23/04/24</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
             <div className="space-y-7 mb-10">
-              <p className="text-xl text-black leading-7">
+              <p className="text-xl text-black text-center lg:text-left leading-7">
                 Welcome to the Eternal Profit Community! We are a professional
                 community focused on blockchain technology innovation and DeFi
                 investment.
               </p>
-              <p className="text-xl text-black leading-7">
+              <p className="text-xl text-black text-center lg:text-left leading-7">
                 Here, you will gain access to the most cutting-edge Alpha
                 information, professional investment advice, and a wealth of
                 learning resources.
@@ -120,21 +189,45 @@ export const Template4 = ({ club, theme }: { club: string; theme: ITheme }) => {
           {/* Right Floating Elements */}
           <div className="relative flex-1 lg:max-w-[583px] h-[658px] hidden lg:block">
             {/* Festival Card */}
-            <div className="absolute top-7 right-0 w-[270px] h-[270px] bg-[#f7dc75] rounded-[10px] rotate-[-15deg] flex flex-col items-center justify-center gap-1">
+            <div 
+              className="absolute top-7 right-0 w-[30vw] h-[30vw] lg:w-[300px] lg:h-[300px] rounded-[10px] rotate-[-10deg] flex flex-col items-center justify-center gap-1"
+              style={{
+                backgroundImage: `url(${bgImg_1})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat'
+              }}
+            >
               <p className="text-base font-semibold text-black text-center">Festival</p>
               <p className="text-xs text-black text-center">23/04/24</p>
             </div>
 
             {/* Charity Event Circle */}
-            <div className="absolute top-80 left-15 w-[290px] h-[290px] bg-[#bcc9eb] rounded-full rotate-[30deg] flex flex-col items-center justify-center gap-1">
+            <div 
+              className="absolute top-[43%] right-[29%] w-[30vw] h-[30vw] lg:w-[320px] lg:h-[320px] rounded-full rotate-[30deg] flex flex-col items-center justify-center gap-1"
+              style={{
+                backgroundImage: `url(${bgImg_4})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat'
+              }}
+            >
               <p className="text-base font-semibold text-black text-center">Charity event</p>
               <p className="text-xs text-black text-center">23/04/24</p>
             </div>
 
             {/* Opera Star 1 */}
-            <div className="absolute top-31 left-10 w-[220px] h-[220px] rotate-[-30deg]">
+            <div className="absolute top-[16%] right-[50%] w-[30vw] h-[30vw] lg:w-[280px] lg:h-[280px] rotate-[-30deg]">
               <div className="relative w-full h-full">
-                <div className="absolute inset-0 bg-[#f4b0df] rounded-full"></div>
+                <div 
+                  className="absolute inset-0 rounded-full"
+                  style={{
+                    backgroundImage: `url(${bgImg_2})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat'
+                  }}
+                ></div>
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
                   <p className="text-base font-semibold text-black">Opera</p>
                   <p className="text-xs text-black">23/04/24</p>
@@ -143,9 +236,17 @@ export const Template4 = ({ club, theme }: { club: string; theme: ITheme }) => {
             </div>
 
             {/* Opera Star 2 */}
-            <div className="absolute top-68 right-20 w-[220px] h-[220px] rotate-[45deg]">
+            <div className="absolute top-[36%] right-[-10%] w-[30vw] h-[30vw] lg:w-[280px] lg:h-[280px] rotate-[45deg]">
               <div className="relative w-full h-full">
-                <div className="absolute inset-0 bg-[#9fb46f] rounded-full"></div>
+                <div 
+                  className="absolute inset-0 rounded-full"
+                  style={{
+                    backgroundImage: `url(${bgImg_3})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat'
+                  }}
+                ></div>
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
                   <p className="text-base font-semibold text-black">Opera</p>
                   <p className="text-xs text-black">23/04/24</p>
@@ -303,7 +404,7 @@ export const Template4 = ({ club, theme }: { club: string; theme: ITheme }) => {
           Community News
         </h2>
         
-        <div className="bg-[#f4de7b] rounded-[40px] p-15">
+        <div className="bg-[#f4de7b] rounded-[40px]" style={{ padding: '50px' }}>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-7 mb-10">
             {currentNewsData.map((news, index) => (
               <div key={index} className="flex flex-col gap-7">
