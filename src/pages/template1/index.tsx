@@ -4,7 +4,7 @@ import { useAccount } from "wagmi";
 import { formatUnits } from "viem";
 import Pagination from "../../components/Pagination";
 import { ITheme } from "@/types";
-import { MemberModal } from "../template3/MemberModal";
+import { MemberModal } from "./MemberModal";
 import { usePagination } from "../../hooks/usePagination";
 import { useClubData } from "../../hooks/useClubData";
 import { useClubMembership } from "../../hooks/useClubMembership";
@@ -286,7 +286,7 @@ export const Template1: React.FC<{ theme?: ITheme; club: string }> = ({
                   <div className="flex flex-col flex-1 gap-1">
                     <div className="flex mb-2">
                       <img
-                        src={theme?.ethImg}
+                        src={theme?.verifyImg1}
                         alt="Chain"
                         className="w-20 h-8 md:w-24 md:h-10"
                       />

@@ -1,0 +1,110 @@
+* {
+  box-sizing: border-box;
+}
+
+.frame9 {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  border-radius: 40px;
+  background: #252525;
+  padding-right: 60px;
+  padding-left: 60px;
+  width: 640px;
+  height: 343px;
+  row-gap: 20px;
+
+  .alert {
+    flex-shrink: 0;
+    align-self: stretch;
+    text-align: center;
+    line-height: 26px;
+    letter-spacing: 0;
+    color: #ffffff;
+    font-family: "Poller One", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    text-transform: UPPERCASE;
+  }
+
+  .frame14369 {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    align-items: flex-start;
+    align-self: stretch;
+    row-gap: 20px;
+
+    .youAlreadyHaveTheFol {
+      flex-shrink: 0;
+      width: 431px;
+      letter-spacing: 0;
+      color: #ffffff;
+      font-family: "Work Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .monthlyMemberYearlyM {
+      flex-shrink: 0;
+      width: 431px;
+      letter-spacing: 0;
+      color: #f3ba2f;
+      font-family: "Work Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .doYouStillWantToJoin {
+      flex-shrink: 0;
+      line-height: 19px;
+      letter-spacing: 0;
+      color: #ffffff;
+      font-family: "Work Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .frame39942 {
+      display: flex;
+      flex-shrink: 0;
+      align-items: flex-start;
+      align-self: stretch;
+      column-gap: 20px;
+
+      .tag {
+        display: flex;
+        flex-grow: 1;
+        align-items: center;
+        justify-content: center;
+        column-gap: 8px;
+        border-radius: 16px;
+        background: #f49f00;
+        padding: 16px 24px;
+        height: 43px;
+        backdrop-filter: blur(2px);
+
+        .cancel {
+          flex-shrink: 0;
+          line-height: 19px;
+          letter-spacing: 0;
+          color: #000000;
+          font-family: "Work Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+          font-size: 16px;
+          text-transform: UPPERCASE;
+        }
+      }
+    }
+  }
+
+  .frame {
+    position: absolute;
+    top: 41px;
+    right: 40px;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+  }
+}

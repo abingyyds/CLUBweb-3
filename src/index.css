@@ -13,6 +13,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.tmeplate5 {
+  font-family: 'Poltawski Nowy Variable', serif;
+}
+
+.font-poller-one {
+  font-family: 'Poller One', system-ui;
+}
 
 .bar3 {
   position: relative;

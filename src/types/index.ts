@@ -3,9 +3,18 @@ export interface ITheme {
   metaTitle: string;
   favicon: string;
   heroTitle: string;
+  heroGradientText: string;
   heroSubtitle: string;
+  heroImg1: string;
+  heroImg2: string;
+  heroImg3: string;
+  avatar1: string;
+  avatar2: string;
+  avatar3: string;
   clubIntroduction1: string;
   clubIntroduction2: string;
+  clubLink1: string;
+  clubLink2: string;
   socials: Social[];
   news: News[];
   heroImg: string;
@@ -13,7 +22,7 @@ export interface ITheme {
   monthImg: string;
   yearImg: string;
   quarterImg: string;
-  ethImg: string;
+  verifyImg1: string;
 }
 
 export interface News {

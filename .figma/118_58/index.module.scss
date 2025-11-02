@@ -1,0 +1,108 @@
+* {
+  box-sizing: border-box;
+}
+
+.frame9 {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  border-radius: 40px;
+  background: #f8f8f8;
+  padding-right: 60px;
+  padding-left: 60px;
+  width: 640px;
+  height: 345px;
+  row-gap: 5px;
+
+  .alert {
+    flex-shrink: 0;
+    align-self: stretch;
+    text-align: center;
+    line-height: 33px;
+    letter-spacing: 0;
+    color: #000000;
+    font-family: Inter, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+  }
+
+  .frame14369 {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    align-items: flex-start;
+    align-self: stretch;
+    row-gap: 20px;
+
+    .youAlreadyHaveTheFol {
+      flex-shrink: 0;
+      width: 431px;
+      letter-spacing: 0;
+      color: #000000;
+      font-family: Inter, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .monthlyMemberYearlyM {
+      flex-shrink: 0;
+      width: 431px;
+      letter-spacing: 0;
+      color: #ff5c16;
+      font-family: Inter, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .doYouStillWantToJoin {
+      flex-shrink: 0;
+      line-height: 19px;
+      letter-spacing: 0;
+      color: #000000;
+      font-family: Inter, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .frame14367 {
+      display: flex;
+      flex-shrink: 0;
+      align-items: flex-start;
+      align-self: stretch;
+      column-gap: 5px;
+
+      .frame14359 {
+        display: flex;
+        flex-grow: 1;
+        align-items: center;
+        justify-content: center;
+        column-gap: 10px;
+        border-radius: 20px;
+        background: #e3e337;
+        padding: 18px 30px;
+
+        .cancel {
+          flex-shrink: 0;
+          line-height: 17px;
+          letter-spacing: 0;
+          color: #000000;
+          font-family: Inter, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+          font-size: 14px;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  .frame {
+    position: absolute;
+    top: 41px;
+    right: 40px;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+  }
+}

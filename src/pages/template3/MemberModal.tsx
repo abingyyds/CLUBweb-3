@@ -56,8 +56,8 @@ export const MemberModal = ({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="max-w-[640px] w-full bg-[#0b0b0d] border-none rounded-[40px] p-0 gap-0">
-        <div className="flex flex-col px-[60px] py-[40px] gap-5">
+      <DialogContent className="w-[90vw] md:w-[640px] bg-[#0b0b0d] border-none rounded-[40px] p-0 gap-0">
+        <div className="flex flex-col px-6 md:px-[60px] py-[40px] gap-5">
           {/* 标题 */}
           <DialogHeader className="p-0">
             <DialogTitle className="text-white text-[30px] font-bold text-center leading-[33px]">

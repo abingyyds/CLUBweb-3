@@ -2,10 +2,19 @@
   "templateId": "3",
   "metaTitle": "Web3 Club",
   "favicon": "/favicon.ico",
-  "heroTitle": "Eternal Profit Community",
+  "heroTitle": "Eternal Profit",
+  "heroGradientText": "Community",
   "heroSubtitle": "Fun with us",
+  "heroImg1": "/img1.png",
+  "heroImg2": "/img2.png",
+  "heroImg3": "/img3.png",
+  "avatar1": "/avatar1.png",
+  "avatar2": "/avatar2.png",
+  "avatar3": "/avatar3.png",
   "clubIntroduction1": "Welcome to the Eternal Profit Community!We are a professional community focused on blockchain technology innovation and DeFi investment.",
   "clubIntroduction2": "Here, you will gain access to the most cutting-edge Alpha information, professional investment advice, and a wealth of learning resources.",
+  "clubLink1": "",
+  "clubLink2": "",
   "socials": [
     {
       "name": "Twitter/X",
@@ -113,5 +122,5 @@
   "quarterImg": "/quarter.png",
   "monthImg": "/month.png",
   "yearImg": "/year.png",
-  "ethImg": "/aave.png"
+  "verifyImg1": "/aave.png"
 }

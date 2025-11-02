@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { ConnectButton } from "../../components/ConnectButton";
 import { useAccount } from "wagmi";
 import { formatUnits } from "viem";
 import Pagination from "../../components/Pagination";
 import { ITheme } from "@/types";
-import { MemberModal } from "../template3/MemberModal";
+import { MemberModal } from "./MemberModal";
 import { usePagination } from "../../hooks/usePagination";
 import { useClubData } from "../../hooks/useClubData";
 import { useClubMembership } from "../../hooks/useClubMembership";
@@ -15,7 +15,9 @@ import {
   FileText,
   ExternalLink,
   MousePointer,
+  ChevronsRight,
 } from "lucide-react";
+import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group";
 
 interface Template7Props {
   club: string;
@@ -69,10 +71,10 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
 
   // 会员选项
   const membershipOptions = [
-    yearPrice && {
+    lifetimePrice && {
       title: "Lifetime Member",
-      price: `${yearPrice} ETH`,
-      type: "year",
+      price: `${lifetimePrice} ETH`,
+      type: "lifetime",
       highlighted: true,
     },
     monthPrice && {
@@ -81,11 +83,22 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
       type: "month",
     },
     quarterPrice && {
-      title: "Yearly Membership",
+      title: "Quarterly Membership",
       price: `${quarterPrice} ETH`,
       type: "quarter",
     },
+    yearPrice && {
+      title: "Yearly Membership",
+      price: `${yearPrice} ETH`,
+      type: "year",
+      highlighted: true,
+    },
   ].filter(Boolean);
+
+  // 选中的会员选项状态
+  const [selectedMembership, setSelectedMembership] = useState(
+    membershipOptions.length > 0 ? membershipOptions[0].type : ""
+  );
 
   // 浏览器控制按钮组件
   const BrowserControls = () => (
@@ -105,19 +118,19 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
           {/* 左侧导航栏 */}
           <div className="absolute left-16 top-16 flex flex-col items-center bg-[#1a1e23] border border-white rounded-full p-2 w-16 h-[274px] gap-3">
             <div className="flex items-center justify-center w-10 h-10 bg-white rounded-full">
-              <Grid className="w-6 h-6 text-black" />
+              <img src="/icon-grid.png" className="w-6 h-6 text-black" />
             </div>
             <div className="flex items-center justify-center w-10 h-10 rounded-full">
-              <User className="w-6 h-6 text-white" />
+              <img src="/icon-user.png" className="w-6 h-6 text-white" />
             </div>
             <div className="flex items-center justify-center w-10 h-10 rounded-full">
-              <Settings className="w-6 h-6 text-white" />
+              <img src="/icon-code.png" className="w-6 h-6 text-white" />
             </div>
             <div className="flex items-center justify-center w-10 h-10 rounded-full">
-              <FileText className="w-6 h-6 text-white" />
+              <img src="/icon-monitor.png" className="w-6 h-6 text-white" />
             </div>
             <div className="flex items-center justify-center w-10 h-10 rounded-full">
-              <ExternalLink className="w-6 h-6 text-white" />
+              <img src="/icon-edit.png" className="w-6 h-6 text-white" />
             </div>
           </div>
 
@@ -126,7 +139,7 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
             {/* 标题区域 */}
             <div className="flex items-center gap-1 text-sm">
               <span className="text-[#98faec]">&lt;title&gt;</span>
-              <span className="text-white">ABC.WEB3.CLUB</span>
+              <span className="text-white">{domainName}.WEB3.CLUB</span>
               <span className="text-[#98faec]">&lt;/title&gt;</span>
             </div>
 
@@ -134,11 +147,11 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
               <span className="text-[#98faec] text-sm">&lt;h1&gt;</span>
               <div className="px-4">
                 <h1 className="text-4xl font-bold text-[#f38406] underline leading-12">
-                  ETERNAL PROFIT
+                  {theme.heroTitle}
                 </h1>
                 <div className="flex items-baseline gap-4">
                   <h1 className="text-4xl font-bold text-white leading-12">
-                    COMMUNITY
+                    {theme.heroGradientText}
                   </h1>
                   <span className="text-[#98faec] text-sm">&lt;/h1&gt;</span>
                 </div>
@@ -149,27 +162,20 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
               <span className="text-[#98faec] text-sm">&lt;p&gt;</span>
               <div className="px-6 space-y-5 max-w-[586px]">
                 <p className="text-white text-base leading-5">
-                  Welcome to the Eternal Profit Community! We are a professional
-                  community focused on blockchain technology innovation and DeFi
-                  investment.
+                  {theme.clubIntroduction1}
                 </p>
                 <p className="text-white text-base leading-5">
-                  Here, you will gain access to the most cutting-edge Alpha
-                  information, professional investment advice, and a wealth of
-                  learning resources.
+                  {theme.clubIntroduction2}
                 </p>
               </div>
               <span className="text-[#98faec] text-sm">&lt;/p&gt;</span>
 
               {/* Connect Wallet 按钮 */}
-              <div className="flex items-center gap-4 px-6">
-                <span className="text-[#f38406] text-xl font-medium">
-                  Connect Wallet
-                </span>
-                <div className="bg-[#43454d] rounded-full p-2">
-                  <ExternalLink className="w-6 h-6 text-white" />
-                </div>
-              </div>
+
+              <ConnectButton
+                className="bg-transparent !text-[#f38406]  text-xl font-medium"
+                icon="/mail.png"
+              />
             </div>
           </div>
         </div>
@@ -191,7 +197,11 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
               <div className="flex flex-col items-center gap-4">
                 <div className="flex flex-col items-center gap-4">
                   <h2 className="text-2xl text-[#f38406]">Join The Option</h2>
-                  <div className="w-44 h-0.5 bg-[#f38406]"></div>
+                  <div className="flex items-center">
+                    <div className="w-2 h-2 bg-[#f38406] rounded-full"></div>
+                    <div className="w-44 h-0.5 bg-[#f38406]"></div>
+                    <div className="w-2 h-2 bg-[#f38406] rounded-full"></div>
+                  </div>
                 </div>
                 <p className="text-white text-xs text-center">
                   Little description here
@@ -199,16 +209,42 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
               </div>
 
               {/* 会员选项 */}
-              <div className="flex justify-center gap-8">
+              <RadioGroup
+                value={selectedMembership}
+                onValueChange={setSelectedMembership}
+                className="flex justify-center gap-8"
+              >
                 {membershipOptions.map((option, index) => (
-                  <div key={index} className="flex">
-                    <div className="w-1 bg-white rounded-l-lg"></div>
-                    <div className="bg-[#dddddd] rounded-r-lg p-4 flex flex-col items-center gap-2 min-w-[180px]">
-                      <div className="w-6 h-6 rounded-full border-2 border-gray-400"></div>
+                  <label
+                    key={index}
+                    className="flex cursor-pointer"
+                    htmlFor={`membership-${option.type}`}
+                  >
+                    <div
+                      className={`w-1 rounded-l-lg ${
+                        selectedMembership === option.type
+                          ? "bg-[#43454D]"
+                          : "bg-white"
+                      }`}
+                    ></div>
+                    <div
+                      className={`rounded-r-lg p-4 flex flex-col items-center gap-2 min-w-[180px] transition-all ${
+                        selectedMembership === option.type
+                          ? "bg-[#f0f0f0] border-2 border-[#43454D]"
+                          : "bg-[#dddddd] border-2 border-transparent"
+                      }`}
+                    >
+                      <RadioGroupItem
+                        value={option.type}
+                        id={`membership-${option.type}`}
+                        className="w-6 h-6 border-2 border-gray-400 data-[state=checked]:bg-[#43454D] data-[state=checked]:border-[#43454D]"
+                      />
                       <div className="text-center">
                         <p
                           className={`font-bold text-lg ${
-                            option.highlighted
+                            selectedMembership === option.type
+                              ? "text-[#43454D] underline"
+                              : option.highlighted
                               ? "text-[#43454d] underline"
                               : "text-[#292f36]"
                           }`}
@@ -218,87 +254,81 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
                         <p className="text-[#43454d]">{option.price}</p>
                       </div>
                     </div>
-                  </div>
+                  </label>
                 ))}
-              </div>
+              </RadioGroup>
 
               {/* JOIN NOW 按钮 */}
               <div className="flex justify-center">
                 <button
-                  onClick={() => handleJoin("year")}
-                  className="flex items-center gap-4 bg-[#f38406] border-2 border-[#f38406] rounded-full px-8 py-3 text-white font-medium hover:bg-[#e67300] transition-colors"
+                  onClick={() => handleJoin(selectedMembership)}
+                  disabled={!selectedMembership}
+                  className="flex items-center gap-4 bg-[#f38406] border-2 border-[#f38406] rounded-full px-8 py-3 text-white font-medium hover:bg-[#e67300] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <span>JOIN NOW</span>
-                  <ExternalLink className="w-6 h-6" />
+                  <ChevronsRight />
                 </button>
               </div>
 
               {/* Position Verification */}
-              <div className="space-y-10">
-                <div className="flex flex-col items-center gap-4">
-                  <h3 className="text-2xl text-[#f38406]">
-                    Position Verification
-                  </h3>
-                  <div className="w-56 h-0.5 bg-[#f38406]"></div>
-                </div>
-
-                <div className="flex justify-center gap-32 px-10">
-                  {/* ETH Chain */}
-                  <div className="flex flex-col gap-3.5">
-                    <div className="h-10 flex items-center">
-                      <img src="/aave.png" alt="AAVE" className="h-4" />
-                    </div>
-                    <p className="text-[#f38406] font-semibold">ETH Chain</p>
-                    <div className="space-y-2">
-                      <p className="text-white font-light">Hold AAVE ≥100</p>
-                      <div className="h-px bg-[#98faec]"></div>
-                    </div>
-                    <div className="flex items-end gap-2">
-                      <div className="flex flex-col gap-1">
-                        <span className="text-[#f38406] text-xs">Verify</span>
-                        <div className="h-0.5 bg-[#f38406]"></div>
-                      </div>
-                      <MousePointer className="w-4 h-4 text-white" />
+              {verifyData?.length ? (
+                <div className="space-y-10">
+                  <div className="flex flex-col items-center gap-4">
+                    <h3 className="text-2xl text-[#f38406]">
+                      Position Verification
+                    </h3>
+                    <div className="flex items-center">
+                      <div className="w-2 h-2 bg-[#f38406] rounded-full"></div>
+                      <div className="w-56 h-0.5 bg-[#f38406]"></div>
+                      <div className="w-2 h-2 bg-[#f38406] rounded-full"></div>
                     </div>
                   </div>
 
-                  {/* BNB Chain */}
-                  <div className="flex flex-col gap-3.5">
-                    <img src="/bnb.png" alt="BNB" className="w-10 h-10" />
-                    <p className="text-[#f38406] font-semibold">BNB Chain</p>
-                    <div className="space-y-2">
-                      <p className="text-white font-light">Hold BNB≥10</p>
-                      <div className="h-px bg-[#98faec]"></div>
-                    </div>
-                    <div className="flex items-end gap-2">
-                      <div className="flex flex-col gap-1">
-                        <span className="text-[#f38406] text-xs">Verify</span>
-                        <div className="h-0.5 bg-[#f38406]"></div>
+                  <div
+                    className={`flex justify-center px-10 ${
+                      verifyData.length === 1
+                        ? "gap-0"
+                        : verifyData.length === 2
+                        ? "gap-16"
+                        : "gap-32"
+                    }`}
+                  >
+                    {verifyData.map((it, index) => (
+                      <div key={index} className="flex flex-col gap-3.5">
+                        <div className="flex items-center">
+                          <img
+                            src={theme?.verifyImg1 || "/aave.png"}
+                            alt={it.tokenSymbol}
+                            className="w-[97px]"
+                          />
+                        </div>
+                        <p className="text-[#f38406] font-semibold">
+                          {it.chainName} Chain
+                        </p>
+                        <div className="space-y-2">
+                          <p className="text-white font-light">
+                            Hold {it.tokenSymbol} ≥
+                            {formatUnits(it.threshold, it.decimals)}
+                          </p>
+                          <div className="h-px bg-[#98faec]"></div>
+                        </div>
+                        <div
+                          className="flex items-end gap-2 cursor-pointer"
+                          onClick={() => handleVerify(it)}
+                        >
+                          <div className="flex flex-col gap-1">
+                            <span className="text-[#f38406] text-xs">
+                              Verify
+                            </span>
+                            <div className="h-0.5 bg-[#f38406]"></div>
+                          </div>
+                          <MousePointer className="w-4 h-4 text-white" />
+                        </div>
                       </div>
-                      <MousePointer className="w-4 h-4 text-white" />
-                    </div>
-                  </div>
-
-                  {/* Polygon Chain */}
-                  <div className="flex flex-col gap-3.5">
-                    <img src="/polygon.png" alt="MATIC" className="w-10 h-9" />
-                    <p className="text-[#f38406] font-semibold">
-                      Polygon Chain
-                    </p>
-                    <div className="space-y-2">
-                      <p className="text-white font-light">Hold MATIC≥1000</p>
-                      <div className="h-px bg-[#98faec]"></div>
-                    </div>
-                    <div className="flex items-end gap-2">
-                      <div className="flex flex-col gap-1">
-                        <span className="text-[#f38406] text-xs">Verify</span>
-                        <div className="h-0.5 bg-[#f38406]"></div>
-                      </div>
-                      <MousePointer className="w-4 h-4 text-white" />
-                    </div>
+                    ))}
                   </div>
                 </div>
-              </div>
+              ) : null}
             </div>
           </div>
 
@@ -315,54 +345,25 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
             <div className="bg-[#e5e5e5] rounded-b-lg p-10">
               <div className="space-y-10">
                 <div className="flex flex-col items-center gap-4">
-                  <h3 className="text-2xl text-[#f38406]">Links & Apps</h3>
-                  <div className="w-32 h-0.5 bg-[#f38406]"></div>
+                  <h3 className="text-2xl text-[#191D22]">Links & Apps</h3>
+                  <div className="flex items-center">
+                    <div className="w-2 h-2 bg-[#191D22] rounded-full"></div>
+                    <div className="w-32 h-0.5 bg-[#191D22]"></div>
+                    <div className="w-2 h-2 bg-[#191D22] rounded-full"></div>
+                  </div>
                 </div>
 
                 <div className="flex justify-center gap-8">
-                  {[
-                    {
-                      name: "Telegram",
-                      icon: "/telegram.png",
-                      color: "bg-[#ef5da8]",
-                    },
-                    {
-                      name: "Twitter/X",
-                      icon: "/twitter.png",
-                      color: "bg-[#1da1f2]",
-                    },
-                    {
-                      name: "Discord",
-                      icon: "/discord.png",
-                      color: "bg-[#5865f2]",
-                    },
-                    {
-                      name: "YouTube",
-                      icon: "/youtube.png",
-                      color: "bg-[#ff0000]",
-                    },
-                    {
-                      name: "OnlyCluber",
-                      icon: "/onlycluber.png",
-                      color: "bg-[#000000]",
-                    },
-                    {
-                      name: "ClubBot",
-                      icon: "/clubbot.png",
-                      color: "bg-[#00d4aa]",
-                    },
-                  ].map((app, index) => (
+                  {theme.socials.map((app, index) => (
                     <div
                       key={index}
                       className="flex flex-col items-center gap-2"
                     >
-                      <div
-                        className={`w-16 h-16 rounded-full ${app.color} flex items-center justify-center`}
-                      >
+                      <div className={`flex items-center justify-center`}>
                         <img
                           src={app.icon}
                           alt={app.name}
-                          className="w-8 h-8"
+                          className="size-[84px] rounded-full"
                         />
                       </div>
                       <span className="text-black text-sm">{app.name}</span>
@@ -377,7 +378,11 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
           <div className="space-y-10">
             <div className="flex flex-col items-center gap-4">
               <h3 className="text-2xl text-[#f38406]">Community News</h3>
-              <div className="w-40 h-0.5 bg-[#f38406]"></div>
+              <div className="flex items-center">
+                <div className="w-2 h-2 bg-[#f38406] rounded-full"></div>
+                <div className="w-40 h-0.5 bg-[#f38406]"></div>
+                <div className="w-2 h-2 bg-[#f38406] rounded-full"></div>
+              </div>
             </div>
 
             <div className="space-y-8">
@@ -406,13 +411,13 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
 
             {/* 分页按钮 */}
             <div className="flex justify-center gap-4">
-              <button className="bg-[#f38406] text-white px-6 py-2 rounded text-sm">
+              <button className="bg-[#f38406] text-[#292F36] h-[56px] rounded-[32px] px-8 py-4 text-sm">
                 View More
               </button>
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage >= totalPages}
-                className="bg-[#f38406] text-white px-6 py-2 rounded text-sm disabled:opacity-50"
+                className="bg-[#292F36] text-white h-[56px] rounded-[32px] px-8 py-4 text-sm disabled:opacity-50"
               >
                 Next
               </button>
@@ -422,7 +427,7 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
           {/* Footer */}
           <div className="text-center space-y-4 pt-10">
             <h4 className="text-white text-lg tracking-wider">
-              A B C . W E B 3 . C L U B
+              {domainName} . W E B 3 . C L U B
             </h4>
             <div className="h-px bg-[#f38406] max-w-md mx-auto"></div>
             <p className="text-white text-sm">
