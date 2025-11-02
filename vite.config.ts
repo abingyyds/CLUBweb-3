@@ -4,17 +4,19 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import { traeBadgePlugin } from "vite-plugin-trae-solo-badge";
 
 // https://vite.dev/config/
-export default defineConfig({
-  build: {
-    sourcemap: "hidden",
-  },
-  plugins: [
+export default defineConfig(({ command }) => {
+  const plugins = [
     react({
       babel: {
         plugins: ["react-dev-locator"],
       },
     }),
-    traeBadgePlugin({
+    tsconfigPaths(),
+  ];
+
+  // 只在开发模式下添加 traeBadgePlugin
+  if (command === 'serve') {
+    plugins.splice(1, 0, traeBadgePlugin({
       variant: "dark",
       position: "bottom-right",
       prodOnly: false,
@@ -22,7 +24,13 @@ export default defineConfig({
       clickUrl: "https://www.trae.ai/solo?showJoin=1",
       autoTheme: true,
       autoThemeTarget: "#root",
-    }),
-    tsconfigPaths(),
-  ],
+    }));
+  }
+
+  return {
+    build: {
+      sourcemap: "hidden",
+    },
+    plugins,
+  };
 });

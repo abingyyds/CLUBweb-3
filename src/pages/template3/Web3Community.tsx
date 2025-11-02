@@ -29,11 +29,17 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
   });
 
   // 使用俱乐部数据 hook
-  const { lifetimePrice, yearPrice, monthPrice, quarterPrice, verifyData, memberData } =
-    useClubData({
-      domainName,
-      address,
-    });
+  const {
+    lifetimePrice,
+    yearPrice,
+    monthPrice,
+    quarterPrice,
+    verifyData,
+    memberData,
+  } = useClubData({
+    domainName,
+    address,
+  });
 
   // 使用会员管理 hook
   const {
@@ -289,7 +295,7 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
                   <React.Fragment key={index}>
                     <div className="flex items-center gap-6">
                       <img
-                        src={theme.ethImg}
+                        src={theme.verifyImg1}
                         alt="ETH Chain"
                         className="size-[50px] md:size-20"
                       />

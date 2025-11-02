@@ -1,16 +1,17 @@
-import React from 'react';
-import { useForm, useFieldArray } from 'react-hook-form';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
+import React from "react";
+import { useForm, useFieldArray } from "react-hook-form";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { ScrollArea } from "./ui/scroll-area";
 import {
-  Drawer,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from './ui/drawer';
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "./ui/sheet";
 import {
   Form,
   FormControl,
@@ -18,51 +19,19 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from './ui/form';
-import { Plus, Trash2, Settings } from 'lucide-react';
-
-interface Social {
-  name: string;
-  link: string;
-  text: string;
-  icon: string;
-}
-
-interface News {
-  image: string;
-  title: string;
-  category: string;
-  time: string;
-  source: string;
-  link: string;
-}
-
-interface ConfigData {
-  metaTitle: string;
-  favicon: string;
-  heroTitle: string;
-  heroSubtitle: string;
-  clubIntroduction1: string;
-  clubIntroduction2: string;
-  socials: Social[];
-  news: News[];
-  heroImg: string;
-  lifeTimeImg: string;
-  quarterImg: string;
-  monthImg: string;
-  yearImg: string;
-  ethImg: string;
-}
+} from "./ui/form";
+import { Plus, Trash2, Settings } from "lucide-react";
+import { ITheme } from "@/types";
 
 interface ConfigPanelProps {
-  config: ConfigData;
-  onSave: (config: ConfigData) => void;
+  config: ITheme;
+  onSave: (config: ITheme) => void;
 }
 
 export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
   const [open, setOpen] = React.useState(false);
-  
-  const form = useForm<ConfigData>({
+
+  const form = useForm<ITheme>({
     defaultValues: config,
   });
 
@@ -72,7 +41,7 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
     remove: removeSocial,
   } = useFieldArray({
     control: form.control,
-    name: 'socials',
+    name: "socials",
   });
 
   const {
@@ -81,10 +50,10 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
     remove: removeNews,
   } = useFieldArray({
     control: form.control,
-    name: 'news',
+    name: "news",
   });
 
-  const handleSave = (data: ConfigData) => {
+  const handleSave = (data: ITheme) => {
     onSave(data);
     setOpen(false);
   };
@@ -96,49 +65,69 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
 
   const addSocial = () => {
     appendSocial({
-      name: '',
-      link: '',
-      text: '',
-      icon: '',
+      name: "",
+      link: "",
+      text: "",
+      icon: "",
     });
   };
 
   const addNews = () => {
     appendNews({
-      image: '',
-      title: '',
-      category: '',
-      time: '',
-      source: '',
-      link: '',
+      image: "",
+      title: "",
+      category: "",
+      time: "",
+      source: "",
+      link: "",
     });
   };
 
   return (
-    <Drawer open={open} onOpenChange={setOpen}>
-      <DrawerTrigger asChild>
+    <Sheet open={open} onOpenChange={setOpen}>
+      <SheetTrigger asChild>
         <Button
           variant="outline"
           size="icon"
-          className="fixed bottom-4 right-4 z-50 h-12 w-12 rounded-full shadow-lg"
+          className="fixed bottom-4 left-4 z-50 h-12 w-12 rounded-full shadow-lg"
         >
           <Settings className="h-6 w-6" />
         </Button>
-      </DrawerTrigger>
-      <DrawerContent className="max-h-[90vh] overflow-y-auto">
-        <DrawerHeader>
-          <DrawerTitle>配置面板</DrawerTitle>
-          <DrawerDescription>
-            编辑网站配置信息
-          </DrawerDescription>
-        </DrawerHeader>
-        
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleSave)} className="space-y-6 p-4">
+      </SheetTrigger>
+      <SheetContent
+        className="sm:max-w-auto w-[600px] flex flex-col h-full"
+        side="right"
+      >
+        <SheetHeader>
+          <SheetTitle>配置面板</SheetTitle>
+          <SheetDescription>编辑网站配置信息</SheetDescription>
+        </SheetHeader>
+
+        <ScrollArea className="flex-1">
+          <div className="p-4">
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(handleSave)}
+                className="space-y-6"
+              >
             {/* 基本信息 */}
             <div className="space-y-4">
               <h3 className="text-lg font-semibold">基本信息</h3>
-              
+
+              <FormField
+                control={form.control}
+                name="templateId"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>模板ID</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
               <FormField
                 control={form.control}
                 name="metaTitle"
@@ -173,6 +162,20 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>主标题</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="heroGradientText"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>主标题渐变文字</FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
@@ -222,12 +225,40 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
                   </FormItem>
                 )}
               />
+
+              <FormField
+                control={form.control}
+                name="clubLink1"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>社区链接1</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="clubLink2"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>社区链接2</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
 
-            {/* 图片配置 */}
+            {/* 主图配置 */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold">图片配置</h3>
-              
+              <h3 className="text-lg font-semibold">主图配置</h3>
+
               <FormField
                 control={form.control}
                 name="heroImg"
@@ -241,6 +272,100 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
                   </FormItem>
                 )}
               />
+
+              <FormField
+                control={form.control}
+                name="heroImg1"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>主图1</FormLabel>
+                    <FormControl>
+                      <Input {...field} placeholder="/hero1.png" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="heroImg2"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>主图2</FormLabel>
+                    <FormControl>
+                      <Input {...field} placeholder="/hero2.png" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="heroImg3"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>主图3</FormLabel>
+                    <FormControl>
+                      <Input {...field} placeholder="/hero3.png" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            {/* 头像配置 */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">头像配置</h3>
+
+              <FormField
+                control={form.control}
+                name="avatar1"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>头像1</FormLabel>
+                    <FormControl>
+                      <Input {...field} placeholder="/avatar1.png" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="avatar2"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>头像2</FormLabel>
+                    <FormControl>
+                      <Input {...field} placeholder="/avatar2.png" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="avatar3"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>头像3</FormLabel>
+                    <FormControl>
+                      <Input {...field} placeholder="/avatar3.png" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            {/* 会员图片 */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">会员图片</h3>
 
               <FormField
                 control={form.control}
@@ -297,15 +422,20 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
                   </FormItem>
                 )}
               />
+            </div>
+
+            {/* 验证图片 */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">验证图片</h3>
 
               <FormField
                 control={form.control}
-                name="ethImg"
+                name="verifyImg1"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>ETH图标</FormLabel>
+                    <FormLabel>验证图1</FormLabel>
                     <FormControl>
-                      <Input {...field} placeholder="/aave.png" />
+                      <Input {...field} placeholder="/verify1.png" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -322,7 +452,7 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
                   添加
                 </Button>
               </div>
-              
+
               {socialFields.map((field, index) => (
                 <div key={field.id} className="border rounded-lg p-4 space-y-3">
                   <div className="flex items-center justify-between">
@@ -336,7 +466,7 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
                       <Trash2 className="h-4 w-4" />
                     </Button>
                   </div>
-                  
+
                   <div className="grid grid-cols-2 gap-3">
                     <FormField
                       control={form.control}
@@ -407,7 +537,7 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
                   添加
                 </Button>
               </div>
-              
+
               {newsFields.map((field, index) => (
                 <div key={field.id} className="border rounded-lg p-4 space-y-3">
                   <div className="flex items-center justify-between">
@@ -421,7 +551,7 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
                       <Trash2 className="h-4 w-4" />
                     </Button>
                   </div>
-                  
+
                   <div className="grid grid-cols-2 gap-3">
                     <FormField
                       control={form.control}
@@ -512,8 +642,10 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
             </div>
           </form>
         </Form>
+          </div>
+        </ScrollArea>
 
-        <DrawerFooter>
+        <SheetFooter className="border-t bg-background p-4">
           <div className="flex gap-2">
             <Button onClick={form.handleSubmit(handleSave)} className="flex-1">
               保存
@@ -522,8 +654,8 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
               取消
             </Button>
           </div>
-        </DrawerFooter>
-      </DrawerContent>
-    </Drawer>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
   );
 };

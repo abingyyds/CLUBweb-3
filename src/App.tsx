@@ -13,6 +13,7 @@ import { Template7 } from "./pages/template7";
 import { Template8 } from "./pages/template8";
 import Template9 from "./pages/template9/index";
 import { Template10 } from "./pages/template10/index";
+import { PageMeta } from "./components/PageMeta";
 
 function App() {
   const search = parseSearchParams(window.location.href) as any;
@@ -45,6 +46,7 @@ function App() {
 
   return (
     <div className="App">
+      <PageMeta title={theme?.metaTitle} favicon={theme?.favicon} />
       {template === "1" ? <Template1 club={club} theme={theme} /> : null}
       {template === "2" ? <Template2 club={club} theme={theme} /> : null}
       {template === "3" ? <Template3 club={club} theme={theme} /> : null}

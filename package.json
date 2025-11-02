@@ -11,6 +11,8 @@
     "check": "tsc -b --noEmit"
   },
   "dependencies": {
+    "@fontsource-variable/poltawski-nowy": "^5.2.7",
+    "@fontsource/poller-one": "^5.2.8",
     "@hookform/resolvers": "^5.2.2",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-alert-dialog": "^1.1.15",

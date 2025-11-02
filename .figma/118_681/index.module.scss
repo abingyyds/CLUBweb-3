@@ -1,0 +1,117 @@
+* {
+  box-sizing: border-box;
+}
+
+.frame9 {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  border-radius: 2px;
+  background: #454c5b;
+  padding-right: 60px;
+  padding-left: 60px;
+  width: 640px;
+  height: 410px;
+  row-gap: 5px;
+
+  .alert {
+    flex-shrink: 0;
+    align-self: stretch;
+    text-align: center;
+    line-height: 33px;
+    letter-spacing: 0;
+    color: #ffffff;
+    font-family: "IBM Plex Mono", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+  }
+
+  .frame14369 {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    align-items: flex-start;
+    align-self: stretch;
+    padding-top: 40px;
+    padding-bottom: 10px;
+    row-gap: 20px;
+
+    .youAlreadyHaveTheFol {
+      flex-shrink: 0;
+      width: 431px;
+      letter-spacing: 0;
+      color: #ffffff;
+      font-family: "IBM Plex Mono", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .monthlyMemberYearlyM {
+      flex-shrink: 0;
+      width: 431px;
+      letter-spacing: 0;
+      color: #ffc130;
+      font-family: "IBM Plex Mono", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .doYouStillWantToJoin {
+      flex-shrink: 0;
+      line-height: 21px;
+      letter-spacing: 0;
+      color: #ffffff;
+      font-family: "IBM Plex Mono", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .frame14360 {
+      display: flex;
+      flex-shrink: 0;
+      align-items: flex-start;
+      align-self: stretch;
+      column-gap: 20px;
+
+      .button {
+        display: flex;
+        flex-grow: 1;
+        align-items: center;
+        justify-content: center;
+        column-gap: 16px;
+        border: 2px solid #f38406;
+        border-radius: 32px;
+        background: #f38406;
+        padding: 14px 30px;
+
+        .cancel {
+          flex-shrink: 0;
+          line-height: 24px;
+          letter-spacing: 0;
+          color: var(--White, #ffffff);
+          font-family: Ubuntu, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+          font-size: 16px;
+        }
+
+        .iconChevronsRight {
+          flex-shrink: 0;
+          width: 24px;
+          height: 24px;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+
+  .frame {
+    position: absolute;
+    top: 41px;
+    right: 40px;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+  }
+}
