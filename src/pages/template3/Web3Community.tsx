@@ -295,7 +295,7 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
                   <React.Fragment key={index}>
                     <div className="flex items-center gap-6">
                       <img
-                        src={theme.verifyImg1}
+                        src={theme?.verifyImgs?.[index] || theme?.verifyImgs?.[0] || "/aave.png"}
                         alt="ETH Chain"
                         className="size-[50px] md:size-20"
                       />

@@ -242,7 +242,7 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
                 <div key={index} className="flex items-center space-x-2">
                   <div className="w-15 h-15 flex items-center justify-center">
                     <img
-                      src={theme.verifyImg1}
+                      src={theme?.verifyImgs?.[index] || theme?.verifyImgs?.[0] || "/aave.png"}
                       alt={it.chainName}
                       className="w-full object-contain"
                     />

@@ -362,7 +362,7 @@ export const Template4 = ({ club, theme }: { club: string; theme: ITheme }) => {
                   <div className="flex items-center gap-5 w-full">
                     <div className="w-15 h-15 bg-white rounded-[40px] flex items-center justify-center flex-shrink-0">
                       <img
-                        src={theme?.verifyImg1 || "/eth.png"}
+                        src={theme?.verifyImgs?.[index] || theme?.verifyImgs?.[0] || "/eth.png"}
                         alt={`${item.chainName} Chain`}
                         className="w-10 h-10"
                       />

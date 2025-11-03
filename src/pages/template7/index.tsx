@@ -297,7 +297,7 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
                       <div key={index} className="flex w-full lg:w-[30%] flex-col gap-2 md:gap-3.5">
                         <div className="flex items-center">
                           <img
-                            src={theme?.verifyImg1 || "/aave.png"}
+                            src={theme?.verifyImgs?.[index] || theme?.verifyImgs?.[0] || "/aave.png"}
                             alt={it.tokenSymbol}
                             className="w-16 md:w-[97px]"
                           />

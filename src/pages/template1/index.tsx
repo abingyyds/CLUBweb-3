@@ -286,7 +286,7 @@ export const Template1: React.FC<{ theme?: ITheme; club: string }> = ({
                   <div className="flex flex-col flex-1 gap-1">
                     <div className="flex mb-2">
                       <img
-                        src={theme?.verifyImg1}
+                        src={theme?.verifyImgs?.[index] || theme?.verifyImgs?.[0] || "/aave.png"}
                         alt="Chain"
                         className="w-20 h-8 md:w-24 md:h-10"
                       />

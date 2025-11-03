@@ -122,5 +122,5 @@
   "quarterImg": "/quarter.png",
   "monthImg": "/month.png",
   "yearImg": "/year.png",
-  "verifyImg1": "/aave.png"
+  "verifyImgs": ["/aave.png", "/bnb.png", "/polygon.png"]
 }
