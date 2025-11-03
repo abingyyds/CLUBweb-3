@@ -18,7 +18,7 @@ export const ConnectButton = ({ className }: { className?: string }) => {
           <span>{shortenAddress(address || "")}</span>
         </>
       ) : (
-        <p className="text-black text-sm font-bold uppercase tracking-wider">
+        <p className="text-white text-sm font-bold uppercase tracking-wider">
           Connect Wallet
         </p>
       )}
