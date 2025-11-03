@@ -22,7 +22,7 @@ export interface ITheme {
   monthImg: string;
   yearImg: string;
   quarterImg: string;
-  verifyImg1: string;
+  verifyImgs: string[];
 }
 
 export interface News {

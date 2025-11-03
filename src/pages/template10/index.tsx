@@ -449,7 +449,7 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
                   >
                     <div className="inline-flex flex-col items-start justify-center h-[40px] gap-[10px]">
                       <img
-                        src={theme.verifyImg1}
+                        src={theme?.verifyImgs?.[index] || theme?.verifyImgs?.[0] || "/aave.png"}
                         alt={item.chainName}
                         className="h-10 object-contain"
                       />

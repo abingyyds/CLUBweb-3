@@ -281,7 +281,7 @@ export const Template2 = ({
               <div className="flex items-center gap-3 lg:gap-5">
                 <div className="w-12 lg:w-18 h-12 lg:h-18 rounded-lg overflow-hidden">
                   <img
-                    src={theme.verifyImg1}
+                    src={theme?.verifyImgs?.[index] || theme?.verifyImgs?.[0] || "/aave.png"}
                     className="w-full h-full object-cover"
                   />
                 </div>

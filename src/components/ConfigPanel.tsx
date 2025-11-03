@@ -53,6 +53,15 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
     name: "news",
   });
 
+  const {
+    fields: verifyImgsFields,
+    append: appendVerifyImg,
+    remove: removeVerifyImg,
+  } = useFieldArray({
+    control: form.control,
+    name: "verifyImgs",
+  });
+
   const handleSave = (data: ITheme) => {
     onSave(data);
     setOpen(false);
@@ -81,6 +90,10 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
       source: "",
       link: "",
     });
+  };
+
+  const addVerifyImg = () => {
+    appendVerifyImg("");
   };
 
   return (
@@ -426,21 +439,46 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
 
             {/* 验证图片 */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold">验证图片</h3>
+              <div className="flex items-center justify-between">
+                <h3 className="text-lg font-semibold">验证图片</h3>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={addVerifyImg}
+                  className="flex items-center gap-2"
+                >
+                  <Plus className="h-4 w-4" />
+                  添加图片
+                </Button>
+              </div>
 
-              <FormField
-                control={form.control}
-                name="verifyImg1"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>验证图1</FormLabel>
-                    <FormControl>
-                      <Input {...field} placeholder="/verify1.png" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              {verifyImgsFields.map((field, index) => (
+                <div key={field.id} className="flex items-center gap-2">
+                  <FormField
+                    control={form.control}
+                    name={`verifyImgs.${index}`}
+                    render={({ field }) => (
+                      <FormItem className="flex-1">
+                        <FormLabel>验证图片 {index + 1}</FormLabel>
+                        <FormControl>
+                          <Input {...field} placeholder="/verify1.png" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => removeVerifyImg(index)}
+                    className="mt-8"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
+                </div>
+              ))}
             </div>
 
             {/* 社交媒体配置 */}

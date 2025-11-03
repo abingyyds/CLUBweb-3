@@ -248,7 +248,7 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
                 <div className="flex flex-row md:flex-col justify-between">
                   <div className="mb-4">
                     <img
-                      src={theme.verifyImg1}
+                      src={theme?.verifyImgs?.[index] || theme?.verifyImgs?.[0] || "/aave.png"}
                       alt={chain.name}
                       className="w-12 h-12"
                     />

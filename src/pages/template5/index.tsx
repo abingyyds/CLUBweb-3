@@ -205,7 +205,7 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
                 <div key={index} className="flex items-center gap-5 flex-1">
                   <div className="w-[70px] h-[70px] rounded-full overflow-hidden">
                     <img
-                      src={theme?.verifyImg1}
+                      src={theme?.verifyImgs?.[index] || theme?.verifyImgs?.[0] || "/aave.png"}
                       alt={`${item.chainName} Chain`}
                       className="w-full h-full object-contain"
                     />

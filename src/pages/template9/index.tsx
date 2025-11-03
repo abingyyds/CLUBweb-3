@@ -317,7 +317,7 @@ const Template9: React.FC<Template9Props> = ({ club = "abc", theme }) => {
                     <div className="space-y-1">
                       <div className="w-12 h-12  rounded-lg flex items-center justify-center">
                         <img
-                          src={theme.verifyImg1}
+                          src={theme?.verifyImgs?.[index] || theme?.verifyImgs?.[0] || "/aave.png"}
                           alt={`${it.chainName} Chain`}
                           className="size-10 object-contain"
                         />
