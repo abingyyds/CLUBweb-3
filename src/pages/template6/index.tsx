@@ -9,6 +9,9 @@ import { usePagination } from "../../hooks/usePagination";
 import { useClubData } from "../../hooks/useClubData";
 import { useClubMembership } from "../../hooks/useClubMembership";
 import { Heart, Gift, ExternalLink } from "lucide-react";
+import layerimg from "/public/Layer.png";
+import Vectorimg from "/public/Vector.png";
+
 
 const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
   theme,
@@ -74,7 +77,7 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
 
       {/* Main Container */}
       <div
-        className="w-full max-w-[1280px] mx-auto"
+        className="w-full max-w-[1280px] mx-auto overflow-x-hidden"
         style={{
           background:
             "linear-gradient(180deg, rgba(252, 239, 253, 0.00) 81.35%, #FFE0E8 100%)",
@@ -89,7 +92,7 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
             </span>
           </div>
           <ConnectButton
-            className="bg-[#ef5da8] hover:bg-[#d64a94] text-white px-5 py-2 rounded-full text-sm font-medium"
+            className="bg-[#ef5da8] invisible lg:visible hover:bg-[#d64a94] text-white px-5 py-2 rounded-full text-sm font-medium"
             icon="/arrow-circle.png"
           />
         </div>
@@ -114,19 +117,23 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
               {theme.clubIntroduction2}
             </p>
 
-            <ConnectButton
-              className="bg-[#ef5da8] hover:bg-[#d64a94] text-white px-5 py-2 rounded-full text-sm font-medium"
-              icon="/arrow-circle.png"
-            />
+            <div className="relative w-fit">
+              <ConnectButton
+                className="bg-[#ef5da8] hover:bg-[#d64a94] text-white px-5 py-2 rounded-full text-sm font-medium relative z-10"
+                icon="/arrow-circle.png"
+              />
+              <img
+                src={Vectorimg}
+                alt="Vector"
+                className="absolute top-1/2 right-[-40px] md:right-[-50px] transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16"
+              />
+            </div>
           </div>
 
           {/* Hero Image */}
           <div className="flex-shrink-0">
             <img
-              src={
-                theme?.heroImg ||
-                "https://trae-api-sg.mchost.guru/api/ide/v1/text_to_image?prompt=cute%20couple%20sitting%20at%20cafe%20table%20with%20hearts%20floating%20around%20them%20in%20pink%20theme%20illustration%20style&image_size=square"
-              }
+              src={layerimg}
               alt="Hero Illustration"
               className="w-64 md:w-80 h-auto"
             />
@@ -137,14 +144,19 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
         <div className="px-4 md:px-20 py-16">
           <div className="text-center mb-12">
             <div className="relative inline-block">
-              <h2 className="text-2xl md:text-3xl font-bold text-black uppercase">
+              <img
+                src={Vectorimg}
+                alt="Vector"
+                className="absolute top-1/3 left-0 md:left-[-20px] transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16"
+              />
+              <h2 className="text-2xl md:text-3xl font-bold text-black uppercase relative z-10">
                 Join the <span className="text-[#ef5da8]">Option</span>
               </h2>
               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-[#ef5da8]"></div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 max-w-4xl mx-auto">
             {[
               {
                 icon: theme?.lifeTimeImg || (
@@ -176,7 +188,7 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
                 className={`group border-gray-200 bg-white rounded-2xl p-6 shadow-lg border-2 transition-all hover:shadow-xl hover:border-[#ef5da8] hover:bg-[#ef5da8] hover:text-white`}
               >
                 <div className="text-center">
-                  <div className="mb-4 flex justify-center">
+                  <div className="relative mb-4 flex justify-center">
                     {typeof option.icon === "string" ? (
                       <img
                         src={option.icon}
@@ -215,7 +227,12 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
         <div className="px-4 md:px-20 py-16">
           <div className="text-center mb-12">
             <div className="relative inline-block">
-              <h2 className="text-2xl md:text-3xl font-bold text-black uppercase">
+              <img
+                src={Vectorimg}
+                alt="Vector"
+                className="absolute top-1/4 right-[-40px] md:right-[-70px] transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16"
+              />
+              <h2 className="text-2xl md:text-3xl font-bold text-black uppercase relative z-10">
                 Position <span className="text-[#ef5da8]">Verification</span>
               </h2>
               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-[#ef5da8]"></div>
@@ -226,30 +243,33 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
             {verifyData?.map((chain, index) => (
               <div
                 key={index}
-                className="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 hover:border-[#ef5da8] transition-all"
+                className="flex align-start justify-between bg-white rounded-2xl p-6 shadow-lg border border-gray-200 hover:border-[#ef5da8] transition-all"
               >
-                <div className="text-center">
-                  <div className="mb-4 flex justify-center">
+                <div className="flex flex-row md:flex-col justify-between">
+                  <div className="mb-4">
                     <img
                       src={theme.verifyImg1}
                       alt={chain.name}
                       className="w-12 h-12"
                     />
                   </div>
-                  <h3 className="font-bold text-lg text-black mb-2">
+                  <div>
+                    <h3 className="font-bold text-lg text-black mb-2">
                     {chain.chainName}
                   </h3>
                   <p className="text-gray-600 text-sm mb-6">
                     Hold {chain.tokenSymbol} ≥{" "}
                     {formatUnits(chain.threshold, chain.decimals)}
                   </p>
-                  <button
+                  </div>
+                  
+                </div>
+                <button
                     onClick={() => handleVerify(chain)}
-                    className="w-full bg-[#ef5da8] hover:bg-[#d64a94] text-white py-3 px-6 rounded-full font-medium transition-colors"
+                    className="h-[46px] bg-[#ef5da8] hover:bg-[#d64a94] text-white py-3 px-6 rounded-full font-medium transition-colors"
                   >
                     Verify
                   </button>
-                </div>
               </div>
             ))}
           </div>
@@ -259,14 +279,19 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
         <div className="px-4 md:px-20 py-16">
           <div className="text-center mb-12">
             <div className="relative inline-block">
-              <h2 className="text-2xl md:text-3xl font-bold text-black uppercase">
+              <img
+                src={Vectorimg}
+                alt="Vector"
+                className="absolute top-[20%] left-0 md:left-[-10px] transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16"
+              />
+              <h2 className="text-2xl md:text-3xl font-bold text-black uppercase relative z-10">
                 Links <span className="text-[#ef5da8]">&</span> Apps
               </h2>
               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-[#ef5da8]"></div>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-6 max-w-4xl mx-auto">
             {theme?.socials?.map((app, index) => (
               <div
                 key={index}
@@ -289,29 +314,34 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
         <div className="px-4 md:px-20 py-16">
           <div className="text-center mb-12">
             <div className="relative inline-block">
-              <h2 className="text-2xl md:text-3xl font-bold text-black uppercase">
+              <img
+                src={Vectorimg}
+                alt="Vector"
+                className="absolute top-1/4 right-[-40px] md:right-[-70px] transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16"
+              />
+              <h2 className="text-2xl md:text-3xl font-bold text-black uppercase relative z-10">
                 Community <span className="text-[#ef5da8]">News</span>
               </h2>
               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-[#ef5da8]"></div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto mb-8">
             {currentNewsData.map((news, index) => (
               <div
                 key={index}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-200 hover:border-[#ef5da8] transition-all"
+                className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg border border-gray-100 hover:border-[#ef5da8] transition-all duration-300"
               >
                 <img
                   src={news.image}
                   alt={news.title}
-                  className="w-full h-48 object-cover"
+                  className="w-full h-40 object-cover"
                 />
-                <div className="p-6">
-                  <h3 className="font-bold text-lg text-black mb-2 line-clamp-2">
+                <div className="p-4">
+                  <h3 className="font-semibold text-sm text-black mb-2 line-clamp-2 leading-tight">
                     {news.title}
                   </h3>
-                  <p className="text-gray-600 text-sm">Source: {news.source}</p>
+                  <p className="text-gray-500 text-xs">Source: {news.source}</p>
                 </div>
               </div>
             ))}
@@ -319,12 +349,56 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="flex justify-center">
-              <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={handlePageChange}
-              />
+            <div className="w-full rounded-2xl py-4 px-6 mt-8">
+              <div className="flex items-center justify-center gap-4">
+                {/* 左箭头按钮 */}
+                <button
+                  onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ${
+                    currentPage === 1
+                      ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                      : "bg-white text-gray-600 hover:bg-gray-50 shadow-md hover:shadow-lg"
+                  }`}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+
+                {/* 圆点指示器 */}
+                <div className="flex items-center gap-2">
+                  {Array.from({ length: totalPages }, (_, index) => {
+                    const pageNumber = index + 1;
+                    return (
+                      <button
+                        key={pageNumber}
+                        onClick={() => handlePageChange(pageNumber)}
+                        className={`w-3 h-3 rounded-full transition-all duration-200 ${
+                          pageNumber === currentPage
+                            ? "bg-[#ef5da8] scale-110"
+                            : "bg-white hover:bg-gray-400"
+                        }`}
+                      />
+                    );
+                  })}
+                </div>
+
+                {/* 右箭头按钮 */}
+                <button
+                  onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                  className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ${
+                    currentPage === totalPages
+                      ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                      : "bg-white text-gray-600 hover:bg-gray-50 shadow-md hover:shadow-lg"
+                  }`}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+              </div>
             </div>
           )}
         </div>

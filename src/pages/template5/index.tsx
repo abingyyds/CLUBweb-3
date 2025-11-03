@@ -11,6 +11,7 @@ import { useClubMembership } from "../../hooks/useClubMembership";
 import { ArrowRight } from "lucide-react";
 // Supports weights 400-700
 import "@fontsource-variable/poltawski-nowy";
+import newsImg from "/public/newsimg.png";
 
 export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
   theme,
@@ -110,17 +111,14 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
         {/* Hero Image */}
         <div className="w-full max-w-[650px] h-[120px] bg-gray-300 rounded-lg overflow-hidden">
           <img
-            src={
-              theme?.heroImg ||
-              "https://trae-api-sg.mchost.guru/api/ide/v1/text_to_image?prompt=blockchain%20technology%20cryptocurrency%20trading%20charts%20professional%20community&image_size=landscape_16_9"
-            }
+            src={newsImg}
             alt="Community Hero"
             className="w-full h-full object-cover"
           />
         </div>
 
         {/* Connect Wallet Button */}
-        <div className="flex justify-start w-full max-w-[650px]">
+        <div className="flex justify-center lg:justify-start w-full max-w-[650px]">
           <ConnectButton />
         </div>
 
@@ -164,7 +162,7 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
                 .map((option, index) => (
                   <div
                     key={index}
-                    className="flex flex-col items-start bg-transparent flex-1 gap-2.5"
+                    className="flex flex-row items-center items-center lg:flex-col lg:items-start bg-transparent flex-1 gap-2.5"
                   >
                     <div className="w-[50px] h-[50px] overflow-hidden">
                       <img
@@ -173,7 +171,7 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
                         className="w-full h-full object-contain"
                       />
                     </div>
-                    <div className="flex flex-col gap-1">
+                    <div className="flex flex-col gap-1 flex-1 min-w-0">
                       <p className="text-black/80 text-base font-bold uppercase tracking-wider">
                         {option.title}
                       </p>
@@ -183,7 +181,7 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
                     </div>
                     <button
                       onClick={() => handleJoin(option.type)}
-                      className="bg-[#454545] text-white text-sm font-medium uppercase tracking-wider px-5 py-2 rounded-sm hover:bg-[#555] transition-colors"
+                      className="bg-[#454545] text-white text-sm font-medium uppercase tracking-wider px-5 py-2 rounded-sm hover:bg-[#555] transition-colors flex-shrink-0"
                     >
                       Join Now
                     </button>
@@ -235,11 +233,11 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
             </h2>
           </div>
 
-          <div className="flex flex-wrap items-start justify-between w-full gap-4">
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 w-full">
             {theme?.socials?.map((social, index) => (
               <div
                 key={index}
-                className="bg-black/80 rounded p-4 w-16 h-16 flex items-center justify-center"
+                className="bg-black/80 rounded p-4 w-16 h-16 flex items-center justify-center mx-auto"
               >
                 <img
                   src={social.icon}
@@ -252,7 +250,7 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
               Array.from({ length: 6 }, (_, index) => (
                 <div
                   key={index}
-                  className="bg-black/80 rounded p-4 w-16 h-16 flex items-center justify-center"
+                  className="bg-black/80 rounded p-4 w-16 h-16 flex items-center justify-center mx-auto"
                 >
                   <div className="w-8 h-8 bg-white rounded"></div>
                 </div>
@@ -270,7 +268,7 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
 
           <div className="flex flex-col gap-5 w-full">
             {/* First row of news */}
-            <div className="grid grid-cols-3 gap-5 w-full">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-5 w-full">
               {currentNewsData.map((news, index) => (
                 <div
                   key={index}
@@ -279,10 +277,10 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
                   <img
                     src={news.image}
                     alt={news.title}
-                    className="w-full h-[120px] object-cover"
+                    className="w-full h-[100px] md:h-[120px] object-cover"
                   />
-                  <div className="flex flex-col gap-7 p-2.5 pt-2.5">
-                    <p className="text-black/80 text-sm font-bold">
+                  <div className="flex flex-col gap-4 md:gap-7 p-2 md:p-2.5 pt-2 md:pt-2.5">
+                    <p className="text-black/80 text-xs md:text-sm font-bold line-clamp-2">
                       {news.title ||
                         "WESTCLIFF SHOPPING CENTRE MADE MORL LHFICILNT"}
                     </p>
@@ -315,7 +313,7 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
       {/* Footer */}
       <div className="flex flex-col items-center w-full max-w-[960px] px-5 md:px-10 py-10 mt-5">
         <div className="w-full border-2 border-black p-0.5">
-          <div className="flex items-center justify-center gap-2.5 border border-black/80 px-5 py-4 h-[58px]">
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-2.5 border border-black/80 px-5 py-4 h-[130px] lg:h-[60px]">
             <div className="w-8 h-8 bg-black rounded overflow-hidden flex items-center justify-center">
               <svg
                 width="24"

@@ -2,13 +2,12 @@ import React from "react";
 import { ConnectButton } from "./ConnectButton";
 import { useAccount } from "wagmi";
 import { formatUnits } from "viem";
-import Pagination from "../../components/Pagination";
 import { ITheme } from "@/types";
 import { MemberModal } from "./MemberModal";
 import { usePagination } from "../../hooks/usePagination";
 import { useClubData } from "../../hooks/useClubData";
 import { useClubMembership } from "../../hooks/useClubMembership";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import iconImg from "@/assets/images/Group 6.png";
 import bgImg_1 from "@/assets/images/Group 1.png";
 import bgImg_2 from "@/assets/images/Group 2.png";
@@ -180,8 +179,9 @@ export const Template4 = ({ club, theme }: { club: string; theme: ITheme }) => {
                 {theme.clubIntroduction2}
               </p>
             </div>
-
-            <ConnectButton />
+            <div className="flex justify-center lg:justify-start">
+              <ConnectButton />
+            </div>
           </div>
 
           {/* Right Floating Elements */}
@@ -402,9 +402,9 @@ export const Template4 = ({ club, theme }: { club: string; theme: ITheme }) => {
           {theme?.socials?.slice(0, 6).map((app, index) => (
             <div
               key={index}
-              className="bg-[#f7dc75] rounded-[20px] p-7 flex flex-col items-center justify-center gap-5"
+              className="bg-[#f7dc75] rounded-[20px] p-7 lg:p-7 flex flex-col items-center justify-center gap-5"
             >
-              <div className="w-16 h-16 rounded-2xl flex items-center justify-center overflow-hidden">
+              <div className="w-18 h-18 lg:w-16 lg:h-16 rounded-2xl flex items-center justify-center overflow-hidden">
                 <img
                   src={app.icon}
                   alt={app.name}
@@ -423,8 +423,7 @@ export const Template4 = ({ club, theme }: { club: string; theme: ITheme }) => {
         </h2>
 
         <div
-          className="bg-[#f4de7b] rounded-[40px]"
-          style={{ padding: "50px" }}
+          className="bg-[#f4de7b] rounded-[40px] p-[26px] lg:p-[50px]"
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-7 mb-10">
             {currentNewsData.map((news, index) => (
@@ -432,7 +431,7 @@ export const Template4 = ({ club, theme }: { club: string; theme: ITheme }) => {
                 <img
                   src={news.image}
                   alt={news.title}
-                  className="w-full h-40 object-cover rounded-lg"
+                  className="w-full h-40 object-cover rounded-[20px]"
                 />
                 <div className="flex flex-col gap-1">
                   <p className="text-base font-bold text-black">{news.title}</p>
@@ -443,21 +442,63 @@ export const Template4 = ({ club, theme }: { club: string; theme: ITheme }) => {
               </div>
             ))}
           </div>
-
-          {totalPages > 1 && (
-            <div className="flex items-center justify-center gap-2">
-              <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={handlePageChange}
-              />
+        </div>
+        {totalPages > 1 && (
+            <div className="flex items-center justify-center gap-2 mt-6 md:mt-8 px-2 w-full">
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="p-2 disabled:opacity-50 flex-shrink-0 hover:bg-gray-100 rounded-lg transition-colors"
+              >
+                <ChevronLeft className="w-5 h-5 text-black" />
+              </button>
+              <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide">
+                {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
+                  const pageNum = i + 1;
+                  return (
+                    <button
+                      key={pageNum}
+                      onClick={() => handlePageChange(pageNum)}
+                      className={`w-8 h-8 rounded text-sm font-medium flex-shrink-0 transition-colors ${
+                        currentPage === pageNum
+                          ? "bg-[#F4DE7B] text-black"
+                          : "text-black hover:bg-gray-100"
+                      }`}
+                    >
+                      {pageNum}
+                    </button>
+                  );
+                })}
+                {totalPages > 5 && (
+                  <>
+                    <span className="text-black px-2">...</span>
+                    <button
+                      onClick={() => handlePageChange(totalPages)}
+                      className={`w-8 h-8 rounded text-sm font-medium ${
+                        currentPage === totalPages
+                          ? "bg-[#F4DE7B] text-black"
+                          : "text-black hover:bg-gray-100"
+                      }`}
+                    >
+                      {totalPages}
+                    </button>
+                  </>
+                )}
+              </div>
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="p-2 disabled:opacity-50 flex-shrink-0 hover:bg-gray-100 rounded-lg transition-colors"
+              >
+                <ChevronRight className="w-5 h-5 text-black" />
+              </button>
             </div>
           )}
-        </div>
       </div>
 
       {/* Footer */}
-      <div className="w-full bg-[#9fb471] px-5 lg:px-20 py-10">
+      <div className="footer w-full px-5">
+        <div className="w-full bg-[#9fb471] px-5 lg:px-20 py-10 rounded-t-[40px] ">
         <div className="max-w-[1280px] mx-auto flex flex-col md:flex-row items-center justify-between gap-5">
           <div className="flex p-2.5 items-center gap-1 rounded-[0.625rem] bg-[#5A6C25]">
             <div className="w-6 h-6">
@@ -482,6 +523,7 @@ export const Template4 = ({ club, theme }: { club: string; theme: ITheme }) => {
             </span>
           </p>
         </div>
+      </div>
       </div>
     </div>
   );
