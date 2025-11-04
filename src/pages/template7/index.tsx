@@ -357,7 +357,7 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
                   {theme.socials.map((app, index) => (
                     <div
                       key={index}
-                      className="flex flex-col items-center gap-2"
+                      className="flex flex-col items-center gap-2 basis-1/4 md:basis-auto"
                     >
                       <div className={`flex items-center justify-center`}>
                         <img
@@ -410,14 +410,14 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
             </div>
 
             {/* 分页按钮 */}
-            <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4">
-                <button className="bg-[#f38406] text-[#292F36] h-[56px] rounded-[32px] px-6 md:px-8 py-2 md:py-4 text-sm transition-colors">
+            <div className="flex justify-center gap-3 md:gap-4">
+                <button className="flex-1 lg:flex-none bg-[#f38406] text-[#292F36] h-[56px] rounded-[32px] px-6 md:px-8 py-2 md:py-4 text-sm transition-colors">
                   View More
                 </button>
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage >= totalPages}
-                className="bg-[#292F36] text-white h-[56px] rounded-[32px] px-6 md:px-8 py-2 md:py-4 text-sm disabled:opacity-50 transition-colors"
+                className="flex-1 lg:flex-none bg-[#292F36] text-white h-[56px] rounded-[32px] px-8 md:px-8 py-2 md:py-4 text-sm disabled:opacity-50 transition-colors"
               >
                 Next
               </button>

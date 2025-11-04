@@ -59,9 +59,9 @@ const Template9: React.FC<Template9Props> = ({ club = "abc", theme }) => {
   return (
     <div className="min-h-screen bg-white font-inter">
       {/* Main Container - 1280px width, centered */}
-      <div className="w-[1280px] mx-auto bg-white">
+      <div className="max-w-[1280px] w-full mx-auto bg-white">
         {/* Header */}
-        <header className="flex items-center justify-between px-[106px] py-[14px] border-b border-gray-200">
+        <header className="flex items-center justify-between px-4 md:px-[106px] py-[14px] border-b border-gray-200">
           <div className="flex items-center gap-[10px]">
             {/* Logo placeholder */}
             <svg
@@ -79,15 +79,15 @@ const Template9: React.FC<Template9Props> = ({ club = "abc", theme }) => {
               <path
                 d="M3.71875 8.37262H8.49997"
                 stroke="#F5A200"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path d="M3.71875 10.9121H8.49997H3.71875Z" fill="black" />
               <path
                 d="M3.71875 10.9121H8.49997"
                 stroke="#F5A200"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
 
@@ -99,29 +99,25 @@ const Template9: React.FC<Template9Props> = ({ club = "abc", theme }) => {
         </header>
 
         {/* Main Content */}
-        <div className="px-[124px] pb-[100px] space-y-10">
+        <div className="px-4 md:px-[124px] pb-[60px] md:pb-[100px] space-y-8 md:space-y-10">
           {/* Hero Section */}
-          <section className="flex items-center justify-between pt-10">
-            <div className="flex flex-col space-y-8 max-w-[440px]">
-              <h1 className="text-[61px] font-bold leading-[65px] text-[#050505] tracking-[-1.92px]">
+          <section className="flex flex-col md:flex-row items-center justify-between pt-6 md:pt-10 gap-6 md:gap-0">
+            <div className="flex flex-col space-y-6 md:space-y-8 w-full md:max-w-[440px]">
+              <h1 className="text-[32px] md:text-[61px] font-bold leading-[38px] md:leading-[65px] text-[#050505] tracking-[-1.92px]">
                 {theme.heroTitle} {theme.heroGradientText}
               </h1>
-              <ConnectButton className="w-[147px] bg-[#ffbb33] text-black px-[11px] py-[6px] rounded-[5px] font-semibold text-base shadow-sm hover:shadow-md transition-shadow" />
+              <ConnectButton className="w-full md:w-[147px] bg-[#ffbb33] text-black px-[11px] py-[6px] rounded-[5px] font-semibold text-base shadow-sm hover:shadow-md transition-shadow" />
             </div>
-            <div className="w-[578px] h-[316px] bg-gray-200 rounded-lg flex items-center justify-center">
+            <div className="w-full md:w-[578px] h-[220px] md:h-[316px]">
               {/* Hero Image Placeholder */}
-              <img
-                src={theme.heroImg}
-                className="w-full h-full object-contain"
-                alt=""
-              />
+              <img src="/docspng.png" className="w-full h-full object-contain" alt="Docs" />
             </div>
           </section>
 
           {/* Info Cards Section */}
-          <section className="flex gap-4">
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Card 01 */}
-            <div className="flex-1 border-2 border-gray-100 rounded-xl bg-white p-4 space-y-8">
+            <div className="border-2 border-gray-100 rounded-xl bg-white p-4 space-y-8">
               <div className="space-y-2">
                 <div className="w-8 h-8 bg-yellow-100 rounded-md flex items-center justify-center">
                   <svg
@@ -157,7 +153,7 @@ const Template9: React.FC<Template9Props> = ({ club = "abc", theme }) => {
             </div>
 
             {/* Card 02 */}
-            <div className="flex-1 border-2 border-gray-100 rounded-xl bg-gray-50 p-4 space-y-8">
+            <div className="border-2 border-gray-100 rounded-xl bg-gray-50 p-4 space-y-8">
               <div className="space-y-2">
                 <div className="w-8 h-8 bg-yellow-100 rounded-md flex items-center justify-center">
                   <svg
@@ -200,7 +196,7 @@ const Template9: React.FC<Template9Props> = ({ club = "abc", theme }) => {
                 Join The Option
               </h2>
 
-              <div className="flex gap-10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-12">
                 {[
                   lifetimePrice && {
                     icon: theme.lifeTimeImg,
@@ -243,7 +239,7 @@ const Template9: React.FC<Template9Props> = ({ club = "abc", theme }) => {
                   .map((option, index) => (
                     <div
                       key={option.type}
-                      className={`flex-1 border-4 border-gray-100 rounded-xl bg-gray-50 ${
+                      className={`border-4 border-gray-100 rounded-xl bg-gray-50 ${
                         option.isPopular ? "relative" : ""
                       }`}
                     >
@@ -279,11 +275,12 @@ const Template9: React.FC<Template9Props> = ({ club = "abc", theme }) => {
                         </button>
                       </div>
                     </div>
+
                   ))}
               </div>
 
               {/* Decorative image */}
-              <div className="absolute top-0 right-0 w-[221px] h-[150px] ">
+              <div className="hidden md:block absolute top-0 right-0 w-[221px] h-[150px] ">
                 <img src="/topPeekI.png" alt="" />
               </div>
             </section>
@@ -292,7 +289,7 @@ const Template9: React.FC<Template9Props> = ({ club = "abc", theme }) => {
           {/* Position Verification Section */}
           {verifyData?.length ? (
             <section className="relative py-10">
-              <div className="absolute top-0 left-20 w-[178px] h-[181px] ">
+              <div className="hidden md:block absolute top-0 left-20 w-[178px] h-[181px] ">
                 <img src="/topPeekRed02.png" alt="" />
               </div>
 
@@ -300,15 +297,7 @@ const Template9: React.FC<Template9Props> = ({ club = "abc", theme }) => {
                 Position Verification
               </h2>
 
-              <div
-                className={`flex gap-6 relative z-10 ${
-                  verifyData.length === 1
-                    ? "justify-center"
-                    : verifyData.length === 2
-                    ? "justify-center"
-                    : ""
-                }`}
-              >
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 relative z-10">
                 {verifyData.map((it, index) => (
                   <div
                     key={index}
@@ -351,7 +340,7 @@ const Template9: React.FC<Template9Props> = ({ club = "abc", theme }) => {
               </h2>
 
               <div
-                className={`grid gap-6 relative z-10 ${
+                className={`grid gap-6 relative z-10 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 ${
                   theme.socials.length === 1
                     ? "grid-cols-1 justify-center"
                     : theme.socials.length === 2
@@ -387,7 +376,7 @@ const Template9: React.FC<Template9Props> = ({ club = "abc", theme }) => {
                     </button>
                   </div>
                 ))}
-                <div className="absolute top-0 right-[-60px] w-[91px] h-auto ">
+                <div className="hidden md:block absolute top-0 right-[-60px] w-[91px] h-auto ">
                   <img src="/p3.png" alt="" />
                 </div>
               </div>
@@ -408,7 +397,7 @@ const Template9: React.FC<Template9Props> = ({ club = "abc", theme }) => {
               {paginatedNews.map((news, index) => (
                 <div
                   key={index}
-                  className="flex items-start justify-between p-4 border-b border-gray-100"
+                  className="flex flex-col md:flex-row items-start md:items-center justify-between p-4 border-b border-gray-100 gap-2"
                 >
                   <div className="flex-1">
                     <h3 className="font-semibold text-[#050505] mb-1">
@@ -417,15 +406,15 @@ const Template9: React.FC<Template9Props> = ({ club = "abc", theme }) => {
                     <p className="text-sm text-gray-600">{news.source}</p>
                   </div>
                   <div className="text-sm text-gray-500">{news.time}</div>
-                  <button className="ml-4 text-[#996600] hover:text-[#b8770a]">
+                  <button className="md:ml-4 text-[#996600] hover:text-[#b8770a]">
                     +
                   </button>
                 </div>
               ))}
 
               {/* Featured News with Image */}
-              <div className="flex gap-4 p-4 bg-gray-50 rounded-lg">
-                <div className="w-24 h-16 bg-gray-300 rounded flex-shrink-0"></div>
+              <div className="flex flex-col md:flex-row gap-4 p-4 bg-gray-50 rounded-lg">
+                <div className="w-full md:w-24 md:h-16 bg-gray-300 rounded flex-shrink-0"></div>
                 <div className="flex-1">
                   <p className="text-sm text-[#050505] leading-relaxed">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -447,14 +436,14 @@ const Template9: React.FC<Template9Props> = ({ club = "abc", theme }) => {
 
           {/* Bottom Decorative Image */}
           <div className="flex justify-center py-10">
-            <div className="w-[400px] h-[200px] ">
+            <div className="w-[260px] md:w-[400px] h-[200px] ">
               <img src="/p5.png" alt="" />
             </div>
           </div>
         </div>
 
         {/* Footer */}
-        <footer className="bg-gray-50 py-8 px-[124px] flex items-center justify-between">
+        <footer className="bg-gray-50 py-6 md:py-8 px-4 md:px-[124px] flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 ">
               <svg

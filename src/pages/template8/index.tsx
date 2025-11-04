@@ -10,6 +10,12 @@ import { useClubMembership } from "../../hooks/useClubMembership";
 import { Star, Heart } from "lucide-react";
 import { ITheme } from "@/types";
 import "@fontsource/poller-one";
+import fruitImg from '/public/fruit.png';
+import starImg from '/public/Star.png';
+import starImgA from '/public/star1.png';
+import heartImg from '/public/heart.png';
+
+
 
 interface Template8Props {
   club: string;
@@ -89,49 +95,45 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
 
   // Mobile Phone Component
   const MobilePhone = () => (
-    <div className="relative">
+    <div className="relative transform translate-x-[-10%] translate-y-[-10%]">
+      <img src={fruitImg} alt="fruit" className="w-[60vw] h-[80vw] md:w-[346px] md:h-[453px] z-10 absolute top-12 left-12 rounded-[52px]" />
       {/* Phone Frame */}
-      <div className="relative w-[346px] h-[453px] bg-white border-2 border-black rounded-[52px] shadow-[0_10px_0_rgba(0,0,0,0.25)] overflow-hidden">
+      <div className="relative w-[60vw] h-[70vw] md:w-[346px] md:h-[413px] bg-white border-2 border-black rounded-[52px] shadow-[0_10px_0_rgba(0,0,0,0.25)] overflow-hidden">
         {/* Phone Screen Content */}
         <div
-          className="w-full h-full bg-gradient-to-br from-blue-400 to-blue-600 p-12 flex flex-col justify-between"
-          style={{
-            backgroundImage: `url("https://trae-api-sg.mchost.guru/api/ide/v1/text_to_image?prompt=mobile%20app%20interface%20with%20golden%20coins%20floating%20cryptocurrency%20trading%20app%20blue%20gradient%20background%20modern%20ui%20design&image_size=portrait_4_3")`,
-          }}
+          className="w-full h-full bg-gradient-to-br p-12 flex flex-col justify-between bg-white"
         >
-          {/* Floating Stars */}
-          <div className="absolute top-12 left-7">
-            <Star className="w-14 h-17 text-yellow-400 fill-yellow-400" />
-          </div>
-          <div className="absolute bottom-5 right-3">
-            <Star className="w-18 h-23 text-yellow-400 fill-yellow-400" />
-          </div>
         </div>
       </div>
 
       {/* Decorative Elements */}
-      <div className="absolute top-0 -left-12">
-        <Star className="w-24 h-24 text-yellow-400 fill-yellow-400" />
+      <div className="absolute z-20 top-[-14px] -left-8 md:top-[-20px] md:-left-12">
+        <img src={starImg} alt="star" className="w-16 h-16 md:w-24 md:h-24" />
       </div>
 
       {/* Tags */}
-      <div className="absolute bottom-2 -left-6 bg-black text-white px-6 py-4 rounded-2xl backdrop-blur-sm">
-        <span className="text-2xl font-medium">Fresh</span>
+      <div className="absolute z-20 bottom-[-60px] left-0 md:-left-6 bg-black text-white px-6 py-2 rounded-2xl backdrop-blur-sm">
+        <span className="text-sm md:text-2xl font-medium">Fresh</span>
       </div>
 
-      <div className="absolute top-24 -right-8 bg-black text-white px-6 py-4 rounded-2xl backdrop-blur-sm">
-        <span className="text-xl font-medium">Summer</span>
+      {/* Floating Stars */}
+      <div className="absolute z-30 bottom-[-60px] right-[-30px]">
+            <img src={starImgA} alt="star" className="w-18 h-23" />
+      </div>
+
+      <div className="absolute z-20 top-20 right-[-33%] md:-right-20 bg-black text-white px-6 py-2 rounded-2xl backdrop-blur-sm">
+        <span className="text-sm md:text-2xl font-medium">Summer</span>
       </div>
 
       {/* Secondary Phone Frame */}
-      <div className="absolute top-48 right-0 w-[223px] h-[343px] bg-white border-2 border-black rounded-[40px] shadow-[0_10px_0_rgba(0,0,0,0.25)]"></div>
+      <div className="absolute bottom-[-40%] right-[-70px] md:top-48 right-[-80px] w-[40vw] h-[55vw] md:w-[223px] md:h-[343px] bg-white border-2 border-black rounded-[40px] shadow-[0_10px_0_rgba(0,0,0,0.25)]"></div>
     </div>
   );
 
   return (
     <div className="min-h-screen bg-[#ffbd43] text-black">
       {/* Header & Hero Section */}
-      <div className="flex items-center justify-between px-16 py-15 gap-6">
+      <div className="flex flex-col md:flex-row items-center justify-between px-4 md:px-16 py-6 md:py-15 gap-6">
         {/* Left Content */}
         <div className="flex-1 max-w-2xl">
           {/* Header */}
@@ -139,49 +141,52 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
             <h1 className="text-base font-semibold mb-2.5 tracking-wide">
               {club}.WEB3.CLUB
             </h1>
-            <div className="border-b-2 border-black pb-2.5">
-              <h2 className="text-[59px] font-bold leading-[65px] uppercase font-['Poller_One'] mb-2.5">
+            <div className="w-full">
+              <h2 className="text-3xl md:text-[59px] font-bold md:leading-[65px] uppercase font-['Poller_One'] mb-2.5">
                 {theme.heroTitle}
               </h2>
+              <div className="border-t-[3px] border-dashed border-black inline-block h-[20px] w-[92%]"></div>
+
             </div>
-            <h2 className="text-[59px] font-bold leading-[65px] uppercase font-['Poller_One']">
+            <h2 className="mt-2 text-3xl md:text-[59px] font-bold md:leading-[65px] uppercase font-['Poller_One']">
               {theme.heroGradientText}
             </h2>
           </div>
 
           {/* Description */}
           <div className="mb-13 space-y-5">
-            <p className="text-xl leading-[26px] text-gray-700 font-medium">
+            <p className="text-base md:text-xl leading-[26px] text-gray-700 font-medium">
               {theme.clubIntroduction1}
             </p>
-            <p className="text-xl leading-[26px] text-gray-700 font-medium">
+            <p className="text-base md:text-xl leading-[26px] text-gray-700 font-medium">
               {theme.clubIntroduction2}
             </p>
           </div>
 
           {/* Connect Button */}
           <div className="inline-block mt-6">
-            <ConnectButton className="bg-black text-white rounded-[16px] hover:bg-gray-800" />
+            <ConnectButton className="px-14 py-6 bg-black text-white rounded-[16px] hover:bg-gray-800" />
           </div>
         </div>
 
         {/* Right Content - Mobile Phone */}
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0 px-0 md:px-20 mt-8 md:mt-0">
           <MobilePhone />
         </div>
       </div>
 
       {/* Join the Option Section */}
       {membershipOptions?.length ? (
-        <div className="px-10 py-10">
+        <div className="px-4 md:px-10 py-6 md:py-10 mt-12 md:mt-24">
           <div className="text-center mb-10">
-            <h2 className="text-[32px] font-bold uppercase font-['Poller_One'] text-black">
+            <h2 className=" text-xl md:text-[32px] font-bold uppercase font-['Poller_One'] text-black">
               JOIN THE OPTION
             </h2>
+            <div className="border-t-[3px] border-dashed border-black inline-block h-[16px] w-[66%] md:w-[360px]"></div>
           </div>
 
-          <div className="bg-[#252525] rounded-[50px] shadow-[0_10px_0_rgba(0,0,0,0.25)] p-16">
-            <div className="grid grid-cols-3 gap-[118px]">
+          <div className="bg-[#252525] rounded-[50px] shadow-[0_10px_0_rgba(0,0,0,0.25)] p-6 md:p-16">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
               {membershipOptions.length > 0
                 ? membershipOptions.map((option, index) => {
                     return (
@@ -195,16 +200,16 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
                             alt={option.title}
                             className="w-[70px] h-[70px] object-contain"
                           />
-                          <h3 className="text-[32px] font-extrabold text-white font-['Avenir']">
+                          <h3 className="text-xl md:text-[32px] font-extrabold text-white font-['Avenir']">
                             {option.title}
                           </h3>
                         </div>
-                        <p className="text-2xl text-white font-['Avenir'] mb-2.5">
+                        <p className="text-base md:text-2xl text-white font-['Avenir'] mb-2.5">
                           {option.price}
                         </p>
                         <button
                           onClick={() => handleJoin(option.type)}
-                          className="bg-[#f49f00] text-black px-6 py-4 rounded-2xl text-base font-medium uppercase w-[185px] h-[43px] flex items-center justify-center backdrop-blur-sm"
+                          className="bg-[#f49f00] text-black px-5 md:px-6 py-3 md:py-4 rounded-2xl text-sm md:text-base font-medium uppercase w-full md:w-[185px] h-[43px] flex items-center justify-center backdrop-blur-sm"
                         >
                           Join now
                         </button>
@@ -221,10 +226,12 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
       {verifyData?.length ? (
         <div className="px-10 py-10">
           <div className="text-center mb-10">
-            <div className="border-b-2 border-black pb-2 inline-block">
-              <h2 className="text-[32px] font-bold uppercase font-['Poller_One'] text-black">
+            <div className="w-full">
+              <h2 className="text-xl md:text-[32px] font-bold uppercase font-['Poller_One'] text-black">
                 POSITION VERIFICATION
               </h2>
+              <div className="border-t-[3px] border-dashed border-black inline-block h-[18px] w-[98%] md:w-[500px]"></div>
+
             </div>
           </div>
 
@@ -266,42 +273,31 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
           </div>
 
           {/* Decorative Circle */}
-          <div className="flex justify-center mt-15">
-            <div className="w-[114px] h-[114px] border border-black rounded-full flex items-center justify-center">
-              <Heart className="w-8 h-7 text-black" />
-            </div>
+          <div className="flex justify-center mt-10 md:mt-15">
+              <img src={heartImg} alt="heart" className="w-50 h-50" />
           </div>
         </div>
       ) : null}
 
       {/* Links & Apps Section */}
-      <div className="px-15 py-10">
+      <div className="px-4 md:px-15 py-6 md:py-10">
         <div className="text-center mb-7.5">
-          <div className="border-b-2 border-black pb-2 inline-block">
-            <h2 className="text-[32px] font-bold uppercase font-['Poller_One'] text-black">
+          <div className="w-full">
+            <h2 className="text-xl md:text-[32px] font-bold uppercase font-['Poller_One'] text-black">
               Links & APPS
             </h2>
+            <div className="border-t-[3px] border-dashed border-black inline-block h-[18px] w-[50%] md:w-[300px]"></div>
           </div>
         </div>
 
-        <div className="bg-white/70 border border-black rounded-[40px] shadow-[0_10px_0_rgba(0,0,0,0.25)] p-15 mt-6">
-          <div
-            className={`grid gap-2.5 ${
-              theme.socials.length <= 3
-                ? "grid-cols-3"
-                : theme.socials.length <= 4
-                ? "grid-cols-4"
-                : theme.socials.length <= 5
-                ? "grid-cols-5"
-                : "grid-cols-6"
-            }`}
-          >
+        <div className="bg-white/70 border border-black rounded-[40px] shadow-[0_10px_0_rgba(0,0,0,0.25)] p-6 md:p-15 mt-6">
+          <div className="grid gap-2.5 grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
             {theme.socials.map((app, index) => (
               <div
                 key={index}
                 className="flex flex-col items-center space-y-5 rounded-xl"
               >
-                <div className="w-[74px] h-[74px] flex items-center justify-center p-2">
+                <div className="w-12 h-12 md:w-[74px] md:h-[74px] flex items-center justify-center p-2">
                   <img
                     src={app.icon}
                     alt={app.name}
@@ -309,14 +305,14 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
                   />
                 </div>
                 <div className="flex flex-col items-center space-y-2.5">
-                  <span className="text-xl font-medium text-gray-700 font-['Lato']">
+                  <span className="text-sm md:text-xl font-medium text-gray-700 font-['Lato']">
                     {app.name}
                   </span>
                   <button
                     onClick={() => {
                       window.open(app.link, "_blank");
                     }}
-                    className="bg-black text-white px-5 py-2 rounded-xl text-sm font-medium hover:bg-gray-800 transition-colors"
+                    className="bg-black text-white px-4 md:px-5 py-2 rounded-xl text-xs md:text-sm font-medium hover:bg-gray-800 transition-colors"
                   >
                     {app.text}
                   </button>
@@ -328,16 +324,17 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
       </div>
 
       {/* Community News Section */}
-      <div className="px-10 py-10">
+      <div className="px-4 md:px-10 py-6 md:py-10">
         <div className="text-center mb-10">
-          <h2 className="text-[32px] font-bold uppercase font-['Poller_One'] text-black">
+          <h2 className="text-xl md:text-[32px] font-bold uppercase font-['Poller_One'] text-black">
             COMMUNITY NEWS
           </h2>
+          <div className="border-t-[3px] border-dashed border-black inline-block h-[18px] w-[70%] md:w-[380px]"></div>
         </div>
 
         <div className="space-y-8">
           {/* News Grid */}
-          <div className="grid grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {currentNewsData.map((news, index) => (
               <div
                 key={index}
@@ -349,13 +346,13 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
                 <img
                   src={news.image}
                   alt="News thumbnail"
-                  className="w-[71px] h-[71px] rounded object-cover"
+                  className="w-14 h-14 md:w-[71px] md:h-[71px] rounded object-cover flex-shrink-0"
                 />
                 <div className="flex-1">
-                  <h3 className="font-medium mb-1">
+                  <h3 className="font-medium mb-1 text-sm md:text-base leading-tight">
                     {news.title || "Weekly Alpha Information Summary"}
                   </h3>
-                  <p className="text-sm">
+                  <p className="text-xs md:text-sm">
                     {news.source || "Source: Twitter Alpha"}
                   </p>
                 </div>
@@ -383,22 +380,20 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
 
         {/* Decorative Circle */}
         <div className="flex justify-center mt-15">
-          <div className="w-[114px] h-[114px] border border-black rounded-full flex items-center justify-center">
-            <Heart className="w-8 h-7 text-black" />
+              <img src={heartImg} alt="heart" className="w-50 h-50" />
           </div>
-        </div>
       </div>
 
       {/* Footer */}
-      <div className="bg-black text-white px-8 py-6">
-        <div className="flex items-center justify-between">
+      <div className="bg-black text-white px-4 md:px-8 py-4 md:py-6">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex p-5 justify-center items-center gap-3 rounded-[2.5rem] border-1 border-solid border-[#000] bg-[#FFBD42] shadow-[0_0.3125rem_0_0_rgba(255,92,22,0.50)]">
             <Heart className="w-6 h-6 fill-black stroke-black" />
             <span className="text-[#000] lining-nums tabular-nums font-[Inter] text-4 font-not-italic font-700 lh-normal">
               {club}.web3.club
             </span>
           </div>
-          <p className="text-sm">
+          <p className="text-xs md:text-sm text-center md:text-left">
             <span className="text-white">Powered by </span>
             <span className="text-[#ffbd42] underline font-medium">
               Web3.Club
