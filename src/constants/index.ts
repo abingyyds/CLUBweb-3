@@ -40,3 +40,9 @@ export const globalConfig = {
     celo,
   ],
 };
+
+export const supabaseConfig = {
+  apiUrl: "https://xenmczlvsgymaniljwhg.supabase.co",
+  apiKey:
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhlbm1jemx2c2d5bWFuaWxqd2hnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIyNjIyNjEsImV4cCI6MjA3NzgzODI2MX0.R_TtdjXCT-mm7V6gXgeIIwGUqWEMtwtT-y309URpOZY",
+};

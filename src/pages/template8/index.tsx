@@ -10,12 +10,10 @@ import { useClubMembership } from "../../hooks/useClubMembership";
 import { Star, Heart } from "lucide-react";
 import { ITheme } from "@/types";
 import "@fontsource/poller-one";
-import fruitImg from '/public/fruit.png';
-import starImg from '/public/Star.png';
-import starImgA from '/public/star1.png';
-import heartImg from '/public/heart.png';
-
-
+import fruitImg from "/public/fruit.png";
+import starImg from "/public/Star.png";
+import starImgA from "/public/star1.png";
+import heartImg from "/public/heart.png";
 
 interface Template8Props {
   club: string;
@@ -96,14 +94,15 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
   // Mobile Phone Component
   const MobilePhone = () => (
     <div className="relative transform translate-x-[-10%] translate-y-[-10%]">
-      <img src={fruitImg} alt="fruit" className="w-[60vw] h-[80vw] md:w-[346px] md:h-[453px] z-10 absolute top-12 left-12 rounded-[52px]" />
+      <img
+        src={theme.heroImg}
+        alt="fruit"
+        className="w-[60vw] h-[80vw] md:w-[346px] md:h-[453px] z-10 absolute top-12 left-12 rounded-[52px]"
+      />
       {/* Phone Frame */}
       <div className="relative w-[60vw] h-[70vw] md:w-[346px] md:h-[413px] bg-white border-2 border-black rounded-[52px] shadow-[0_10px_0_rgba(0,0,0,0.25)] overflow-hidden">
         {/* Phone Screen Content */}
-        <div
-          className="w-full h-full bg-gradient-to-br p-12 flex flex-col justify-between bg-white"
-        >
-        </div>
+        <div className="w-full h-full bg-gradient-to-br p-12 flex flex-col justify-between bg-white"></div>
       </div>
 
       {/* Decorative Elements */}
@@ -118,7 +117,7 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
 
       {/* Floating Stars */}
       <div className="absolute z-30 bottom-[-60px] right-[-30px]">
-            <img src={starImgA} alt="star" className="w-18 h-23" />
+        <img src={starImgA} alt="star" className="w-18 h-23" />
       </div>
 
       <div className="absolute z-20 top-20 right-[-33%] md:-right-20 bg-black text-white px-6 py-2 rounded-2xl backdrop-blur-sm">
@@ -126,7 +125,7 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
       </div>
 
       {/* Secondary Phone Frame */}
-      <div className="absolute bottom-[-40%] right-[-70px] md:top-48 right-[-80px] w-[40vw] h-[55vw] md:w-[223px] md:h-[343px] bg-white border-2 border-black rounded-[40px] shadow-[0_10px_0_rgba(0,0,0,0.25)]"></div>
+      <div className="absolute bottom-[-40%] md:top-48 right-[-80px] w-[40vw] h-[55vw] md:w-[223px] md:h-[343px] bg-white border-2 border-black rounded-[40px] shadow-[0_10px_0_rgba(0,0,0,0.25)]"></div>
     </div>
   );
 
@@ -146,7 +145,6 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
                 {theme.heroTitle}
               </h2>
               <div className="border-t-[3px] border-dashed border-black inline-block h-[20px] w-[92%]"></div>
-
             </div>
             <h2 className="mt-2 text-3xl md:text-[59px] font-bold md:leading-[65px] uppercase font-['Poller_One']">
               {theme.heroGradientText}
@@ -231,25 +229,20 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
                 POSITION VERIFICATION
               </h2>
               <div className="border-t-[3px] border-dashed border-black inline-block h-[18px] w-[98%] md:w-[500px]"></div>
-
             </div>
           </div>
 
           <div className="bg-white/70 border border-gray-800 rounded-[40px] shadow-[0_10px_0_rgba(0,0,0,0.25)] p-10">
-            <div
-              className={`grid gap-20 ${
-                verifyData.length === 1
-                  ? "grid-cols-1 justify-center"
-                  : verifyData.length === 2
-                  ? "grid-cols-2"
-                  : "grid-cols-3"
-              }`}
-            >
+            <div className={`flex gap-20 items-center`}>
               {verifyData.map((it, index) => (
                 <div key={index} className="flex items-center space-x-2">
                   <div className="w-15 h-15 flex items-center justify-center">
                     <img
-                      src={theme?.verifyImgs?.[index] || theme?.verifyImgs?.[0] || "/aave.png"}
+                      src={
+                        theme?.verifyImgs?.[index] ||
+                        theme?.verifyImgs?.[0] ||
+                        "/aave.png"
+                      }
                       alt={it.chainName}
                       className="w-full object-contain"
                     />
@@ -274,7 +267,7 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
 
           {/* Decorative Circle */}
           <div className="flex justify-center mt-10 md:mt-15">
-              <img src={heartImg} alt="heart" className="w-50 h-50" />
+            <img src={heartImg} alt="heart" className="w-50 h-50" />
           </div>
         </div>
       ) : null}
@@ -291,7 +284,7 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
         </div>
 
         <div className="bg-white/70 border border-black rounded-[40px] shadow-[0_10px_0_rgba(0,0,0,0.25)] p-6 md:p-15 mt-6">
-          <div className="grid gap-2.5 grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
+          <div className="flex justify-around items-center">
             {theme.socials.map((app, index) => (
               <div
                 key={index}
@@ -380,8 +373,8 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
 
         {/* Decorative Circle */}
         <div className="flex justify-center mt-15">
-              <img src={heartImg} alt="heart" className="w-50 h-50" />
-          </div>
+          <img src={heartImg} alt="heart" className="w-50 h-50" />
+        </div>
       </div>
 
       {/* Footer */}

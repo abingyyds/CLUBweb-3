@@ -111,7 +111,11 @@ const Template9: React.FC<Template9Props> = ({ club = "abc", theme }) => {
             </div>
             <div className="w-full md:w-[578px] h-auto md:h-[316px]">
               {/* Hero Image Placeholder */}
-              <img src={docsImg} className="w-full h-full object-contain" alt="" />
+              <img
+                src={theme.heroImg}
+                className="w-full h-full object-contain"
+                alt=""
+              />
             </div>
           </section>
 
@@ -276,7 +280,6 @@ const Template9: React.FC<Template9Props> = ({ club = "abc", theme }) => {
                         </button>
                       </div>
                     </div>
-
                   ))}
               </div>
 
@@ -305,11 +308,15 @@ const Template9: React.FC<Template9Props> = ({ club = "abc", theme }) => {
                     className="flex-1 bg-gray-50 rounded-xl p-7 space-y-2"
                   >
                     <div className="space-y-1">
-                      <div className="w-12 h-12  rounded-lg flex items-center justify-center">
+                      <div className="w-auto h-12 rounded-lg flex items-center">
                         <img
-                          src={theme?.verifyImgs?.[index] || theme?.verifyImgs?.[0] || "/aave.png"}
+                          src={
+                            theme?.verifyImgs?.[index] ||
+                            theme?.verifyImgs?.[0] ||
+                            "/aave.png"
+                          }
                           alt={`${it.chainName} Chain`}
-                          className="size-10 object-contain"
+                          className="h-full w-auto object-contain"
                         />
                       </div>
                       <h3 className="text-lg font-bold text-[#050505]">
@@ -362,7 +369,11 @@ const Template9: React.FC<Template9Props> = ({ club = "abc", theme }) => {
                   >
                     <div className="space-y-1 w-full flex flex-col items-center">
                       <div className="w-12 h-12 rounded-lg flex items-center justify-center mx-auto">
-                        <img src={app.icon} alt={app.name} className="w-10 h-10 object-contain" />
+                        <img
+                          src={app.icon}
+                          alt={app.name}
+                          className="w-10 h-10 object-contain"
+                        />
                       </div>
                       <h3 className="text-lg font-bold text-[#050505]">
                         {app.name}
@@ -374,7 +385,6 @@ const Template9: React.FC<Template9Props> = ({ club = "abc", theme }) => {
                     >
                       <span>{app.text}</span>
                     </button>
-
                   </div>
                 ))}
                 <div className="invisible md:visible absolute top-0 right-2 w-10 h-auto md:right-[-60px] md:w-[91px] ">

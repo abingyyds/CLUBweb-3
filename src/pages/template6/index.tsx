@@ -9,9 +9,7 @@ import { usePagination } from "../../hooks/usePagination";
 import { useClubData } from "../../hooks/useClubData";
 import { useClubMembership } from "../../hooks/useClubMembership";
 import { Heart, Gift, ExternalLink } from "lucide-react";
-import layerimg from "/public/Layer.png";
 import Vectorimg from "/public/Vector.png";
-
 
 const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
   theme,
@@ -133,7 +131,7 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
           {/* Hero Image */}
           <div className="flex-shrink-0">
             <img
-              src={layerimg}
+              src={theme?.heroImg}
               alt="Hero Illustration"
               className="w-64 md:w-80 h-auto"
             />
@@ -158,68 +156,76 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 max-w-4xl mx-auto">
             {[
-              {
+              lifetimePrice && {
                 icon: theme?.lifeTimeImg || (
                   <Gift className="w-8 h-8 text-white" />
                 ),
                 title: "Lifetime Member",
-                price: `${lifetimePrice || "5.0"} ETH`,
+                price: `${lifetimePrice} ETH`,
                 type: "lifetime",
               },
-              {
+              monthPrice && {
                 icon: theme?.monthImg || (
                   <Gift className="w-8 h-8 text-white" />
                 ),
                 title: "Monthly Membership",
-                price: `${monthPrice || "500"} USDT`,
+                price: `${monthPrice} ETH`,
                 type: "month",
               },
-              {
+              quarterPrice && {
                 icon: theme?.quarterImg || (
                   <Gift className="w-8 h-8 text-white" />
                 ),
+                title: "Quarterly Membership",
+                price: `${quarterPrice} ETH`,
+                type: "quarter",
+              },
+              yearPrice && {
+                icon: theme?.yearImg || <Gift className="w-8 h-8 text-white" />,
                 title: "Yearly Membership",
-                price: `${yearPrice || "5000"} USDT`,
+                price: `${yearPrice} ETH`,
                 type: "year",
               },
-            ].map((option, index) => (
-              <div
-                key={index}
-                className={`group border-gray-200 bg-white rounded-2xl p-6 shadow-lg border-2 transition-all hover:shadow-xl hover:border-[#ef5da8] hover:bg-[#ef5da8] hover:text-white`}
-              >
-                <div className="text-center">
-                  <div className="relative mb-4 flex justify-center">
-                    {typeof option.icon === "string" ? (
-                      <img
-                        src={option.icon}
-                        alt={option.title}
-                        className="w-12 h-12"
-                      />
-                    ) : (
-                      <div className="w-12 h-12 bg-[#ef5da8] rounded-lg flex items-center justify-center">
-                        {option.icon}
-                      </div>
-                    )}
+            ]
+              .filter(Boolean)
+              .map((option, index) => (
+                <div
+                  key={index}
+                  className={`group border-gray-200 bg-white rounded-2xl p-6 shadow-lg border-2 transition-all hover:shadow-xl hover:border-[#ef5da8] hover:bg-[#ef5da8] hover:text-white`}
+                >
+                  <div className="text-center">
+                    <div className="relative mb-4 flex justify-center">
+                      {typeof option.icon === "string" ? (
+                        <img
+                          src={option.icon}
+                          alt={option.title}
+                          className="w-12 h-12"
+                        />
+                      ) : (
+                        <div className="w-12 h-12 bg-[#ef5da8] rounded-lg flex items-center justify-center">
+                          {option.icon}
+                        </div>
+                      )}
+                    </div>
+                    <h3
+                      className={`font-bold text-lg mb-2 text-black group-hover:text-white`}
+                    >
+                      {option.title}
+                    </h3>
+                    <p
+                      className={`text-2xl font-bold mb-6 text-[#ef5da8] group-hover:text-white`}
+                    >
+                      {option.price}
+                    </p>
+                    <button
+                      onClick={() => handleJoin(option.type)}
+                      className={`bg-[#ef5da8] text-white group-hover:bg-white group-hover:text-[#ef5da8] w-full py-3 px-6 rounded-full font-medium transition-colors `}
+                    >
+                      Join Now
+                    </button>
                   </div>
-                  <h3
-                    className={`font-bold text-lg mb-2 text-black group-hover:text-white`}
-                  >
-                    {option.title}
-                  </h3>
-                  <p
-                    className={`text-2xl font-bold mb-6 text-[#ef5da8] group-hover:text-white`}
-                  >
-                    {option.price}
-                  </p>
-                  <button
-                    onClick={() => handleJoin(option.type)}
-                    className={`bg-[#ef5da8] text-white group-hover:bg-white group-hover:text-[#ef5da8] w-full py-3 px-6 rounded-full font-medium transition-colors `}
-                  >
-                    Join Now
-                  </button>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
 
@@ -248,28 +254,31 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
                 <div className="flex flex-row md:flex-col justify-between">
                   <div className="mb-4">
                     <img
-                      src={theme?.verifyImgs?.[index] || theme?.verifyImgs?.[0] || "/aave.png"}
+                      src={
+                        theme?.verifyImgs?.[index] ||
+                        theme?.verifyImgs?.[0] ||
+                        "/aave.png"
+                      }
                       alt={chain.name}
-                      className="w-12 h-12"
+                      className="w-auto h-10"
                     />
                   </div>
                   <div>
                     <h3 className="font-bold text-lg text-black mb-2">
-                    {chain.chainName}
-                  </h3>
-                  <p className="text-gray-600 text-sm mb-6">
-                    Hold {chain.tokenSymbol} ≥{" "}
-                    {formatUnits(chain.threshold, chain.decimals)}
-                  </p>
+                      {chain.chainName}
+                    </h3>
+                    <p className="text-gray-600 text-sm mb-6">
+                      Hold {chain.tokenSymbol} ≥{" "}
+                      {formatUnits(chain.threshold, chain.decimals)}
+                    </p>
                   </div>
-                  
                 </div>
                 <button
-                    onClick={() => handleVerify(chain)}
-                    className="h-[46px] bg-[#ef5da8] hover:bg-[#d64a94] text-white py-3 px-6 rounded-full font-medium transition-colors"
-                  >
-                    Verify
-                  </button>
+                  onClick={() => handleVerify(chain)}
+                  className="h-[46px] bg-[#ef5da8] hover:bg-[#d64a94] text-white py-3 px-6 rounded-full font-medium transition-colors"
+                >
+                  Verify
+                </button>
               </div>
             ))}
           </div>
@@ -353,7 +362,9 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
               <div className="flex items-center justify-center gap-4">
                 {/* 左箭头按钮 */}
                 <button
-                  onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
+                  onClick={() =>
+                    currentPage > 1 && handlePageChange(currentPage - 1)
+                  }
                   disabled={currentPage === 1}
                   className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ${
                     currentPage === 1
@@ -361,8 +372,20 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
                       : "bg-white text-gray-600 hover:bg-gray-50 shadow-md hover:shadow-lg"
                   }`}
                 >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M15 18L9 12L15 6"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
                   </svg>
                 </button>
 
@@ -386,7 +409,10 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
 
                 {/* 右箭头按钮 */}
                 <button
-                  onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
+                  onClick={() =>
+                    currentPage < totalPages &&
+                    handlePageChange(currentPage + 1)
+                  }
                   disabled={currentPage === totalPages}
                   className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ${
                     currentPage === totalPages
@@ -394,8 +420,20 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
                       : "bg-white text-gray-600 hover:bg-gray-50 shadow-md hover:shadow-lg"
                   }`}
                 >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9 18L15 12L9 6"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
                   </svg>
                 </button>
               </div>

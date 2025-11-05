@@ -111,7 +111,7 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
         {/* Hero Image */}
         <div className="w-full max-w-[650px] h-[120px] bg-gray-300 rounded-lg overflow-hidden">
           <img
-            src={newsImg}
+            src={theme?.heroImg}
             alt="Community Hero"
             className="w-full h-full object-cover"
           />
@@ -162,7 +162,7 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
                 .map((option, index) => (
                   <div
                     key={index}
-                    className="flex flex-row items-center items-center lg:flex-col lg:items-start bg-transparent flex-1 gap-2.5"
+                    className="flex flex-row items-center lg:flex-col lg:items-start bg-transparent flex-1 gap-2.5"
                   >
                     <div className="w-[50px] h-[50px] overflow-hidden">
                       <img
@@ -205,7 +205,11 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
                 <div key={index} className="flex items-center gap-5 flex-1">
                   <div className="w-[70px] h-[70px] rounded-full overflow-hidden">
                     <img
-                      src={theme?.verifyImgs?.[index] || theme?.verifyImgs?.[0] || "/aave.png"}
+                      src={
+                        theme?.verifyImgs?.[index] ||
+                        theme?.verifyImgs?.[0] ||
+                        "/aave.png"
+                      }
                       alt={`${item.chainName} Chain`}
                       className="w-full h-full object-contain"
                     />
@@ -233,7 +237,7 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
             </h2>
           </div>
 
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 w-full">
+          <div className="flex justify-around items-center gap-4 w-full">
             {theme?.socials?.map((social, index) => (
               <div
                 key={index}
