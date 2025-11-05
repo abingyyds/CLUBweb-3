@@ -281,7 +281,11 @@ export const Template2 = ({
               <div className="flex items-center gap-3 lg:gap-5">
                 <div className="w-12 lg:w-18 h-12 lg:h-18 rounded-lg overflow-hidden">
                   <img
-                    src={theme?.verifyImgs?.[index] || theme?.verifyImgs?.[0] || "/aave.png"}
+                    src={
+                      theme?.verifyImgs?.[index] ||
+                      theme?.verifyImgs?.[0] ||
+                      "/aave.png"
+                    }
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -311,7 +315,7 @@ export const Template2 = ({
         <h2 className="text-2xl lg:text-5xl font-extrabold text-black mb-6 lg:mb-10">
           Links & Apps
         </h2>
-        <div className="grid grid-cols-3 lg:grid-cols-6 gap-4 lg:gap-10">
+        <div className="flex items-center justify-around gap-4 lg:gap-10">
           {theme.socials.map((link, index) => (
             <div
               key={index}

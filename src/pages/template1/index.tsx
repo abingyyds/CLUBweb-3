@@ -185,13 +185,19 @@ export const Template1: React.FC<{ theme?: ITheme; club: string }> = ({
               {theme.heroTitle}
             </h1>
             <div className="flex items-center gap-2 md:gap-2.5 flex-wrap justify-center">
-              <div className="w-8 h-8 md:w-12 md:h-12 rounded-full border-2 border-white bg-gray-300 shadow-lg"></div>
+              <div className="w-8 h-8 md:w-12 md:h-12 rounded-full border-2 border-white bg-gray-300 shadow-lg">
+                <img src={theme?.avatar1} className="w-full" alt="" />
+              </div>
               <span className="text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
-                {/* Community */}
+                {theme.heroGradientText}
               </span>
               <div className="flex">
-                <div className="w-8 h-8 md:w-12 md:h-12 rounded-full border-2 border-white bg-gray-300 shadow-lg"></div>
-                <div className="w-8 h-8 md:w-12 md:h-12 rounded-full border-2 border-white bg-gray-300 shadow-lg -ml-3 md:-ml-5"></div>
+                <div className="w-8 h-8 md:w-12 md:h-12 rounded-full border-2 border-white bg-gray-300 shadow-lg">
+                  <img src={theme?.avatar2} className="w-full" alt="" />
+                </div>
+                <div className="w-8 h-8 md:w-12 md:h-12 rounded-full border-2 border-white bg-gray-300 shadow-lg -ml-3 md:-ml-5">
+                  <img src={theme?.avatar3} className="w-full" alt="" />
+                </div>
               </div>
             </div>
             <p className="text-black/80 text-xs sm:text-sm text-center max-w-sm sm:max-w-lg md:max-w-4xl mt-4 md:mt-10 mb-[50px] leading-relaxed px-2">
@@ -274,11 +280,11 @@ export const Template1: React.FC<{ theme?: ITheme; club: string }> = ({
           <h2 className="text-black text-2xl md:text-3xl font-bold text-center">
             Position Verification
           </h2>
-          <div className="flex flex-col md:flex-row items-start justify-center gap-4 md:gap-5 w-full">
+          <div className="flex flex-col md:flex-row items-start gap-4 md:gap-5 w-full">
             {verifyData?.map((item, index) => (
               <React.Fragment key={index}>
                 <div
-                  className="w-full md:flex-1 flex flex-col md:flex-row items-start justify-between gap-4 md:gap-2.5 bg-white rounded-2xl p-4 md:p-5"
+                  className="flex flex-col md:flex-row items-start justify-between gap-4 md:gap-2.5 bg-white rounded-2xl p-4 md:p-5"
                   style={{
                     boxShadow: "0 0 20px rgba(0, 0, 0, 0.1)",
                   }}
@@ -286,7 +292,11 @@ export const Template1: React.FC<{ theme?: ITheme; club: string }> = ({
                   <div className="flex flex-col flex-1 gap-1">
                     <div className="flex mb-2">
                       <img
-                        src={theme?.verifyImgs?.[index] || theme?.verifyImgs?.[0] || "/aave.png"}
+                        src={
+                          theme?.verifyImgs?.[index] ||
+                          theme?.verifyImgs?.[0] ||
+                          "/aave.png"
+                        }
                         alt="Chain"
                         className="w-20 h-8 md:w-24 md:h-10"
                       />
@@ -319,11 +329,11 @@ export const Template1: React.FC<{ theme?: ITheme; club: string }> = ({
           <h2 className="text-black text-2xl md:text-3xl font-bold text-center">
             Links & Apps
           </h2>
-          <div className="grid grid-cols-3 sm:grid-cols-6 gap-4 w-full max-w-6xl">
+          <div className="flex items-center justify-around gap-4 w-full max-w-6xl">
             {theme?.socials?.map((app, index) => (
               <div
                 key={index}
-                className="flex flex-col items-center justify-center bg-[#f8f8f8] rounded-2xl px-3 py-6 w-full aspect-square max-w-[160px] mx-auto gap-3"
+                className="flex flex-col items-center justify-center bg-[#f8f8f8] rounded-2xl px-5 py-[30px] w-full aspect-square max-w-[160px] mx-auto gap-3"
               >
                 <div className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-lg overflow-hidden">
                   <img

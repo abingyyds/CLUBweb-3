@@ -22,20 +22,55 @@ function App() {
   const [club] = useState(domainName);
 
   const [theme, setTheme] = useState<ITheme | undefined>();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [saving, setSaving] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const template = search.template || theme?.templateId || "3";
 
   const fetchTheme = async () => {
-    const res = await fetch(`/config.json`);
-    const data = await res.json();
-    console.log(data);
-    setTheme(data);
+    setLoading(true);
+    setError(null);
+    try {
+      const { getConfig } = await import("./services/configService");
+      const remote = await getConfig(club);
+      console.log("remote", remote);
+      if (!remote) {
+        setTheme(remote);
+      } else {
+        const res = await fetch(`/data/config${template}.json`);
+        const data = await res.json();
+        setTheme(data);
+      }
+    } catch (e: any) {
+      console.error(e);
+      setError(e?.message || "加载配置失败");
+      try {
+        const res = await fetch(`/config.json`);
+        const data = await res.json();
+        setTheme(data);
+      } catch (ee) {
+        console.error(ee);
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleConfigSave = (newConfig: ITheme) => {
-    setTheme(newConfig);
-    // 这里可以添加保存到服务器的逻辑
-    console.log("配置已更新:", newConfig);
+  const handleConfigSave = async (newConfig: ITheme) => {
+    setSaving(true);
+    setError(null);
+    try {
+      const { upsertConfig } = await import("./services/configService");
+      await upsertConfig(club, newConfig);
+      setTheme(newConfig);
+      console.log("配置已保存:", newConfig);
+    } catch (e: any) {
+      console.error(e);
+      setError(e?.message || "保存配置失败");
+    } finally {
+      setSaving(false);
+    }
   };
 
   useEffect(() => {
@@ -58,6 +93,11 @@ function App() {
       {template === "9" ? <Template9 club={club} theme={theme} /> : null}
       {template === "10" ? <Template10 club={club} theme={theme} /> : null}
 
+      {error ? (
+        <div style={{ color: "red", marginBottom: 8 }}>{error}</div>
+      ) : null}
+      {loading ? <div style={{ marginBottom: 8 }}>加载中...</div> : null}
+      {saving ? <div style={{ marginBottom: 8 }}>保存中...</div> : null}
       {theme && <ConfigPanel config={theme} onSave={handleConfigSave} />}
     </div>
   );

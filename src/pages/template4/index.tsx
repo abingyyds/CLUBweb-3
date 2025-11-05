@@ -302,9 +302,7 @@ export const Template4 = ({ club, theme }: { club: string; theme: ITheme }) => {
                 .map((option, index) => (
                   <div
                     key={index}
-                    className={`flex items-center gap-5 px-2.5 py-2.5 rounded-[50px] ${
-                      option.selected ? "bg-white" : "bg-white/40"
-                    }`}
+                    className={`cursor-pointer flex items-center gap-5 px-2.5 py-2.5 rounded-[50px] hover:bg-white bg-white/40 `}
                   >
                     <div className="w-8.5 h-8.5 rounded-full bg-gray-200 flex-shrink-0">
                       {option.icon && (
@@ -325,7 +323,7 @@ export const Template4 = ({ club, theme }: { club: string; theme: ITheme }) => {
                       onClick={() => handleJoin(option.type)}
                       className="w-5 h-5 flex-shrink-0"
                     >
-                      <ArrowRight className="w-full h-full text-black" />
+                      <ChevronRight className="w-full h-full text-black" />
                     </button>
                   </div>
                 ))}
@@ -362,7 +360,11 @@ export const Template4 = ({ club, theme }: { club: string; theme: ITheme }) => {
                   <div className="flex items-center gap-5 w-full">
                     <div className="w-15 h-15 bg-white rounded-[40px] flex items-center justify-center flex-shrink-0">
                       <img
-                        src={theme?.verifyImgs?.[index] || theme?.verifyImgs?.[0] || "/eth.png"}
+                        src={
+                          theme?.verifyImgs?.[index] ||
+                          theme?.verifyImgs?.[0] ||
+                          "/eth.png"
+                        }
                         alt={`${item.chainName} Chain`}
                         className="w-10 h-10"
                       />
@@ -422,9 +424,7 @@ export const Template4 = ({ club, theme }: { club: string; theme: ITheme }) => {
           Community News
         </h2>
 
-        <div
-          className="bg-[#f4de7b] rounded-[40px] p-[26px] lg:p-[50px]"
-        >
+        <div className="bg-[#f4de7b] rounded-[40px] p-[26px] lg:p-[50px]">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-7 mb-10">
             {currentNewsData.map((news, index) => (
               <div key={index} className="flex flex-col gap-7">
@@ -444,86 +444,86 @@ export const Template4 = ({ club, theme }: { club: string; theme: ITheme }) => {
           </div>
         </div>
         {totalPages > 1 && (
-            <div className="flex items-center justify-center gap-2 mt-6 md:mt-8 px-2 w-full">
-              <button
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-                className="p-2 disabled:opacity-50 flex-shrink-0 hover:bg-gray-100 rounded-lg transition-colors"
-              >
-                <ChevronLeft className="w-5 h-5 text-black" />
-              </button>
-              <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide">
-                {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
-                  const pageNum = i + 1;
-                  return (
-                    <button
-                      key={pageNum}
-                      onClick={() => handlePageChange(pageNum)}
-                      className={`w-8 h-8 rounded text-sm font-medium flex-shrink-0 transition-colors ${
-                        currentPage === pageNum
-                          ? "bg-[#F4DE7B] text-black"
-                          : "text-black hover:bg-gray-100"
-                      }`}
-                    >
-                      {pageNum}
-                    </button>
-                  );
-                })}
-                {totalPages > 5 && (
-                  <>
-                    <span className="text-black px-2">...</span>
-                    <button
-                      onClick={() => handlePageChange(totalPages)}
-                      className={`w-8 h-8 rounded text-sm font-medium ${
-                        currentPage === totalPages
-                          ? "bg-[#F4DE7B] text-black"
-                          : "text-black hover:bg-gray-100"
-                      }`}
-                    >
-                      {totalPages}
-                    </button>
-                  </>
-                )}
-              </div>
-              <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-                className="p-2 disabled:opacity-50 flex-shrink-0 hover:bg-gray-100 rounded-lg transition-colors"
-              >
-                <ChevronRight className="w-5 h-5 text-black" />
-              </button>
+          <div className="flex items-center justify-center gap-2 mt-6 md:mt-8 px-2 w-full">
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="p-2 disabled:opacity-50 flex-shrink-0 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              <ChevronLeft className="w-5 h-5 text-black" />
+            </button>
+            <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide">
+              {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
+                const pageNum = i + 1;
+                return (
+                  <button
+                    key={pageNum}
+                    onClick={() => handlePageChange(pageNum)}
+                    className={`w-8 h-8 rounded text-sm font-medium flex-shrink-0 transition-colors ${
+                      currentPage === pageNum
+                        ? "bg-[#F4DE7B] text-black"
+                        : "text-black hover:bg-gray-100"
+                    }`}
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
+              {totalPages > 5 && (
+                <>
+                  <span className="text-black px-2">...</span>
+                  <button
+                    onClick={() => handlePageChange(totalPages)}
+                    className={`w-8 h-8 rounded text-sm font-medium ${
+                      currentPage === totalPages
+                        ? "bg-[#F4DE7B] text-black"
+                        : "text-black hover:bg-gray-100"
+                    }`}
+                  >
+                    {totalPages}
+                  </button>
+                </>
+              )}
             </div>
-          )}
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className="p-2 disabled:opacity-50 flex-shrink-0 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              <ChevronRight className="w-5 h-5 text-black" />
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Footer */}
       <div className="footer w-full px-5">
         <div className="w-full bg-[#9fb471] px-5 lg:px-20 py-10 rounded-t-[40px] ">
-        <div className="max-w-[1280px] mx-auto flex flex-col md:flex-row items-center justify-between gap-5">
-          <div className="flex p-2.5 items-center gap-1 rounded-[0.625rem] bg-[#5A6C25]">
-            <div className="w-6 h-6">
-              <img
-                src="/award_star.png"
-                alt="Award"
-                className="w-full h-full"
-              />
+          <div className="max-w-[1280px] mx-auto flex flex-col md:flex-row items-center justify-between gap-5">
+            <div className="flex p-2.5 items-center gap-1 rounded-[0.625rem] bg-[#5A6C25]">
+              <div className="w-6 h-6">
+                <img
+                  src="/award_star.png"
+                  alt="Award"
+                  className="w-full h-full"
+                />
+              </div>
+              <p className="text-white text-base font-bold uppercase">
+                {club}.web3.club
+              </p>
             </div>
-            <p className="text-white text-base font-bold uppercase">
-              {club}.web3.club
+            <p className="text-white text-sm">
+              <span>Powered by </span>
+              <span className="font-bold text-[#ffe676] underline">
+                Web3.Club
+              </span>
+              <span> and </span>
+              <span className="font-bold text-[#ffe676] underline">
+                OrbitLink.Me
+              </span>
             </p>
           </div>
-          <p className="text-white text-sm">
-            <span>Powered by </span>
-            <span className="font-bold text-[#ffe676] underline">
-              Web3.Club
-            </span>
-            <span> and </span>
-            <span className="font-bold text-[#ffe676] underline">
-              OrbitLink.Me
-            </span>
-          </p>
         </div>
-      </div>
       </div>
     </div>
   );
