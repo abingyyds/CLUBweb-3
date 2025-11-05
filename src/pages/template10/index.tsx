@@ -8,6 +8,8 @@ import { MemberModal } from "./MemberModal";
 import { usePagination } from "../../hooks/usePagination";
 import { useClubData } from "../../hooks/useClubData";
 import { useClubMembership } from "../../hooks/useClubMembership";
+import girlImg from "/public/girl.png";
+
 
 export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
   theme,
@@ -74,11 +76,11 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
         isVerifyMode={isVerifyMode}
       />
 
-      {/* Main Container - Fixed 1280px width */}
-      <div className="w-[1280px] mx-auto bg-white">
+      {/* Main Container - Responsive max width */}
+      <div className="w-full max-w-[1280px] mx-auto bg-white">
         {/* Header Section with Purple Gradient Background */}
         <div
-          className="px-[100px] pt-5 pb-[60px]"
+          className="px-5 sm:px-8 md:px-[60px] lg:px-[100px] pt-5 pb-[40px] md:pb-[60px]"
           style={{
             background:
               "linear-gradient(0deg, rgba(242, 234, 255, 0) 0%, #e3b9f9 100%)",
@@ -95,63 +97,76 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
               style={{
                 background: "linear-gradient(90deg, #8384f0 0%, #7135ff 100%)",
               }}
-              icon="/arrowRight.png"
             />
           </div>
 
           {/* Hero Section */}
-          <div className="flex items-center justify-between relative mt-5">
+          <div className="flex flex-col md:flex-row items-center md:justify-between relative mt-5 gap-6">
             {/* Left Content */}
-            <div className="flex flex-col items-start gap-[30px] z-10">
+            <div className="box1 flex flex-col items-start gap-[30px] z-10 order-1">
               <div className="flex flex-col gap-5">
-                <h2 className="text-black text-[40px] font-bold leading-[48px] tracking-[-0.4px] w-[312px] uppercase">
+                <h2 className="text-black text-2xl md:text-[40px] font-bold leading-[32px] md:leading-[48px] tracking-[-0.4px] w-full md:w-[312px] uppercase text-left">
                   {theme.heroTitle} {theme.heroGradientText}
                 </h2>
               </div>
 
-              <img
-                src={"/Union.png"}
-                alt="Hero"
-                className="w-[210px] h-[210px] object-cover"
-              />
+              <div className="flex items-start gap-3 md:flex-col md:items-start w-full">
+                <img
+                  src={"/Union.png"}
+                  alt="Hero"
+                  className="w-[160px] h-[160px] md:w-[210px] md:h-[210px] object-cover shrink-0"
+                />
 
-              <div className="flex flex-col gap-[10px] pr-[70px]">
-                <h3 className="text-black text-2xl font-bold leading-[29px] tracking-[-0.24px]">
-                  Summer
-                </h3>
-                <p className="text-black/60 text-sm font-medium leading-[17px] tracking-[-0.14px] w-[302px]">
-                  {theme.clubIntroduction1}
-                </p>
-                <a
-                  href={theme.clubLink1}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <div className="inline-flex items-center gap-1 cursor-pointer">
-                    <span className="text-black text-sm font-medium leading-[17px] tracking-[-0.14px]">
-                      Read more
-                    </span>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <path
-                        d="M5 12h14m-7-7l7 7-7 7"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
+                <div className="flex flex-col gap-[10px] pr-0 md:pr-[70px] flex-1">
+                  <h3 className="text-black text-2xl font-bold leading-[29px] tracking-[-0.24px]">
+                    Summer
+                  </h3>
+                  <p className="text-black/60 text-sm font-medium leading-[17px] tracking-[-0.14px] w-full md:w-[302px]">
+                    {theme.clubIntroduction1}
+                  </p>
+                  <a
+                    href={theme.clubLink1}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <div className="inline-flex items-center gap-1 cursor-pointer">
+                      <span className="text-black text-sm font-medium leading-[17px] tracking-[-0.14px]">
+                        Read more
+                      </span>
+                      <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g clipPath="url(#clip0_56_140)">
+                        <path
+                          fillRule="evenodd"
+                          clipRule="evenodd"
+                          d="M6.29303 6.293C6.48056 6.10553 6.73487 6.00021 7.00003 6.00021C7.26519 6.00021 7.5195 6.10553 7.70703 6.293L12.707 11.293C12.8945 11.4805 12.9998 11.7348 12.9998 12C12.9998 12.2652 12.8945 12.5195 12.707 12.707L7.70703 17.707C7.51843 17.8892 7.26583 17.99 7.00363 17.9877C6.74143 17.9854 6.49062 17.8802 6.30521 17.6948C6.1198 17.5094 6.01463 17.2586 6.01236 16.9964C6.01008 16.7342 6.11087 16.4816 6.29303 16.293L10.586 12L6.29303 7.707C6.10556 7.51947 6.00024 7.26516 6.00024 7C6.00024 6.73484 6.10556 6.48053 6.29303 6.293ZM12.293 6.293C12.4806 6.10553 12.7349 6.00021 13 6.00021C13.2652 6.00021 13.5195 6.10553 13.707 6.293L18.707 11.293C18.8945 11.4805 18.9998 11.7348 18.9998 12C18.9998 12.2652 18.8945 12.5195 18.707 12.707L13.707 17.707C13.5184 17.8892 13.2658 17.99 13.0036 17.9877C12.7414 17.9854 12.4906 17.8802 12.3052 17.6948C12.1198 17.5094 12.0146 17.2586 12.0124 16.9964C12.0101 16.7342 12.1109 16.4816 12.293 16.293L16.586 12L12.293 7.707C12.1056 7.51947 12.0002 7.26516 12.0002 7C12.0002 6.73484 12.1056 6.48053 12.293 6.293Z"
+                          fill="#09244B"
+                        />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_56_140">
+                          <rect width="24" height="24" fill="white" />
+                        </clipPath>
+                      </defs>
                     </svg>
-                  </div>
-                </a>
+                    </div>
+                  </a>
+                </div>
               </div>
             </div>
 
             {/* Right Content */}
-            <div className="inline-flex flex-col items-start gap-[50px]">
-              <div className="flex flex-col gap-[10px] pr-[70px]">
+            <div className="box2 inline-flex flex-col items-start gap-[50px] order-3 mt-28 md:mt-6 md:mt-0">
+              <div className="flex flex-col gap-[10px] pr-0 md:pr-[70px]">
                 <h3 className="text-black text-2xl font-bold leading-[29px] tracking-[-0.24px]">
                   Fresh
                 </h3>
-                <p className="text-black/60 text-sm font-medium leading-[17px] tracking-[-0.14px] w-[222px]">
+                <p className="text-black/60 text-sm font-medium leading-[17px] tracking-[-0.14px] w-full md:w-[222px]">
                   {theme.clubIntroduction2}
                 </p>
                 <a
@@ -170,10 +185,10 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <g clip-path="url(#clip0_56_140)">
+                      <g clipPath="url(#clip0_56_140)">
                         <path
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
+                          fillRule="evenodd"
+                          clipRule="evenodd"
                           d="M6.29303 6.293C6.48056 6.10553 6.73487 6.00021 7.00003 6.00021C7.26519 6.00021 7.5195 6.10553 7.70703 6.293L12.707 11.293C12.8945 11.4805 12.9998 11.7348 12.9998 12C12.9998 12.2652 12.8945 12.5195 12.707 12.707L7.70703 17.707C7.51843 17.8892 7.26583 17.99 7.00363 17.9877C6.74143 17.9854 6.49062 17.8802 6.30521 17.6948C6.1198 17.5094 6.01463 17.2586 6.01236 16.9964C6.01008 16.7342 6.11087 16.4816 6.29303 16.293L10.586 12L6.29303 7.707C6.10556 7.51947 6.00024 7.26516 6.00024 7C6.00024 6.73484 6.10556 6.48053 6.29303 6.293ZM12.293 6.293C12.4806 6.10553 12.7349 6.00021 13 6.00021C13.2652 6.00021 13.5195 6.10553 13.707 6.293L18.707 11.293C18.8945 11.4805 18.9998 11.7348 18.9998 12C18.9998 12.2652 18.8945 12.5195 18.707 12.707L13.707 17.707C13.5184 17.8892 13.2658 17.99 13.0036 17.9877C12.7414 17.9854 12.4906 17.8802 12.3052 17.6948C12.1198 17.5094 12.0146 17.2586 12.0124 16.9964C12.0101 16.7342 12.1109 16.4816 12.293 16.293L16.586 12L12.293 7.707C12.1056 7.51947 12.0002 7.26516 12.0002 7C12.0002 6.73484 12.1056 6.48053 12.293 6.293Z"
                           fill="#09244B"
                         />
@@ -190,7 +205,7 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
 
               {/* Decorative Image Section */}
               <div
-                className="flex items-center gap-[10px] rounded-[50px] px-[5px] py-[5px] pr-[155px]"
+                className="flex w-full items-center gap-[10px] rounded-[50px] px-[5px] py-[5px] pr-6 md:pr-[155px]"
                 style={{
                   backgroundColor: "#927361",
                   backgroundImage: "url(/p10.png)",
@@ -207,10 +222,10 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
-                    <g clip-path="url(#clip0_54_893)">
+                    <g clipPath="url(#clip0_54_893)">
                       <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
+                        fillRule="evenodd"
+                        clipRule="evenodd"
                         d="M5.66895 4.76C5.69576 4.53284 5.77524 4.31509 5.90106 4.12407C6.02689 3.93306 6.19558 3.77407 6.3937 3.65976C6.59182 3.54545 6.81389 3.47899 7.04223 3.46566C7.27058 3.45233 7.49888 3.49251 7.70895 3.583C8.77095 4.037 11.1509 5.116 14.1709 6.859C17.1919 8.603 19.3169 10.126 20.2399 10.817C21.0279 11.408 21.0299 12.58 20.2409 13.173C19.3269 13.86 17.2279 15.363 14.1709 17.129C11.1109 18.895 8.75895 19.961 7.70695 20.409C6.80095 20.796 5.78695 20.209 5.66895 19.232C5.53095 18.09 5.27295 15.497 5.27295 11.995C5.27295 8.495 5.52995 5.903 5.66895 4.76Z"
                         fill="white"
                       />
@@ -225,7 +240,7 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
               </div>
 
               {/* Stats Cards */}
-              <div className="inline-flex items-start gap-[5px]">
+              <div className="w-full inline-flex items-start gap-[5px] flex-wrap justify-center md:justify-start">
                 <div className="h-[93px] inline-flex flex-col items-center justify-center gap-1 rounded-[5px] bg-[#ffe7e2] px-5 py-[10px]">
                   <span className="text-black text-xl font-bold leading-6 tracking-[-0.2px] text-center">
                     Free
@@ -257,7 +272,7 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
 
               {/* Connect Wallet Button */}
               <ConnectButton
-                className="inline-flex items-center gap-[5px] px-5 py-[10px] rounded-[30px] text-white text-sm font-bold leading-[17px] tracking-[-0.14px]"
+                className="m-auto inline-flex items-center gap-[5px] px-5 py-[10px] rounded-[30px] text-white text-sm font-bold leading-[17px] tracking-[-0.14px]"
                 style={{
                   background:
                     "linear-gradient(90deg, #8384f0 0%, #7135ff 100%)",
@@ -267,21 +282,21 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
             </div>
 
             {/* Background Hero Image */}
-            <div className="absolute top-[-18px] left-[328px] w-[437px] h-[605px]">
+            <div className="box3 relative md:absolute md:top-[-18px] md:left-[328px] w-full md:w-[437px] h-[320px] md:h-[605px] order-2">
               <div
-                className="absolute top-[42px] left-[42px] w-[352px] h-[519px] "
+                className="md:absolute md:top-[42px] md:left-[42px] w-full md:w-[380px] h-[450px] md:h-[580px] rounded-[24px] overflow-hidden"
                 style={{
-                  backgroundImage: `url(${theme?.heroImg})`,
+                  backgroundImage: `url(${girlImg})`,
                   backgroundPosition: "center",
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                 }}
               />
-              <div className="absolute top-[100px] left-[342px] inline-flex items-center justify-center gap-[10px] rounded-[50px] bg-[#e5e0fe] p-[15px] w-[62px] h-[62px]">
+              <div className="absolute top-16 right-2 md:top-[100px] md:left-[330px] md:right-auto inline-flex items-center justify-center gap-[10px] rounded-[50px] bg-[#e5e0fe] p-[15px] w-[62px] h-[62px]">
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
                   <path
                     d="M9.33334 22.6667L22.6667 9.33337M22.6667 9.33337H9.33334M22.6667 9.33337V22.6667"
-                    stroke="currentColor"
+                    stroke="#8384F0"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -294,13 +309,13 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
 
         {/* Join The Option Section */}
         {lifetimePrice || monthPrice || yearPrice || quarterPrice ? (
-          <div className="flex flex-col items-center justify-center px-[60px] py-[60px] gap-5">
-            <h2 className="text-black text-[32px] font-bold leading-[38px] tracking-[-0.32px] text-center w-[381px]">
+          <div className="flex flex-col items-center justify-center px-5 sm:px-8 md:px-[60px] py-[40px] md:py-[60px] gap-5">
+            <h2 className="text-black text-[32px] font-bold leading-[38px] tracking-[-0.32px] text-center w-full max-w-[381px] mx-auto md:mx-0">
               Join The Option
             </h2>
 
             <div
-              className="w-full inline-flex items-start justify-center gap-5 rounded-[40px] px-[10px] py-[40px]"
+              className="w-full inline-flex items-start justify-center gap-5 rounded-[40px] px-[10px] py-[40px] flex-wrap"
               style={{ background: "#e4bafa" }}
             >
               {[
@@ -358,7 +373,7 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
               ]
                 .filter(Boolean)
                 .map((option, index) => (
-                  <div key={index} className={"w-[248px] h-[217px]"}>
+                  <div key={index} className={"w-full max-w-[268px]"}>
                     <div
                       className={option.cardClass}
                       style={{
@@ -428,20 +443,20 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
 
         {/* Position Verification Section */}
         {verifyData?.length ? (
-          <div className="px-[60px]">
+          <div className="px-5 sm:px-8 md:px-[60px]">
             <div
-              className="flex items-center gap-[40px] rounded-[40px] px-[60px] py-[40px]"
+              className="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-[40px] rounded-[40px] px-5 sm:px-8 md:px-[60px] py-[30px] md:py-[40px]"
               style={{ background: "#f2eaff" }}
             >
-              <h2 className="text-black text-[40px] font-bold leading-[48px] tracking-[-0.4px] w-[250px]">
+              <h2 className="text-black text-[32px] md:text-[40px] font-bold leading-[38px] md:leading-[48px] tracking-[-0.4px] w-full md:w-[250px] text-center md:text-left">
                 Position Verification
               </h2>
 
-              <div className="flex items-start gap-[30px]">
+              <div className="flex flex-wrap items-stretch justify-center md:justify-start gap-4 md:gap-[30px] w-full">
                 {verifyData.map((item, index) => (
                   <div
                     key={index}
-                    className="inline-flex flex-col flex-grow items-start justify-center gap-[5px] rounded-[30px] px-5 py-[10px]"
+                    className="inline-flex flex-col items-start justify-center gap-[5px] rounded-[30px] px-5 py-[10px] w-full sm:w-[260px]"
                     style={{
                       background: "#cecffd",
                       outline: "10px solid rgba(206, 207, 253, 0.6)",
@@ -489,16 +504,16 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
         ) : null}
 
         {/* Links & Apps Section */}
-        <div className="flex flex-col items-center justify-center px-[100px] py-[60px] gap-[30px]">
-          <h2 className="text-black text-[32px] font-bold leading-[38px] tracking-[-0.32px] text-center w-[381px]">
+        <div className="flex flex-col items-center justify-center px-5 sm:px-8 md:px-[60px] lg:px-[100px] py-[40px] md:py-[60px] gap-[30px]">
+          <h2 className="text-black text-[32px] font-bold leading-[38px] tracking-[-0.32px] text-center w-full max-w-[381px] mx-auto md:mx-0">
             Links & Apps
           </h2>
 
-          <div className="flex items-start justify-center gap-[30px]">
+          <div className="flex items-start justify-center gap-[20px] md:gap-[30px] flex-wrap">
             {theme?.socials?.map((app, index) => (
               <div
                 key={index}
-                className="inline-flex items-center gap-[5px] px-5 py-[10px] cursor-pointer"
+                className="inline-flex items-center gap-[5px] px-5 py-[10px] rounded-[30px] cursor-pointer"
                 onClick={() => window.open(app.link, "_blank")}
                 style={{
                   background:
@@ -518,12 +533,12 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
         </div>
 
         {/* Community News Section */}
-        <div className="px-[100px] pb-[60px]">
+        <div className="px-5 sm:px-8 md:px-[60px] lg:px-[100px] pb-[40px] md:pb-[60px]">
           <h2 className="text-black text-[32px] font-bold leading-[38px] tracking-[-0.32px] text-center mb-[40px]">
             Community News
           </h2>
 
-          <div className="flex gap-5 mb-[40px]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-[40px]">
             {currentNewsData.map((news, index) => (
               <div
                 key={index}
@@ -531,7 +546,7 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
                 onClick={() => window.open(news.link, "_blank")}
               >
                 <div
-                  className="w-full h-[200px] rounded-lg mb-4 bg-cover bg-center relative"
+                  className="w-full h-[160px] md:h-[200px] rounded-lg mb-4 bg-cover bg-center relative"
                   style={{ backgroundImage: `url(${news.image})` }}
                 >
                   <div className="absolute bottom-4 left-4">
@@ -549,6 +564,21 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
 
           {/* Pagination */}
           <div className="flex items-center justify-center gap-4">
+            <button
+              onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
+              disabled={currentPage <= 1}
+              className="flex items-center justify-center w-8 h-8 bg-[#E4BAFA] rounded hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path
+                  d="M10 12l-4-4 4-4"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
             <div className="flex gap-2">
               {Array.from({ length: totalPages }, (_, i) => (
                 <button
@@ -556,35 +586,34 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
                   onClick={() => handlePageChange(i + 1)}
                   className={`w-8 h-8 rounded flex items-center justify-center text-sm font-medium ${
                     currentPage === i + 1
-                      ? "bg-black text-white"
-                      : "bg-gray-200 text-black hover:bg-gray-300"
+                      ? "bg-[#E4BAFA] text-white"
+                      : "bg-[#ffffff] text-black hover:bg-gray-300"
                   }`}
                 >
                   {i + 1}
                 </button>
               ))}
             </div>
-            {currentPage < totalPages && (
-              <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                className="flex items-center justify-center w-8 h-8 bg-gray-200 rounded hover:bg-gray-300"
-              >
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path
-                    d="M6 12l4-4-4-4"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
-            )}
+            <button
+              onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
+              disabled={currentPage >= totalPages}
+              className="flex items-center justify-center w-8 h-8 bg-[#E4BAFA] rounded hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path
+                  d="M6 12l4-4-4-4"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
           </div>
         </div>
 
         {/* Footer */}
-        <div className="flex flex-col items-center gap-4 px-[100px] py-[40px]">
+        <div className="flex flex-col items-center gap-4 px-5 sm:px-8 md:px-[60px] lg:px-[100px] py-[40px]">
           <img src="/Union2.png" className="w-[118px]" alt="" />
 
           <p className="text-black text-base font-bold leading-[19px] tracking-[-0.16px] uppercase">
