@@ -107,10 +107,10 @@
       "link": ""
     }
   ],
-  "heroImg": "/hero.png",
-  "lifeTimeImg": "/lifetime.png",
-  "quarterImg": "/quarter.png",
-  "monthImg": "/month.png",
-  "yearImg": "/year.png",
+  "heroImg": "/hero6.png",
+  "lifeTimeImg": "/lifetime6.png",
+  "quarterImg": "/quarter6.png",
+  "monthImg": "/month6.png",
+  "yearImg": "/year6.png",
   "verifyImgs": ["/aave1.png", "/bnb.png", "/polygon.png"]
 }

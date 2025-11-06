@@ -11,7 +11,6 @@ import { useClubMembership } from "../../hooks/useClubMembership";
 import { ArrowRight } from "lucide-react";
 // Supports weights 400-700
 import "@fontsource-variable/poltawski-nowy";
-import newsImg from "/public/newsimg.png";
 
 export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
   theme,

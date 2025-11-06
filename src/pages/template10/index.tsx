@@ -8,8 +8,6 @@ import { MemberModal } from "./MemberModal";
 import { usePagination } from "../../hooks/usePagination";
 import { useClubData } from "../../hooks/useClubData";
 import { useClubMembership } from "../../hooks/useClubMembership";
-import girlImg from "/public/girl.png";
-
 
 export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
   theme,
@@ -134,26 +132,26 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
                         Read more
                       </span>
                       <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g clipPath="url(#clip0_56_140)">
-                        <path
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                          d="M6.29303 6.293C6.48056 6.10553 6.73487 6.00021 7.00003 6.00021C7.26519 6.00021 7.5195 6.10553 7.70703 6.293L12.707 11.293C12.8945 11.4805 12.9998 11.7348 12.9998 12C12.9998 12.2652 12.8945 12.5195 12.707 12.707L7.70703 17.707C7.51843 17.8892 7.26583 17.99 7.00363 17.9877C6.74143 17.9854 6.49062 17.8802 6.30521 17.6948C6.1198 17.5094 6.01463 17.2586 6.01236 16.9964C6.01008 16.7342 6.11087 16.4816 6.29303 16.293L10.586 12L6.29303 7.707C6.10556 7.51947 6.00024 7.26516 6.00024 7C6.00024 6.73484 6.10556 6.48053 6.29303 6.293ZM12.293 6.293C12.4806 6.10553 12.7349 6.00021 13 6.00021C13.2652 6.00021 13.5195 6.10553 13.707 6.293L18.707 11.293C18.8945 11.4805 18.9998 11.7348 18.9998 12C18.9998 12.2652 18.8945 12.5195 18.707 12.707L13.707 17.707C13.5184 17.8892 13.2658 17.99 13.0036 17.9877C12.7414 17.9854 12.4906 17.8802 12.3052 17.6948C12.1198 17.5094 12.0146 17.2586 12.0124 16.9964C12.0101 16.7342 12.1109 16.4816 12.293 16.293L16.586 12L12.293 7.707C12.1056 7.51947 12.0002 7.26516 12.0002 7C12.0002 6.73484 12.1056 6.48053 12.293 6.293Z"
-                          fill="#09244B"
-                        />
-                      </g>
-                      <defs>
-                        <clipPath id="clip0_56_140">
-                          <rect width="24" height="24" fill="white" />
-                        </clipPath>
-                      </defs>
-                    </svg>
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g clipPath="url(#clip0_56_140)">
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M6.29303 6.293C6.48056 6.10553 6.73487 6.00021 7.00003 6.00021C7.26519 6.00021 7.5195 6.10553 7.70703 6.293L12.707 11.293C12.8945 11.4805 12.9998 11.7348 12.9998 12C12.9998 12.2652 12.8945 12.5195 12.707 12.707L7.70703 17.707C7.51843 17.8892 7.26583 17.99 7.00363 17.9877C6.74143 17.9854 6.49062 17.8802 6.30521 17.6948C6.1198 17.5094 6.01463 17.2586 6.01236 16.9964C6.01008 16.7342 6.11087 16.4816 6.29303 16.293L10.586 12L6.29303 7.707C6.10556 7.51947 6.00024 7.26516 6.00024 7C6.00024 6.73484 6.10556 6.48053 6.29303 6.293ZM12.293 6.293C12.4806 6.10553 12.7349 6.00021 13 6.00021C13.2652 6.00021 13.5195 6.10553 13.707 6.293L18.707 11.293C18.8945 11.4805 18.9998 11.7348 18.9998 12C18.9998 12.2652 18.8945 12.5195 18.707 12.707L13.707 17.707C13.5184 17.8892 13.2658 17.99 13.0036 17.9877C12.7414 17.9854 12.4906 17.8802 12.3052 17.6948C12.1198 17.5094 12.0146 17.2586 12.0124 16.9964C12.0101 16.7342 12.1109 16.4816 12.293 16.293L16.586 12L12.293 7.707C12.1056 7.51947 12.0002 7.26516 12.0002 7C12.0002 6.73484 12.1056 6.48053 12.293 6.293Z"
+                            fill="#09244B"
+                          />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_56_140">
+                            <rect width="24" height="24" fill="white" />
+                          </clipPath>
+                        </defs>
+                      </svg>
                     </div>
                   </a>
                 </div>
@@ -286,7 +284,7 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
               <div
                 className="md:absolute md:top-[42px] md:left-[42px] w-full md:w-[380px] h-[450px] md:h-[580px] rounded-[24px] overflow-hidden"
                 style={{
-                  backgroundImage: `url(${girlImg})`,
+                  backgroundImage: `url(${theme.heroImg})`,
                   backgroundPosition: "center",
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
@@ -464,7 +462,11 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
                   >
                     <div className="inline-flex flex-col items-start justify-center h-[40px] gap-[10px]">
                       <img
-                        src={theme?.verifyImgs?.[index] || theme?.verifyImgs?.[0] || "/aave.png"}
+                        src={
+                          theme?.verifyImgs?.[index] ||
+                          theme?.verifyImgs?.[0] ||
+                          "/aave.png"
+                        }
                         alt={item.chainName}
                         className="h-10 object-contain"
                       />
@@ -595,7 +597,9 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
               ))}
             </div>
             <button
-              onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
+              onClick={() =>
+                handlePageChange(Math.min(totalPages, currentPage + 1))
+              }
               disabled={currentPage >= totalPages}
               className="flex items-center justify-center w-8 h-8 bg-[#E4BAFA] rounded hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
