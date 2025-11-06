@@ -10,10 +10,6 @@ import { useClubMembership } from "../../hooks/useClubMembership";
 import { Star, Heart } from "lucide-react";
 import { ITheme } from "@/types";
 import "@fontsource/poller-one";
-import fruitImg from "/public/fruit.png";
-import starImg from "/public/Star.png";
-import starImgA from "/public/star1.png";
-import heartImg from "/public/heart.png";
 
 interface Template8Props {
   club: string;
@@ -107,7 +103,11 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
 
       {/* Decorative Elements */}
       <div className="absolute z-20 top-[-14px] -left-8 md:top-[-20px] md:-left-12">
-        <img src={starImg} alt="star" className="w-16 h-16 md:w-24 md:h-24" />
+        <img
+          src={"/Star.png"}
+          alt="star"
+          className="w-16 h-16 md:w-24 md:h-24"
+        />
       </div>
 
       {/* Tags */}
@@ -117,7 +117,7 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
 
       {/* Floating Stars */}
       <div className="absolute z-30 bottom-[-60px] right-[-30px]">
-        <img src={starImgA} alt="star" className="w-18 h-23" />
+        <img src={"/star1.png"} alt="star" className="w-18 h-23" />
       </div>
 
       <div className="absolute z-20 top-20 right-[-33%] md:-right-20 bg-black text-white px-6 py-2 rounded-2xl backdrop-blur-sm">
@@ -267,7 +267,7 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
 
           {/* Decorative Circle */}
           <div className="flex justify-center mt-10 md:mt-15">
-            <img src={heartImg} alt="heart" className="w-50 h-50" />
+            <img src={"/heart.png"} alt="heart" className="w-50 h-50" />
           </div>
         </div>
       ) : null}
@@ -373,7 +373,7 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
 
         {/* Decorative Circle */}
         <div className="flex justify-center mt-15">
-          <img src={heartImg} alt="heart" className="w-50 h-50" />
+          <img src={"/heart.png"} alt="heart" className="w-50 h-50" />
         </div>
       </div>
 

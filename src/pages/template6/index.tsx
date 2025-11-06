@@ -9,7 +9,6 @@ import { usePagination } from "../../hooks/usePagination";
 import { useClubData } from "../../hooks/useClubData";
 import { useClubMembership } from "../../hooks/useClubMembership";
 import { Heart, Gift, ExternalLink } from "lucide-react";
-import Vectorimg from "/public/Vector.png";
 
 const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
   theme,
@@ -121,7 +120,7 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
                 icon="/arrow-circle.png"
               />
               <img
-                src={Vectorimg}
+                src={"/Vector.png"}
                 alt="Vector"
                 className="absolute top-1/2 right-[-40px] md:right-[-50px] transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16"
               />
@@ -143,7 +142,7 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
           <div className="text-center mb-12">
             <div className="relative inline-block">
               <img
-                src={Vectorimg}
+                src={"/Vector.png"}
                 alt="Vector"
                 className="absolute top-1/3 left-0 md:left-[-20px] transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16"
               />
@@ -234,7 +233,7 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
           <div className="text-center mb-12">
             <div className="relative inline-block">
               <img
-                src={Vectorimg}
+                src={"/Vector.png"}
                 alt="Vector"
                 className="absolute top-1/4 right-[-40px] md:right-[-70px] transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16"
               />
@@ -289,7 +288,7 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
           <div className="text-center mb-12">
             <div className="relative inline-block">
               <img
-                src={Vectorimg}
+                src={"/Vector.png"}
                 alt="Vector"
                 className="absolute top-[20%] left-0 md:left-[-10px] transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16"
               />
@@ -324,7 +323,7 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
           <div className="text-center mb-12">
             <div className="relative inline-block">
               <img
-                src={Vectorimg}
+                src={"/Vector.png"}
                 alt="Vector"
                 className="absolute top-1/4 right-[-40px] md:right-[-70px] transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16"
               />

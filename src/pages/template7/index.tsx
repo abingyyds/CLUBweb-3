@@ -8,15 +8,7 @@ import { MemberModal } from "./MemberModal";
 import { usePagination } from "../../hooks/usePagination";
 import { useClubData } from "../../hooks/useClubData";
 import { useClubMembership } from "../../hooks/useClubMembership";
-import {
-  Grid,
-  User,
-  Settings,
-  FileText,
-  ExternalLink,
-  MousePointer,
-  ChevronsRight,
-} from "lucide-react";
+import { MousePointer, ChevronsRight } from "lucide-react";
 import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group";
 
 interface Template7Props {
@@ -196,7 +188,9 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
               {/* 标题 */}
               <div className="flex flex-col items-center gap-4">
                 <div className="flex flex-col items-center gap-4">
-                  <h2 className="text-xl md:text-2xl text-[#f38406]">Join The Option</h2>
+                  <h2 className="text-xl md:text-2xl text-[#f38406]">
+                    Join The Option
+                  </h2>
                   <div className="flex items-center">
                     <div className="w-2 h-2 bg-[#f38406] rounded-full"></div>
                     <div className="w-44 h-0.5 bg-[#f38406]"></div>
@@ -294,10 +288,17 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
                     }`}
                   >
                     {verifyData.map((it, index) => (
-                      <div key={index} className="flex w-full lg:w-[30%] flex-col gap-2 md:gap-3.5">
+                      <div
+                        key={index}
+                        className="flex w-full lg:w-[30%] flex-col gap-2 md:gap-3.5"
+                      >
                         <div className="flex items-center">
                           <img
-                            src={theme?.verifyImgs?.[index] || theme?.verifyImgs?.[0] || "/aave.png"}
+                            src={
+                              theme?.verifyImgs?.[index] ||
+                              theme?.verifyImgs?.[0] ||
+                              "/aave.png"
+                            }
                             alt={it.tokenSymbol}
                             className="w-16 md:w-[97px]"
                           />
@@ -345,7 +346,9 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
             <div className="bg-[#e5e5e5] rounded-b-lg p-4 md:p-10">
               <div className="space-y-6 md:space-y-10">
                 <div className="flex flex-col items-center gap-4">
-                  <h3 className="text-xl md:text-2xl text-[#191D22]">Links & Apps</h3>
+                  <h3 className="text-xl md:text-2xl text-[#191D22]">
+                    Links & Apps
+                  </h3>
                   <div className="flex items-center">
                     <div className="w-2 h-2 bg-[#191D22] rounded-full"></div>
                     <div className="w-32 h-0.5 bg-[#191D22]"></div>
@@ -366,7 +369,9 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
                           className="size-16 md:size-[84px] rounded-full"
                         />
                       </div>
-                      <span className="text-black text-xs md:text-sm">{app.name}</span>
+                      <span className="text-black text-xs md:text-sm">
+                        {app.name}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -377,7 +382,9 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
           {/* Community News 区域 */}
           <div className="space-y-10">
             <div className="flex flex-col items-center gap-4">
-              <h3 className="text-xl md:text-2xl text-[#f38406]">Community News</h3>
+              <h3 className="text-xl md:text-2xl text-[#f38406]">
+                Community News
+              </h3>
               <div className="flex items-center">
                 <div className="w-2 h-2 bg-[#f38406] rounded-full"></div>
                 <div className="w-40 h-0.5 bg-[#f38406]"></div>
@@ -411,9 +418,9 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
 
             {/* 分页按钮 */}
             <div className="flex justify-center gap-3 md:gap-4">
-                <button className="flex-1 lg:flex-none bg-[#f38406] text-[#292F36] h-[56px] rounded-[32px] px-6 md:px-8 py-2 md:py-4 text-sm transition-colors">
-                  View More
-                </button>
+              <button className="flex-1 lg:flex-none bg-[#f38406] text-[#292F36] h-[56px] rounded-[32px] px-6 md:px-8 py-2 md:py-4 text-sm transition-colors">
+                View More
+              </button>
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage >= totalPages}
