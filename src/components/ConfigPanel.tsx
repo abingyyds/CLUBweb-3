@@ -32,7 +32,7 @@ import { ITheme } from "@/types";
 
 interface ConfigPanelProps {
   config: ITheme;
-  onSave: (config: ITheme) => void;
+  onSave: (config: ITheme) => Promise<void>;
 }
 
 export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
@@ -43,6 +43,7 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
       "链接必须以 http(s):// 或 / 开头",
   };
   const [open, setOpen] = React.useState(false);
+  const [isSaving, setIsSaving] = React.useState(false);
 
   const form = useForm<ITheme>({
     defaultValues: config,
@@ -75,9 +76,16 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
     name: "verifyImgs",
   });
 
-  const handleSave = (data: ITheme) => {
-    onSave(data);
-    setOpen(false);
+  const handleSave = async (data: ITheme) => {
+    setIsSaving(true);
+    try {
+      await onSave(data);
+      setOpen(false);
+    } catch (err) {
+      console.error("保存配置失败:", err);
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   const handleCancel = () => {
@@ -774,8 +782,12 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
 
         <SheetFooter className="border-t bg-background p-4">
           <div className="flex gap-2">
-            <Button onClick={form.handleSubmit(handleSave)} className="flex-1">
-              保存
+            <Button
+              onClick={form.handleSubmit(handleSave)}
+              className="flex-1"
+              disabled={isSaving}
+            >
+              {isSaving ? "保存中..." : "保存"}
             </Button>
             <Button variant="outline" onClick={handleCancel} className="flex-1">
               取消

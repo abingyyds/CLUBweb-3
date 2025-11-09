@@ -21,6 +21,7 @@ export const globalConfig = {
   temporaryMembershipAddress: "0xc134c3c580322d11105154b51d34292e3b232f98",
   tokenBasedAccessAddress: "0x14d7c26abc66381c48d6230eebd6f8f5d3d695a4",
   clubMembershipQueryAddress: "0x86f58916465db0ba42e5de888ae3b67a30d1473b",
+  web3ClubNFTAddress: "0x25fda59dfba96c8cc4e502b4010a0f70c036a78d",
   chain: sepolia,
   supportChains: [
     sepolia,

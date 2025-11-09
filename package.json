@@ -8,7 +8,12 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "check": "tsc -b --noEmit"
+    "check": "tsc -b --noEmit",
+    "supabase:functions:deploy": "supabase functions deploy",
+    "supabase:functions:deploy:upsert": "supabase functions deploy upsert-config-with-auth",
+    "supabase:functions:serve": "supabase functions serve",
+    "supabase:functions:logs": "supabase functions logs",
+    "supabase:link": "supabase link --project-ref xenmczlvsgymaniljwhg"
   },
   "dependencies": {
     "@fontsource-variable/poltawski-nowy": "^5.2.7",
