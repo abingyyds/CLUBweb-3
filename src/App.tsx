@@ -14,6 +14,8 @@ import { Template8 } from "./pages/template8";
 import Template9 from "./pages/template9/index";
 import { Template10 } from "./pages/template10/index";
 import { PageMeta } from "./components/PageMeta";
+import { useAccount, useWalletClient } from "wagmi";
+import { toast } from "sonner";
 
 function App() {
   const search = parseSearchParams(window.location.href) as any;
@@ -27,6 +29,10 @@ function App() {
   const [error, setError] = useState<string | null>(null);
 
   const template = search.template || theme?.templateId || "3";
+
+  // 获取钱包信息
+  const { address, isConnected } = useAccount();
+  const { data: walletClient } = useWalletClient();
 
   const fetchTheme = async () => {
     setLoading(true);
@@ -60,14 +66,22 @@ function App() {
   const handleConfigSave = async (newConfig: ITheme) => {
     setSaving(true);
     setError(null);
+    console.log("newConfig", newConfig);
     try {
+      // 检查钱包是否连接（统一走 catch 错误处理）
+      if (!isConnected || !address || !walletClient) {
+        throw new Error("请先连接钱包");
+      }
+
       const { upsertConfig } = await import("./services/configService");
-      await upsertConfig(club, newConfig);
+      // 传递钱包信息进行签名和验证
+      await upsertConfig(club, newConfig, address, walletClient);
       setTheme(newConfig);
       console.log("配置已保存:", newConfig);
     } catch (e: any) {
       console.error(e);
-      setError(e?.message || "保存配置失败");
+      // setError(e?.message || "保存配置失败");
+      toast.error(e?.message || "保存配置失败");
     } finally {
       setSaving(false);
     }
