@@ -16,12 +16,20 @@ import { Template10 } from "./pages/template10/index";
 import { PageMeta } from "./components/PageMeta";
 import { useAccount, useWalletClient } from "wagmi";
 import { toast } from "sonner";
+import { useWeb3ClubService } from "./components/AppkitProvider";
+import { useQuery } from "@tanstack/react-query";
 
 function App() {
   const search = parseSearchParams(window.location.href) as any;
   const domainName =
     search.club || parseSubdomain(window.location.host) || "xxx";
   const [club] = useState(domainName);
+  const web3ClubService = useWeb3ClubService();
+
+  const { data: owner } = useQuery({
+    queryKey: ["owner", domainName],
+    queryFn: () => web3ClubService.web3ClubNFTClient.getOwner(domainName),
+  });
 
   const [theme, setTheme] = useState<ITheme | undefined>();
   const [loading, setLoading] = useState<boolean>(false);
@@ -41,7 +49,7 @@ function App() {
       const { getConfig } = await import("./services/configService");
       const remote = await getConfig(club);
       console.log("remote", remote);
-      if (!remote) {
+      if (remote) {
         setTheme(remote);
       } else {
         const res = await fetch(`/data/config${template}.json`);
@@ -78,6 +86,7 @@ function App() {
       await upsertConfig(club, newConfig, address, walletClient);
       setTheme(newConfig);
       console.log("配置已保存:", newConfig);
+      toast.success("配置保存成功");
     } catch (e: any) {
       console.error(e);
       // setError(e?.message || "保存配置失败");
@@ -92,6 +101,8 @@ function App() {
   }, [club]);
 
   if (!theme) return null;
+
+  console.log(theme, owner, domainName);
 
   return (
     <div className="App">
@@ -112,7 +123,9 @@ function App() {
       ) : null}
       {loading ? <div style={{ marginBottom: 8 }}>加载中...</div> : null}
       {saving ? <div style={{ marginBottom: 8 }}>保存中...</div> : null}
-      {theme && <ConfigPanel config={theme} onSave={handleConfigSave} />}
+      {theme && owner?.toLowerCase() === address?.toLowerCase() ? (
+        <ConfigPanel config={theme} onSave={handleConfigSave} />
+      ) : null}
     </div>
   );
 }

@@ -6,6 +6,8 @@ import { useClubData } from "../../hooks/useClubData";
 import { useClubMembership } from "../../hooks/useClubMembership";
 import { ConnectButton } from "@/components/ConnectButton";
 import { ITheme } from "@/types";
+import Pagination from "@/components/Pagination";
+import { usePagination } from "@/hooks/usePagination";
 
 interface Template9Props {
   club?: string;
@@ -46,10 +48,16 @@ const Template9: React.FC<Template9Props> = ({ club = "abc", theme }) => {
     quarterPrice,
   });
 
-  // News view more/less toggle
-  const [showAllNews, setShowAllNews] = useState(false);
   const newsList = theme.news ?? [];
-  const visibleNews = showAllNews ? newsList : newsList.slice(0, 4);
+  const {
+    currentPage,
+    totalPages,
+    currentData: currentNewsData,
+    handlePageChange,
+  } = usePagination({
+    data: newsList,
+    itemsPerPage: 4,
+  });
 
   return (
     <div className="min-h-screen bg-white font-inter">
@@ -399,51 +407,40 @@ const Template9: React.FC<Template9Props> = ({ club = "abc", theme }) => {
             </h2>
 
             <div className="space-y-4 relative z-10">
-              {visibleNews.map((news, index) => (
+              {currentNewsData.map((news, index) => (
                 <div
                   key={index}
-                  className="flex border-t-2 border-gray-200 flex-col md:flex-row items-start md:items-center justify-between p-4 gap-2"
+                  onClick={() => window.open(news.link, "_blank")}
+                  className="flex border-t-2 border-gray-200 flex-col md:flex-row items-start justify-between p-4 gap-2"
                 >
+                  <div className="w-full md:w-[248px]">
+                    <img src={news.image} className="w-full" alt="" />
+                  </div>
                   <div className="flex-1">
                     <h3 className="font-semibold text-[#050505] mb-1">
                       {news.title}
                     </h3>
-                    <p className="text-sm text-gray-600">{news.source}</p>
+
+                    <div className="flex gap-6 items-center">
+                      <p className="text-sm text-gray-600">
+                        Source: {news.source}
+                      </p>
+                      <div className="text-sm text-[#121212]">{news.time}</div>
+                    </div>
                   </div>
-                  <div className="text-sm text-gray-500">{news.time}</div>
-                  <button
-                    className=" text-[#000000] font-bold hover:text-[#b8770a]"
-                    onClick={() => window.open(news.link, "_blank")}
-                  >
-                    +
-                  </button>
                 </div>
               ))}
-
-              {/* Featured News with Image */}
-              {/* <div className="flex flex-col sm:flex-row gap-4 p-4 bg-gray-50 rounded-lg">
-                <div className="w-24 h-16 bg-gray-300 rounded flex-shrink-0"></div>
-                <div className="flex-1">
-                  <p className="text-sm text-[#050505] leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                  </p>
-                  <p className="text-xs text-gray-500 mt-2">2026/09/10</p>
-                </div>
-              </div> */}
             </div>
 
-            {newsList.length > 4 && (
-              <div className="text-center mt-8">
-                <button
-                  onClick={() => setShowAllNews((v) => !v)}
-                  className="bg-[#ffbb33] text-black px-6 py-2 rounded font-semibold shadow-sm hover:shadow-md transition-shadow"
-                >
-                  {showAllNews ? "View Less" : "View More"}
-                </button>
-              </div>
+            {theme.news.length > 4 && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+                bgClassName="bg-[#FFBB33]"
+                activeTextClassName="text-white"
+                hoverTextClassName="hover:text-white"
+              />
             )}
           </section>
 

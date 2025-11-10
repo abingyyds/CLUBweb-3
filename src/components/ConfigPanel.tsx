@@ -782,15 +782,15 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
 
         <SheetFooter className="border-t bg-background p-4">
           <div className="flex gap-2">
+            <Button variant="outline" onClick={handleCancel} className="flex-1">
+              取消
+            </Button>
             <Button
               onClick={form.handleSubmit(handleSave)}
               className="flex-1"
               disabled={isSaving}
             >
               {isSaving ? "保存中..." : "保存"}
-            </Button>
-            <Button variant="outline" onClick={handleCancel} className="flex-1">
-              取消
             </Button>
           </div>
         </SheetFooter>

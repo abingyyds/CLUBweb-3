@@ -4,6 +4,7 @@ import { TemporaryMembershipClient } from "./TemporaryMembershipClient";
 import { SimpleCrossChainVerificationClient } from "./SimpleCrossChainVerificationClient";
 import { TokenBasedAccessClient } from "./TokenBasedAccessClient";
 import { ClubMembershipQueryClient } from "./ClubMembershipQueryClient";
+import { Web3ClubNFTClient } from "./Web3ClubNFTClient";
 
 export class Web3ClubService {
   walletClient: WalletClient;
@@ -38,6 +39,12 @@ export class Web3ClubService {
 
   get clubMembershipQueryClient() {
     return new ClubMembershipQueryClient({
+      walletClient: this.walletClient,
+    });
+  }
+
+  get web3ClubNFTClient() {
+    return new Web3ClubNFTClient({
       walletClient: this.walletClient,
     });
   }
