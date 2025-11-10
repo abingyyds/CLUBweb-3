@@ -19,15 +19,20 @@ export class Web3ClubNFTClient extends ContractClientBase<
   }
 
   async getOwner(domainName: string) {
-    const tokenId = (await this.readContract({
-      functionName: "getTokenId",
-      args: [domainName],
-    })) as bigint;
-    // ownerOf
-    const res = (await this.readContract({
-      functionName: "ownerOf",
-      args: [tokenId],
-    })) as string;
-    return res;
+    try {
+      const tokenId = (await this.readContract({
+        functionName: "getTokenId",
+        args: [domainName],
+      })) as bigint;
+      // ownerOf
+      const res = (await this.readContract({
+        functionName: "ownerOf",
+        args: [tokenId],
+      })) as string;
+      return res;
+    } catch (error) {
+      console.error("[getOwner] error:", error);
+      throw error;
+    }
   }
 }
