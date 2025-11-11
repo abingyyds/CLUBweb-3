@@ -23,6 +23,7 @@ export class TemporaryMembershipClient extends ContractClientBase<
       functionName: "getClubPrice",
       args: [domainName],
     })) as bigint;
+    if (res === 0n) return "";
     return formatEther(res);
   }
 
@@ -31,6 +32,7 @@ export class TemporaryMembershipClient extends ContractClientBase<
       functionName: "getClubQuarterPrice",
       args: [domainName],
     })) as bigint;
+    if (res === 0n) return "";
     return formatEther(res);
   }
 
@@ -39,6 +41,7 @@ export class TemporaryMembershipClient extends ContractClientBase<
       functionName: "getClubYearPrice",
       args: [domainName],
     })) as bigint;
+    if (res === 0n) return "";
     return formatEther(res);
   }
 

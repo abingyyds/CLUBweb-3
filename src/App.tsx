@@ -22,7 +22,7 @@ import { useQuery } from "@tanstack/react-query";
 function App() {
   const search = parseSearchParams(window.location.href) as any;
   const domainName =
-    search.club || parseSubdomain(window.location.host) || "xxx";
+    search.club || parseSubdomain(window.location.host) || "orbitlink";
   const [club] = useState(domainName);
   const web3ClubService = useWeb3ClubService();
 
