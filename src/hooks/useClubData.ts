@@ -99,6 +99,8 @@ export function useClubData({
       ),
   });
 
+  console.log(lifetimePrice, typeof yearPrice, monthPrice, quarterPrice);
+
   return {
     lifetimePrice,
     yearPrice,

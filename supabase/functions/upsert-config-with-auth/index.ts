@@ -6,15 +6,15 @@ import {
   getAddress,
   verifyMessage,
 } from "https://esm.sh/viem@2.38.0";
-import { sepolia } from "https://esm.sh/viem@2.38.0/chains";
+import { base } from "https://esm.sh/viem@2.38.0/chains";
 
 // 从环境变量获取配置
 export const supabaseConfig = {
-  chain: sepolia,
-  web3ClubNFTAddress: "0x60492632baF5a2b21F858b42FCA660FEB6276d0F",
-  apiUrl: "https://xenmczlvsgymaniljwhg.supabase.co",
+  chain: base,
+  web3ClubNFTAddress: "0xcfd62018ad4d06856df3b4ac731acca316efd5a2",
+  apiUrl: "https://smizqaxkhiwcywsjgevi.supabase.co",
   apiKey:
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhlbm1jemx2c2d5bWFuaWxqd2hnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIyNjIyNjEsImV4cCI6MjA3NzgzODI2MX0.R_TtdjXCT-mm7V6gXgeIIwGUqWEMtwtT-y309URpOZY",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNtaXpxYXhraGl3Y3l3c2pnZXZpIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2Mjg2NzU2MywiZXhwIjoyMDc4NDQzNTYzfQ.-ydiJ6yEU-H7GAOa83igEFvFQiKMpL6OFZNTFjjpw-0",
 };
 
 // Web3ClubNFT ABI
@@ -63,7 +63,7 @@ async function verifyDomainOwner(
 ): Promise<boolean> {
   try {
     const publicClient = createPublicClient({
-      chain: sepolia,
+      chain: base,
       transport: http(),
     });
 

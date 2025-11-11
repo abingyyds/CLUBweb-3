@@ -99,6 +99,7 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
                 </React.Fragment>
               );
             })}
+            <div>{theme.heroGradientText}</div>
           </h1>
           <div className="size-[211px] bg-[#6D8F20] rounded-full">
             <img
@@ -129,6 +130,7 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
                 </React.Fragment>
               );
             })}
+            <div>{theme.heroGradientText}</div>
           </h1>
           <p className="text-white text-lg tracking-wider mb-8">
             {theme.heroSubtitle}
@@ -295,7 +297,11 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
                   <React.Fragment key={index}>
                     <div className="flex items-center gap-6">
                       <img
-                        src={theme?.verifyImgs?.[index] || theme?.verifyImgs?.[0] || "/aave.png"}
+                        src={
+                          theme?.verifyImgs?.[index] ||
+                          theme?.verifyImgs?.[0] ||
+                          "/aave.png"
+                        }
                         alt="ETH Chain"
                         className="size-[50px] md:size-20"
                       />

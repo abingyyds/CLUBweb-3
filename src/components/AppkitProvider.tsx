@@ -1,11 +1,10 @@
 import { createAppKit } from "@reown/appkit/react";
-
 import { useWalletClient, WagmiProvider } from "wagmi";
-import { arbitrum, base, mainnet, sepolia } from "@reown/appkit/networks";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
 import { createContext, ReactNode, useContext, useMemo } from "react";
 import { Web3ClubService } from "@/services/Web3ClubService";
+import { globalConfig } from "@/constants";
 
 // 0. Setup queryClient
 const queryClient = new QueryClient();
@@ -22,7 +21,7 @@ const metadata = {
 };
 
 // 3. Set the networks
-const networks = [sepolia];
+const networks = [globalConfig.chain];
 
 // 4. Create Wagmi Adapter
 const wagmiAdapter = new WagmiAdapter({
