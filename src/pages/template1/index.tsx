@@ -74,8 +74,8 @@ export const Template1: React.FC<{ theme?: ITheme; club: string }> = ({
   const [isMobile, setIsMobile] = useState(false);
 
   // 选中的计划和价格状态
-  const [selectedPlan, setSelectedPlan] = useState<string>("lifetime");
-  const [selectedPrice, setSelectedPrice] = useState<string>("5.0");
+  const [selectedPlan, setSelectedPlan] = useState<string>("");
+  const [selectedPrice, setSelectedPrice] = useState<string>("");
 
   // 创建会员选项数组（基于template3结构）
   const membershipOptions = [
