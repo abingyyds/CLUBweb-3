@@ -72,8 +72,8 @@ export const Template2 = ({
   });
 
   // 选中的计划和价格状态
-  const [selectedPlan, setSelectedPlan] = useState<string>("lifetime");
-  const [selectedPrice, setSelectedPrice] = useState<string>("5.0");
+  const [selectedPlan, setSelectedPlan] = useState<string>("");
+  const [selectedPrice, setSelectedPrice] = useState<string>("");
 
   // 创建会员选项数组（基于template1结构）
   const membershipOptions = [
@@ -268,47 +268,49 @@ export const Template2 = ({
       </section>
 
       {/* Position Verification Section */}
-      <section className="max-w-6xl mx-auto px-4 lg:px-20 py-6 lg:py-10">
-        <h2 className="text-2xl lg:text-5xl font-extrabold text-black mb-6 lg:mb-10">
-          Position Verification
-        </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-5">
-          {verifyData?.map((item, index) => (
-            <div
-              key={index}
-              className="bg-gray-100 rounded-xl p-4 lg:p-5 flex items-center justify-between"
-            >
-              <div className="flex items-center gap-3 lg:gap-5">
-                <div className="w-12 lg:w-18 h-12 lg:h-18 rounded-lg overflow-hidden">
-                  <img
-                    src={
-                      theme?.verifyImgs?.[index] ||
-                      theme?.verifyImgs?.[0] ||
-                      "/aave.png"
-                    }
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div>
-                  <h3 className="font-bold text-black text-sm lg:text-base">
-                    {item.chainName}
-                  </h3>
-                  <p className="text-xs lg:text-sm text-gray-600">
-                    Hold {item.tokenSymbol} ≥{" "}
-                    {formatUnits(item.threshold, item.decimals)}
-                  </p>
-                </div>
-              </div>
-              <button
-                onClick={() => handleVerify(item)}
-                className="text-gray-400 hover:text-gray-600"
+      {verifyData?.length ? (
+        <section className="max-w-6xl mx-auto px-4 lg:px-20 py-6 lg:py-10">
+          <h2 className="text-2xl lg:text-5xl font-extrabold text-black mb-6 lg:mb-10">
+            Position Verification
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-5">
+            {verifyData?.map((item, index) => (
+              <div
+                key={index}
+                className="bg-gray-100 rounded-xl p-4 lg:p-5 flex items-center justify-between"
               >
-                <ArrowRight className="w-5 lg:w-6 h-5 lg:h-6" />
-              </button>
-            </div>
-          ))}
-        </div>
-      </section>
+                <div className="flex items-center gap-3 lg:gap-5">
+                  <div className="w-12 lg:w-18 h-12 lg:h-18 rounded-lg overflow-hidden">
+                    <img
+                      src={
+                        theme?.verifyImgs?.[index] ||
+                        theme?.verifyImgs?.[0] ||
+                        "/aave.png"
+                      }
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-black text-sm lg:text-base">
+                      {item.chainName}
+                    </h3>
+                    <p className="text-xs lg:text-sm text-gray-600">
+                      Hold {item.tokenSymbol} ≥{" "}
+                      {formatUnits(item.threshold, item.decimals)}
+                    </p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => handleVerify(item)}
+                  className="text-gray-400 hover:text-gray-600"
+                >
+                  <ArrowRight className="w-5 lg:w-6 h-5 lg:h-6" />
+                </button>
+              </div>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       {/* Links & Apps Section */}
       <section className="max-w-6xl mx-auto px-4 lg:px-20 py-6 lg:py-10">
