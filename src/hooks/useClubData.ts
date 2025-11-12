@@ -85,6 +85,8 @@ export function useClubData({
       web3ClubService.tokenBasedAccessClient.getTokenGates(domainName),
   });
 
+  console.log(verifyData, "verify data");
+
   const {
     data: memberData,
     isLoading: memberDataLoading,

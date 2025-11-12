@@ -229,59 +229,61 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
         </div>
 
         {/* Position Verification Section */}
-        <div className="px-4 md:px-20 py-16">
-          <div className="text-center mb-12">
-            <div className="relative inline-block">
-              <img
-                src={"/Vector.png"}
-                alt="Vector"
-                className="absolute top-1/4 right-[-40px] md:right-[-70px] transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16"
-              />
-              <h2 className="text-2xl md:text-3xl font-bold text-black uppercase relative z-10">
-                Position <span className="text-[#ef5da8]">Verification</span>
-              </h2>
-              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-[#ef5da8]"></div>
+        {verifyData?.length ? (
+          <div className="px-4 md:px-20 py-16">
+            <div className="text-center mb-12">
+              <div className="relative inline-block">
+                <img
+                  src={"/Vector.png"}
+                  alt="Vector"
+                  className="absolute top-1/4 right-[-40px] md:right-[-70px] transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16"
+                />
+                <h2 className="text-2xl md:text-3xl font-bold text-black uppercase relative z-10">
+                  Position <span className="text-[#ef5da8]">Verification</span>
+                </h2>
+                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-[#ef5da8]"></div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              {verifyData?.map((chain, index) => (
+                <div
+                  key={index}
+                  className="flex align-start justify-between bg-white rounded-2xl p-6 shadow-lg border border-gray-200 hover:border-[#ef5da8] transition-all"
+                >
+                  <div className="flex flex-row md:flex-col justify-between">
+                    <div className="mb-4">
+                      <img
+                        src={
+                          theme?.verifyImgs?.[index] ||
+                          theme?.verifyImgs?.[0] ||
+                          "/aave.png"
+                        }
+                        alt={chain.name}
+                        className="w-auto h-10"
+                      />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-lg text-black mb-2">
+                        {chain.chainName}
+                      </h3>
+                      <p className="text-gray-600 text-sm mb-6">
+                        Hold {chain.tokenSymbol} ≥{" "}
+                        {formatUnits(chain.threshold, chain.decimals)}
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => handleVerify(chain)}
+                    className="h-[46px] bg-[#ef5da8] hover:bg-[#d64a94] text-white py-3 px-6 rounded-full font-medium transition-colors"
+                  >
+                    Verify
+                  </button>
+                </div>
+              ))}
             </div>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {verifyData?.map((chain, index) => (
-              <div
-                key={index}
-                className="flex align-start justify-between bg-white rounded-2xl p-6 shadow-lg border border-gray-200 hover:border-[#ef5da8] transition-all"
-              >
-                <div className="flex flex-row md:flex-col justify-between">
-                  <div className="mb-4">
-                    <img
-                      src={
-                        theme?.verifyImgs?.[index] ||
-                        theme?.verifyImgs?.[0] ||
-                        "/aave.png"
-                      }
-                      alt={chain.name}
-                      className="w-auto h-10"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg text-black mb-2">
-                      {chain.chainName}
-                    </h3>
-                    <p className="text-gray-600 text-sm mb-6">
-                      Hold {chain.tokenSymbol} ≥{" "}
-                      {formatUnits(chain.threshold, chain.decimals)}
-                    </p>
-                  </div>
-                </div>
-                <button
-                  onClick={() => handleVerify(chain)}
-                  className="h-[46px] bg-[#ef5da8] hover:bg-[#d64a94] text-white py-3 px-6 rounded-full font-medium transition-colors"
-                >
-                  Verify
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
+        ) : null}
 
         {/* Links & Apps Section */}
         <div className="px-4 md:px-20 py-16">

@@ -276,53 +276,55 @@ export const Template1: React.FC<{ theme?: ITheme; club: string }> = ({
         </div>
 
         {/* Position Verification Section */}
-        <div className="flex flex-col items-center gap-6 mt-[180px] md:gap-8 px-[30px] py-6 md:py-8 w-full max-w-6xl mx-auto">
-          <h2 className="text-black text-2xl md:text-3xl font-bold text-center">
-            Position Verification
-          </h2>
-          <div className="flex flex-col md:flex-row items-start gap-4 md:gap-5 w-full">
-            {verifyData?.map((item, index) => (
-              <React.Fragment key={index}>
-                <div
-                  className="flex flex-col md:flex-row items-start justify-between gap-4 md:gap-2.5 bg-white rounded-2xl p-4 md:p-5"
-                  style={{
-                    boxShadow: "0 0 20px rgba(0, 0, 0, 0.1)",
-                  }}
-                >
-                  <div className="flex flex-col flex-1 gap-1">
-                    <div className="flex mb-2">
-                      <img
-                        src={
-                          theme?.verifyImgs?.[index] ||
-                          theme?.verifyImgs?.[0] ||
-                          "/aave.png"
-                        }
-                        alt="Chain"
-                        className="w-20 h-8 md:w-24 md:h-10"
-                      />
-                    </div>
-                    <p className="text-black text-sm md:text-base font-bold">
-                      {item.chainName} Chain
-                    </p>
-                    <p className="text-black/80 text-xs">
-                      Hold {item.tokenSymbol} ≥{" "}
-                      {formatUnits(item.threshold, item.decimals)}
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => handleVerify(item)}
-                    className="bg-[#e3e337] text-black px-4 md:px-5 py-2 rounded-full text-sm font-medium hover:bg-[#d4d42e] transition-colors self-start md:self-auto"
+        {verifyData?.length ? (
+          <div className="flex flex-col items-center gap-6 mt-[180px] md:gap-8 px-[30px] py-6 md:py-8 w-full max-w-6xl mx-auto">
+            <h2 className="text-black text-2xl md:text-3xl font-bold text-center">
+              Position Verification
+            </h2>
+            <div className="flex flex-col md:flex-row items-start gap-4 md:gap-5 w-full">
+              {verifyData?.map((item, index) => (
+                <React.Fragment key={index}>
+                  <div
+                    className="flex flex-col md:flex-row items-start justify-between gap-4 md:gap-2.5 bg-white rounded-2xl p-4 md:p-5"
+                    style={{
+                      boxShadow: "0 0 20px rgba(0, 0, 0, 0.1)",
+                    }}
                   >
-                    Verify
-                  </button>
-                </div>
-                {index < (verifyData?.length || 0) - 1 && (
-                  <div className="hidden md:block w-px h-24 bg-gray-300 mt-8"></div>
-                )}
-              </React.Fragment>
-            ))}
+                    <div className="flex flex-col flex-1 gap-1">
+                      <div className="flex mb-2">
+                        <img
+                          src={
+                            theme?.verifyImgs?.[index] ||
+                            theme?.verifyImgs?.[0] ||
+                            "/aave.png"
+                          }
+                          alt="Chain"
+                          className="w-20 h-8 md:w-24 md:h-10"
+                        />
+                      </div>
+                      <p className="text-black text-sm md:text-base font-bold">
+                        {item.chainName} Chain
+                      </p>
+                      <p className="text-black/80 text-xs">
+                        Hold {item.tokenSymbol} ≥{" "}
+                        {formatUnits(item.threshold, item.decimals)}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => handleVerify(item)}
+                      className="bg-[#e3e337] text-black px-4 md:px-5 py-2 rounded-full text-sm font-medium hover:bg-[#d4d42e] transition-colors self-start md:self-auto"
+                    >
+                      Verify
+                    </button>
+                  </div>
+                  {index < (verifyData?.length || 0) - 1 && (
+                    <div className="hidden md:block w-px h-24 bg-gray-300 mt-8"></div>
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
           </div>
-        </div>
+        ) : null}
 
         {/* Links & Apps Section */}
         <div className="flex flex-col items-center gap-6 md:gap-8 py-10 md:py-12 lg:py-16 w-full max-w-6xl mx-auto">
