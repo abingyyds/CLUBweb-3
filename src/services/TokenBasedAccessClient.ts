@@ -75,34 +75,36 @@ export class TokenBasedAccessClient extends ContractClientBase<
           if (!chain) {
             return Promise.reject(new Error(`Chain ${chainId} not found`));
           }
+          console.log(chain, "chain");
           const erc20Contract = new ERC20ContractClient({
             chain: chain as any,
             contractAddress: crossChainAddresses[index] as Address,
           });
-          return erc20Contract.decimals();
+          return erc20Contract.decimals().catch(() => 0);
         }
         return Promise.resolve(0);
       });
       console.log(result, "dd");
       const decimals = await Promise.all(promiseArr);
-      console.log(result, decimals, "dd");
       // 转换为对象数组
-      return tokenAddresses.map((tokenAddress, index) => {
-        const chain = globalConfig.supportChains.find(
-          (chain: any) => Number(chain.id) === Number(chainIds[index])
-        );
-        return {
-          tokenAddress,
-          threshold: thresholds[index],
-          tokenId: tokenIds[index],
-          tokenType: tokenTypes[index],
-          chainId: chainIds[index],
-          tokenSymbol: tokenSymbols[index],
-          crossChainAddress: crossChainAddresses[index],
-          decimals: decimals[index],
-          chainName: chain?.name,
-        };
-      });
+      return tokenAddresses
+        .map((tokenAddress, index) => {
+          const chain = globalConfig.supportChains.find(
+            (chain: any) => Number(chain.id) === Number(chainIds[index])
+          );
+          return {
+            tokenAddress,
+            threshold: thresholds[index],
+            tokenId: tokenIds[index],
+            tokenType: tokenTypes[index],
+            chainId: chainIds[index],
+            tokenSymbol: tokenSymbols[index],
+            crossChainAddress: crossChainAddresses[index],
+            decimals: decimals[index],
+            chainName: chain?.name,
+          };
+        })
+        .filter((it) => it.tokenType === 3);
     } catch (error) {
       console.error("Error fetching token gates:", error);
       return [];
