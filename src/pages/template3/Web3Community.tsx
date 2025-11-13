@@ -203,7 +203,7 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
       {/* Main Content */}
       <div className="flex flex-col w-full gap-12 px-4 md:px-8 lg:px-6 lg:gap-16 lg:max-w-[1180px] lg:mx-auto">
         {/* Join Options Section */}
-        {lifetimePrice || monthPrice || yearPrice || quarterPrice ? (
+        {theme.showMemberOption ? (
           <div className="flex flex-col items-center gap-12 lg:gap-16">
             <div className="flex flex-col gap-2.5 w-full">
               <h2 className="text-white text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-center leading-5 md:leading-6 lg:leading-8 xl:leading-10 tracking-wider uppercase">
@@ -211,7 +211,7 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
               </h2>
             </div>
 
-            <div className="flex flex-col md:flex-row items-center md:justify-between gap-5 w-full">
+            <div className="flex flex-col md:flex-row items-center md:justify-center gap-5 w-full">
               {[
                 {
                   icon: theme.lifeTimeImg,
@@ -479,64 +479,66 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
         </div>
 
         {/* Community News Section */}
-        <div className="flex flex-col items-center gap-12 lg:gap-16">
-          <div className="flex flex-col gap-2.5 w-full">
-            <h2 className="text-white text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-center leading-5 md:leading-6 lg:leading-8 xl:leading-10 tracking-wider uppercase">
-              Community News
-            </h2>
-          </div>
+        {theme?.news && theme.news.length > 0 && (
+          <div className="flex flex-col items-center gap-12 lg:gap-16">
+            <div className="flex flex-col gap-2.5 w-full">
+              <h2 className="text-white text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-center leading-5 md:leading-6 lg:leading-8 xl:leading-10 tracking-wider uppercase">
+                Community News
+              </h2>
+            </div>
 
-          <div className="flex flex-col w-full px-5 gap-8 lg:gap-10 lg:px-0">
-            {currentNewsData.map((news, index) => (
-              <div
-                key={index}
-                className="flex flex-col py-5 md:flex-row md: justify-between w-fll gap-6 border-b border-white/40"
-              >
-                <div className="flex flex-col md:flex-row gap-6">
-                  <img
-                    src={news.image}
-                    alt={news.title}
-                    className="w-full md:w-[200px] md:h-24 object-cover rounded-lg"
-                  />
-                  <div className="flex gap-4 justify-between md:justify-start text-white text-[20px] font-bold">
-                    <div className="flex gap-4">
-                      <div className="uppercase ">{news.time}</div>
-                      <div>/</div>
-                    </div>
-
+            <div className="flex flex-col w-full px-5 gap-8 lg:gap-10 lg:px-0">
+              {currentNewsData.map((news, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col py-5 md:flex-row md: justify-between w-fll gap-6 border-b border-white/40"
+                >
+                  <div className="flex flex-col md:flex-row gap-6">
                     <img
-                      className="size-6 block md:hidden"
+                      src={news.image}
+                      alt={news.title}
+                      className="w-full md:w-[200px] md:h-24 object-cover rounded-lg"
+                    />
+                    <div className="flex gap-4 justify-between md:justify-start text-white text-[20px] font-bold">
+                      <div className="flex gap-4">
+                        <div className="uppercase ">{news.time}</div>
+                        <div>/</div>
+                      </div>
+
+                      <img
+                        className="size-6 block md:hidden"
+                        src="/arrow_right_up_circle_fill.png"
+                        alt=""
+                        onClick={() => window.open(news.link, "_blank")}
+                      />
+                    </div>
+                    <div className="flex flex-col justify-between flex-1 md:gap-[30px]">
+                      <div className="flex flex-col gap-2">
+                        <p className="text-white text-[14px] uppercase tracking-wider">
+                          {news.category}
+                        </p>
+                        <p className="text-white text-[20px] font-bold">
+                          {news.title}
+                        </p>
+                      </div>
+                      <p className="text-white text-[14px] uppercase tracking-wider">
+                        Source: {news.source}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="hidden md:block">
+                    <img
+                      className="size-6"
                       src="/arrow_right_up_circle_fill.png"
                       alt=""
                       onClick={() => window.open(news.link, "_blank")}
                     />
                   </div>
-                  <div className="flex flex-col justify-between flex-1 md:gap-[30px]">
-                    <div className="flex flex-col gap-2">
-                      <p className="text-white text-[14px] uppercase tracking-wider">
-                        {news.category}
-                      </p>
-                      <p className="text-white text-[20px] font-bold">
-                        {news.title}
-                      </p>
-                    </div>
-                    <p className="text-white text-[14px] uppercase tracking-wider">
-                      Source: {news.source}
-                    </p>
-                  </div>
                 </div>
-                <div className="hidden md:block">
-                  <img
-                    className="size-6"
-                    src="/arrow_right_up_circle_fill.png"
-                    alt=""
-                    onClick={() => window.open(news.link, "_blank")}
-                  />
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Pagination - 只在newsData超过4条时显示 */}

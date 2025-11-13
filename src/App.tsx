@@ -22,7 +22,7 @@ import { useQuery } from "@tanstack/react-query";
 function App() {
   const search = parseSearchParams(window.location.href) as any;
   const domainName =
-    search.club || parseSubdomain(window.location.host) || "orbitlink";
+    search.club || parseSubdomain(window.location.host) || "xxx"; //orbitlink
   const [club] = useState(domainName);
   const web3ClubService = useWeb3ClubService();
 
@@ -76,21 +76,19 @@ function App() {
     setError(null);
     console.log("newConfig", newConfig);
     try {
-      // 检查钱包是否连接（统一走 catch 错误处理）
       if (!isConnected || !address || !walletClient) {
-        throw new Error("请先连接钱包");
+        throw new Error("Please connect your wallet first");
       }
 
       const { upsertConfig } = await import("./services/configService");
-      // 传递钱包信息进行签名和验证
       await upsertConfig(club, newConfig, address, walletClient);
       setTheme(newConfig);
-      console.log("配置已保存:", newConfig);
-      toast.success("配置保存成功");
+      console.log("Config saved:", newConfig);
+      toast.success("Config saved successfully");
     } catch (e: any) {
       console.error(e);
-      // setError(e?.message || "保存配置失败");
-      toast.error(e?.message || "保存配置失败");
+      // setError(e?.message || "Failed to save config");
+      toast.error(e?.message || "Failed to save config");
     } finally {
       setSaving(false);
     }
@@ -121,9 +119,8 @@ function App() {
       {error ? (
         <div style={{ color: "red", marginBottom: 8 }}>{error}</div>
       ) : null}
-      {loading ? <div style={{ marginBottom: 8 }}>加载中...</div> : null}
-      {saving ? <div style={{ marginBottom: 8 }}>保存中...</div> : null}
-      {theme && owner?.toLowerCase() === address?.toLowerCase() ? (
+      {loading ? <div style={{ marginBottom: 8 }}>Loading...</div> : null}
+      {theme && address && owner?.toLowerCase() === address?.toLowerCase() ? (
         <ConfigPanel config={theme} onSave={handleConfigSave} />
       ) : null}
     </div>

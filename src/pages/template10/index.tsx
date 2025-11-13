@@ -306,7 +306,7 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
         </div>
 
         {/* Join The Option Section */}
-        {lifetimePrice || monthPrice || yearPrice || quarterPrice ? (
+        {theme.showMemberOption ? (
           <div className="flex flex-col items-center justify-center px-5 sm:px-8 md:px-[60px] py-[40px] md:py-[60px] gap-5">
             <h2 className="text-black text-[32px] font-bold leading-[38px] tracking-[-0.32px] text-center w-full max-w-[381px] mx-auto md:mx-0">
               Join The Option
@@ -535,86 +535,88 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
         </div>
 
         {/* Community News Section */}
-        <div className="px-5 sm:px-8 md:px-[60px] lg:px-[100px] pb-[40px] md:pb-[60px]">
-          <h2 className="text-black text-[32px] font-bold leading-[38px] tracking-[-0.32px] text-center mb-[40px]">
-            Community News
-          </h2>
+        {theme?.news && theme.news.length > 0 && (
+          <div className="px-5 sm:px-8 md:px-[60px] lg:px-[100px] pb-[40px] md:pb-[60px]">
+            <h2 className="text-black text-[32px] font-bold leading-[38px] tracking-[-0.32px] text-center mb-[40px]">
+              Community News
+            </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-[40px]">
-            {currentNewsData.map((news, index) => (
-              <div
-                key={index}
-                className="flex-1 cursor-pointer"
-                onClick={() => window.open(news.link, "_blank")}
-              >
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-[40px]">
+              {currentNewsData.map((news, index) => (
                 <div
-                  className="w-full h-[160px] md:h-[200px] rounded-lg mb-4 bg-cover bg-center relative"
-                  style={{ backgroundImage: `url(${news.image})` }}
+                  key={index}
+                  className="flex-1 cursor-pointer"
+                  onClick={() => window.open(news.link, "_blank")}
                 >
-                  <div className="absolute bottom-4 left-4">
-                    <h3 className="text-white text-lg font-bold mb-2">
-                      {news.title}
-                    </h3>
-                    <p className="text-white text-sm leading-[17px] tracking-[-0.14px]">
-                      {news.category}
-                    </p>
+                  <div
+                    className="w-full h-[160px] md:h-[200px] rounded-lg mb-4 bg-cover bg-center relative"
+                    style={{ backgroundImage: `url(${news.image})` }}
+                  >
+                    <div className="absolute bottom-4 left-4">
+                      <h3 className="text-white text-lg font-bold mb-2">
+                        {news.title}
+                      </h3>
+                      <p className="text-white text-sm leading-[17px] tracking-[-0.14px]">
+                        {news.category}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Pagination */}
-          <div className="flex items-center justify-center gap-4">
-            <button
-              onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
-              disabled={currentPage <= 1}
-              className="flex items-center justify-center w-8 h-8 bg-[#E4BAFA] rounded hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path
-                  d="M10 12l-4-4 4-4"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-            <div className="flex gap-2">
-              {Array.from({ length: totalPages }, (_, i) => (
-                <button
-                  key={i}
-                  onClick={() => handlePageChange(i + 1)}
-                  className={`w-8 h-8 rounded flex items-center justify-center text-sm font-medium ${
-                    currentPage === i + 1
-                      ? "bg-[#E4BAFA] text-white"
-                      : "bg-[#ffffff] text-black hover:bg-gray-300"
-                  }`}
-                >
-                  {i + 1}
-                </button>
               ))}
             </div>
-            <button
-              onClick={() =>
-                handlePageChange(Math.min(totalPages, currentPage + 1))
-              }
-              disabled={currentPage >= totalPages}
-              className="flex items-center justify-center w-8 h-8 bg-[#E4BAFA] rounded hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path
-                  d="M6 12l4-4-4-4"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
+
+            {/* Pagination */}
+            <div className="flex items-center justify-center gap-4">
+              <button
+                onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
+                disabled={currentPage <= 1}
+                className="flex items-center justify-center w-8 h-8 bg-[#E4BAFA] rounded hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path
+                    d="M10 12l-4-4 4-4"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+              <div className="flex gap-2">
+                {Array.from({ length: totalPages }, (_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => handlePageChange(i + 1)}
+                    className={`w-8 h-8 rounded flex items-center justify-center text-sm font-medium ${
+                      currentPage === i + 1
+                        ? "bg-[#E4BAFA] text-white"
+                        : "bg-[#ffffff] text-black hover:bg-gray-300"
+                    }`}
+                  >
+                    {i + 1}
+                  </button>
+                ))}
+              </div>
+              <button
+                onClick={() =>
+                  handlePageChange(Math.min(totalPages, currentPage + 1))
+                }
+                disabled={currentPage >= totalPages}
+                className="flex items-center justify-center w-8 h-8 bg-[#E4BAFA] rounded hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path
+                    d="M6 12l4-4-4-4"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Footer */}
         <div className="flex flex-col items-center gap-4 px-5 sm:px-8 md:px-[60px] lg:px-[100px] py-[40px]">

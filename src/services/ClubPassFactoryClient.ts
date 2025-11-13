@@ -23,7 +23,7 @@ export class ClubPassFactoryClient extends ContractClientBase<
       functionName: "getClubPrice",
       args: [domainName],
     })) as bigint;
-    if (res === 0n) return "";
+    // if (res === 0n) return "";
     return formatEther(res);
   }
 

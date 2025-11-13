@@ -260,7 +260,7 @@ export const Template4 = ({ club, theme }: { club: string; theme: ITheme }) => {
       </div>
 
       {/* Join the Option Section */}
-      {(lifetimePrice || monthPrice || yearPrice || quarterPrice) && (
+      {theme.showMemberOption && (
         <div className="w-full max-w-[1280px] px-5 lg:px-20 mb-16">
           <div className="bg-[#9fb471] rounded-[40px] p-12 lg:p-16">
             <h2 className="text-3xl lg:text-4xl font-semibold text-black text-center uppercase mb-5">
@@ -419,82 +419,86 @@ export const Template4 = ({ club, theme }: { club: string; theme: ITheme }) => {
       </div>
 
       {/* Community News Section */}
-      <div className="w-full max-w-[1280px] px-5 lg:px-20 mb-20">
-        <h2 className="text-3xl lg:text-4xl font-semibold text-black uppercase mb-5">
-          Community News
-        </h2>
+      {theme?.news && theme.news.length > 0 && (
+        <div className="w-full max-w-[1280px] px-5 lg:px-20 mb-20">
+          <h2 className="text-3xl lg:text-4xl font-semibold text-black uppercase mb-5">
+            Community News
+          </h2>
 
-        <div className="bg-[#f4de7b] rounded-[40px] p-[26px] lg:p-[50px]">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-7 mb-10">
-            {currentNewsData.map((news, index) => (
-              <div key={index} className="flex flex-col gap-7">
-                <img
-                  src={news.image}
-                  alt={news.title}
-                  className="w-full h-40 object-cover rounded-[20px]"
-                />
-                <div className="flex flex-col gap-1">
-                  <p className="text-base font-bold text-black">{news.title}</p>
-                  <p className="text-xs font-medium text-black/80">
-                    Source: {news.source || "Twitter Alpha"}
-                  </p>
+          <div className="bg-[#f4de7b] rounded-[40px] p-[26px] lg:p-[50px]">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-7 mb-10">
+              {currentNewsData.map((news, index) => (
+                <div key={index} className="flex flex-col gap-7">
+                  <img
+                    src={news.image}
+                    alt={news.title}
+                    className="w-full h-40 object-cover rounded-[20px]"
+                  />
+                  <div className="flex flex-col gap-1">
+                    <p className="text-base font-bold text-black">
+                      {news.title}
+                    </p>
+                    <p className="text-xs font-medium text-black/80">
+                      Source: {news.source || "Twitter Alpha"}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        {totalPages > 1 && (
-          <div className="flex items-center justify-center gap-2 mt-6 md:mt-8 px-2 w-full">
-            <button
-              onClick={() => handlePageChange(currentPage - 1)}
-              disabled={currentPage === 1}
-              className="p-2 disabled:opacity-50 flex-shrink-0 hover:bg-gray-100 rounded-lg transition-colors"
-            >
-              <ChevronLeft className="w-5 h-5 text-black" />
-            </button>
-            <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide">
-              {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
-                const pageNum = i + 1;
-                return (
-                  <button
-                    key={pageNum}
-                    onClick={() => handlePageChange(pageNum)}
-                    className={`w-8 h-8 rounded text-sm font-medium flex-shrink-0 transition-colors ${
-                      currentPage === pageNum
-                        ? "bg-[#F4DE7B] text-black"
-                        : "text-black hover:bg-gray-100"
-                    }`}
-                  >
-                    {pageNum}
-                  </button>
-                );
-              })}
-              {totalPages > 5 && (
-                <>
-                  <span className="text-black px-2">...</span>
-                  <button
-                    onClick={() => handlePageChange(totalPages)}
-                    className={`w-8 h-8 rounded text-sm font-medium ${
-                      currentPage === totalPages
-                        ? "bg-[#F4DE7B] text-black"
-                        : "text-black hover:bg-gray-100"
-                    }`}
-                  >
-                    {totalPages}
-                  </button>
-                </>
-              )}
+              ))}
             </div>
-            <button
-              onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage === totalPages}
-              className="p-2 disabled:opacity-50 flex-shrink-0 hover:bg-gray-100 rounded-lg transition-colors"
-            >
-              <ChevronRight className="w-5 h-5 text-black" />
-            </button>
           </div>
-        )}
-      </div>
+          {totalPages > 1 && (
+            <div className="flex items-center justify-center gap-2 mt-6 md:mt-8 px-2 w-full">
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="p-2 disabled:opacity-50 flex-shrink-0 hover:bg-gray-100 rounded-lg transition-colors"
+              >
+                <ChevronLeft className="w-5 h-5 text-black" />
+              </button>
+              <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide">
+                {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
+                  const pageNum = i + 1;
+                  return (
+                    <button
+                      key={pageNum}
+                      onClick={() => handlePageChange(pageNum)}
+                      className={`w-8 h-8 rounded text-sm font-medium flex-shrink-0 transition-colors ${
+                        currentPage === pageNum
+                          ? "bg-[#F4DE7B] text-black"
+                          : "text-black hover:bg-gray-100"
+                      }`}
+                    >
+                      {pageNum}
+                    </button>
+                  );
+                })}
+                {totalPages > 5 && (
+                  <>
+                    <span className="text-black px-2">...</span>
+                    <button
+                      onClick={() => handlePageChange(totalPages)}
+                      className={`w-8 h-8 rounded text-sm font-medium ${
+                        currentPage === totalPages
+                          ? "bg-[#F4DE7B] text-black"
+                          : "text-black hover:bg-gray-100"
+                      }`}
+                    >
+                      {totalPages}
+                    </button>
+                  </>
+                )}
+              </div>
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="p-2 disabled:opacity-50 flex-shrink-0 hover:bg-gray-100 rounded-lg transition-colors"
+              >
+                <ChevronRight className="w-5 h-5 text-black" />
+              </button>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Footer */}
       <div className="footer w-full px-5">

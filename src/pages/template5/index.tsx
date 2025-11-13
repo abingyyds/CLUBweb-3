@@ -122,7 +122,7 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
         </div>
 
         {/* Join the Option Section */}
-        {(lifetimePrice || monthPrice || yearPrice || quarterPrice) && (
+        {theme.showMemberOption && (
           <div className="flex flex-col items-start w-full gap-5">
             <div className="w-full border-t-2 border-b border-black/80 py-2">
               <h2 className="text-black/80 text-xl md:text-2xl font-semibold uppercase tracking-wider">
@@ -262,55 +262,57 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
         </div>
 
         {/* Community News Section */}
-        <div className="flex flex-col items-center w-full gap-5">
-          <div className="w-full border-t-2 border-black/80 pt-0.5 gap-1">
-            <h2 className="text-black/80 text-xl md:text-2xl font-semibold uppercase tracking-wider">
-              COMMUNITY NEWS
-            </h2>
-          </div>
-
-          <div className="flex flex-col gap-5 w-full">
-            {/* First row of news */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-5 w-full">
-              {currentNewsData.map((news, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col bg-white/40 flex-1 pb-5"
-                >
-                  <img
-                    src={news.image}
-                    alt={news.title}
-                    className="w-full h-[100px] md:h-[120px] object-cover"
-                  />
-                  <div className="flex flex-col gap-4 md:gap-7 p-2 md:p-2.5 pt-2 md:pt-2.5">
-                    <p className="text-black/80 text-xs md:text-sm font-bold line-clamp-2">
-                      {news.title ||
-                        "WESTCLIFF SHOPPING CENTRE MADE MORL LHFICILNT"}
-                    </p>
-                    <div className="flex items-center justify-between">
-                      <p className="text-black/80 text-xs font-medium flex-1">
-                        Source: {news.source || "Twitter Alpha"}
-                      </p>
-                      <ArrowRight
-                        className="w-6 h-6 text-black/80 cursor-pointer"
-                        onClick={() => window.open(news.link, "_blank")}
-                      />
-                    </div>
-                  </div>
-                </div>
-              ))}
+        {theme?.news && theme.news.length > 0 && (
+          <div className="flex flex-col items-center w-full gap-5">
+            <div className="w-full border-t-2 border-black/80 pt-0.5 gap-1">
+              <h2 className="text-black/80 text-xl md:text-2xl font-semibold uppercase tracking-wider">
+                COMMUNITY NEWS
+              </h2>
             </div>
 
-            {/* Load More Button */}
-            {totalPages > 1 && (
-              <div className="flex justify-center w-full">
-                <button className="bg-[#454545] text-white text-sm font-medium uppercase tracking-wider px-5 py-2 rounded-sm hover:bg-[#555] transition-colors">
-                  Load more
-                </button>
+            <div className="flex flex-col gap-5 w-full">
+              {/* First row of news */}
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-5 w-full">
+                {currentNewsData.map((news, index) => (
+                  <div
+                    key={index}
+                    className="flex flex-col bg-white/40 flex-1 pb-5"
+                  >
+                    <img
+                      src={news.image}
+                      alt={news.title}
+                      className="w-full h-[100px] md:h-[120px] object-cover"
+                    />
+                    <div className="flex flex-col gap-4 md:gap-7 p-2 md:p-2.5 pt-2 md:pt-2.5">
+                      <p className="text-black/80 text-xs md:text-sm font-bold line-clamp-2">
+                        {news.title ||
+                          "WESTCLIFF SHOPPING CENTRE MADE MORL LHFICILNT"}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <p className="text-black/80 text-xs font-medium flex-1">
+                          Source: {news.source || "Twitter Alpha"}
+                        </p>
+                        <ArrowRight
+                          className="w-6 h-6 text-black/80 cursor-pointer"
+                          onClick={() => window.open(news.link, "_blank")}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
-            )}
+
+              {/* Load More Button */}
+              {totalPages > 1 && (
+                <div className="flex justify-center w-full">
+                  <button className="bg-[#454545] text-white text-sm font-medium uppercase tracking-wider px-5 py-2 rounded-sm hover:bg-[#555] transition-colors">
+                    Load more
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Footer */}

@@ -211,61 +211,67 @@ export const Template2 = ({
       </section>
 
       {/* Join the Option Section */}
-      <section className="max-w-6xl mx-auto px-4 lg:px-20 py-6 lg:py-10">
-        <div className="bg-gray-900 rounded-2xl lg:rounded-3xl p-6 lg:p-20 flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-20">
-          <img
-            src={testImg}
-            alt="Join option"
-            className="w-full lg:w-96 h-48 lg:h-72 rounded-xl object-cover"
-          />
-          <div className="flex-1 space-y-4 lg:space-y-5">
-            <h2 className="text-2xl lg:text-5xl font-extrabold text-white">
-              Join the Option
-            </h2>
-            <div className="space-y-4 lg:space-y-5">
-              <div>
-                <label className="block text-white font-bold mb-2">Plan</label>
-                <Select
-                  value={selectedPlan}
-                  onValueChange={(value) => {
-                    setSelectedPlan(value);
-                    const selectedOption = membershipOptions.find(
-                      (option) => option.type === value
-                    );
-                    if (selectedOption) {
-                      setSelectedPrice(selectedOption.price);
-                    }
-                  }}
-                >
-                  <SelectTrigger className="bg-white rounded-lg px-4 py-3 text-gray-600">
-                    <SelectValue placeholder="Select Plan" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {membershipOptions.map((option) => (
-                      <SelectItem key={option.type} value={option.type}>
-                        {option.title}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              <div>
-                <label className="block text-white font-bold mb-2">Price</label>
-                <div className="bg-white rounded-lg px-4 py-3 flex items-center gap-2">
-                  <span className="text-black">ETH</span>
-                  <span className="text-gray-600">{selectedPrice}</span>
+      {theme.showMemberOption ? (
+        <section className="max-w-6xl mx-auto px-4 lg:px-20 py-6 lg:py-10">
+          <div className="bg-gray-900 rounded-2xl lg:rounded-3xl p-6 lg:p-20 flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-20">
+            <img
+              src={testImg}
+              alt="Join option"
+              className="w-full lg:w-96 h-48 lg:h-72 rounded-xl object-cover"
+            />
+            <div className="flex-1 space-y-4 lg:space-y-5">
+              <h2 className="text-2xl lg:text-5xl font-extrabold text-white">
+                Join the Option
+              </h2>
+              <div className="space-y-4 lg:space-y-5">
+                <div>
+                  <label className="block text-white font-bold mb-2">
+                    Plan
+                  </label>
+                  <Select
+                    value={selectedPlan}
+                    onValueChange={(value) => {
+                      setSelectedPlan(value);
+                      const selectedOption = membershipOptions.find(
+                        (option) => option.type === value
+                      );
+                      if (selectedOption) {
+                        setSelectedPrice(selectedOption.price);
+                      }
+                    }}
+                  >
+                    <SelectTrigger className="bg-white rounded-lg px-4 py-3 text-gray-600">
+                      <SelectValue placeholder="Select Plan" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {membershipOptions.map((option) => (
+                        <SelectItem key={option.type} value={option.type}>
+                          {option.title}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <label className="block text-white font-bold mb-2">
+                    Price
+                  </label>
+                  <div className="bg-white rounded-lg px-4 py-3 flex items-center gap-2">
+                    <span className="text-black">ETH</span>
+                    <span className="text-gray-600">{selectedPrice}</span>
+                  </div>
                 </div>
               </div>
+              <button
+                onClick={() => handleJoin(selectedPlan)}
+                className="w-full bg-teal-500 text-white font-medium py-3 rounded-lg hover:bg-teal-600 transition-colors"
+              >
+                Join Now
+              </button>
             </div>
-            <button
-              onClick={() => handleJoin(selectedPlan)}
-              className="w-full bg-teal-500 text-white font-medium py-3 rounded-lg hover:bg-teal-600 transition-colors"
-            >
-              Join Now
-            </button>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
 
       {/* Position Verification Section */}
       {verifyData?.length ? (
@@ -334,98 +340,100 @@ export const Template2 = ({
       </section>
 
       {/* Community News Section */}
-      <section className="flex flex-col items-center gap-6 md:gap-8 px-[30px] py-6 md:py-8 w-full max-w-6xl mx-auto">
-        <h2 className="text-black text-2xl md:text-3xl font-bold text-center">
-          Community News
-        </h2>
-        <div className="flex flex-col w-full gap-4 md:gap-6 max-w-6xl">
-          {currentNewsData.map((news, index) => (
-            <div
-              key={index}
-              className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-5 py-4 md:py-5 px-2 md:px-4 min-w-0 bg-white/50 rounded-xl relative"
-            >
-              {/* 数字标签 - 在手机端绝对定位到图片左上角，在桌面端正常显示 */}
-              <div className="absolute md:relative top-4 left-2 md:top-auto md:left-auto z-10 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 font-[1000] bg-[#2AADA5] rounded-xl text-white text-sm md:text-base font-bold flex-shrink-0">
-                {(currentPage - 1) * 5 + index + 1}
-              </div>
-              {/* 图片 */}
-              <img
-                src={news.image}
-                alt={news.title}
-                className="w-full md:w-64 lg:w-80 h-32 md:h-20 lg:h-24 object-cover rounded-xl flex-shrink-0"
-              />
-              {/* 文本内容和按钮容器 - 在手机端横向排列 */}
-              <div className="flex flex-row md:flex-1 md:min-w-0 items-center justify-between w-full md:w-auto gap-2">
-                <div className="flex-1 min-w-0 px-2">
-                  <p className="text-black text-sm md:text-base font-bold mb-1 md:mb-2 break-words leading-relaxed">
-                    {news.title}
-                  </p>
-                  <p className="text-black/80 text-xs md:text-sm break-words">
-                    Source: {news.source}
-                  </p>
+      {theme?.news && theme.news.length > 0 && (
+        <section className="flex flex-col items-center gap-6 md:gap-8 px-[30px] py-6 md:py-8 w-full max-w-6xl mx-auto">
+          <h2 className="text-black text-2xl md:text-3xl font-bold text-center">
+            Community News
+          </h2>
+          <div className="flex flex-col w-full gap-4 md:gap-6 max-w-6xl">
+            {currentNewsData.map((news, index) => (
+              <div
+                key={index}
+                className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-5 py-4 md:py-5 px-2 md:px-4 min-w-0 bg-white/50 rounded-xl relative"
+              >
+                {/* 数字标签 - 在手机端绝对定位到图片左上角，在桌面端正常显示 */}
+                <div className="absolute md:relative top-4 left-2 md:top-auto md:left-auto z-10 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 font-[1000] bg-[#2AADA5] rounded-xl text-white text-sm md:text-base font-bold flex-shrink-0">
+                  {(currentPage - 1) * 5 + index + 1}
                 </div>
-                <button
-                  onClick={() => window.open(news.link, "_blank")}
-                  className="p-2 flex-shrink-0 hover:bg-gray-100 rounded-lg transition-colors"
-                >
-                  <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-black" />
-                </button>
+                {/* 图片 */}
+                <img
+                  src={news.image}
+                  alt={news.title}
+                  className="w-full md:w-64 lg:w-80 h-32 md:h-20 lg:h-24 object-cover rounded-xl flex-shrink-0"
+                />
+                {/* 文本内容和按钮容器 - 在手机端横向排列 */}
+                <div className="flex flex-row md:flex-1 md:min-w-0 items-center justify-between w-full md:w-auto gap-2">
+                  <div className="flex-1 min-w-0 px-2">
+                    <p className="text-black text-sm md:text-base font-bold mb-1 md:mb-2 break-words leading-relaxed">
+                      {news.title}
+                    </p>
+                    <p className="text-black/80 text-xs md:text-sm break-words">
+                      Source: {news.source}
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => window.open(news.link, "_blank")}
+                    className="p-2 flex-shrink-0 hover:bg-gray-100 rounded-lg transition-colors"
+                  >
+                    <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-black" />
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Pagination */}
-        <div className="flex items-center justify-center gap-2 mt-6 md:mt-8 px-2 w-full">
-          <button
-            onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-            className="p-2 disabled:opacity-50 flex-shrink-0 hover:bg-gray-100 rounded-lg transition-colors"
-          >
-            <ChevronLeft className="w-5 h-5 text-black" />
-          </button>
-          <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide">
-            {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
-              const pageNum = i + 1;
-              return (
-                <button
-                  key={pageNum}
-                  onClick={() => handlePageChange(pageNum)}
-                  className={`w-8 h-8 rounded text-sm font-medium flex-shrink-0 transition-colors ${
-                    currentPage === pageNum
-                      ? "bg-[#2AADA5] text-white"
-                      : "text-black hover:bg-gray-100"
-                  }`}
-                >
-                  {pageNum}
-                </button>
-              );
-            })}
-            {totalPages > 5 && (
-              <>
-                <span className="text-black px-2">...</span>
-                <button
-                  onClick={() => handlePageChange(totalPages)}
-                  className={`w-8 h-8 rounded text-sm font-medium ${
-                    currentPage === totalPages
-                      ? "bg-[#2AADA5] text-white"
-                      : "text-black hover:bg-gray-100"
-                  }`}
-                >
-                  {totalPages}
-                </button>
-              </>
-            )}
+            ))}
           </div>
-          <button
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === totalPages}
-            className="p-2 disabled:opacity-50"
-          >
-            <ChevronRight className="w-5 h-5 text-black" />
-          </button>
-        </div>
-      </section>
+
+          {/* Pagination */}
+          <div className="flex items-center justify-center gap-2 mt-6 md:mt-8 px-2 w-full">
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="p-2 disabled:opacity-50 flex-shrink-0 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              <ChevronLeft className="w-5 h-5 text-black" />
+            </button>
+            <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide">
+              {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
+                const pageNum = i + 1;
+                return (
+                  <button
+                    key={pageNum}
+                    onClick={() => handlePageChange(pageNum)}
+                    className={`w-8 h-8 rounded text-sm font-medium flex-shrink-0 transition-colors ${
+                      currentPage === pageNum
+                        ? "bg-[#2AADA5] text-white"
+                        : "text-black hover:bg-gray-100"
+                    }`}
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
+              {totalPages > 5 && (
+                <>
+                  <span className="text-black px-2">...</span>
+                  <button
+                    onClick={() => handlePageChange(totalPages)}
+                    className={`w-8 h-8 rounded text-sm font-medium ${
+                      currentPage === totalPages
+                        ? "bg-[#2AADA5] text-white"
+                        : "text-black hover:bg-gray-100"
+                    }`}
+                  >
+                    {totalPages}
+                  </button>
+                </>
+              )}
+            </div>
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className="p-2 disabled:opacity-50"
+            >
+              <ChevronRight className="w-5 h-5 text-black" />
+            </button>
+          </div>
+        </section>
+      )}
 
       {/* Footer */}
       <footer className="w-full mx-auto bg-[#2AADA5]">

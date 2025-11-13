@@ -138,95 +138,99 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
         </div>
 
         {/* Join the Option Section */}
-        <div className="px-4 md:px-20 py-16">
-          <div className="text-center mb-12">
-            <div className="relative inline-block">
-              <img
-                src={"/Vector.png"}
-                alt="Vector"
-                className="absolute top-1/3 left-0 md:left-[-20px] transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16"
-              />
-              <h2 className="text-2xl md:text-3xl font-bold text-black uppercase relative z-10">
-                Join the <span className="text-[#ef5da8]">Option</span>
-              </h2>
-              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-[#ef5da8]"></div>
+        {theme.showMemberOption ? (
+          <div className="px-4 md:px-20 py-16">
+            <div className="text-center mb-12">
+              <div className="relative inline-block">
+                <img
+                  src={"/Vector.png"}
+                  alt="Vector"
+                  className="absolute top-1/3 left-0 md:left-[-20px] transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16"
+                />
+                <h2 className="text-2xl md:text-3xl font-bold text-black uppercase relative z-10">
+                  Join the <span className="text-[#ef5da8]">Option</span>
+                </h2>
+                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-[#ef5da8]"></div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 max-w-4xl mx-auto">
+              {[
+                lifetimePrice && {
+                  icon: theme?.lifeTimeImg || (
+                    <Gift className="w-8 h-8 text-white" />
+                  ),
+                  title: "Lifetime Member",
+                  price: `${lifetimePrice} ETH`,
+                  type: "lifetime",
+                },
+                monthPrice && {
+                  icon: theme?.monthImg || (
+                    <Gift className="w-8 h-8 text-white" />
+                  ),
+                  title: "Monthly Membership",
+                  price: `${monthPrice} ETH`,
+                  type: "month",
+                },
+                quarterPrice && {
+                  icon: theme?.quarterImg || (
+                    <Gift className="w-8 h-8 text-white" />
+                  ),
+                  title: "Quarterly Membership",
+                  price: `${quarterPrice} ETH`,
+                  type: "quarter",
+                },
+                yearPrice && {
+                  icon: theme?.yearImg || (
+                    <Gift className="w-8 h-8 text-white" />
+                  ),
+                  title: "Yearly Membership",
+                  price: `${yearPrice} ETH`,
+                  type: "year",
+                },
+              ]
+                .filter(Boolean)
+                .map((option, index) => (
+                  <div
+                    key={index}
+                    className={`group border-gray-200 bg-white rounded-2xl p-6 shadow-lg border-2 transition-all hover:shadow-xl hover:border-[#ef5da8] hover:bg-[#ef5da8] hover:text-white`}
+                  >
+                    <div className="text-center">
+                      <div className="relative mb-4 flex justify-center">
+                        {typeof option.icon === "string" ? (
+                          <img
+                            src={option.icon}
+                            alt={option.title}
+                            className="w-12 h-12"
+                          />
+                        ) : (
+                          <div className="w-12 h-12 bg-[#ef5da8] rounded-lg flex items-center justify-center">
+                            {option.icon}
+                          </div>
+                        )}
+                      </div>
+                      <h3
+                        className={`font-bold text-lg mb-2 text-black group-hover:text-white`}
+                      >
+                        {option.title}
+                      </h3>
+                      <p
+                        className={`text-2xl font-bold mb-6 text-[#ef5da8] group-hover:text-white`}
+                      >
+                        {option.price}
+                      </p>
+                      <button
+                        onClick={() => handleJoin(option.type)}
+                        className={`bg-[#ef5da8] text-white group-hover:bg-white group-hover:text-[#ef5da8] w-full py-3 px-6 rounded-full font-medium transition-colors `}
+                      >
+                        Join Now
+                      </button>
+                    </div>
+                  </div>
+                ))}
             </div>
           </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 max-w-4xl mx-auto">
-            {[
-              lifetimePrice && {
-                icon: theme?.lifeTimeImg || (
-                  <Gift className="w-8 h-8 text-white" />
-                ),
-                title: "Lifetime Member",
-                price: `${lifetimePrice} ETH`,
-                type: "lifetime",
-              },
-              monthPrice && {
-                icon: theme?.monthImg || (
-                  <Gift className="w-8 h-8 text-white" />
-                ),
-                title: "Monthly Membership",
-                price: `${monthPrice} ETH`,
-                type: "month",
-              },
-              quarterPrice && {
-                icon: theme?.quarterImg || (
-                  <Gift className="w-8 h-8 text-white" />
-                ),
-                title: "Quarterly Membership",
-                price: `${quarterPrice} ETH`,
-                type: "quarter",
-              },
-              yearPrice && {
-                icon: theme?.yearImg || <Gift className="w-8 h-8 text-white" />,
-                title: "Yearly Membership",
-                price: `${yearPrice} ETH`,
-                type: "year",
-              },
-            ]
-              .filter(Boolean)
-              .map((option, index) => (
-                <div
-                  key={index}
-                  className={`group border-gray-200 bg-white rounded-2xl p-6 shadow-lg border-2 transition-all hover:shadow-xl hover:border-[#ef5da8] hover:bg-[#ef5da8] hover:text-white`}
-                >
-                  <div className="text-center">
-                    <div className="relative mb-4 flex justify-center">
-                      {typeof option.icon === "string" ? (
-                        <img
-                          src={option.icon}
-                          alt={option.title}
-                          className="w-12 h-12"
-                        />
-                      ) : (
-                        <div className="w-12 h-12 bg-[#ef5da8] rounded-lg flex items-center justify-center">
-                          {option.icon}
-                        </div>
-                      )}
-                    </div>
-                    <h3
-                      className={`font-bold text-lg mb-2 text-black group-hover:text-white`}
-                    >
-                      {option.title}
-                    </h3>
-                    <p
-                      className={`text-2xl font-bold mb-6 text-[#ef5da8] group-hover:text-white`}
-                    >
-                      {option.price}
-                    </p>
-                    <button
-                      onClick={() => handleJoin(option.type)}
-                      className={`bg-[#ef5da8] text-white group-hover:bg-white group-hover:text-[#ef5da8] w-full py-3 px-6 rounded-full font-medium transition-colors `}
-                    >
-                      Join Now
-                    </button>
-                  </div>
-                </div>
-              ))}
-          </div>
-        </div>
+        ) : null}
 
         {/* Position Verification Section */}
         {verifyData?.length ? (
@@ -321,126 +325,130 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
         </div>
 
         {/* Community News Section */}
-        <div className="px-4 md:px-20 py-16">
-          <div className="text-center mb-12">
-            <div className="relative inline-block">
-              <img
-                src={"/Vector.png"}
-                alt="Vector"
-                className="absolute top-1/4 right-[-40px] md:right-[-70px] transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16"
-              />
-              <h2 className="text-2xl md:text-3xl font-bold text-black uppercase relative z-10">
-                Community <span className="text-[#ef5da8]">News</span>
-              </h2>
-              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-[#ef5da8]"></div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto mb-8">
-            {currentNewsData.map((news, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg border border-gray-100 hover:border-[#ef5da8] transition-all duration-300"
-              >
+        {theme?.news && theme.news.length > 0 && (
+          <div className="px-4 md:px-20 py-16">
+            <div className="text-center mb-12">
+              <div className="relative inline-block">
                 <img
-                  src={news.image}
-                  alt={news.title}
-                  className="w-full h-40 object-cover"
+                  src={"/Vector.png"}
+                  alt="Vector"
+                  className="absolute top-1/4 right-[-40px] md:right-[-70px] transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16"
                 />
-                <div className="p-4">
-                  <h3 className="font-semibold text-sm text-black mb-2 line-clamp-2 leading-tight">
-                    {news.title}
-                  </h3>
-                  <p className="text-gray-500 text-xs">Source: {news.source}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Pagination */}
-          {totalPages > 1 && (
-            <div className="w-full rounded-2xl py-4 px-6 mt-8">
-              <div className="flex items-center justify-center gap-4">
-                {/* 左箭头按钮 */}
-                <button
-                  onClick={() =>
-                    currentPage > 1 && handlePageChange(currentPage - 1)
-                  }
-                  disabled={currentPage === 1}
-                  className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ${
-                    currentPage === 1
-                      ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                      : "bg-white text-gray-600 hover:bg-gray-50 shadow-md hover:shadow-lg"
-                  }`}
-                >
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M15 18L9 12L15 6"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </button>
-
-                {/* 圆点指示器 */}
-                <div className="flex items-center gap-2">
-                  {Array.from({ length: totalPages }, (_, index) => {
-                    const pageNumber = index + 1;
-                    return (
-                      <button
-                        key={pageNumber}
-                        onClick={() => handlePageChange(pageNumber)}
-                        className={`w-3 h-3 rounded-full transition-all duration-200 ${
-                          pageNumber === currentPage
-                            ? "bg-[#ef5da8] scale-110"
-                            : "bg-white hover:bg-gray-400"
-                        }`}
-                      />
-                    );
-                  })}
-                </div>
-
-                {/* 右箭头按钮 */}
-                <button
-                  onClick={() =>
-                    currentPage < totalPages &&
-                    handlePageChange(currentPage + 1)
-                  }
-                  disabled={currentPage === totalPages}
-                  className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ${
-                    currentPage === totalPages
-                      ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                      : "bg-white text-gray-600 hover:bg-gray-50 shadow-md hover:shadow-lg"
-                  }`}
-                >
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M9 18L15 12L9 6"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </button>
+                <h2 className="text-2xl md:text-3xl font-bold text-black uppercase relative z-10">
+                  Community <span className="text-[#ef5da8]">News</span>
+                </h2>
+                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-[#ef5da8]"></div>
               </div>
             </div>
-          )}
-        </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto mb-8">
+              {currentNewsData.map((news, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg border border-gray-100 hover:border-[#ef5da8] transition-all duration-300"
+                >
+                  <img
+                    src={news.image}
+                    alt={news.title}
+                    className="w-full h-40 object-cover"
+                  />
+                  <div className="p-4">
+                    <h3 className="font-semibold text-sm text-black mb-2 line-clamp-2 leading-tight">
+                      {news.title}
+                    </h3>
+                    <p className="text-gray-500 text-xs">
+                      Source: {news.source}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="w-full rounded-2xl py-4 px-6 mt-8">
+                <div className="flex items-center justify-center gap-4">
+                  {/* 左箭头按钮 */}
+                  <button
+                    onClick={() =>
+                      currentPage > 1 && handlePageChange(currentPage - 1)
+                    }
+                    disabled={currentPage === 1}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ${
+                      currentPage === 1
+                        ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                        : "bg-white text-gray-600 hover:bg-gray-50 shadow-md hover:shadow-lg"
+                    }`}
+                  >
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M15 18L9 12L15 6"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </button>
+
+                  {/* 圆点指示器 */}
+                  <div className="flex items-center gap-2">
+                    {Array.from({ length: totalPages }, (_, index) => {
+                      const pageNumber = index + 1;
+                      return (
+                        <button
+                          key={pageNumber}
+                          onClick={() => handlePageChange(pageNumber)}
+                          className={`w-3 h-3 rounded-full transition-all duration-200 ${
+                            pageNumber === currentPage
+                              ? "bg-[#ef5da8] scale-110"
+                              : "bg-white hover:bg-gray-400"
+                          }`}
+                        />
+                      );
+                    })}
+                  </div>
+
+                  {/* 右箭头按钮 */}
+                  <button
+                    onClick={() =>
+                      currentPage < totalPages &&
+                      handlePageChange(currentPage + 1)
+                    }
+                    disabled={currentPage === totalPages}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ${
+                      currentPage === totalPages
+                        ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                        : "bg-white text-gray-600 hover:bg-gray-50 shadow-md hover:shadow-lg"
+                    }`}
+                  >
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M9 18L15 12L9 6"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Footer */}
       </div>

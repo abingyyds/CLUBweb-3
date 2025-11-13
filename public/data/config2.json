@@ -18,19 +18,19 @@
   "socials": [
     {
       "name": "Twitter/X",
-      "link": "https://twitter.com/web3club",
+      "link": "https://x.com/joinweb3club",
       "text": "Follow",
       "icon": "/twitter.png"
     },
     {
       "name": "Discord",
-      "link": "https://discord.gg/web3club",
+      "link": "https://discord.gg/fGbzTF9j",
       "text": "Join",
       "icon": "/discord.png"
     },
     {
       "name": "Telegram",
-      "link": "https://t.me/web3club",
+      "link": "https://t.me/joinWeb3Club",
       "text": "Join",
       "icon": "/telegram.png"
     },
@@ -112,5 +112,6 @@
   "quarterImg": "/quarter.png",
   "monthImg": "/month.png",
   "yearImg": "/year.png",
-  "verifyImgs": ["/aave.png", "/bnb.png", "/polygon.png"]
+  "verifyImgs": ["/aave.png", "/bnb.png", "/polygon.png"],
+  "showMemberOption": true
 }
