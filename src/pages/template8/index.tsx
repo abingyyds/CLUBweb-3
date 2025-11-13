@@ -174,7 +174,7 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
       </div>
 
       {/* Join the Option Section */}
-      {membershipOptions?.length ? (
+      {theme.showMemberOption ? (
         <div className="px-4 md:px-10 py-6 md:py-10 mt-12 md:mt-24">
           <div className="text-center mb-10">
             <h2 className=" text-xl md:text-[32px] font-bold uppercase font-['Poller_One'] text-black">
@@ -233,7 +233,7 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
           </div>
 
           <div className="bg-white/70 border border-gray-800 rounded-[40px] shadow-[0_10px_0_rgba(0,0,0,0.25)] p-10">
-            <div className={`flex gap-20 items-center`}>
+            <div className={`flex gap-20 items-center justify-center`}>
               {verifyData.map((it, index) => (
                 <div key={index} className="flex items-center space-x-2">
                   <div className="w-15 h-15 flex items-center justify-center">
@@ -317,65 +317,67 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
       </div>
 
       {/* Community News Section */}
-      <div className="px-4 md:px-10 py-6 md:py-10">
-        <div className="text-center mb-10">
-          <h2 className="text-xl md:text-[32px] font-bold uppercase font-['Poller_One'] text-black">
-            COMMUNITY NEWS
-          </h2>
-          <div className="border-t-[3px] border-dashed border-black inline-block h-[18px] w-[70%] md:w-[380px]"></div>
-        </div>
+      {theme?.news && theme.news.length > 0 && (
+        <div className="px-4 md:px-10 py-6 md:py-10">
+          <div className="text-center mb-10">
+            <h2 className="text-xl md:text-[32px] font-bold uppercase font-['Poller_One'] text-black">
+              COMMUNITY NEWS
+            </h2>
+            <div className="border-t-[3px] border-dashed border-black inline-block h-[18px] w-[70%] md:w-[380px]"></div>
+          </div>
 
-        <div className="space-y-8">
-          {/* News Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            {currentNewsData.map((news, index) => (
-              <div
-                key={index}
-                onClick={() => {
-                  window.open(news.link, "_blank");
-                }}
-                className="flex items-start cursor-pointer space-x-4 p-5 text-black hover:bg-[#000] hover:text-white rounded-[2.5rem] border-1 border-solid border-[#000] bg-[rgba(255,255,255,0.70)] shadow-[0_0.625rem_0_0_rgba(0,0,0,0.25)]"
-              >
-                <img
-                  src={news.image}
-                  alt="News thumbnail"
-                  className="w-14 h-14 md:w-[71px] md:h-[71px] rounded object-cover flex-shrink-0"
-                />
-                <div className="flex-1">
-                  <h3 className="font-medium mb-1 text-sm md:text-base leading-tight">
-                    {news.title || "Weekly Alpha Information Summary"}
-                  </h3>
-                  <p className="text-xs md:text-sm">
-                    {news.source || "Source: Twitter Alpha"}
-                  </p>
+          <div className="space-y-8">
+            {/* News Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+              {currentNewsData.map((news, index) => (
+                <div
+                  key={index}
+                  onClick={() => {
+                    window.open(news.link, "_blank");
+                  }}
+                  className="flex items-start cursor-pointer space-x-4 p-5 text-black hover:bg-[#000] hover:text-white rounded-[2.5rem] border-1 border-solid border-[#000] bg-[rgba(255,255,255,0.70)] shadow-[0_0.625rem_0_0_rgba(0,0,0,0.25)]"
+                >
+                  <img
+                    src={news.image}
+                    alt="News thumbnail"
+                    className="w-14 h-14 md:w-[71px] md:h-[71px] rounded object-cover flex-shrink-0"
+                  />
+                  <div className="flex-1">
+                    <h3 className="font-medium mb-1 text-sm md:text-base leading-tight">
+                      {news.title || "Weekly Alpha Information Summary"}
+                    </h3>
+                    <p className="text-xs md:text-sm">
+                      {news.source || "Source: Twitter Alpha"}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            {/* Pagination */}
+            <div className="flex justify-center space-x-2">
+              {Array.from({ length: totalPages }, (_, i) => (
+                <button
+                  key={i + 1}
+                  onClick={() => handlePageChange(i + 1)}
+                  className={`w-8 h-8 rounded flex items-center justify-center text-sm font-medium ${
+                    currentPage === i + 1
+                      ? "bg-black text-white"
+                      : "bg-transparent text-black border border-black"
+                  }`}
+                >
+                  {i + 1}
+                </button>
+              ))}
+            </div>
           </div>
 
-          {/* Pagination */}
-          <div className="flex justify-center space-x-2">
-            {Array.from({ length: totalPages }, (_, i) => (
-              <button
-                key={i + 1}
-                onClick={() => handlePageChange(i + 1)}
-                className={`w-8 h-8 rounded flex items-center justify-center text-sm font-medium ${
-                  currentPage === i + 1
-                    ? "bg-black text-white"
-                    : "bg-transparent text-black border border-black"
-                }`}
-              >
-                {i + 1}
-              </button>
-            ))}
+          {/* Decorative Circle */}
+          <div className="flex justify-center mt-15">
+            <img src={"/heart.png"} alt="heart" className="w-50 h-50" />
           </div>
         </div>
-
-        {/* Decorative Circle */}
-        <div className="flex justify-center mt-15">
-          <img src={"/heart.png"} alt="heart" className="w-50 h-50" />
-        </div>
-      </div>
+      )}
 
       {/* Footer */}
       <div className="bg-black text-white px-4 md:px-8 py-4 md:py-6">

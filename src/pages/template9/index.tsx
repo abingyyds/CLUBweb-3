@@ -197,7 +197,7 @@ const Template9: React.FC<Template9Props> = ({ club = "abc", theme }) => {
           </section>
 
           {/* Join The Option Section */}
-          {(lifetimePrice || monthPrice || quarterPrice || yearPrice) && (
+          {theme.showMemberOption && (
             <section className="relative py-10">
               <h2 className="text-2xl sm:text-3xl md:text-[40px] font-bold text-center text-[#050505] leading-tight md:leading-[49px] tracking-[-1.21px] mb-11">
                 Join The Option
@@ -397,52 +397,56 @@ const Template9: React.FC<Template9Props> = ({ club = "abc", theme }) => {
           ) : null}
 
           {/* Community News Section */}
-          <section className="relative py-10">
-            <div className="absolute top-[26px] right-0 w-[60px] h-[60px] md:top-[-70px] md:left-0 md:w-[150px] md:h-[120px] ">
-              <img src="/p4.png" alt="" />
-            </div>
+          {theme?.news && theme.news.length > 0 && (
+            <section className="relative py-10">
+              <div className="absolute top-[26px] right-0 w-[60px] h-[60px] md:top-[-70px] md:left-0 md:w-[150px] md:h-[120px] ">
+                <img src="/p4.png" alt="" />
+              </div>
 
-            <h2 className="text-2xl sm:text-3xl md:text-[40px] font-bold text-left md:text-center text-[#050505] leading-tight md:leading-[49px] tracking-[-1.21px] mb-11 relative z-10">
-              Community News
-            </h2>
+              <h2 className="text-2xl sm:text-3xl md:text-[40px] font-bold text-left md:text-center text-[#050505] leading-tight md:leading-[49px] tracking-[-1.21px] mb-11 relative z-10">
+                Community News
+              </h2>
 
-            <div className="space-y-4 relative z-10">
-              {currentNewsData.map((news, index) => (
-                <div
-                  key={index}
-                  onClick={() => window.open(news.link, "_blank")}
-                  className="flex border-t-2 border-gray-200 flex-col md:flex-row items-start justify-between p-4 gap-2"
-                >
-                  <div className="w-full md:w-[248px]">
-                    <img src={news.image} className="w-full" alt="" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-[#050505] mb-1">
-                      {news.title}
-                    </h3>
+              <div className="space-y-4 relative z-10">
+                {currentNewsData.map((news, index) => (
+                  <div
+                    key={index}
+                    onClick={() => window.open(news.link, "_blank")}
+                    className="flex border-t-2 border-gray-200 flex-col md:flex-row items-start justify-between p-4 gap-2"
+                  >
+                    <div className="w-full md:w-[248px]">
+                      <img src={news.image} className="w-full" alt="" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-[#050505] mb-1">
+                        {news.title}
+                      </h3>
 
-                    <div className="flex gap-6 items-center">
-                      <p className="text-sm text-gray-600">
-                        Source: {news.source}
-                      </p>
-                      <div className="text-sm text-[#121212]">{news.time}</div>
+                      <div className="flex gap-6 items-center">
+                        <p className="text-sm text-gray-600">
+                          Source: {news.source}
+                        </p>
+                        <div className="text-sm text-[#121212]">
+                          {news.time}
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
 
-            {theme.news.length > 4 && (
-              <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={handlePageChange}
-                bgClassName="bg-[#FFBB33]"
-                activeTextClassName="text-white"
-                hoverTextClassName="hover:text-white"
-              />
-            )}
-          </section>
+              {theme.news.length > 4 && (
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={handlePageChange}
+                  bgClassName="bg-[#FFBB33]"
+                  activeTextClassName="text-white"
+                  hoverTextClassName="hover:text-white"
+                />
+              )}
+            </section>
+          )}
 
           {/* Bottom Decorative Image */}
           <div className="flex justify-center py-10">

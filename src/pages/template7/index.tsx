@@ -175,6 +175,7 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
         {/* 主要内容区域 */}
         <div className="space-y-6 md:space-y-10">
           {/* Join the Option 区域 */}
+
           <div className="bg-[#242934] rounded-lg">
             {/* 浏览器标题栏 */}
             <div className="flex items-center justify-between bg-[#202124] rounded-t-lg px-3 py-4">
@@ -186,83 +187,87 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
             {/* 内容 */}
             <div className="p-4 md:p-10 space-y-6 md:space-y-10">
               {/* 标题 */}
-              <div className="flex flex-col items-center gap-4">
-                <div className="flex flex-col items-center gap-4">
-                  <h2 className="text-xl md:text-2xl text-[#f38406]">
-                    Join The Option
-                  </h2>
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 bg-[#f38406] rounded-full"></div>
-                    <div className="w-44 h-0.5 bg-[#f38406]"></div>
-                    <div className="w-2 h-2 bg-[#f38406] rounded-full"></div>
-                  </div>
-                </div>
-                <p className="text-white text-xs text-center">
-                  Little description here
-                </p>
-              </div>
-
-              {/* 会员选项 */}
-              <RadioGroup
-                value={selectedMembership}
-                onValueChange={setSelectedMembership}
-                className="flex flex-col md:flex-row justify-center gap-4 md:gap-8"
-              >
-                {membershipOptions.map((option, index) => (
-                  <label
-                    key={index}
-                    className="flex cursor-pointer"
-                    htmlFor={`membership-${option.type}`}
-                  >
-                    <div
-                      className={`w-1 rounded-l-lg ${
-                        selectedMembership === option.type
-                          ? "bg-[#43454D]"
-                          : "bg-white"
-                      }`}
-                    ></div>
-                    <div
-                      className={`rounded-r-lg p-4 md:p-6 flex flex-col items-center gap-2 w-full md:min-w-[180px] transition-all ${
-                        selectedMembership === option.type
-                          ? "bg-[#f0f0f0] border-2 border-[#43454D]"
-                          : "bg-[#dddddd] border-2 border-transparent"
-                      }`}
-                    >
-                      <RadioGroupItem
-                        value={option.type}
-                        id={`membership-${option.type}`}
-                        className="w-6 h-6 border-2 border-gray-400 data-[state=checked]:bg-[#43454D] data-[state=checked]:border-[#43454D]"
-                      />
-                      <div className="text-center">
-                        <p
-                          className={`font-bold text-lg ${
-                            selectedMembership === option.type
-                              ? "text-[#43454D] underline"
-                              : option.highlighted
-                              ? "text-[#43454d] underline"
-                              : "text-[#292f36]"
-                          }`}
-                        >
-                          {option.title}
-                        </p>
-                        <p className="text-[#43454d]">{option.price}</p>
+              {theme.showMemberOption && (
+                <div className="space-y-6 md:space-y-10">
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="flex flex-col items-center gap-4">
+                      <h2 className="text-xl md:text-2xl text-[#f38406]">
+                        Join The Option
+                      </h2>
+                      <div className="flex items-center">
+                        <div className="w-2 h-2 bg-[#f38406] rounded-full"></div>
+                        <div className="w-44 h-0.5 bg-[#f38406]"></div>
+                        <div className="w-2 h-2 bg-[#f38406] rounded-full"></div>
                       </div>
                     </div>
-                  </label>
-                ))}
-              </RadioGroup>
+                    {/* <p className="text-white text-xs text-center">
+                  Little description here
+                </p> */}
+                  </div>
 
-              {/* JOIN NOW 按钮 */}
-              <div className="flex justify-center">
-                <button
-                  onClick={() => handleJoin(selectedMembership)}
-                  disabled={!selectedMembership}
-                  className="flex items-center gap-4 bg-[#f38406] border-2 border-[#f38406] rounded-full px-8 py-3 text-white font-medium hover:bg-[#e67300] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  <span>JOIN NOW</span>
-                  <ChevronsRight />
-                </button>
-              </div>
+                  {/* 会员选项 */}
+                  <RadioGroup
+                    value={selectedMembership}
+                    onValueChange={setSelectedMembership}
+                    className="flex flex-col md:flex-row justify-center gap-4 md:gap-8"
+                  >
+                    {membershipOptions.map((option, index) => (
+                      <label
+                        key={index}
+                        className="flex cursor-pointer"
+                        htmlFor={`membership-${option.type}`}
+                      >
+                        <div
+                          className={`w-1 rounded-l-lg ${
+                            selectedMembership === option.type
+                              ? "bg-[#43454D]"
+                              : "bg-white"
+                          }`}
+                        ></div>
+                        <div
+                          className={`rounded-r-lg p-4 md:p-6 flex flex-col items-center gap-2 w-full md:min-w-[180px] transition-all ${
+                            selectedMembership === option.type
+                              ? "bg-[#f0f0f0] border-2 border-[#43454D]"
+                              : "bg-[#dddddd] border-2 border-transparent"
+                          }`}
+                        >
+                          <RadioGroupItem
+                            value={option.type}
+                            id={`membership-${option.type}`}
+                            className="w-6 h-6 border-2 border-gray-400 data-[state=checked]:bg-[#43454D] data-[state=checked]:border-[#43454D]"
+                          />
+                          <div className="text-center">
+                            <p
+                              className={`font-bold text-lg ${
+                                selectedMembership === option.type
+                                  ? "text-[#43454D] underline"
+                                  : option.highlighted
+                                  ? "text-[#43454d] underline"
+                                  : "text-[#292f36]"
+                              }`}
+                            >
+                              {option.title}
+                            </p>
+                            <p className="text-[#43454d]">{option.price}</p>
+                          </div>
+                        </div>
+                      </label>
+                    ))}
+                  </RadioGroup>
+
+                  {/* JOIN NOW 按钮 */}
+                  <div className="flex justify-center">
+                    <button
+                      onClick={() => handleJoin(selectedMembership)}
+                      disabled={!selectedMembership}
+                      className="flex items-center gap-4 bg-[#f38406] border-2 border-[#f38406] rounded-full px-8 py-3 text-white font-medium hover:bg-[#e67300] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      <span>JOIN NOW</span>
+                      <ChevronsRight />
+                    </button>
+                  </div>
+                </div>
+              )}
 
               {/* Position Verification */}
               {verifyData?.length ? (
@@ -380,56 +385,58 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
           </div>
 
           {/* Community News 区域 */}
-          <div className="space-y-10">
-            <div className="flex flex-col items-center gap-4">
-              <h3 className="text-xl md:text-2xl text-[#f38406]">
-                Community News
-              </h3>
-              <div className="flex items-center">
-                <div className="w-2 h-2 bg-[#f38406] rounded-full"></div>
-                <div className="w-40 h-0.5 bg-[#f38406]"></div>
-                <div className="w-2 h-2 bg-[#f38406] rounded-full"></div>
+          {theme?.news && theme.news.length > 0 && (
+            <div className="space-y-10">
+              <div className="flex flex-col items-center gap-4">
+                <h3 className="text-xl md:text-2xl text-[#f38406]">
+                  Community News
+                </h3>
+                <div className="flex items-center">
+                  <div className="w-2 h-2 bg-[#f38406] rounded-full"></div>
+                  <div className="w-40 h-0.5 bg-[#f38406]"></div>
+                  <div className="w-2 h-2 bg-[#f38406] rounded-full"></div>
+                </div>
+              </div>
+
+              <div className="space-y-4 md:space-y-8">
+                <div className="h-px bg-[#f38406]"></div>
+
+                {currentNewsData.map((news: any, index: number) => (
+                  <div key={index} className="flex items-start gap-3 md:gap-6">
+                    <img
+                      src={news.image || "/news1.png"}
+                      alt={news.title}
+                      className="w-16 md:w-20 h-12 md:h-16 object-cover rounded flex-shrink-0"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-white font-medium mb-1 text-sm md:text-base leading-tight">
+                        {news.title || "Weekly Alpha Information Summary"}
+                      </h4>
+                      <p className="text-white text-xs md:text-sm">
+                        {news.source || "Source: Twitter Alpha"}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+
+                <div className="h-px bg-[#f38406]"></div>
+              </div>
+
+              {/* 分页按钮 */}
+              <div className="flex justify-center gap-3 md:gap-4">
+                {/* <button className="flex-1 lg:flex-none bg-[#f38406] text-[#292F36] h-[56px] rounded-[32px] px-6 md:px-8 py-2 md:py-4 text-sm transition-colors">
+                View More
+              </button> */}
+                <button
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage >= totalPages}
+                  className="flex-1 lg:flex-none bg-[#292F36] text-white h-[56px] rounded-[32px] px-8 md:px-8 py-2 md:py-4 text-sm disabled:opacity-50 transition-colors"
+                >
+                  Next
+                </button>
               </div>
             </div>
-
-            <div className="space-y-4 md:space-y-8">
-              <div className="h-px bg-[#f38406]"></div>
-
-              {currentNewsData.map((news: any, index: number) => (
-                <div key={index} className="flex items-start gap-3 md:gap-6">
-                  <img
-                    src={news.image || "/news1.png"}
-                    alt={news.title}
-                    className="w-16 md:w-20 h-12 md:h-16 object-cover rounded flex-shrink-0"
-                  />
-                  <div className="flex-1 min-w-0">
-                    <h4 className="text-white font-medium mb-1 text-sm md:text-base leading-tight">
-                      {news.title || "Weekly Alpha Information Summary"}
-                    </h4>
-                    <p className="text-white text-xs md:text-sm">
-                      {news.source || "Source: Twitter Alpha"}
-                    </p>
-                  </div>
-                </div>
-              ))}
-
-              <div className="h-px bg-[#f38406]"></div>
-            </div>
-
-            {/* 分页按钮 */}
-            <div className="flex justify-center gap-3 md:gap-4">
-              <button className="flex-1 lg:flex-none bg-[#f38406] text-[#292F36] h-[56px] rounded-[32px] px-6 md:px-8 py-2 md:py-4 text-sm transition-colors">
-                View More
-              </button>
-              <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage >= totalPages}
-                className="flex-1 lg:flex-none bg-[#292F36] text-white h-[56px] rounded-[32px] px-8 md:px-8 py-2 md:py-4 text-sm disabled:opacity-50 transition-colors"
-              >
-                Next
-              </button>
-            </div>
-          </div>
+          )}
 
           {/* Footer */}
           <div className="text-center space-y-4 pt-10">

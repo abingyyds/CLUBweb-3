@@ -23,6 +23,7 @@ export interface ITheme {
   yearImg: string;
   quarterImg: string;
   verifyImgs: string[];
+  showMemberOption: boolean;
 }
 
 export interface News {
