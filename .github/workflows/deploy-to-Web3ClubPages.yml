@@ -1,0 +1,63 @@
+name: Build and deploy to Web3ClubPages
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source repo (CLUBweb-3)
+        uses: actions/checkout@v4
+
+      # 安装 Node 20
+      - name: Setup Node.js
+      # 这里用官方 action + corepack 来启用 pnpm
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # 启用 corepack，并激活 pnpm
+      - name: Enable pnpm via corepack
+        run: |
+          corepack enable
+          corepack prepare pnpm@9 --activate
+
+      # 检查 pnpm 是否可用（这一步成功就不会再报 “Unable to locate executable file: pnpm”）
+      - name: Check pnpm
+        run: |
+          pnpm -v
+          which pnpm
+
+      # 安装依赖
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # 构建项目（本地 pnpm build 能成功的话，这里就也能成功）
+      - name: Build project
+        run: pnpm build
+
+      # 部署到 Web3ClubPages
+      - name: Clone target repo (Web3ClubPages)
+        run: |
+          git config --global user.name "web3club-bot"
+          git config --global user.email "bot@web3.club"
+
+          git clone https://x-access-token:${{ secrets.PAGES_DEPLOY_TOKEN }}@github.com/abingyyds/Web3ClubPages.git
+
+          cd Web3ClubPages
+
+          # 清空旧文件
+          rm -rf ./*
+
+          # 拷贝 dist 里的构建结果到根目录
+          cp -R ../dist/* .
+
+          git add .
+          git commit -m "Auto deploy from CLUBweb-3 $(date +'%Y-%m-%d %H:%M:%S')" || echo "No changes to commit"
+          git push origin main
