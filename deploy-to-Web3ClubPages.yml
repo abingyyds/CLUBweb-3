@@ -20,12 +20,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm install
+          pnpm install
           # 如果你用的是 pnpm / yarn，这里改成对应命令
 
       - name: Build project
         run: |
-          npm run build
+          pnpm build
           # 确保会在项目根目录生成 dist/ 目录
           # 如果是别的目录，例如 build/，下面也要一起改
 
