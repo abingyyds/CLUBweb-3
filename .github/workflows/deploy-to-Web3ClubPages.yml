@@ -15,24 +15,32 @@ jobs:
       - name: Checkout source repo (CLUBweb-3)
         uses: actions/checkout@v4
 
-      # 安装 Node
+      # 安装 Node 20
       - name: Setup Node.js
+      # 这里用官方 action + corepack 来启用 pnpm
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'
 
-      # 安装 pnpm（这是关键步骤）
-      - name: Install pnpm
-        run: npm install -g pnpm
+      # 启用 corepack，并激活 pnpm
+      - name: Enable pnpm via corepack
+        run: |
+          corepack enable
+          corepack prepare pnpm@9 --activate
+
+      # 检查 pnpm 是否可用（这一步成功就不会再报 “Unable to locate executable file: pnpm”）
+      - name: Check pnpm
+        run: |
+          pnpm -v
+          which pnpm
 
       # 安装依赖
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # 构建项目
+      # 构建项目（本地 pnpm build 能成功的话，这里就也能成功）
       - name: Build project
-        run: pnpm build   # ⚠️ 确保你的 package.json 里 build 这个命令存在
+        run: pnpm build
 
       # 部署到 Web3ClubPages
       - name: Clone target repo (Web3ClubPages)
@@ -40,7 +48,6 @@ jobs:
           git config --global user.name "web3club-bot"
           git config --global user.email "bot@web3.club"
 
-          # 克隆目标仓库
           git clone https://x-access-token:${{ secrets.PAGES_DEPLOY_TOKEN }}@github.com/abingyyds/Web3ClubPages.git
 
           cd Web3ClubPages
@@ -48,7 +55,7 @@ jobs:
           # 清空旧文件
           rm -rf ./*
 
-          # 拷贝构建结果
+          # 拷贝 dist 里的构建结果到根目录
           cp -R ../dist/* .
 
           git add .
