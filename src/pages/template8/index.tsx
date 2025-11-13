@@ -93,7 +93,7 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
       <img
         src={theme.heroImg}
         alt="fruit"
-        className="w-[60vw] h-[80vw] md:w-[346px] md:h-[453px] z-10 absolute top-12 left-12 rounded-[52px]"
+        className="w-[60vw] h-auto md:w-[346px] md:h-auto z-10 absolute top-12 left-12 rounded-[52px]"
       />
       {/* Phone Frame */}
       <div className="relative w-[60vw] h-[70vw] md:w-[346px] md:h-[413px] bg-white border-2 border-black rounded-[52px] shadow-[0_10px_0_rgba(0,0,0,0.25)] overflow-hidden">
