@@ -5,7 +5,7 @@ on:
     branches:
       - main
       - master
-  workflow_dispatch:   # 支持在 GitHub 页面手动点运行
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -22,32 +22,33 @@ jobs:
           node-version: 20
           cache: 'pnpm'
 
-      # 安装 pnpm
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
+      # 安装 pnpm（这是关键步骤）
+      - name: Install pnpm
+        run: npm install -g pnpm
 
+      # 安装依赖
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # 构建项目
       - name: Build project
-        run: pnpm build   # 确保会生成 dist 目录
+        run: pnpm build   # ⚠️ 确保你的 package.json 里 build 这个命令存在
 
+      # 部署到 Web3ClubPages
       - name: Clone target repo (Web3ClubPages)
         run: |
           git config --global user.name "web3club-bot"
           git config --global user.email "bot@web3.club"
 
-          # 用 token 克隆目标仓库（注意：PAGES_DEPLOY_TOKEN 要在 CLUBweb-3 里设置好）
+          # 克隆目标仓库
           git clone https://x-access-token:${{ secrets.PAGES_DEPLOY_TOKEN }}@github.com/abingyyds/Web3ClubPages.git
 
           cd Web3ClubPages
 
-          # 清空旧文件（不会删 .git）
+          # 清空旧文件
           rm -rf ./*
 
-          # 拷贝新的构建结果（dist 在上一级目录）
+          # 拷贝构建结果
           cp -R ../dist/* .
 
           git add .
