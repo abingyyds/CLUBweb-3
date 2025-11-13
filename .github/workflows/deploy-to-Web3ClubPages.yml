@@ -1,0 +1,55 @@
+name: Build and deploy to Web3ClubPages
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:   # 支持在 GitHub 页面手动点运行
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source repo (CLUBweb-3)
+        uses: actions/checkout@v4
+
+      # 安装 Node
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      # 安装 pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build project
+        run: pnpm build   # 确保会生成 dist 目录
+
+      - name: Clone target repo (Web3ClubPages)
+        run: |
+          git config --global user.name "web3club-bot"
+          git config --global user.email "bot@web3.club"
+
+          # 用 token 克隆目标仓库（注意：PAGES_DEPLOY_TOKEN 要在 CLUBweb-3 里设置好）
+          git clone https://x-access-token:${{ secrets.PAGES_DEPLOY_TOKEN }}@github.com/abingyyds/Web3ClubPages.git
+
+          cd Web3ClubPages
+
+          # 清空旧文件（不会删 .git）
+          rm -rf ./*
+
+          # 拷贝新的构建结果（dist 在上一级目录）
+          cp -R ../dist/* .
+
+          git add .
+          git commit -m "Auto deploy from CLUBweb-3 $(date +'%Y-%m-%d %H:%M:%S')" || echo "No changes to commit"
+          git push origin main
