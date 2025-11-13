@@ -1,0 +1,52 @@
+name: Build and deploy to Web3ClubPages
+
+on:
+  push:
+    branches:
+      - main   # 你开发用的是 main 分支的话就保持这样
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source repo (CLUBweb-3)
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: |
+          npm install
+          # 如果你用的是 pnpm / yarn，这里改成对应命令
+
+      - name: Build project
+        run: |
+          npm run build
+          # 确保会在项目根目录生成 dist/ 目录
+          # 如果是别的目录，例如 build/，下面也要一起改
+
+      - name: Clone target repo (Web3ClubPages)
+        run: |
+          git config --global user.name "web3club-bot"
+          git config --global user.email "bot@web3.club"
+
+          # 用 token 克隆目标仓库
+          git clone https://x-access-token:${{ secrets.PAGES_DEPLOY_TOKEN }}@github.com/abingyyds/Web3ClubPages.git
+
+          # 进入目标仓库
+          cd Web3ClubPages
+
+          # 清空旧文件（不会删 .git）
+          rm -rf ./*
+
+          # 拷贝新的构建结果
+          cp -R ../dist/* .
+
+          # 提交并推送
+          git add .
+          git commit -m "Auto deploy from CLUBweb-3 $(date +'%Y-%m-%d %H:%M:%S')" || echo "No changes to commit"
+          git push origin main
