@@ -137,7 +137,7 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
         <div className="flex-1 max-w-2xl">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-base font-semibold mb-2.5 tracking-wide">
+            <h1 className="text-base font-semibold mb-2.5 tracking-wide uppercase">
               {club}.WEB3.CLUB
             </h1>
             <div className="w-full">
