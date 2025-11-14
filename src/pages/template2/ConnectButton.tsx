@@ -10,7 +10,7 @@ export const ConnectButton = ({ className }: { className?: string }) => {
   return (
     <div
       onClick={() => open()}
-      className={`bg-teal-500 w-full max-w-lg lg:w-72 rounded-[50px] px-6 py-4 flex items-center justify-center gap-2 cursor-pointer hover:bg-teal-600 transition-colors order-2 lg:order-1`}
+      className={`bg-teal-500 w-full max-w-lg md:w-72 rounded-[50px] px-6 py-4 flex items-center justify-center gap-2 cursor-pointer hover:bg-teal-600 transition-colors order-2 md:order-1`}
     >
       {walletInfo?.name ? (
         <>

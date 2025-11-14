@@ -400,13 +400,13 @@ export const Template4 = ({ club, theme }: { club: string; theme: ITheme }) => {
           Links & Apps
         </h2>
 
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-10">
+        <div className="grid grid-cols-3 md:grid-cols-6 gap-6 md:gap-10">
           {theme?.socials?.slice(0, 6).map((app, index) => (
             <div
               key={index}
-              className="bg-[#f7dc75] rounded-[20px] p-7 lg:p-7 flex flex-col items-center justify-center gap-5"
+              className="bg-[#f7dc75] rounded-[20px] p-5 md:p-7 rounded-2xl flex items-center justify-center overflow-hidden"
             >
-              <div className="w-18 h-18 lg:w-16 lg:h-16 rounded-2xl flex items-center justify-center overflow-hidden">
+              <div className="w-16 h-16 lg:w-16 lg:h-16 rounded-2xl flex items-center justify-center overflow-hidden">
                 <img
                   src={app.icon}
                   alt={app.name}
@@ -453,7 +453,7 @@ export const Template4 = ({ club, theme }: { club: string; theme: ITheme }) => {
                 disabled={currentPage === 1}
                 className="p-2 disabled:opacity-50 flex-shrink-0 hover:bg-gray-100 rounded-lg transition-colors"
               >
-                <ChevronLeft className="w-5 h-5 text-black" />
+                <ChevronLeft className="w-8 h-8 text-black" />
               </button>
               <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide">
                 {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
@@ -462,7 +462,7 @@ export const Template4 = ({ club, theme }: { club: string; theme: ITheme }) => {
                     <button
                       key={pageNum}
                       onClick={() => handlePageChange(pageNum)}
-                      className={`w-8 h-8 rounded text-sm font-medium flex-shrink-0 transition-colors ${
+                      className={`w-10 h-10 rounded text-sm font-medium flex-shrink-0 transition-colors ${
                         currentPage === pageNum
                           ? "bg-[#F4DE7B] text-black"
                           : "text-black hover:bg-gray-100"
@@ -477,7 +477,7 @@ export const Template4 = ({ club, theme }: { club: string; theme: ITheme }) => {
                     <span className="text-black px-2">...</span>
                     <button
                       onClick={() => handlePageChange(totalPages)}
-                      className={`w-8 h-8 rounded text-sm font-medium ${
+                      className={`w-10 h-10 rounded text-sm font-medium ${
                         currentPage === totalPages
                           ? "bg-[#F4DE7B] text-black"
                           : "text-black hover:bg-gray-100"
@@ -493,7 +493,7 @@ export const Template4 = ({ club, theme }: { club: string; theme: ITheme }) => {
                 disabled={currentPage === totalPages}
                 className="p-2 disabled:opacity-50 flex-shrink-0 hover:bg-gray-100 rounded-lg transition-colors"
               >
-                <ChevronRight className="w-5 h-5 text-black" />
+                <ChevronRight className="w-8 h-8 text-black" />
               </button>
             </div>
           )}

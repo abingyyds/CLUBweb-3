@@ -108,26 +108,26 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
         {/* Hero 区域 */}
         <div className="relative flex flex-col md:flex-row md:justify-between md:items-start mb-6 md:mb-10 px-4 md:px-28 py-8 md:py-16">
           {/* 左侧导航栏 */}
-          <div className="hidden md:flex absolute left-16 top-16 flex-col items-center bg-[#1a1e23] border border-white rounded-full p-2 w-16 h-[274px] gap-3">
-            <div className="flex items-center justify-center w-10 h-10 bg-white rounded-full">
-              <img src="/icon-grid.png" className="w-6 h-6 text-black" />
+          <div className="flex absolute left-1 top-24 md:left-16 md:top-24 flex-col items-center bg-[#1a1e23] border border-white rounded-full p-2 w-11 h-[220px] md:w-16 md:h-[274px] gap-3">
+            <div className="flex items-center justify-center w-7 h-7 md:w-10 md:h-10 bg-white rounded-full">
+              <img src="/icon-grid.png" className="w-5 h-5 text-black" />
             </div>
-            <div className="flex items-center justify-center w-10 h-10 rounded-full">
-              <img src="/icon-user.png" className="w-6 h-6 text-white" />
+            <div className="flex items-center justify-center w-7 h-7 md:w-10 md:h-10 rounded-full">
+              <img src="/icon-user.png" className="w-5 h-5 text-white" />
             </div>
-            <div className="flex items-center justify-center w-10 h-10 rounded-full">
-              <img src="/icon-code.png" className="w-6 h-6 text-white" />
+            <div className="flex items-center justify-center w-7 h-7 md:w-10 md:h-10 rounded-full">
+              <img src="/icon-code.png" className="w-5 h-5 text-white" />
             </div>
-            <div className="flex items-center justify-center w-10 h-10 rounded-full">
-              <img src="/icon-monitor.png" className="w-6 h-6 text-white" />
+            <div className="flex items-center justify-center w-7 h-7 md:w-10 md:h-10 rounded-full">
+              <img src="/icon-monitor.png" className="w-5 h-5 text-white" />
             </div>
-            <div className="flex items-center justify-center w-10 h-10 rounded-full">
-              <img src="/icon-edit.png" className="w-6 h-6 text-white" />
+            <div className="flex items-center justify-center w-7 h-7 md:w-10 md:h-10 rounded-full">
+              <img src="/icon-edit.png" className="w-5 h-5 text-white" />
             </div>
           </div>
 
           {/* 中心内容 */}
-          <div className="flex-1 flex flex-col items-center gap-6 md:gap-8 md:pl-16">
+          <div className="flex-1 flex flex-col ml-10 md:ml-auto items-start gap-6 md:gap-8 md:pl-16">
             {/* 标题区域 */}
             <div className="flex items-center gap-1 text-sm">
               <span className="text-[#98faec]">&lt;title&gt;</span>
@@ -180,7 +180,7 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
             {/* 浏览器标题栏 */}
             <div className="flex items-center justify-between bg-[#202124] rounded-t-lg px-3 py-4">
               <BrowserControls />
-              <span className="text-white text-xs">Join the option</span>
+              <span className="hidden md:inline text-white text-xs">Join the option</span>
               <div className="w-[52px]"></div>
             </div>
 
@@ -295,7 +295,7 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
                     {verifyData.map((it, index) => (
                       <div
                         key={index}
-                        className="flex w-full lg:w-[30%] flex-col gap-2 md:gap-3.5"
+                        className="flex w-full md:w-[30%] flex-col gap-2 md:gap-3.5"
                       >
                         <div className="flex items-center">
                           <img
@@ -343,7 +343,7 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
             {/* 浏览器标题栏 */}
             <div className="flex items-center justify-between bg-[#202124] rounded-t-lg px-3 py-4">
               <BrowserControls />
-              <span className="text-white text-xs">links&Apps</span>
+              <span className="hidden md:inline text-white text-xs">links&Apps</span>
               <div className="w-[52px]"></div>
             </div>
 
@@ -361,7 +361,7 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
                   </div>
                 </div>
 
-                <div className="flex justify-center gap-4 md:gap-8 flex-wrap">
+                <div className="flex justify-between md:justify-center gap-4 md:gap-8 flex-wrap">
                   {theme.socials.map((app, index) => (
                     <div
                       key={index}
@@ -371,7 +371,7 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
                         <img
                           src={app.icon}
                           alt={app.name}
-                          className="size-16 md:size-[84px] rounded-full"
+                          className="size-18 md:size-[84px] rounded-full"
                         />
                       </div>
                       <span className="text-black text-xs md:text-sm">
@@ -402,11 +402,11 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
                 <div className="h-px bg-[#f38406]"></div>
 
                 {currentNewsData.map((news: any, index: number) => (
-                  <div key={index} className="flex items-start gap-3 md:gap-6">
+                  <div key={index} className="flex items-center gap-3 md:gap-6">
                     <img
                       src={news.image || "/news1.png"}
                       alt={news.title}
-                      className="w-16 md:w-20 h-12 md:h-16 object-cover rounded flex-shrink-0"
+                      className="w-16 md:w-20 h-16 md:h-20 object-cover flex-shrink-0"
                     />
                     <div className="flex-1 min-w-0">
                       <h4 className="text-white font-medium mb-1 text-sm md:text-base leading-tight">
@@ -424,13 +424,13 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
 
               {/* 分页按钮 */}
               <div className="flex justify-center gap-3 md:gap-4">
-                {/* <button className="flex-1 lg:flex-none bg-[#f38406] text-[#292F36] h-[56px] rounded-[32px] px-6 md:px-8 py-2 md:py-4 text-sm transition-colors">
+                {/* <button className="flex-1 md:flex-none bg-[#f38406] text-[#292F36] h-[56px] rounded-[32px] px-6 md:px-8 py-2 md:py-4 text-sm transition-colors">
                 View More
               </button> */}
                 <button
                   onClick={() => handlePageChange(currentPage + 1)}
                   disabled={currentPage >= totalPages}
-                  className="flex-1 lg:flex-none bg-[#292F36] text-white h-[56px] rounded-[32px] px-8 md:px-8 py-2 md:py-4 text-sm disabled:opacity-50 transition-colors"
+                  className="flex-1 md:flex-none bg-[#292F36] text-white h-[56px] rounded-[32px] px-8 md:px-8 py-2 md:py-4 text-sm disabled:opacity-50 transition-colors"
                 >
                   Next
                 </button>

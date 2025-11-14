@@ -203,7 +203,7 @@ const Template9: React.FC<Template9Props> = ({ club = "abc", theme }) => {
                 Join The Option
               </h2>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
                 {[
                   lifetimePrice && {
                     icon: theme.lifeTimeImg,
@@ -303,7 +303,7 @@ const Template9: React.FC<Template9Props> = ({ club = "abc", theme }) => {
                 <span className="block md:inline">Position</span>{" "}
                 <span className="block md:inline">Verification</span>
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 md:grid-cols-3 gap-6 relative z-10">
                 {verifyData.map((it, index) => (
                   <div
                     key={index}

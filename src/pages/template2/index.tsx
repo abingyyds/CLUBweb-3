@@ -102,25 +102,25 @@ export const Template2 = ({
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="max-w-6xl mx-auto px-4 lg:px-20 py-5">
+      <header className="max-w-6xl mx-auto px-4 md:px-20 py-5">
         <h1 className="text-black font-bold text-base uppercase tracking-wide">
           {club}.web3.club
         </h1>
       </header>
 
       {/* Hero Section */}
-      <section className="max-w-6xl mx-auto px-4 lg:px-20 py-5">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+      <section className="max-w-6xl mx-auto px-4 md:px-20 py-5">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div className="flex-1">
-            <h1 className="text-4xl md:text-6xl lg:text-8xl font-extrabold text-black leading-tight mb-0">
+            <h1 className="text-4xl md:text-6xl md:text-8xl font-extrabold text-black leading-tight mb-0">
               {theme.heroTitle}
             </h1>
-            <h1 className="text-4xl md:text-6xl lg:text-8xl font-extrabold leading-tight -mt-2 bg-gradient-to-r from-teal-500 to-purple-500 bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-6xl md:text-8xl font-extrabold leading-tight -mt-2 bg-gradient-to-r from-teal-500 to-purple-500 bg-clip-text text-transparent">
               {theme.heroGradientText}
             </h1>
           </div>
           <div className="flex flex-col items-start gap-2">
-            <div className="text-2xl lg:text-3xl font-extrabold text-black tracking-wider">
+            <div className="text-2xl md:text-3xl font-extrabold text-black tracking-wider">
               🔥 👍 😄
             </div>
             <p className="text-sm text-black max-w-80 leading-5">
@@ -131,13 +131,13 @@ export const Template2 = ({
       </section>
 
       {/* Fun with us & Connect Wallet Section */}
-      <section className="max-w-6xl mx-auto px-4 lg:px-20 py-6 lg:py-10">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 min-h-[300px] lg:h-96">
+      <section className="max-w-6xl mx-auto px-4 md:px-20 py-6 md:py-10">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 min-h-[300px] md:h-96">
           {/* Left side - Fun with us */}
-          <div className="flex gap-1 lg:gap-4 w-[58%] lg:w-[65%] h-[58lvw] lg:h-full">
+          <div className="flex gap-1 md:gap-4 w-[58%] md:w-[65%] h-[58lvw] md:h-full">
             {/* Fun with us card */}
             <div
-              className="relative p-6 flex-1 rounded-3xl lg:rounded-3xl flex flex-col justify-between"
+              className="relative p-6 flex-1 rounded-3xl md:rounded-3xl flex flex-col justify-between"
               style={{
                 background: `url(/Subtract.png) no-repeat top left / contain`,
               }}
@@ -147,50 +147,50 @@ export const Template2 = ({
                 className="w-full inset-0 absolute"
                 alt=""
               /> */}
-              <h2 className="text-2xl lg:text-5xl font-extrabold text-white leading-tight">
+              <h2 className="text-2xl md:text-5xl font-extrabold text-white leading-tight">
                 {theme.heroSubtitle}
               </h2>
               <div className="flex items-center">
                 <img
                   src={theme.avatar1}
                   alt="User 1"
-                  className="w-10 lg:w-14 h-10 lg:h-14 rounded-full border-2 border-white"
+                  className="w-10 md:w-14 h-10 md:h-14 rounded-full border-2 border-white"
                 />
                 <img
                   src={theme.avatar2}
                   alt="User 2"
-                  className="w-10 lg:w-14 h-10 lg:h-14 rounded-full border-2 border-white -ml-2"
+                  className="w-10 md:w-14 h-10 md:h-14 rounded-full border-2 border-white -ml-2"
                 />
                 <img
                   src={theme.avatar3}
                   alt="User 3"
-                  className="w-10 lg:w-14 h-10 lg:h-14 rounded-full border-2 border-white -ml-2"
+                  className="w-10 md:w-14 h-10 md:h-14 rounded-full border-2 border-white -ml-2"
                 />
               </div>
             </div>
             {/* Background images - now visible on mobile */}
-            <div className="absolute left-[77%] lg:static flex flex-col items-end gap-3 w-auto ml-[-116px]">
+            <div className="absolute left-[77%] md:static flex flex-col items-end gap-3 w-auto ml-[-116px]">
               <img
                 src={theme.heroImg1}
                 alt="Background 1"
-                className="w-[31dvw] lg:w-[240px] h-[31dvw] lg:h-[218px] rounded-3xl object-cover"
+                className="w-[31dvw] md:w-[240px] h-[31dvw] md:h-[218px] rounded-3xl object-cover"
               />
               <img
                 src={theme.heroImg2}
                 alt="Background 2"
-                className="w-[45dvw] lg:w-[360px] h-[24dvw] lg:h-[156px] rounded-3xl object-cover"
+                className="w-[45dvw] md:w-[360px] h-[24dvw] md:h-[156px] rounded-3xl object-cover"
               />
             </div>
           </div>
 
           {/* Right side - Connect Wallet */}
-          <div className="flex flex-col items-center lg:items-end gap-4 w-full lg:w-auto">
+          <div className="flex flex-col items-center md:items-end gap-4 w-full md:w-auto">
             <ConnectButton />
-            <div className="w-full lg:w-72 h-[70vw] lg:h-[300px] order-1 lg:order-2">
+            <div className="w-full md:w-72 h-[70vw] md:h-[300px] order-1 md:order-2">
               <img
                 src={theme.heroImg3}
                 alt="Side image"
-                className="w-full h-full rounded-2xl lg:rounded-3xl object-cover"
+                className="w-full h-full rounded-2xl md:rounded-3xl object-cover"
               />
             </div>
           </div>
@@ -198,32 +198,32 @@ export const Template2 = ({
       </section>
 
       {/* Welcome Text with Background Decorations */}
-      <section className="max-w-6xl mx-auto px-4 lg:px-20 py-6 lg:py-10 relative">
+      <section className="max-w-6xl mx-auto px-4 md:px-20 py-6 md:py-10 relative">
         {/* Background decoration bars - hidden on mobile */}
-        <div className="hidden lg:block absolute top-16 left-96 w-96 h-6 bg-teal-500 opacity-70"></div>
-        <div className="hidden lg:block absolute top-32 left-20 w-96 h-6 bg-teal-500 opacity-70"></div>
-        <div className="hidden lg:block absolute top-32 right-32 w-24 h-6 bg-teal-500 opacity-70"></div>
-        <div className="hidden lg:block absolute top-40 left-20 w-64 h-6 bg-teal-500 opacity-70"></div>
+        <div className="hidden md:block absolute top-16 left-96 w-96 h-6 bg-teal-500 opacity-70"></div>
+        <div className="hidden md:block absolute top-32 left-20 w-96 h-6 bg-teal-500 opacity-70"></div>
+        <div className="hidden md:block absolute top-32 right-32 w-24 h-6 bg-teal-500 opacity-70"></div>
+        <div className="hidden md:block absolute top-40 left-20 w-64 h-6 bg-teal-500 opacity-70"></div>
 
-        <p className="text-2xl lg:text-5xl font-extrabold text-black leading-tight relative z-10">
+        <p className="text-2xl md:text-5xl font-extrabold text-black leading-tight relative z-10">
           {theme.clubIntroduction1}
         </p>
       </section>
 
       {/* Join the Option Section */}
       {theme.showMemberOption ? (
-        <section className="max-w-6xl mx-auto px-4 lg:px-20 py-6 lg:py-10">
-          <div className="bg-gray-900 rounded-2xl lg:rounded-3xl p-6 lg:p-20 flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-20">
+        <section className="max-w-6xl mx-auto px-4 md:px-20 py-6 md:py-10">
+          <div className="bg-gray-900 rounded-2xl md:rounded-3xl p-6 md:p-20 flex flex-col md:flex-row md:items-center gap-6 md:gap-20">
             <img
               src={testImg}
               alt="Join option"
-              className="w-full lg:w-96 h-48 lg:h-72 rounded-xl object-cover"
+              className="w-full md:w-96 h-48 md:h-72 rounded-xl object-cover"
             />
-            <div className="flex-1 space-y-4 lg:space-y-5">
-              <h2 className="text-2xl lg:text-5xl font-extrabold text-white">
+            <div className="flex-1 space-y-4 md:space-y-5">
+              <h2 className="text-2xl md:text-5xl font-extrabold text-white">
                 Join the Option
               </h2>
-              <div className="space-y-4 lg:space-y-5">
+              <div className="space-y-4 md:space-y-5">
                 <div>
                   <label className="block text-white font-bold mb-2">
                     Plan
@@ -275,18 +275,18 @@ export const Template2 = ({
 
       {/* Position Verification Section */}
       {verifyData?.length ? (
-        <section className="max-w-6xl mx-auto px-4 lg:px-20 py-6 lg:py-10">
-          <h2 className="text-2xl lg:text-5xl font-extrabold text-black mb-6 lg:mb-10">
+        <section className="max-w-6xl mx-auto px-4 md:px-20 py-6 md:py-10">
+          <h2 className="text-2xl md:text-5xl font-extrabold text-black mb-6 md:mb-10">
             Position Verification
           </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
             {verifyData?.map((item, index) => (
               <div
                 key={index}
-                className="bg-gray-100 rounded-xl p-4 lg:p-5 flex items-center justify-between"
+                className="bg-gray-100 rounded-xl p-4 md:p-5 flex items-center justify-between"
               >
-                <div className="flex items-center gap-3 lg:gap-5">
-                  <div className="w-12 lg:w-18 h-12 lg:h-18 rounded-lg overflow-hidden">
+                <div className="flex items-center gap-3 md:gap-5">
+                  <div className="w-12 md:w-18 h-12 md:h-18 rounded-lg overflow-hidden">
                     <img
                       src={
                         theme?.verifyImgs?.[index] ||
@@ -297,10 +297,10 @@ export const Template2 = ({
                     />
                   </div>
                   <div>
-                    <h3 className="font-bold text-black text-sm lg:text-base">
+                    <h3 className="font-bold text-black text-sm md:text-base">
                       {item.chainName}
                     </h3>
-                    <p className="text-xs lg:text-sm text-gray-600">
+                    <p className="text-xs md:text-sm text-gray-600">
                       Hold {item.tokenSymbol} ≥{" "}
                       {formatUnits(item.threshold, item.decimals)}
                     </p>
@@ -310,7 +310,7 @@ export const Template2 = ({
                   onClick={() => handleVerify(item)}
                   className="text-gray-400 hover:text-gray-600"
                 >
-                  <ArrowRight className="w-5 lg:w-6 h-5 lg:h-6" />
+                  <ArrowRight className="w-5 md:w-6 h-5 md:h-6" />
                 </button>
               </div>
             ))}
@@ -319,18 +319,18 @@ export const Template2 = ({
       ) : null}
 
       {/* Links & Apps Section */}
-      <section className="max-w-6xl mx-auto px-4 lg:px-20 py-6 lg:py-10">
-        <h2 className="text-2xl lg:text-5xl font-extrabold text-black mb-6 lg:mb-10">
+      <section className="max-w-6xl mx-auto px-4 md:px-20 py-6 md:py-10">
+        <h2 className="text-2xl md:text-5xl font-extrabold text-black mb-6 md:mb-10">
           Links & Apps
         </h2>
-        <div className="flex items-center justify-around gap-4 lg:gap-10">
+        <div className="flex items-center justify-around gap-4 md:gap-10">
           {theme.socials.map((link, index) => (
             <div
               key={index}
-              className="bg-gray-100 rounded-xl p-4 lg:p-8 flex flex-col items-center justify-center"
+              className="bg-gray-100 rounded-xl p-4 md:p-8 flex flex-col items-center justify-center"
             >
               <div
-                className={`w-12 lg:w-16 h-12 lg:h-16 rounded-xl lg:rounded-2xl flex items-center justify-center`}
+                className={`w-12 md:w-16 h-12 md:h-16 rounded-xl md:rounded-2xl flex items-center justify-center`}
               >
                 <img src={link.icon} alt={link.name} className="w-full" />
               </div>
@@ -359,7 +359,7 @@ export const Template2 = ({
                 <img
                   src={news.image}
                   alt={news.title}
-                  className="w-full md:w-64 lg:w-80 h-32 md:h-20 lg:h-24 object-cover rounded-xl flex-shrink-0"
+                  className="w-full md:w-64 md:w-80 h-32 md:h-20 md:h-24 object-cover rounded-xl flex-shrink-0"
                 />
                 {/* 文本内容和按钮容器 - 在手机端横向排列 */}
                 <div className="flex flex-row md:flex-1 md:min-w-0 items-center justify-between w-full md:w-auto gap-2">
@@ -437,29 +437,29 @@ export const Template2 = ({
 
       {/* Footer */}
       <footer className="w-full mx-auto bg-[#2AADA5]">
-        <div className="max-w-6xl mx-auto px-4 lg:px-20 py-6 lg:py-10">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-            <div className="flex items-center justify-center lg:justify-start">
+        <div className="max-w-6xl mx-auto px-4 md:px-20 py-6 md:py-10">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div className="flex items-center justify-center md:justify-start">
               <img
                 src={theme.avatar1}
                 alt="User 1"
-                className="w-10 lg:w-14 h-10 lg:h-14 rounded-full border-2 border-white"
+                className="w-10 md:w-14 h-10 md:h-14 rounded-full border-2 border-white"
               />
               <img
                 src={theme.avatar2}
                 alt="User 2"
-                className="w-10 lg:w-14 h-10 lg:h-14 rounded-full border-2 border-white -ml-2"
+                className="w-10 md:w-14 h-10 md:h-14 rounded-full border-2 border-white -ml-2"
               />
               <img
                 src={theme.avatar3}
                 alt="User 3"
-                className="w-10 lg:w-14 h-10 lg:h-14 rounded-full border-2 border-white -ml-2"
+                className="w-10 md:w-14 h-10 md:h-14 rounded-full border-2 border-white -ml-2"
               />
             </div>
             <div className="text-center">
               <h3 className="font-bold text-black">{domainName}.web3.club</h3>
             </div>
-            <p className="text-sm text-black text-center lg:text-left">
+            <p className="text-sm text-black text-center md:text-left">
               <span>Powered by </span>
               <span className="font-bold">Web3.Club</span>
               <span> and </span>

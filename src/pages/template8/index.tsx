@@ -132,7 +132,7 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
   return (
     <div className="min-h-screen bg-[#ffbd43] text-black">
       {/* Header & Hero Section */}
-      <div className="flex flex-col md:flex-row items-center justify-between px-4 md:px-16 py-6 md:py-15 gap-6">
+      <div className="flex flex-col md:flex-row items-center justify-between px-4 md:px-16 py-12 md:py-15 gap-6">
         {/* Left Content */}
         <div className="flex-1 max-w-2xl">
           {/* Header */}
@@ -175,7 +175,7 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
 
       {/* Join the Option Section */}
       {theme.showMemberOption ? (
-        <div className="px-4 md:px-10 py-6 md:py-10 mt-12 md:mt-24">
+        <div className="px-4 md:px-10 py-12 md:py-10 mt-12 md:mt-24">
           <div className="text-center mb-10">
             <h2 className=" text-xl md:text-[32px] font-bold uppercase font-['Poller_One'] text-black">
               JOIN THE OPTION
@@ -284,13 +284,13 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
         </div>
 
         <div className="bg-white/70 border border-black rounded-[40px] shadow-[0_10px_0_rgba(0,0,0,0.25)] p-6 md:p-15 mt-6">
-          <div className="flex justify-around items-center">
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-6 place-items-center">
             {theme.socials.map((app, index) => (
               <div
                 key={index}
                 className="flex flex-col items-center space-y-5 rounded-xl"
               >
-                <div className="w-12 h-12 md:w-[74px] md:h-[74px] flex items-center justify-center p-2">
+                <div className="w-21 h-21 md:w-[90px] md:h-[90px] flex items-center justify-center p-2">
                   <img
                     src={app.icon}
                     alt={app.name}
@@ -360,7 +360,7 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
                 <button
                   key={i + 1}
                   onClick={() => handlePageChange(i + 1)}
-                  className={`w-8 h-8 rounded flex items-center justify-center text-sm font-medium ${
+                  className={`w-12 h-8 rounded rounded-[15px] flex items-center justify-center text-sm font-medium ${
                     currentPage === i + 1
                       ? "bg-black text-white"
                       : "bg-transparent text-black border border-black"
@@ -374,7 +374,7 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
 
           {/* Decorative Circle */}
           <div className="flex justify-center mt-15">
-            <img src={"/heart.png"} alt="heart" className="w-50 h-50" />
+            <img src={"/heart.png"} alt="heart" className="w-20 h-20 md:w-50 md:h-50" />
           </div>
         </div>
       )}

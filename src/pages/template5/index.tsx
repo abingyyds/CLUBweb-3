@@ -117,7 +117,7 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
         </div>
 
         {/* Connect Wallet Button */}
-        <div className="flex justify-center lg:justify-start w-full max-w-[650px]">
+        <div className="flex justify-center md:justify-start w-full max-w-[650px]">
           <ConnectButton />
         </div>
 
@@ -125,7 +125,7 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
         {theme.showMemberOption && (
           <div className="flex flex-col items-start w-full gap-5">
             <div className="w-full border-t-2 border-b border-black/80 py-2">
-              <h2 className="text-black/80 text-xl md:text-2xl font-semibold uppercase tracking-wider">
+              <h2 className="text-black/80 text-center text-xl md:text-2xl font-semibold uppercase tracking-wider">
                 JOIN THE OPTION
               </h2>
             </div>
@@ -161,7 +161,7 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
                 .map((option, index) => (
                   <div
                     key={index}
-                    className="flex flex-row items-center lg:flex-col lg:items-start bg-transparent flex-1 gap-2.5"
+                    className="flex flex-row items-center md:flex-col md:items-start bg-transparent flex-1 gap-2.5"
                   >
                     <div className="w-[50px] h-[50px] overflow-hidden">
                       <img
@@ -194,7 +194,7 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
         {verifyData?.length > 0 && (
           <div className="flex flex-col items-start w-full gap-5">
             <div className="w-full border-t border-b border-black/80 py-2">
-              <h2 className="text-black/80 text-xl md:text-2xl font-semibold uppercase tracking-wider">
+              <h2 className="text-black/80 text-center text-xl md:text-2xl font-semibold uppercase tracking-wider">
                 POSITION VERIFICATION
               </h2>
             </div>
@@ -231,12 +231,12 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
         {/* Links & Apps Section */}
         <div className="flex flex-col items-start w-full gap-5">
           <div className="w-full border-t-2 border-black/80 pt-0.5 gap-1">
-            <h2 className="text-black/80 text-xl md:text-2xl font-semibold uppercase tracking-wider">
+            <h2 className="text-black/80 text-center text-xl md:text-2xl font-semibold uppercase tracking-wider">
               LINKS & APPS
             </h2>
           </div>
 
-          <div className="flex justify-around items-center gap-4 w-full">
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-4 w-full place-items-center">
             {theme?.socials?.map((social, index) => (
               <div
                 key={index}
@@ -265,7 +265,7 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
         {theme?.news && theme.news.length > 0 && (
           <div className="flex flex-col items-center w-full gap-5">
             <div className="w-full border-t-2 border-black/80 pt-0.5 gap-1">
-              <h2 className="text-black/80 text-xl md:text-2xl font-semibold uppercase tracking-wider">
+              <h2 className="text-black/80 text-center text-xl md:text-2xl font-semibold uppercase tracking-wider">
                 COMMUNITY NEWS
               </h2>
             </div>
@@ -318,7 +318,7 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
       {/* Footer */}
       <div className="flex flex-col items-center w-full max-w-[960px] px-5 md:px-10 py-10 mt-5">
         <div className="w-full border-2 border-black p-0.5">
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-2.5 border border-black/80 px-5 py-4 h-[130px] lg:h-[60px]">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-2.5 border border-black/80 px-5 py-4 h-[130px] md:h-[60px]">
             <div className="w-8 h-8 bg-black rounded overflow-hidden flex items-center justify-center">
               <svg
                 width="24"
