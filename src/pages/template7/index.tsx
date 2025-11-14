@@ -131,7 +131,9 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
             {/* 标题区域 */}
             <div className="flex items-center gap-1 text-sm">
               <span className="text-[#98faec]">&lt;title&gt;</span>
-              <span className="text-white">{domainName}.WEB3.CLUB</span>
+              <span className="text-white uppercase">
+                {domainName}.WEB3.CLUB
+              </span>
               <span className="text-[#98faec]">&lt;/title&gt;</span>
             </div>
 
@@ -180,7 +182,9 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
             {/* 浏览器标题栏 */}
             <div className="flex items-center justify-between bg-[#202124] rounded-t-lg px-3 py-4">
               <BrowserControls />
-              <span className="hidden md:inline text-white text-xs">Join the option</span>
+              <span className="hidden md:inline text-white text-xs">
+                Join the option
+              </span>
               <div className="w-[52px]"></div>
             </div>
 
@@ -343,7 +347,9 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
             {/* 浏览器标题栏 */}
             <div className="flex items-center justify-between bg-[#202124] rounded-t-lg px-3 py-4">
               <BrowserControls />
-              <span className="hidden md:inline text-white text-xs">links&Apps</span>
+              <span className="hidden md:inline text-white text-xs">
+                links&Apps
+              </span>
               <div className="w-[52px]"></div>
             </div>
 

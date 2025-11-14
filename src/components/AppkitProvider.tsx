@@ -10,13 +10,13 @@ import { globalConfig } from "@/constants";
 const queryClient = new QueryClient();
 
 // 1. Get projectId from https://dashboard.reown.com
-const projectId = "6b037f0da1f5fe47510a11cbdb5bca85";
+const projectId = "1ef83f53a9bad6f0a1769137eb77418c";
 
 // 2. Create a metadata object - optional
 const metadata = {
   name: "Web3 Club",
   description: "Web3 Club",
-  url: "https://example.com", // origin must match your domain & subdomain
+  url: window.location.href, // origin must match your domain & subdomain
   icons: ["https://avatars.githubusercontent.com/u/179229932"],
 };
 
