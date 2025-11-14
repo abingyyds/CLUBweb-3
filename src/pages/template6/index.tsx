@@ -158,7 +158,7 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
               </div>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-4 md:gap-6 max-w-4xl mx-auto">
+            <div className="flex flex-wrap justify-start md:justify-center gap-4 md:gap-6 mx-auto">
               {[
                 lifetimePrice && {
                   icon: theme?.lifeTimeImg || (
@@ -197,7 +197,7 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
                 .map((option, index) => (
                   <div
                     key={index}
-                    className={`group border-gray-200 bg-white rounded-2xl p-6 shadow-lg border-2 transition-all hover:shadow-xl hover:border-[#ef5da8] hover:bg-[#ef5da8] hover:text-white`}
+                    className={`w-[162px] md:w-auto group border-gray-200 bg-white rounded-2xl p-6 shadow-lg border-2 transition-all hover:shadow-xl hover:border-[#ef5da8] hover:bg-[#ef5da8] hover:text-white`}
                   >
                     <div className="text-center">
                       <div className="relative mb-4 flex justify-center">
@@ -225,7 +225,7 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
                       </p>
                       <button
                         onClick={() => handleJoin(option.type)}
-                        className={`bg-[#ef5da8] text-white group-hover:bg-white group-hover:text-[#ef5da8] w-full py-3 px-6 rounded-full font-medium transition-colors `}
+                        className={`bg-[#ef5da8] text-white group-hover:bg-white group-hover:text-[#ef5da8] w-full py-3 px-0 md:px-6 rounded-full font-medium transition-colors `}
                       >
                         Join Now
                       </button>
