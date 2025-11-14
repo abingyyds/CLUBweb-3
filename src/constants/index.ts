@@ -37,12 +37,12 @@ const chainConfig = isDev
       chain: sepolia,
     }
   : {
-      clubPassFactoryAddress: "0xf8e50140d0bde31b63ab06b9082ad1ed512425c1",
-      simpleCrossChainAddress: "0x85a803becb816c01c880cbb5a2d782d4d1b2b002",
-      temporaryMembershipAddress: "0xa626e40f61e3fb3c56c25333fd6c46477a6f650f",
-      tokenBasedAccessAddress: "0x8a734d99260543f67f922f2e1575f052b117878e",
-      clubMembershipQueryAddress: "0xe61daf23a61baad29b97e717c696bb1d0db33d3e",
-      web3ClubNFTAddress: "0xd4b4aEf79F6652e42306F574B91B181087b3c93A",
+      clubPassFactoryAddress: "0x27d7E9855250d6Bc84850377E533219FB8794b92",
+      simpleCrossChainAddress: "0x8cEdb654f2D0157276b9E44c610b0c967C211a84",
+      temporaryMembershipAddress: "0xFb5567Aaf6057bbf5D729d35f56C5688B36cC940",
+      tokenBasedAccessAddress: "0xd286EE3fD7115aB0bf1dC99f8Ce8685EAE200372",
+      clubMembershipQueryAddress: "0x2A152405afB201258D66919570BbD4625455a65f",
+      web3ClubNFTAddress: "0xe51DaB702d2A49791488d259CebbA583437727b5",
       chain: base,
     };
 
