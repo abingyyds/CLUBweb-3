@@ -69,28 +69,24 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
       />
       <div
         className="w-full px-5 py-5 text-center text-sm font-bold text-white tracking-wider 
-                      lg:flex lg:justify-between lg:items-center lg:px-20 lg:py-5 lg:min-w-[1080px] lg:text-left"
+                      md:flex md:justify-between md:items-center md:px-20 md:py-5 md:min-w-[1080px] md:text-left"
       >
-        <p className="lg:flex-grow">{club}.web3.club</p>
+        <p className="md:flex-grow">{club}.web3.club</p>
         <ConnectButton className="hidden md:inline-flex" />
       </div>
 
       {/* Hero Section */}
       <div
         className="flex flex-col items-center w-full px-5 py-10 gap-5 
-                      lg:relative lg:flex-row lg:justify-between lg:items-end lg:px-20 lg:py-20 lg:min-w-[1080px] lg:mx-auto"
+                      md:relative md:flex-row md:justify-between md:items-end md:px-20 md:py-20 md:min-w-[1080px] md:mx-auto"
       >
         {/* Desktop Background Image */}
-        <div className="hidden lg:block size-[400px] rounded-full lg:absolute lg:top-0 lg:left-1/2 lg:transform lg:-translate-x-1/2 bg-[#6D8F20]">
-          <img
-            src={theme.heroImg}
-            alt="Hero Background"
-            className="size-[360px]"
-          />
+        <div className="hidden md:block size-[400px] rounded-full md:absolute md:top-0 md:left-1/2 md:transform md:-translate-x-1/2 bg-[#6D8F20]">
+           <img src={theme.heroImg} alt="Hero Background" className="size-[360px]"/>
         </div>
 
         {/* Mobile/Tablet Hero Content */}
-        <div className="flex flex-col items-center gap-5 lg:hidden">
+        <div className="flex flex-col items-center gap-5 md:hidden">
           <h1 className="text-white text-2xl md:text-3xl font-bold text-center leading-9 md:leading-10 tracking-wider uppercase">
             {theme.heroTitle?.split(" ").map((it, i) => {
               return (
@@ -121,7 +117,7 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
         </div>
 
         {/* Desktop Hero Content */}
-        <div className="hidden lg:flex lg:flex-col lg:items-start lg:z-10 lg:relative">
+        <div className="hidden md:flex md:flex-col md:items-start md:z-10 md:relative">
           <h1 className="text-white text-5xl xl:text-6xl font-bold leading-12 xl:leading-14 tracking-wider uppercase mb-4">
             {theme.heroTitle?.split(" ").map((it, i) => {
               return (
@@ -137,7 +133,7 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
           </p>
         </div>
 
-        <div className="hidden lg:block lg:z-10 lg:relative md:w-[250px]">
+        <div className="hidden md:block md:z-10 md:relative md:w-[250px]">
           <p className="text-white text-base xl:text-[14px] leading-6 xl:leading-7 tracking-wider">
             {theme.clubIntroduction1} <br />
             <br />
@@ -201,12 +197,12 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
       </div>
 
       {/* Main Content */}
-      <div className="flex flex-col w-full gap-12 px-4 md:px-8 lg:px-6 lg:gap-16 lg:max-w-[1180px] lg:mx-auto">
+      <div className="flex flex-col w-full gap-12 px-4 md:px-8 md:px-6 md:gap-16 md:max-w-[1180px] md:mx-auto">
         {/* Join Options Section */}
         {theme.showMemberOption ? (
-          <div className="flex flex-col items-center gap-12 lg:gap-16">
+          <div className="flex flex-col items-center gap-12 md:gap-16">
             <div className="flex flex-col gap-2.5 w-full">
-              <h2 className="text-white text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-center leading-5 md:leading-6 lg:leading-8 xl:leading-10 tracking-wider uppercase">
+              <h2 className="text-white text-xl md:text-2xl md:text-3xl xl:text-4xl font-bold text-center leading-5 md:leading-6 md:leading-8 xl:leading-10 tracking-wider uppercase">
                 Join the Option
               </h2>
             </div>
@@ -282,15 +278,15 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
 
         {/* Position Verification Section */}
         {verifyData?.length ? (
-          <div className="flex flex-col items-center gap-12 lg:gap-16">
+          <div className="flex flex-col items-center gap-12 md:gap-16">
             <div className="flex flex-col gap-2.5 w-full">
-              <h2 className="text-white text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-center leading-5 md:leading-6 lg:leading-8 xl:leading-10 tracking-wider uppercase">
+              <h2 className="text-white text-xl md:text-2xl md:text-3xl xl:text-4xl font-bold text-center leading-5 md:leading-6 md:leading-8 xl:leading-10 tracking-wider uppercase">
                 Position Verification
               </h2>
             </div>
 
             {/* Frame 9 - 三链验证：按 Figma 文案与结构实现，使用当前图片资源且不加白色圆底 */}
-            <div className="w-full max-w-[1080px] mx-auto flex flex-col lg:flex-row items-center lg:items-start justify-center gap-6 md:gap-[50px]">
+            <div className="w-full max-w-[1080px] mx-auto flex flex-col md:flex-row items-center md:items-start justify-center gap-6 md:gap-[50px]">
               {/* ETH Chain */}
               {verifyData?.map((it, index) => {
                 return (
@@ -343,7 +339,7 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
                       </div>
                     </div>
                     {index < verifyData?.length - 1 && (
-                      <div className="hidden lg:block w-px h-[100px] bg-white/60" />
+                      <div className="hidden md:block w-px h-[100px] bg-white/60" />
                     )}
                   </React.Fragment>
                 );
@@ -389,7 +385,7 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
             </div>
 
             
-            <div className="hidden lg:block w-px h-[100px] bg-white/60" />
+            <div className="hidden md:block w-px h-[100px] bg-white/60" />
 
             
             <div className="flex items-center gap-10 flex-1">
@@ -435,20 +431,20 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
         ) : null}
 
         {/* Links & Apps Section */}
-        <div className="flex flex-col items-center gap-12 lg:gap-16">
+        <div className="flex flex-col items-center gap-12 md:gap-16">
           <div className="flex flex-col gap-2.5 w-full">
-            <h2 className="text-white text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-center leading-5 md:leading-6 lg:leading-8 xl:leading-10 tracking-wider uppercase">
+            <h2 className="text-white text-xl md:text-2xl md:text-3xl xl:text-4xl font-bold text-center leading-5 md:leading-6 md:leading-8 xl:leading-10 tracking-wider uppercase">
               Links & Apps
             </h2>
           </div>
 
-          <div className="flex items-center justify-around gap-4 w-full lg:gap-2.5 px-4 lg:px-16">
+          <div className="flex items-center justify-around gap-4 w-full md:gap-2.5 px-4 md:px-16">
             {theme.socials.map((app, index) => {
               // const item = socialsData.find((item) => item.name === app.name);
               return (
                 <div
                   key={index}
-                  className="flex flex-col items-center justify-center px-[20px] py-[30px] gap-5 lg:px-[20px] lg:py-[30px] lg:gap-6 rounded-2xl"
+                  className="flex flex-col items-center justify-center px-[20px] py-[30px] gap-5 md:px-[20px] md:py-[30px] md:gap-6 rounded-2xl"
                 >
                   <div
                     className={`flex items-center justify-center size-16 rounded-2xl`}
@@ -459,15 +455,15 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
                       className="w-full h-auto"
                     />
                   </div>
-                  <div className="flex flex-col items-center gap-2.5 lg:gap-3">
-                    <p className="text-white text-base md:text-lg lg:text-xl font-bold">
+                  <div className="flex flex-col items-center gap-2.5 md:gap-3">
+                    <p className="text-white text-base md:text-lg md:text-xl font-bold">
                       {app.name}
                     </p>
                     <button
                       onClick={() => {
                         window.open(app.link, "_blank");
                       }}
-                      className={`bg-[#bfea52] text-black text-sm md:text-base lg:text-lg font-medium rounded-2xl px-5 py-2 lg:px-6 lg:py-3 hover:opacity-90 transition-opacity`}
+                      className={`bg-[#bfea52] text-black text-sm md:text-base md:text-lg font-medium rounded-2xl px-5 py-2 md:px-6 md:py-3 hover:opacity-90 transition-opacity`}
                     >
                       {app.text}
                     </button>
@@ -480,14 +476,14 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
 
         {/* Community News Section */}
         {theme?.news && theme.news.length > 0 && (
-          <div className="flex flex-col items-center gap-12 lg:gap-16">
+          <div className="flex flex-col items-center gap-12 md:gap-16">
             <div className="flex flex-col gap-2.5 w-full">
-              <h2 className="text-white text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-center leading-5 md:leading-6 lg:leading-8 xl:leading-10 tracking-wider uppercase">
+              <h2 className="text-white text-xl md:text-2xl md:text-3xl xl:text-4xl font-bold text-center leading-5 md:leading-6 md:leading-8 xl:leading-10 tracking-wider uppercase">
                 Community News
               </h2>
             </div>
 
-            <div className="flex flex-col w-full px-5 gap-8 lg:gap-10 lg:px-0">
+            <div className="flex flex-col w-full px-5 gap-8 md:gap-10 md:px-0">
               {currentNewsData.map((news, index) => (
                 <div
                   key={index}
@@ -605,7 +601,7 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
       </div>
 
       {/* Footer */}
-      <footer className="w-full px-5 py-5 lg:px-20 lg:py-5 lg:max-w-[1080px] lg:mx-auto flex items-center md:justify-between justify-center gap-5 flex-wrap">
+      <footer className="w-full px-5 py-5 md:px-20 md:py-5 md:max-w-[1080px] md:mx-auto flex items-center md:justify-between justify-center gap-5 flex-wrap">
         <div className="inline-flex items-center justify-center gap-2.5 rounded-2xl bg-[#bfea52] px-4 py-1.5">
           <p className="text-black text-sm font-bold uppercase tracking-wider">
             {club}.WEB3.CLUB

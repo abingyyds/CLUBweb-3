@@ -139,9 +139,9 @@ export const Template1: React.FC<{ theme?: ITheme; club: string }> = ({
       </div>
 
       {/* Main Content Container */}
-      <div className="flex flex-col items-stretch w-full max-w-[1280px] px-4 sm:px-6 md:px-8 py-8 md:py-10 gap-8 sm:gap-10 md:gap-12 lg:gap-16 overflow-hidden">
+      <div className="flex flex-col items-stretch w-full max-w-[1280px] px-4 sm:px-6 md:px-8 py-8 md:py-10 gap-8 sm:gap-10 md:gap-12 md:gap-16 overflow-hidden">
         {/* Hero Section */}
-        <div className="flex flex-col items-center bg-[#f8f8f8] rounded-[20px] md:rounded-[40px] px-6 sm:px-8 md:px-12 lg:px-16 py-8 sm:py-12 md:py-16 relative">
+        <div className="flex flex-col items-center bg-[#f8f8f8] rounded-[20px] md:rounded-[40px] px-6 sm:px-8 md:px-12 md:px-16 py-8 sm:py-12 md:py-16 relative">
           {/* Floating Hero Cells */}
           <div className="absolute top-20 md:top-32 right-8 md:right-48 px-2 md:px-4 py-4 md:py-8 hidden sm:block">
             <img
@@ -181,14 +181,14 @@ export const Template1: React.FC<{ theme?: ITheme; club: string }> = ({
           </div>
 
           <div className="flex flex-col items-center gap-3 md:gap-5 pt-8 md:pt-16 pb-8 md:pb-12 px-[30px] w-full max-w-6xl mx-auto">
-            <h1 className="text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center leading-tight">
+            <h1 className="text-black text-2xl sm:text-3xl md:text-4xl md:text-5xl font-bold text-center leading-tight">
               {theme.heroTitle}
             </h1>
             <div className="flex items-center gap-2 md:gap-2.5 flex-wrap justify-center">
               <div className="w-8 h-8 md:w-12 md:h-12 rounded-full border-2 border-white bg-gray-300 shadow-lg">
                 <img src={theme?.avatar1} className="w-full" alt="" />
               </div>
-              <span className="text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
+              <span className="text-black text-2xl sm:text-3xl md:text-4xl md:text-5xl font-bold">
                 {theme.heroGradientText}
               </span>
               <div className="flex">
@@ -327,7 +327,7 @@ export const Template1: React.FC<{ theme?: ITheme; club: string }> = ({
         ) : null}
 
         {/* Links & Apps Section */}
-        <div className="flex flex-col items-center gap-6 md:gap-8 py-10 md:py-12 lg:py-16 w-full max-w-6xl mx-auto">
+        <div className="flex flex-col items-center gap-6 md:gap-8 py-10 md:py-12 md:py-16 w-full max-w-6xl mx-auto">
           <h2 className="text-black text-2xl md:text-3xl font-bold text-center">
             Links & Apps
           </h2>
@@ -380,7 +380,7 @@ export const Template1: React.FC<{ theme?: ITheme; club: string }> = ({
                   <img
                     src={news.image}
                     alt={news.title}
-                    className="w-full md:w-64 lg:w-80 h-32 md:h-20 lg:h-24 object-cover rounded-xl flex-shrink-0"
+                    className="w-full md:w-64 md:w-80 h-32 md:h-20 md:h-24 object-cover rounded-xl flex-shrink-0"
                   />
                   {/* 文本内容和按钮容器 - 在手机端横向排列 */}
                   <div className="flex flex-row md:flex-1 md:min-w-0 items-center justify-between w-full md:w-auto gap-2">

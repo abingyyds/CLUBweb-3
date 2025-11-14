@@ -78,7 +78,7 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
       <div className="w-full max-w-[1280px] mx-auto bg-white">
         {/* Header Section with Purple Gradient Background */}
         <div
-          className="px-5 sm:px-8 md:px-[60px] lg:px-[100px] pt-5 pb-[40px] md:pb-[60px]"
+          className="px-5 sm:px-8 md:px-[60px] md:px-[100px] pt-5 pb-[40px] md:pb-[60px]"
           style={{
             background:
               "linear-gradient(0deg, rgba(242, 234, 255, 0) 0%, #e3b9f9 100%)",
@@ -506,7 +506,7 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
         ) : null}
 
         {/* Links & Apps Section */}
-        <div className="flex flex-col items-center justify-center px-5 sm:px-8 md:px-[60px] lg:px-[100px] py-[40px] md:py-[60px] gap-[30px]">
+        <div className="flex flex-col items-center justify-center px-5 sm:px-8 md:px-[60px] md:px-[100px] py-[40px] md:py-[60px] gap-[30px]">
           <h2 className="text-black text-[32px] font-bold leading-[38px] tracking-[-0.32px] text-center w-full max-w-[381px] mx-auto md:mx-0">
             Links & Apps
           </h2>
@@ -536,12 +536,12 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
 
         {/* Community News Section */}
         {theme?.news && theme.news.length > 0 && (
-          <div className="px-5 sm:px-8 md:px-[60px] lg:px-[100px] pb-[40px] md:pb-[60px]">
+          <div className="px-5 sm:px-8 md:px-[60px] md:px-[100px] pb-[40px] md:pb-[60px]">
             <h2 className="text-black text-[32px] font-bold leading-[38px] tracking-[-0.32px] text-center mb-[40px]">
               Community News
             </h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-[40px]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 mb-[40px]">
               {currentNewsData.map((news, index) => (
                 <div
                   key={index}
@@ -619,7 +619,7 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
         )}
 
         {/* Footer */}
-        <div className="flex flex-col items-center gap-4 px-5 sm:px-8 md:px-[60px] lg:px-[100px] py-[40px]">
+        <div className="flex flex-col items-center gap-4 px-5 sm:px-8 md:px-[60px] md:px-[100px] py-[40px]">
           <img src="/Union2.png" className="w-[118px]" alt="" />
 
           <p className="text-black text-base font-bold leading-[19px] tracking-[-0.16px] uppercase">

@@ -81,15 +81,15 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
         }}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-4 md:px-20 py-4 md:py-6">
-          <div className="flex items-center gap-2">
+        <div className="flex items-center justify-center md:justify-between px-4 md:px-20 py-4 md:py-6">
+          <div className="flex items-center gap-2 w-full justify-center md:w-auto md:justify-start">
             <img src="/ecg_heart.png" className="w-6 h-6 text-[#ef5da8]" />
             <span className="text-black font-bold text-base md:text-lg">
               {domainName}.web3.club
             </span>
           </div>
           <ConnectButton
-            className="bg-[#ef5da8] invisible lg:visible hover:bg-[#d64a94] text-white px-5 py-2 rounded-full text-sm font-medium"
+            className="bg-[#ef5da8] hidden md:flex  hover:bg-[#d64a94] text-white px-5 py-2 rounded-full text-sm font-medium"
             icon="/arrow-circle.png"
           />
         </div>
@@ -99,22 +99,26 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
           {/* Hero Content */}
           <div className="flex-1 max-w-md">
             <div className="relative mb-10">
-              <h1 className="text-3xl md:text-5xl font-bold text-black uppercase leading-tight">
+              <h1 className="absolute z-[99] top-0 left-0 text-center md:text-left text-3xl md:text-5xl font-bold text-black uppercase leading-tight">
                 {theme.heroTitle}{" "}
                 <span className="text-[#ef5da8]">{theme.heroGradientText}</span>
               </h1>
               {/* Decorative underline */}
-              <div className="absolute top-8 md:top-12 left-64 w-32 h-3 bg-[#ef5da8] opacity-30 transform rotate-1"></div>
+              <img
+                src={"/lineicon.png"}
+                alt="Vector"
+                className="absolute z-[1] top-6 md:top-8 right-8 md:right-[40px] w-20 md:w-28 h-auto opacity-80"
+              />
             </div>
 
-            <p className="text-black/80 text-sm md:text-base leading-relaxed mb-8">
+            <p className="text-black/80 mt-24 md:mt-32 text-sm md:text-base leading-relaxed mb-8">
               {theme.clubIntroduction1}
               <br />
               <br />
               {theme.clubIntroduction2}
             </p>
 
-            <div className="relative w-fit">
+            <div className="relative w-fit mx-auto md:mx-0">
               <ConnectButton
                 className="bg-[#ef5da8] hover:bg-[#d64a94] text-white px-5 py-2 rounded-full text-sm font-medium relative z-10"
                 icon="/arrow-circle.png"
@@ -150,11 +154,11 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
                 <h2 className="text-2xl md:text-3xl font-bold text-black uppercase relative z-10">
                   Join the <span className="text-[#ef5da8]">Option</span>
                 </h2>
-                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-[#ef5da8]"></div>
+                {/* <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-[#ef5da8]"></div> */}
               </div>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 max-w-4xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-4xl mx-auto">
               {[
                 lifetimePrice && {
                   icon: theme?.lifeTimeImg || (
@@ -245,7 +249,7 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
                 <h2 className="text-2xl md:text-3xl font-bold text-black uppercase relative z-10">
                   Position <span className="text-[#ef5da8]">Verification</span>
                 </h2>
-                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-[#ef5da8]"></div>
+                {/* <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-[#ef5da8]"></div> */}
               </div>
             </div>
 
@@ -301,7 +305,7 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
               <h2 className="text-2xl md:text-3xl font-bold text-black uppercase relative z-10">
                 Links <span className="text-[#ef5da8]">&</span> Apps
               </h2>
-              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-[#ef5da8]"></div>
+              {/* <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-[#ef5da8]"></div> */}
             </div>
           </div>
 
@@ -337,7 +341,7 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
                 <h2 className="text-2xl md:text-3xl font-bold text-black uppercase relative z-10">
                   Community <span className="text-[#ef5da8]">News</span>
                 </h2>
-                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-[#ef5da8]"></div>
+                {/* <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-[#ef5da8]"></div> */}
               </div>
             </div>
 
