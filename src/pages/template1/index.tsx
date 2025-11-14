@@ -327,11 +327,11 @@ export const Template1: React.FC<{ theme?: ITheme; club: string }> = ({
         ) : null}
 
         {/* Links & Apps Section */}
-        <div className="flex flex-col items-center gap-6 md:gap-8 py-10 md:py-12 md:py-16 w-full max-w-6xl mx-auto">
+        <div className="flex flex-col items-center gap-6 md:gap-8 py-10 md:py-16 w-full max-w-6xl mx-auto">
           <h2 className="text-black text-2xl md:text-3xl font-bold text-center">
             Links & Apps
           </h2>
-          <div className="flex items-center justify-around gap-4 w-full max-w-6xl">
+          <div className="flex flex-wrap items-center justify-around gap-4 w-full max-w-6xl">
             {theme?.socials?.map((app, index) => (
               <div
                 key={index}

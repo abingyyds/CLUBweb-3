@@ -78,7 +78,7 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
       <div className="w-full max-w-[1280px] mx-auto bg-white">
         {/* Header Section with Purple Gradient Background */}
         <div
-          className="px-5 sm:px-8 md:px-[60px] md:px-[100px] pt-5 pb-[40px] md:pb-[60px]"
+          className="px-5 sm:px-8 md:px-[100px] pt-5 pb-[40px] md:pb-[60px]"
           style={{
             background:
               "linear-gradient(0deg, rgba(242, 234, 255, 0) 0%, #e3b9f9 100%)",
@@ -320,7 +320,7 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
                 lifetimePrice && {
                   icon: theme?.lifeTimeImg,
                   title: "Lifetime Member",
-                  price: `$${lifetimePrice}`,
+                  price: `${lifetimePrice} ETH`,
                   type: "lifetime",
                   description: "For organizing every corner of your work life.",
                   bgColor: "#ffedf9",
@@ -332,7 +332,7 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
                 monthPrice && {
                   icon: theme?.monthImg,
                   title: "Monthly Membership",
-                  price: `$${monthPrice}`,
+                  price: `${monthPrice} ETH`,
                   type: "month",
                   description:
                     "A place for small groups to plan get organized.",
@@ -345,7 +345,7 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
                 quarterPrice && {
                   icon: theme?.quarterImg,
                   title: "Quarterly Membership",
-                  price: `$${quarterPrice}`,
+                  price: `${quarterPrice} ETH`,
                   type: "quarter",
                   description:
                     "Perfect for seasonal planning and organization.",
@@ -358,7 +358,7 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
                 yearPrice && {
                   icon: theme?.yearImg,
                   title: "Yearly Membership",
-                  price: `$${yearPrice}`,
+                  price: `${yearPrice} ETH`,
                   type: "year",
                   description:
                     "For companies using PRODUCT NAME to connect several teams tools.",
@@ -536,7 +536,7 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
 
         {/* Community News Section */}
         {theme?.news && theme.news.length > 0 && (
-          <div className="px-5 sm:px-8 md:px-[60px] md:px-[100px] pb-[40px] md:pb-[60px]">
+          <div className="px-5 sm:px-8 md:px-[100px] pb-[40px] md:pb-[60px]">
             <h2 className="text-black text-[32px] font-bold leading-[38px] tracking-[-0.32px] text-center mb-[40px]">
               Community News
             </h2>
@@ -549,14 +549,20 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
                   onClick={() => window.open(news.link, "_blank")}
                 >
                   <div
-                    className="w-full h-[160px] md:h-[200px] rounded-lg mb-4 bg-cover bg-center relative"
-                    style={{ backgroundImage: `url(${news.image})` }}
+                    className="w-full h-[260px] md:h-[280px] rounded-[40px] mb-4 bg-cover bg-center relative"
+                    style={{
+                      backgroundImage: `linear-gradient(180deg, rgba(255, 237, 249, 0) 0%, #FFEDF9 63.57%), url(${news.image})`,
+                      backgroundPosition: "center",
+                      backgroundSize: "cover",
+                      backgroundRepeat: "no-repeat",
+                      backgroundColor: "#FFEDF9",
+                    }}
                   >
                     <div className="absolute bottom-4 left-4">
-                      <h3 className="text-white text-lg font-bold mb-2">
+                      <h3 className="text-black text-[18px] font-bold mb-2">
                         {news.title}
                       </h3>
-                      <p className="text-white text-sm leading-[17px] tracking-[-0.14px]">
+                      <p className="text-[rgba(0,0,0,0.60)] text-[14px] leading-[17px] tracking-[-0.14px]">
                         {news.category}
                       </p>
                     </div>

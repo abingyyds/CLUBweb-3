@@ -1,3 +1,4 @@
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import React from "react";
 
 interface PaginationProps {
@@ -79,7 +80,7 @@ const Pagination: React.FC<PaginationProps> = ({
           onClick={handlePrevious}
           className={`w-10 py-2 px-2.5 rounded-[5px] text-sm transition-colors cursor-pointer ${bgClassName} ${textClassName} ${hoverTextClassName}`}
         >
-          &lt;
+          <ChevronLeft className="w-5 h-5" />
         </button>
       )}
 
@@ -109,7 +110,7 @@ const Pagination: React.FC<PaginationProps> = ({
           onClick={handleNext}
           className={`w-10 py-2 px-2.5 rounded-[5px] text-sm ml-2 transition-colors cursor-pointer ${bgClassName} ${textClassName} ${hoverTextClassName}`}
         >
-          &gt;
+          <ChevronRight className="w-5 h-5" />
         </button>
       )}
     </div>

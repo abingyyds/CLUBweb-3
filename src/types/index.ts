@@ -24,6 +24,8 @@ export interface ITheme {
   quarterImg: string;
   verifyImgs: string[];
   showMemberOption: boolean;
+  badge1: string;
+  badge2: string;
 }
 
 export interface News {
