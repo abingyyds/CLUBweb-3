@@ -112,7 +112,7 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
 
       {/* Tags */}
       <div className="absolute z-20 bottom-[-60px] left-0 md:-left-6 bg-black text-white px-6 py-2 rounded-2xl backdrop-blur-sm">
-        <span className="text-sm md:text-2xl font-medium">Fresh</span>
+        <span className="text-sm md:text-2xl font-medium">{theme.badge1}</span>
       </div>
 
       {/* Floating Stars */}
@@ -121,7 +121,7 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
       </div>
 
       <div className="absolute z-20 top-20 right-[-33%] md:-right-20 bg-black text-white px-6 py-2 rounded-2xl backdrop-blur-sm">
-        <span className="text-sm md:text-2xl font-medium">Summer</span>
+        <span className="text-sm md:text-2xl font-medium">{theme.badge2}</span>
       </div>
 
       {/* Secondary Phone Frame */}
@@ -184,15 +184,15 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
           </div>
 
           <div className="bg-[#252525] rounded-[50px] shadow-[0_10px_0_rgba(0,0,0,0.25)] p-6 md:p-16">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
+            <div className="flex flex-col md:flex-row flex-wrap justify-center gap-6 md:gap-10">
               {membershipOptions.length > 0
                 ? membershipOptions.map((option, index) => {
                     return (
                       <div
                         key={index}
-                        className="flex flex-col items-start space-y-2.5"
+                        className="flex flex-col items-center md:items-start space-y-2.5"
                       >
-                        <div className="flex flex-col items-start space-y-3 mb-2.5">
+                        <div className="flex flex-col items-center md:items-start space-y-3 mb-2.5">
                           <img
                             src={option.icon}
                             alt={option.title}
@@ -284,13 +284,13 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
         </div>
 
         <div className="bg-white/70 border border-black rounded-[40px] shadow-[0_10px_0_rgba(0,0,0,0.25)] p-6 md:p-15 mt-6">
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-6 place-items-center">
+          <div className="flex flex-wrap justify-around gap-6 place-items-center">
             {theme.socials.map((app, index) => (
               <div
                 key={index}
                 className="flex flex-col items-center space-y-5 rounded-xl"
               >
-                <div className="w-21 h-21 md:w-[90px] md:h-[90px] flex items-center justify-center p-2">
+                <div className="size-[74px] flex items-center justify-center p-2">
                   <img
                     src={app.icon}
                     alt={app.name}
@@ -374,7 +374,11 @@ export const Template8: React.FC<Template8Props> = ({ club, theme }) => {
 
           {/* Decorative Circle */}
           <div className="flex justify-center mt-15">
-            <img src={"/heart.png"} alt="heart" className="w-20 h-20 md:w-50 md:h-50" />
+            <img
+              src={"/heart.png"}
+              alt="heart"
+              className="w-20 h-20 md:w-50 md:h-50"
+            />
           </div>
         </div>
       )}

@@ -15,7 +15,9 @@ import {
   zksync,
 } from "viem/chains";
 
-const isDev = false;
+const isLocal = window.location.hostname === "localhost";
+
+const isDev = isLocal;
 
 const base = {
   ...baseViem,

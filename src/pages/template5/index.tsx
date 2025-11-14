@@ -201,7 +201,7 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
 
             <div className="flex flex-col md:flex-row items-start w-full gap-10">
               {verifyData.map((item, index) => (
-                <div key={index} className="flex items-center gap-5 flex-1">
+                <div key={index} className="flex items-center gap-5 ">
                   <div className="w-[70px] h-[70px] rounded-full overflow-hidden">
                     <img
                       src={
@@ -221,6 +221,12 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
                       Hold {item.tokenSymbol} ≥{" "}
                       {formatUnits(item.threshold, item.decimals)}
                     </p>
+                    <button
+                      onClick={() => handleVerify(item)}
+                      className="bg-[#454545] text-white text-sm font-medium uppercase tracking-wider px-5 py-2 rounded-sm hover:bg-[#555] transition-colors flex-shrink-0"
+                    >
+                      Verify
+                    </button>
                   </div>
                 </div>
               ))}
@@ -236,7 +242,7 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
             </h2>
           </div>
 
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-4 w-full place-items-center">
+          <div className="flex flex-wrap justify-around gap-4 w-full place-items-center">
             {theme?.socials?.map((social, index) => (
               <div
                 key={index}
@@ -303,12 +309,16 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
               </div>
 
               {/* Load More Button */}
-              {totalPages > 1 && (
-                <div className="flex justify-center w-full">
-                  <button className="bg-[#454545] text-white text-sm font-medium uppercase tracking-wider px-5 py-2 rounded-sm hover:bg-[#555] transition-colors">
-                    Load more
-                  </button>
-                </div>
+              {theme.news.length > 4 && (
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={handlePageChange}
+                  textClassName="text-white/80"
+                  bgClassName="bg-[#454545]"
+                  activeTextClassName="text-white"
+                  hoverTextClassName="hover:text-white"
+                />
               )}
             </div>
           </div>

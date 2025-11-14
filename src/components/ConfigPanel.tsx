@@ -30,6 +30,7 @@ import {
 import { Plus, Trash2, Settings } from "lucide-react";
 import { ITheme } from "@/types";
 import { Switch } from "./ui/switch";
+import { toast } from "sonner";
 
 interface ConfigPanelProps {
   config: ITheme;
@@ -157,26 +158,49 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Template ID</FormLabel>
-                        <Select
-                          value={field.value}
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                        >
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select a template" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            {Array.from({ length: 10 }, (_, i) =>
-                              String(i + 1)
-                            ).map((v) => (
-                              <SelectItem key={v} value={v}>
-                                {v}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                        <div className="flex items-center gap-2">
+                          <Select
+                            value={field.value}
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                          >
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select a template" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              {Array.from({ length: 10 }, (_, i) =>
+                                String(i + 1)
+                              ).map((v) => (
+                                <SelectItem key={v} value={v}>
+                                  {v}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          <Button
+                            type="button"
+                            size="sm"
+                            variant="outline"
+                            onClick={async () => {
+                              const id = field.value;
+                              if (!id) return;
+                              try {
+                                const res = await fetch(
+                                  `/data/config${id}.json`
+                                );
+                                const data = await res.json();
+                                form.reset(data as ITheme);
+                                toast.success("Template defaults loaded");
+                              } catch (e) {
+                                console.error(e);
+                              }
+                            }}
+                          >
+                            Load Template Defaults
+                          </Button>
+                        </div>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -305,6 +329,38 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>Community Link 2</FormLabel>
+                            <FormControl>
+                              <Input {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </>
+                  ) : null}
+
+                  {["8"].includes(templateId) ? (
+                    <>
+                      <FormField
+                        control={form.control}
+                        name="badge1"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Community Badge 1</FormLabel>
+                            <FormControl>
+                              <Input {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="badge2"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Community Badge 2</FormLabel>
                             <FormControl>
                               <Input {...field} />
                             </FormControl>
@@ -525,7 +581,10 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
                       <FormItem className="flex items-center justify-between">
                         <FormLabel>Show Membership Options</FormLabel>
                         <FormControl>
-                          <Switch checked={!!field.value} onCheckedChange={field.onChange} />
+                          <Switch
+                            checked={!!field.value}
+                            onCheckedChange={field.onChange}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>

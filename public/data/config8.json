@@ -1,5 +1,5 @@
 {
-  "templateId": "3",
+  "templateId": "8",
   "metaTitle": "Web3 Club",
   "favicon": "/favicon.ico",
   "heroTitle": "Eternal Profit",
@@ -113,5 +113,7 @@
   "monthImg": "/month4.png",
   "yearImg": "/year4.png",
   "verifyImgs": ["/aave1.png", "/bnb.png", "/polygon.png"],
-  "showMemberOption": true
+  "showMemberOption": true,
+  "badge1": "Fresh",
+  "badge2": "Summer"
 }

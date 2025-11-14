@@ -81,8 +81,13 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
                       md:relative md:flex-row md:justify-between md:items-end md:px-20 md:py-20 md:min-w-[1080px] md:mx-auto"
       >
         {/* Desktop Background Image */}
-        <div className="hidden md:block size-[400px] rounded-full md:absolute md:top-0 md:left-1/2 md:transform md:-translate-x-1/2 bg-[#6D8F20]">
-           <img src={theme.heroImg} alt="Hero Background" className="size-[360px]"/>
+        <div className="hidden md:block rounded-b-[300px] overflow-hidden relative md:absolute md:top-0 md:left-1/2 md:transform md:-translate-x-1/2">
+          <div className="z-0 absolute bottom-0 left-0 size-[370px] rounded-full bg-[#6D8F20]"></div>
+          <img
+            src={theme.heroImg}
+            alt="Hero Background"
+            className="relative z-10 w-[360px]"
+          />
         </div>
 
         {/* Mobile/Tablet Hero Content */}
@@ -97,11 +102,12 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
             })}
             <div>{theme.heroGradientText}</div>
           </h1>
-          <div className="size-[211px] bg-[#6D8F20] rounded-full">
+          <div className="relative rounded-b-[100px] overflow-hidden">
+            <div className="z-0 absolute bottom-0 left-0 size-[190px] bg-[#6D8F20] rounded-full"></div>
             <img
               src={theme.heroImg}
               alt="Community Logo"
-              className="size-[189px]"
+              className="w-[190px] relative z-10"
             />
           </div>
 
@@ -197,19 +203,19 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
       </div>
 
       {/* Main Content */}
-      <div className="flex flex-col w-full gap-12 px-4 md:px-8 md:px-6 md:gap-16 md:max-w-[1180px] md:mx-auto">
+      <div className="flex flex-col w-full gap-12 px-4 md:px-6 md:gap-16 md:max-w-[1180px] md:mx-auto">
         {/* Join Options Section */}
         {theme.showMemberOption ? (
           <div className="flex flex-col items-center gap-12 md:gap-16">
             <div className="flex flex-col gap-2.5 w-full">
-              <h2 className="text-white text-xl md:text-2xl md:text-3xl xl:text-4xl font-bold text-center leading-5 md:leading-6 md:leading-8 xl:leading-10 tracking-wider uppercase">
+              <h2 className="text-white text-xl md:text-3xl xl:text-4xl font-bold text-center leading-5 md:leading-6 md:leading-8 xl:leading-10 tracking-wider uppercase">
                 Join the Option
               </h2>
             </div>
 
             <div className="flex flex-col md:flex-row items-center md:justify-center gap-5 w-full">
               {[
-                {
+                lifetimePrice && {
                   icon: theme.lifeTimeImg,
                   title: "Lifetime Member",
                   price: `${lifetimePrice} ETH`,
@@ -433,18 +439,18 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
         {/* Links & Apps Section */}
         <div className="flex flex-col items-center gap-12 md:gap-16">
           <div className="flex flex-col gap-2.5 w-full">
-            <h2 className="text-white text-xl md:text-2xl md:text-3xl xl:text-4xl font-bold text-center leading-5 md:leading-6 md:leading-8 xl:leading-10 tracking-wider uppercase">
+            <h2 className="text-white text-xl md:text-3xl xl:text-4xl font-bold text-center leading-5 md:leading-6 md:leading-8 xl:leading-10 tracking-wider uppercase">
               Links & Apps
             </h2>
           </div>
 
-          <div className="flex items-center justify-around gap-4 w-full md:gap-2.5 px-4 md:px-16">
+          <div className="flex flex-row flex-wrap items-center justify-around gap-0 w-full md:gap-2.5 md:px-16">
             {theme.socials.map((app, index) => {
               // const item = socialsData.find((item) => item.name === app.name);
               return (
                 <div
                   key={index}
-                  className="flex flex-col items-center justify-center px-[20px] py-[30px] gap-5 md:px-[20px] md:py-[30px] md:gap-6 rounded-2xl"
+                  className="flex flex-col items-center justify-center px-[10px] py-[30px] gap-5 md:px-[20px] md:py-[30px] md:gap-6 rounded-2xl"
                 >
                   <div
                     className={`flex items-center justify-center size-16 rounded-2xl`}
@@ -543,6 +549,7 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
           currentPage={currentPage}
           totalPages={totalPages}
           onPageChange={handlePageChange}
+          textClassName="text-white"
         />
       )}
 
