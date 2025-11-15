@@ -726,7 +726,12 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
                         <FormField
                           control={form.control}
                           name={`socials.${index}.link`}
-                          rules={linkRule}
+                          rules={{
+                            validate: (value) =>
+                              !value ||
+                              /^(https?:\/\/|\/|mailto:)[^\s]+$/.test(value) ||
+                              "Link must start with http(s)://, /, or mailto:",
+                          }}
                           render={({ field }) => (
                             <FormItem>
                               <FormLabel>Link</FormLabel>

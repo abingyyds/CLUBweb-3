@@ -412,7 +412,7 @@ const Template9: React.FC<Template9Props> = ({ club = "abc", theme }) => {
                   <div
                     key={index}
                     onClick={() => window.open(news.link, "_blank")}
-                    className="flex border-t-2 border-gray-200 flex-col md:flex-row items-start justify-between p-4 gap-2"
+                    className="flex cursor-pointer border-t-2 border-gray-200 flex-col md:flex-row items-start justify-between p-4 gap-2"
                   >
                     <div className="w-full md:w-[248px]">
                       <img src={news.image} className="w-full" alt="" />
