@@ -161,7 +161,33 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
                         <div className="flex items-center gap-2">
                           <Select
                             value={field.value}
-                            onValueChange={field.onChange}
+                            onValueChange={(id) => {
+                              field.onChange(id);
+                              (async () => {
+                                try {
+                                  const res = await fetch(
+                                    `/data/config${id}.json`
+                                  );
+                                  const data = await res.json();
+                                  if (data?.lifeTimeImg)
+                                    form.setValue(
+                                      "lifeTimeImg",
+                                      data.lifeTimeImg
+                                    );
+                                  if (data?.quarterImg)
+                                    form.setValue(
+                                      "quarterImg",
+                                      data.quarterImg
+                                    );
+                                  if (data?.monthImg)
+                                    form.setValue("monthImg", data.monthImg);
+                                  if (data?.yearImg)
+                                    form.setValue("yearImg", data.yearImg);
+                                } catch (e) {
+                                  console.error(e);
+                                }
+                              })();
+                            }}
                             defaultValue={field.value}
                           >
                             <FormControl>
@@ -182,7 +208,7 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
                           <Button
                             type="button"
                             size="sm"
-                            variant="outline"
+                            variant="destructive"
                             onClick={async () => {
                               const id = field.value;
                               if (!id) return;
@@ -192,7 +218,7 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
                                 );
                                 const data = await res.json();
                                 form.reset(data as ITheme);
-                                toast.success("Template defaults loaded");
+                                await form.handleSubmit(handleSave)();
                               } catch (e) {
                                 console.error(e);
                               }
