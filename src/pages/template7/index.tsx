@@ -175,172 +175,174 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
         </div>
 
         {/* 主要内容区域 */}
+
         <div className="space-y-6 md:space-y-10">
           {/* Join the Option 区域 */}
+          {theme.showMemberOption || verifyData?.length ? (
+            <div className="bg-[#242934] rounded-lg">
+              {/* 浏览器标题栏 */}
+              <div className="flex items-center justify-between bg-[#202124] rounded-t-lg px-3 py-4">
+                <BrowserControls />
+                <span className="hidden md:inline text-white text-xs">
+                  Join the option
+                </span>
+                <div className="w-[52px]"></div>
+              </div>
 
-          <div className="bg-[#242934] rounded-lg">
-            {/* 浏览器标题栏 */}
-            <div className="flex items-center justify-between bg-[#202124] rounded-t-lg px-3 py-4">
-              <BrowserControls />
-              <span className="hidden md:inline text-white text-xs">
-                Join the option
-              </span>
-              <div className="w-[52px]"></div>
-            </div>
-
-            {/* 内容 */}
-            <div className="p-4 md:p-10 space-y-6 md:space-y-10">
-              {/* 标题 */}
-              {theme.showMemberOption && (
-                <div className="space-y-6 md:space-y-10">
-                  <div className="flex flex-col items-center gap-4">
+              {/* 内容 */}
+              <div className="p-4 md:p-10 space-y-6 md:space-y-10">
+                {/* 标题 */}
+                {theme.showMemberOption && (
+                  <div className="space-y-6 md:space-y-10">
                     <div className="flex flex-col items-center gap-4">
-                      <h2 className="text-xl md:text-2xl text-[#f38406]">
-                        Join The Option
-                      </h2>
-                      <div className="flex items-center">
-                        <div className="w-2 h-2 bg-[#f38406] rounded-full"></div>
-                        <div className="w-44 h-0.5 bg-[#f38406]"></div>
-                        <div className="w-2 h-2 bg-[#f38406] rounded-full"></div>
+                      <div className="flex flex-col items-center gap-4">
+                        <h2 className="text-xl md:text-2xl text-[#f38406]">
+                          Join The Option
+                        </h2>
+                        <div className="flex items-center">
+                          <div className="w-2 h-2 bg-[#f38406] rounded-full"></div>
+                          <div className="w-44 h-0.5 bg-[#f38406]"></div>
+                          <div className="w-2 h-2 bg-[#f38406] rounded-full"></div>
+                        </div>
                       </div>
-                    </div>
-                    {/* <p className="text-white text-xs text-center">
+                      {/* <p className="text-white text-xs text-center">
                   Little description here
                 </p> */}
-                  </div>
+                    </div>
 
-                  {/* 会员选项 */}
-                  <RadioGroup
-                    value={selectedMembership}
-                    onValueChange={setSelectedMembership}
-                    className="flex flex-col md:flex-row justify-center gap-4 md:gap-8"
-                  >
-                    {membershipOptions.map((option, index) => (
-                      <label
-                        key={index}
-                        className="flex cursor-pointer"
-                        htmlFor={`membership-${option.type}`}
-                      >
-                        <div
-                          className={`w-1 rounded-l-lg ${
-                            selectedMembership === option.type
-                              ? "bg-[#43454D]"
-                              : "bg-white"
-                          }`}
-                        ></div>
-                        <div
-                          className={`rounded-r-lg p-4 md:p-6 flex flex-col items-center gap-2 w-full md:min-w-[180px] transition-all ${
-                            selectedMembership === option.type
-                              ? "bg-[#f0f0f0] border-2 border-[#43454D]"
-                              : "bg-[#dddddd] border-2 border-transparent"
-                          }`}
-                        >
-                          <RadioGroupItem
-                            value={option.type}
-                            id={`membership-${option.type}`}
-                            className="w-6 h-6 border-2 border-gray-400 data-[state=checked]:bg-[#43454D] data-[state=checked]:border-[#43454D]"
-                          />
-                          <div className="text-center">
-                            <p
-                              className={`font-bold text-lg ${
-                                selectedMembership === option.type
-                                  ? "text-[#43454D] underline"
-                                  : option.highlighted
-                                  ? "text-[#43454d] underline"
-                                  : "text-[#292f36]"
-                              }`}
-                            >
-                              {option.title}
-                            </p>
-                            <p className="text-[#43454d]">{option.price}</p>
-                          </div>
-                        </div>
-                      </label>
-                    ))}
-                  </RadioGroup>
-
-                  {/* JOIN NOW 按钮 */}
-                  <div className="flex justify-center">
-                    <button
-                      onClick={() => handleJoin(selectedMembership)}
-                      disabled={!selectedMembership}
-                      className="flex items-center gap-4 bg-[#f38406] border-2 border-[#f38406] rounded-full px-8 py-3 text-white font-medium hover:bg-[#e67300] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    {/* 会员选项 */}
+                    <RadioGroup
+                      value={selectedMembership}
+                      onValueChange={setSelectedMembership}
+                      className="flex flex-col md:flex-row justify-center gap-4 md:gap-8"
                     >
-                      <span>JOIN NOW</span>
-                      <ChevronsRight />
-                    </button>
-                  </div>
-                </div>
-              )}
+                      {membershipOptions.map((option, index) => (
+                        <label
+                          key={index}
+                          className="flex cursor-pointer"
+                          htmlFor={`membership-${option.type}`}
+                        >
+                          <div
+                            className={`w-1 rounded-l-lg ${
+                              selectedMembership === option.type
+                                ? "bg-[#43454D]"
+                                : "bg-white"
+                            }`}
+                          ></div>
+                          <div
+                            className={`rounded-r-lg p-4 md:p-6 flex flex-col items-center gap-2 w-full md:min-w-[180px] transition-all ${
+                              selectedMembership === option.type
+                                ? "bg-[#f0f0f0] border-2 border-[#43454D]"
+                                : "bg-[#dddddd] border-2 border-transparent"
+                            }`}
+                          >
+                            <RadioGroupItem
+                              value={option.type}
+                              id={`membership-${option.type}`}
+                              className="w-6 h-6 border-2 border-gray-400 data-[state=checked]:bg-[#43454D] data-[state=checked]:border-[#43454D]"
+                            />
+                            <div className="text-center">
+                              <p
+                                className={`font-bold text-lg ${
+                                  selectedMembership === option.type
+                                    ? "text-[#43454D] underline"
+                                    : option.highlighted
+                                    ? "text-[#43454d] underline"
+                                    : "text-[#292f36]"
+                                }`}
+                              >
+                                {option.title}
+                              </p>
+                              <p className="text-[#43454d]">{option.price}</p>
+                            </div>
+                          </div>
+                        </label>
+                      ))}
+                    </RadioGroup>
 
-              {/* Position Verification */}
-              {verifyData?.length ? (
-                <div className="space-y-6 md:space-y-10">
-                  <div className="flex flex-col items-center gap-4">
-                    <h3 className="text-xl md:text-2xl text-[#f38406]">
-                      Position Verification
-                    </h3>
-                    <div className="flex items-center">
-                      <div className="w-2 h-2 bg-[#f38406] rounded-full"></div>
-                      <div className="w-56 h-0.5 bg-[#f38406]"></div>
-                      <div className="w-2 h-2 bg-[#f38406] rounded-full"></div>
+                    {/* JOIN NOW 按钮 */}
+                    <div className="flex justify-center">
+                      <button
+                        onClick={() => handleJoin(selectedMembership)}
+                        disabled={!selectedMembership}
+                        className="flex items-center gap-4 bg-[#f38406] border-2 border-[#f38406] rounded-full px-8 py-3 text-white font-medium hover:bg-[#e67300] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        <span>JOIN NOW</span>
+                        <ChevronsRight />
+                      </button>
                     </div>
                   </div>
+                )}
 
-                  <div
-                    className={`flex px-4 md:px-10 ${
-                      verifyData.length === 1
-                        ? "gap-0"
-                        : verifyData.length === 2
-                        ? "gap-8 md:gap-16"
-                        : "gap-6 md:gap-32"
-                    }`}
-                  >
-                    {verifyData.map((it, index) => (
-                      <div
-                        key={index}
-                        className="flex w-full md:w-[30%] flex-col gap-2 md:gap-3.5"
-                      >
-                        <div className="flex items-center">
-                          <img
-                            src={
-                              theme?.verifyImgs?.[index] ||
-                              theme?.verifyImgs?.[0] ||
-                              "/aave.png"
-                            }
-                            alt={it.tokenSymbol}
-                            className="w-16 md:w-[97px]"
-                          />
-                        </div>
-                        <p className="text-[#f38406] font-semibold text-sm md:text-base">
-                          {it.chainName} Chain
-                        </p>
-                        <div className="space-y-2">
-                          <p className="text-white font-light text-sm md:text-base">
-                            Hold {it.tokenSymbol} ≥
-                            {formatUnits(it.threshold, it.decimals)}
-                          </p>
-                          <div className="h-px bg-[#98faec]"></div>
-                        </div>
-                        <div
-                          className="flex items-end gap-2 cursor-pointer"
-                          onClick={() => handleVerify(it)}
-                        >
-                          <div className="flex flex-col gap-1">
-                            <span className="text-[#f38406] text-xs">
-                              Verify
-                            </span>
-                            <div className="h-0.5 bg-[#f38406]"></div>
-                          </div>
-                          <MousePointer className="w-4 h-4 text-white" />
-                        </div>
+                {/* Position Verification */}
+                {verifyData?.length ? (
+                  <div className="space-y-6 md:space-y-10">
+                    <div className="flex flex-col items-center gap-4">
+                      <h3 className="text-xl md:text-2xl text-[#f38406]">
+                        Position Verification
+                      </h3>
+                      <div className="flex items-center">
+                        <div className="w-2 h-2 bg-[#f38406] rounded-full"></div>
+                        <div className="w-56 h-0.5 bg-[#f38406]"></div>
+                        <div className="w-2 h-2 bg-[#f38406] rounded-full"></div>
                       </div>
-                    ))}
+                    </div>
+
+                    <div
+                      className={`flex px-4 md:px-10 ${
+                        verifyData.length === 1
+                          ? "gap-0"
+                          : verifyData.length === 2
+                          ? "gap-8 md:gap-16"
+                          : "gap-6 md:gap-32"
+                      }`}
+                    >
+                      {verifyData.map((it, index) => (
+                        <div
+                          key={index}
+                          className="flex w-full md:w-[30%] flex-col gap-2 md:gap-3.5"
+                        >
+                          <div className="flex items-center">
+                            <img
+                              src={
+                                theme?.verifyImgs?.[index] ||
+                                theme?.verifyImgs?.[0] ||
+                                "/aave.png"
+                              }
+                              alt={it.tokenSymbol}
+                              className="w-16 md:w-[97px]"
+                            />
+                          </div>
+                          <p className="text-[#f38406] font-semibold text-sm md:text-base">
+                            {it.chainName} Chain
+                          </p>
+                          <div className="space-y-2">
+                            <p className="text-white font-light text-sm md:text-base">
+                              Hold {it.tokenSymbol} ≥
+                              {formatUnits(it.threshold, it.decimals)}
+                            </p>
+                            <div className="h-px bg-[#98faec]"></div>
+                          </div>
+                          <div
+                            className="flex items-end gap-2 cursor-pointer"
+                            onClick={() => handleVerify(it)}
+                          >
+                            <div className="flex flex-col gap-1">
+                              <span className="text-[#f38406] text-xs">
+                                Verify
+                              </span>
+                              <div className="h-0.5 bg-[#f38406]"></div>
+                            </div>
+                            <MousePointer className="w-4 h-4 text-white" />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ) : null}
+                ) : null}
+              </div>
             </div>
-          </div>
+          ) : null}
 
           {/* Links & Apps 区域 */}
           <div>
