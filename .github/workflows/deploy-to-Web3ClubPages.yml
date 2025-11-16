@@ -14,6 +14,9 @@ jobs:
     steps:
       - name: Checkout source repo (CLUBweb-3)
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          token: ${{ secrets.GH_PAT }}
 
       # 安装 Node 20
       - name: Setup Node.js
