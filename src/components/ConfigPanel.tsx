@@ -331,6 +331,40 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
                     )}
                   />
 
+                  {["9"].includes(templateId) ? (
+                    <>
+                      <FormField
+                        control={form.control}
+                        name="clubIcon1"
+                        rules={linkRule}
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Community Icon 1</FormLabel>
+                            <FormControl>
+                              <Input {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="clubIcon2"
+                        rules={linkRule}
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Community Icon 2</FormLabel>
+                            <FormControl>
+                              <Input {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </>
+                  ) : null}
+
                   {["9", "10"].includes(templateId) ? (
                     <>
                       <FormField
