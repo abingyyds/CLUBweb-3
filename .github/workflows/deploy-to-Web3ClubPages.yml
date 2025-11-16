@@ -51,7 +51,7 @@ jobs:
           git config --global user.name "web3club-bot"
           git config --global user.email "bot@web3.club"
 
-          git clone https://x-access-token:${{ secrets.PAGES_DEPLOY_TOKEN }}@github.com/abingyyds/Web3ClubPages.git  
+          git clone https://x-access-token:${{ secrets.PAGES_DEPLOY_TOKEN }}@github.com/abingyyds/Web3ClubPages.git
 
           cd Web3ClubPages
 
