@@ -493,7 +493,8 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
               {currentNewsData.map((news, index) => (
                 <div
                   key={index}
-                  className="flex flex-col py-5 md:flex-row md: justify-between w-fll gap-6 border-b border-white/40"
+                  className="flex flex-col py-5 md:flex-row md: justify-between w-fll gap-6 border-b border-white/40 cursor-pointer"
+                  onClick={() => window.open(news.link, "_blank")}
                 >
                   <div className="flex flex-col md:flex-row gap-6">
                     <img

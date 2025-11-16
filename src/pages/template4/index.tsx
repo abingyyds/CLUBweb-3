@@ -432,7 +432,8 @@ export const Template4 = ({ club, theme }: { club: string; theme: ITheme }) => {
                   <img
                     src={news.image}
                     alt={news.title}
-                    className="w-full h-40 object-cover rounded-[20px]"
+                    className="w-full h-40 object-cover rounded-[20px] cursor-pointer"
+                    onClick={() => window.open(news.link, "_blank")}
                   />
                   <div className="flex flex-col gap-1">
                     <p className="text-base font-bold text-black">

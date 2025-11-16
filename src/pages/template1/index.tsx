@@ -370,7 +370,8 @@ export const Template1: React.FC<{ theme?: ITheme; club: string }> = ({
               {currentNewsData.map((news, index) => (
                 <div
                   key={index}
-                  className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-5 py-4 md:py-5 px-2 md:px-4 min-w-0 bg-white/50 rounded-xl relative"
+                  className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-5 py-4 md:py-5 px-2 md:px-4 min-w-0 bg-white/50 rounded-xl relative cursor-pointer"
+                  onClick={() => window.open(news.link, "_blank")}
                 >
                   {/* 数字标签 - 在手机端绝对定位到图片左上角，在桌面端正常显示 */}
                   <div className="absolute md:relative top-4 left-2 md:top-auto md:left-auto z-10 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 font-[1000] bg-[#e3e337] rounded-xl text-black text-sm md:text-base font-bold flex-shrink-0">

@@ -282,7 +282,8 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
                 {currentNewsData.map((news, index) => (
                   <div
                     key={index}
-                    className="flex flex-col bg-white/40 flex-1 pb-5"
+                    className="flex flex-col bg-white/40 flex-1 pb-5 cursor-pointer"
+                    onClick={() => window.open(news.link, "_blank")}
                   >
                     <img
                       src={news.image}
