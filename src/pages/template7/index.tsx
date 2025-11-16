@@ -410,7 +410,11 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
                 <div className="h-px bg-[#f38406]"></div>
 
                 {currentNewsData.map((news: any, index: number) => (
-                  <div key={index} className="flex items-center gap-3 md:gap-6">
+                  <div
+                    key={index}
+                    className="flex items-center gap-3 md:gap-6 cursor-pointer"
+                    onClick={() => window.open(news.link, "_blank")}
+                  >
                     <img
                       src={news.image || "/news1.png"}
                       alt={news.title}

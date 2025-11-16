@@ -351,7 +351,7 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
                 <div
                   key={index}
                   onClick={() => window.open(news.link, "_blank")}
-                  className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg border border-gray-100 hover:border-[#ef5da8] transition-all duration-300"
+                  className="cursor-pointer bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg border border-gray-100 hover:border-[#ef5da8] transition-all duration-300"
                 >
                   <img
                     src={news.image}
