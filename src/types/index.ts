@@ -26,6 +26,8 @@ export interface ITheme {
   showMemberOption: boolean;
   badge1: string;
   badge2: string;
+  clubIcon1: string;
+  clubIcon2: string;
 }
 
 export interface News {
