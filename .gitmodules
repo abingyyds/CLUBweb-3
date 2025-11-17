@@ -1,3 +1,6 @@
 [submodule "src/constants"]
 	path = src/constants
 	url = https://github.com/abingyyds/clubpage-secret-folder.git
+[submodule "supabase/functions/upsert-config-with-auth"]
+	path = supabase/functions/upsert-config-with-auth
+	url = https://github.com/abingyyds/clubpage-edge-functions.git
