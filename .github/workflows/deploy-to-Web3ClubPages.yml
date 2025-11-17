@@ -10,6 +10,9 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment: production
+    env:
+      VITE_SUPABASE_API_KEY: ${{ vars.VITE_SUPABASE_API_KEY }}
 
     steps:
       - name: Checkout source repo (CLUBweb-3)
@@ -20,7 +23,7 @@ jobs:
 
       # 安装 Node 20
       - name: Setup Node.js
-      # 这里用官方 action + corepack 来启用 pnpm
+        # 这里用官方 action + corepack 来启用 pnpm
         uses: actions/setup-node@v4
         with:
           node-version: 20
