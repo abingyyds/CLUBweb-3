@@ -77,6 +77,5 @@ export const supabaseConfig = isDev
     }
   : {
       apiUrl: "https://smizqaxkhiwcywsjgevi.supabase.co",
-      apiKey:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNtaXpxYXhraGl3Y3l3c2pnZXZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI4Njc1NjMsImV4cCI6MjA3ODQ0MzU2M30.zuKpqk3OLrHvpDsI9z1JbHLLPs8kspvWCpyKOr8mA7I",
+      apiKey: import.meta.env.VITE_SUPABASE_API_KEY,
     };
