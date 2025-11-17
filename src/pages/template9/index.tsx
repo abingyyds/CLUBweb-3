@@ -429,7 +429,7 @@ const Template9: React.FC<Template9Props> = ({ club = "abc", theme }) => {
           {/* Bottom Decorative Image */}
           <div className="flex justify-center py-10">
             <div className="w-48 h-24 md:w-[400px] md:h-[200px] ">
-              <img src="/p5.png" alt="" />
+              <img src={theme.footImg} alt="" />
             </div>
           </div>
         </div>

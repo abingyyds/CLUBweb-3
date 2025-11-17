@@ -81,8 +81,8 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
                       md:relative md:flex-row md:justify-between md:items-end md:px-20 md:py-20 md:min-w-[1080px] md:mx-auto"
       >
         {/* Desktop Background Image */}
-        <div className="hidden md:block rounded-b-[300px] overflow-hidden relative md:absolute md:top-0 md:left-1/2 md:transform md:-translate-x-1/2">
-          <div className="z-0 absolute bottom-0 left-0 size-[370px] rounded-full bg-[#6D8F20]"></div>
+        <div className="hidden md:block rounded-b-[400px] overflow-hidden relative md:absolute md:top-0 md:left-1/2 md:transform md:-translate-x-1/2">
+          <div className="z-0 absolute bottom-0 left-0 size-[360px] rounded-full bg-[#6D8F20]"></div>
           <img
             src={theme.heroImg}
             alt="Hero Background"
@@ -102,7 +102,7 @@ const Web3Community: React.FC<{ theme?: ITheme; club: string }> = ({
             })}
             <div>{theme.heroGradientText}</div>
           </h1>
-          <div className="relative rounded-b-[100px] overflow-hidden">
+          <div className="relative rounded-b-[100px]  overflow-hidden">
             <div className="z-0 absolute bottom-0 left-0 size-[190px] bg-[#6D8F20] rounded-full"></div>
             <img
               src={theme.heroImg}

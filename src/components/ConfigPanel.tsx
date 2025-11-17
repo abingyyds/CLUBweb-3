@@ -27,10 +27,16 @@ import {
   FormLabel,
   FormMessage,
 } from "./ui/form";
-import { Plus, Trash2, Settings } from "lucide-react";
+import { Plus, Trash2, Settings, GripVertical } from "lucide-react";
 import { ITheme } from "@/types";
 import { Switch } from "./ui/switch";
 import { toast } from "sonner";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "./ui/accordion";
 
 interface ConfigPanelProps {
   config: ITheme;
@@ -54,6 +60,7 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
   const {
     fields: socialFields,
     append: appendSocial,
+    move: moveSocial,
     remove: removeSocial,
   } = useFieldArray({
     control: form.control,
@@ -63,6 +70,8 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
   const {
     fields: newsFields,
     append: appendNews,
+    prepend: prependNews,
+    move: moveNews,
     remove: removeNews,
   } = useFieldArray({
     control: form.control,
@@ -105,7 +114,7 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
   };
 
   const addNews = () => {
-    appendNews({
+    prependNews({
       image: "",
       title: "",
       category: "",
@@ -120,6 +129,10 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
   };
 
   const templateId = form.watch("templateId");
+  const [dragIndex, setDragIndex] = React.useState<number | null>(null);
+  const [dragSocialIndex, setDragSocialIndex] = React.useState<number | null>(
+    null
+  );
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -451,6 +464,23 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
                     )}
                   />
 
+                  {templateId === "9" && (
+                    <FormField
+                      control={form.control}
+                      name="footImg"
+                      rules={linkRule}
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Footer Image</FormLabel>
+                          <FormControl>
+                            <Input {...field} placeholder="Foot Img" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  )}
+
                   {templateId === "2" && (
                     <>
                       <FormField
@@ -709,91 +739,117 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
                     </Button>
                   </div>
 
-                  {socialFields.map((field, index) => (
-                    <div
-                      key={field.id}
-                      className="border rounded-lg p-4 space-y-3"
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="font-medium">
-                          Social Media {index + 1}
-                        </span>
-                        <Button
-                          type="button"
-                          variant="destructive"
-                          size="sm"
-                          onClick={() => removeSocial(index)}
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      </div>
+                  <Accordion type="single" collapsible className="space-y-2">
+                    {socialFields.map((field, index) => (
+                      <AccordionItem
+                        key={field.id}
+                        value={`social-${index}`}
+                        draggable
+                        onDragStart={() => setDragSocialIndex(index)}
+                        onDragOver={(e) => {
+                          e.preventDefault();
+                        }}
+                        onDrop={() => {
+                          if (
+                            dragSocialIndex !== null &&
+                            dragSocialIndex !== index
+                          ) {
+                            moveSocial(dragSocialIndex, index);
+                          }
+                          setDragSocialIndex(null);
+                        }}
+                        className="border rounded-lg"
+                      >
+                        <AccordionTrigger className="px-4">
+                          <div className="flex items-center justify-between w-full">
+                            <div className="flex items-center gap-2">
+                              <GripVertical className="h-4 w-4 text-muted-foreground" />
+                              <span className="font-medium">
+                                Social Media {index + 1}
+                              </span>
+                            </div>
+                            <Button
+                              type="button"
+                              variant="destructive"
+                              size="sm"
+                              onClick={() => removeSocial(index)}
+                              className="mr-2"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        </AccordionTrigger>
+                        <AccordionContent className="px-4">
+                          <div className="grid grid-cols-2 gap-3">
+                            <FormField
+                              control={form.control}
+                              name={`socials.${index}.name`}
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Name</FormLabel>
+                                  <FormControl>
+                                    <Input {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
 
-                      <div className="grid grid-cols-2 gap-3">
-                        <FormField
-                          control={form.control}
-                          name={`socials.${index}.name`}
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Name</FormLabel>
-                              <FormControl>
-                                <Input {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
+                            <FormField
+                              control={form.control}
+                              name={`socials.${index}.text`}
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Button Text</FormLabel>
+                                  <FormControl>
+                                    <Input {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
 
-                        <FormField
-                          control={form.control}
-                          name={`socials.${index}.text`}
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Button Text</FormLabel>
-                              <FormControl>
-                                <Input {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
+                            <FormField
+                              control={form.control}
+                              name={`socials.${index}.link`}
+                              rules={{
+                                validate: (value) =>
+                                  !value ||
+                                  /^(https?:\/\/|\/|mailto:)[^\s]+$/.test(
+                                    value
+                                  ) ||
+                                  "Link must start with http(s)://, /, or mailto:",
+                              }}
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Link</FormLabel>
+                                  <FormControl>
+                                    <Input {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
 
-                        <FormField
-                          control={form.control}
-                          name={`socials.${index}.link`}
-                          rules={{
-                            validate: (value) =>
-                              !value ||
-                              /^(https?:\/\/|\/|mailto:)[^\s]+$/.test(value) ||
-                              "Link must start with http(s)://, /, or mailto:",
-                          }}
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Link</FormLabel>
-                              <FormControl>
-                                <Input {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-
-                        <FormField
-                          control={form.control}
-                          name={`socials.${index}.icon`}
-                          rules={linkRule}
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Icon</FormLabel>
-                              <FormControl>
-                                <Input {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-                    </div>
-                  ))}
+                            <FormField
+                              control={form.control}
+                              name={`socials.${index}.icon`}
+                              rules={linkRule}
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Icon</FormLabel>
+                                  <FormControl>
+                                    <Input {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
                 </div>
 
                 <div className="space-y-4">
@@ -805,117 +861,140 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
                     </Button>
                   </div>
 
-                  {newsFields.map((field, index) => (
-                    <div
-                      key={field.id}
-                      className="border rounded-lg p-4 space-y-3"
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="font-medium">News {index + 1}</span>
-                        <Button
-                          type="button"
-                          variant="destructive"
-                          size="sm"
-                          onClick={() => removeNews(index)}
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      </div>
+                  <Accordion type="single" collapsible className="space-y-2">
+                    {newsFields.map((field, index) => (
+                      <AccordionItem
+                        key={field.id}
+                        value={`news-${index}`}
+                        draggable
+                        onDragStart={() => setDragIndex(index)}
+                        onDragOver={(e) => {
+                          e.preventDefault();
+                        }}
+                        onDrop={() => {
+                          if (dragIndex !== null && dragIndex !== index) {
+                            moveNews(dragIndex, index);
+                          }
+                          setDragIndex(null);
+                        }}
+                        className="border rounded-lg"
+                      >
+                        <AccordionTrigger className="px-4">
+                          <div className="flex items-center justify-between w-full">
+                            <div className="flex items-center gap-2">
+                              <GripVertical className="h-4 w-4 text-muted-foreground" />
+                              <span className="font-medium">
+                                News {index + 1}
+                              </span>
+                            </div>
+                            <Button
+                              type="button"
+                              variant="destructive"
+                              size="sm"
+                              onClick={() => removeNews(index)}
+                              className="mr-2"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        </AccordionTrigger>
+                        <AccordionContent className="px-4">
+                          <div className="grid grid-cols-2 gap-3">
+                            <FormField
+                              control={form.control}
+                              name={`news.${index}.title`}
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Title</FormLabel>
+                                  <FormControl>
+                                    <Input {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
 
-                      <div className="grid grid-cols-2 gap-3">
-                        <FormField
-                          control={form.control}
-                          name={`news.${index}.title`}
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Title</FormLabel>
-                              <FormControl>
-                                <Input {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
+                            <FormField
+                              control={form.control}
+                              name={`news.${index}.category`}
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Category</FormLabel>
+                                  <FormControl>
+                                    <Input {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
 
-                        <FormField
-                          control={form.control}
-                          name={`news.${index}.category`}
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Category</FormLabel>
-                              <FormControl>
-                                <Input {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
+                            <FormField
+                              control={form.control}
+                              name={`news.${index}.time`}
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Time</FormLabel>
+                                  <FormControl>
+                                    <Input {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
 
-                        <FormField
-                          control={form.control}
-                          name={`news.${index}.time`}
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Time</FormLabel>
-                              <FormControl>
-                                <Input {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
+                            <FormField
+                              control={form.control}
+                              name={`news.${index}.source`}
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Source</FormLabel>
+                                  <FormControl>
+                                    <Input {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
 
-                        <FormField
-                          control={form.control}
-                          name={`news.${index}.source`}
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Source</FormLabel>
-                              <FormControl>
-                                <Input {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
+                            <FormField
+                              control={form.control}
+                              name={`news.${index}.image`}
+                              rules={linkRule}
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Image</FormLabel>
+                                  <FormControl>
+                                    <Input {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
 
-                        <FormField
-                          control={form.control}
-                          name={`news.${index}.image`}
-                          rules={linkRule}
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Image</FormLabel>
-                              <FormControl>
-                                <Input {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-
-                        <FormField
-                          control={form.control}
-                          name={`news.${index}.link`}
-                          rules={{
-                            validate: (value) =>
-                              !value ||
-                              /^(https?:\/\/|\/)[^\s]+$/.test(value) ||
-                              "Link must start with http(s):// or /",
-                          }}
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Link</FormLabel>
-                              <FormControl>
-                                <Input {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-                    </div>
-                  ))}
+                            <FormField
+                              control={form.control}
+                              name={`news.${index}.link`}
+                              rules={{
+                                validate: (value) =>
+                                  !value ||
+                                  /^(https?:\/\/|\/)[^\s]+$/.test(value) ||
+                                  "Link must start with http(s):// or /",
+                              }}
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Link</FormLabel>
+                                  <FormControl>
+                                    <Input {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
                 </div>
               </form>
             </Form>

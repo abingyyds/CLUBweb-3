@@ -28,6 +28,7 @@ export interface ITheme {
   badge2: string;
   clubIcon1: string;
   clubIcon2: string;
+  footImg: string;
 }
 
 export interface News {
