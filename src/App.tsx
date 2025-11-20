@@ -18,6 +18,9 @@ import { useAccount, useWalletClient } from "wagmi";
 import { toast } from "sonner";
 import { useWeb3ClubService } from "./components/AppkitProvider";
 import { useQuery } from "@tanstack/react-query";
+import Template11 from "./pages/template11";
+import Template12 from "./pages/template12";
+import Template13 from "./pages/template13";
 
 function App() {
   const search = parseSearchParams(window.location.href) as any;
@@ -115,6 +118,9 @@ function App() {
       {template === "8" ? <Template8 club={club} theme={theme} /> : null}
       {template === "9" ? <Template9 club={club} theme={theme} /> : null}
       {template === "10" ? <Template10 club={club} theme={theme} /> : null}
+      {template === "11" ? <Template11 club={club} theme={theme} /> : null}
+      {template === "12" ? <Template12 club={club} theme={theme} /> : null}
+      {template === "13" ? <Template13 club={club} theme={theme} /> : null}
 
       {error ? (
         <div style={{ color: "red", marginBottom: 8 }}>{error}</div>

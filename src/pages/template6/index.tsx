@@ -313,8 +313,7 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
             {theme?.socials?.map((app, index) => (
               <div
                 key={index}
-                onClick={() => window.open(app.link, "_blank")}
-                className="flex px-5 text-black  cursor-pointer py-[30px] flex-col justify-center items-center gap-2.5 flex-[1_0_0] rounded-[5rem] bg-[#FFF] shadow-[0_0.625rem_1.5rem_0_rgba(0,0,0,0.06)] hover:bg-[#EF5DA8] hover:shadow-[0_0.625rem_1.5rem_0_rgba(239,93,168,0.30)] hover:text-white"
+                className="flex px-5 text-black group cursor-pointer py-[30px] flex-col justify-center items-center gap-2.5 flex-[1_0_0] rounded-[5rem] bg-[#FFF] shadow-[0_0.625rem_1.5rem_0_rgba(0,0,0,0.06)] hover:bg-[#EF5DA8] hover:shadow-[0_0.625rem_1.5rem_0_rgba(239,93,168,0.30)] hover:text-white"
               >
                 <img
                   src={app.icon}
@@ -324,6 +323,12 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
                 <span className="text-sm font-medium text-center ">
                   {app.name}
                 </span>
+                <button
+                  onClick={() => window.open(app.link, "_blank")}
+                  className="text-[#FF6B6A] group-hover:text-white lining-nums tabular-nums font-[Inter] text-3.5 font-not-italic font-bold lh-normal"
+                >
+                  <span>{app.text}</span>
+                </button>
               </div>
             ))}
           </div>

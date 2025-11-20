@@ -29,6 +29,9 @@ export interface ITheme {
   clubIcon1: string;
   clubIcon2: string;
   footImg: string;
+  positionImg: string;
+  clubImg1: string;
+  clubImg2: string;
 }
 
 export interface News {

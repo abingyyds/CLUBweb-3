@@ -8,6 +8,7 @@ import { MemberModal } from "./MemberModal";
 import { usePagination } from "../../hooks/usePagination";
 import { useClubData } from "../../hooks/useClubData";
 import { useClubMembership } from "../../hooks/useClubMembership";
+import { ArrowRightIcon } from "lucide-react";
 
 export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
   theme,
@@ -511,24 +512,45 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
             Links & Apps
           </h2>
 
-          <div className="flex items-start justify-center gap-[20px] md:gap-[30px] flex-wrap">
+          <div className="flex items-start justify-center gap-[10px] md:gap-[30px] flex-wrap">
             {theme?.socials?.map((app, index) => (
               <div
                 key={index}
-                className="inline-flex items-center gap-[5px] px-5 py-[10px] rounded-[30px] cursor-pointer"
-                onClick={() => window.open(app.link, "_blank")}
-                style={{
-                  background:
-                    index % 3 === 0
-                      ? "#ffc1cc"
-                      : index % 3 === 1
-                      ? "#ffeb9c"
-                      : "#e1c4fd",
-                }}
+                className="flex px-5 py-[30px] flex-col justify-center items-center gap-5 rounded-[1.25rem] bg-[#F8F8F8]"
               >
-                <span className="text-black text-lg font-bold leading-[22px] tracking-[-0.18px]">
-                  {app.name}
-                </span>
+                <div className="size-[64px] rounded-lg flex items-center justify-center mx-auto">
+                  <img
+                    src={app.icon}
+                    alt={app.name}
+                    className="w-full object-contain"
+                  />
+                </div>
+                <div
+                  className="inline-flex items-center gap-[5px] px-5 py-[10px] rounded-[30px] cursor-pointer"
+                  style={{
+                    background:
+                      index % 3 === 0
+                        ? "#ffc1cc"
+                        : index % 3 === 1
+                        ? "#ffeb9c"
+                        : "#e1c4fd",
+                  }}
+                >
+                  <span className="text-black text-lg font-bold leading-[22px] tracking-[-0.18px]">
+                    {app.name}
+                  </span>
+                </div>
+                <button
+                  onClick={() => window.open(app.link, "_blank")}
+                  style={{
+                    background:
+                      "linear-gradient(90deg, #8384F0 0%, #7135FF 100%), #FFF",
+                  }}
+                  className="text-[#FFF] lining-nums tabular-nums font-[Inter] text-3.5 font-not-italic font-500 lh-normal flex px-5 py-2.5 items-center gap-1.25 rounded-[1.875rem]"
+                >
+                  <span>{app.text}</span>
+                  <ArrowRightIcon />
+                </button>
               </div>
             ))}
           </div>

@@ -209,7 +209,7 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                              {Array.from({ length: 10 }, (_, i) =>
+                              {Array.from({ length: 13 }, (_, i) =>
                                 String(i + 1)
                               ).map((v) => (
                                 <SelectItem key={v} value={v}>
@@ -529,6 +529,51 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
                       />
                     </>
                   )}
+
+                  <FormField
+                    control={form.control}
+                    name="positionImg"
+                    rules={linkRule}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Position Image</FormLabel>
+                        <FormControl>
+                          <Input {...field} placeholder="/position.png" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="clubImg1"
+                    rules={linkRule}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Club Image 1</FormLabel>
+                        <FormControl>
+                          <Input {...field} placeholder="/club1.png" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="clubImg2"
+                    rules={linkRule}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Club Image 2</FormLabel>
+                        <FormControl>
+                          <Input {...field} placeholder="/club2.png" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                 </div>
 
                 {/* Avatar Settings */}
