@@ -1,4 +1,4 @@
-import { shortenAddress } from "@/lib/utils";
+import { cn, shortenAddress } from "@/lib/utils";
 import { useAppKit, useWalletInfo } from "@reown/appkit/react";
 import { useAccount } from "wagmi";
 
@@ -19,7 +19,10 @@ export const ConnectButton = ({
     <div
       style={style}
       onClick={() => open()}
-      className={`text-black text-sm font-bold cursor-pointer inline-flex items-center justify-center gap-2.5 rounded-2xl bg-[#bfea52] px-4 py-1.5 ${className}`}
+      className={cn(
+        "text-black text-sm font-bold cursor-pointer inline-flex items-center justify-center gap-2.5 rounded-2xl bg-[#bfea52] px-4 py-1.5",
+        className
+      )}
     >
       {walletInfo?.name ? (
         <>
