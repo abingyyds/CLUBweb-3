@@ -141,7 +141,7 @@ export const Template1: React.FC<{ theme?: ITheme; club: string }> = ({
       {/* Main Content Container */}
       <div className="flex flex-col items-stretch w-full max-w-[1280px] px-4 sm:px-6 md:px-8 py-8 md:py-10 gap-8 sm:gap-10 md:gap-12 md:gap-16 overflow-hidden">
         {/* Hero Section */}
-        <div className="flex flex-col items-center bg-[#f8f8f8] rounded-[20px] md:rounded-[40px] px-6 sm:px-8 md:px-12 md:px-16 py-8 sm:py-12 md:py-16 relative">
+        <div className="flex mb-[180px] flex-col items-center bg-[#f8f8f8] rounded-[20px] md:rounded-[40px] px-6 sm:px-8 md:px-12 md:px-16 py-8 sm:py-12 md:py-16 relative">
           {/* Floating Hero Cells */}
           <div className="absolute top-20 md:top-32 right-8 md:right-48 px-2 md:px-4 py-4 md:py-8 hidden sm:block">
             <img
@@ -277,7 +277,7 @@ export const Template1: React.FC<{ theme?: ITheme; club: string }> = ({
 
         {/* Position Verification Section */}
         {verifyData?.length ? (
-          <div className="flex flex-col items-center gap-6 mt-[180px] md:gap-8 px-[30px] py-6 md:py-8 w-full max-w-6xl mx-auto">
+          <div className="flex flex-col items-center gap-6 md:gap-8 px-[30px] py-6 md:py-8 w-full max-w-6xl mx-auto">
             <h2 className="text-black text-2xl md:text-3xl font-bold text-center">
               Position Verification
             </h2>
@@ -351,7 +351,7 @@ export const Template1: React.FC<{ theme?: ITheme; club: string }> = ({
                 </div>
                 <button
                   onClick={() => window.open(app.link, "_blank")}
-                  className="bg-[#e3e337] text-black px-2 py-1 rounded-full text-[10px] sm:text-xs font-medium hover:bg-[#d4d42e] transition-colors whitespace-nowrap w-full max-w-[80px]"
+                  className="bg-[#e3e337] text-black px-2 py-1 rounded-full text-[14px] font-medium hover:bg-[#d4d42e] transition-colors whitespace-nowrap w-full max-w-[80px]"
                 >
                   {app.text}
                 </button>
