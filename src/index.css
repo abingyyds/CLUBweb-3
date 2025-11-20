@@ -21,6 +21,10 @@
   font-family: 'Poller One', system-ui;
 }
 
+.font-jersey-25 {
+  font-family: 'Jersey 25', system-ui;
+}
+
 .bar3 {
   position: relative;
   flex-shrink: 0;

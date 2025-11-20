@@ -1,5 +1,5 @@
 {
-  "templateId": "11",
+  "templateId": "13",
   "metaTitle": "Web3 Club",
   "favicon": "/favicon.ico",
   "heroTitle": "ETERNAL PROFIT COMMUNITY",
@@ -8,15 +8,15 @@
   "heroImg1": "/hero10.png",
   "heroImg2": "/img2.png",
   "heroImg3": "/img3.png",
-  "avatar1": "/avatar10.png",
+  "avatar1": "/avatar13.png",
   "avatar2": "/avatar2.png",
   "avatar3": "/avatar3.png",
   "clubIntroduction1": "Welcome to the Eternal Profit Community!We are a professional community focused on blockchain technology innovation and DeFi investment.",
   "clubIntroduction2": "Here, you will gain access to the most cutting-edge Alpha information, professional investment advice, and a wealth of learning resources.",
   "clubLink1": "",
   "clubLink2": "",
-  "clubIcon1": "intro10_1.png",
-  "clubIcon2": "intro10-2.png",
+  "clubIcon1": "intro131.png",
+  "clubIcon2": "intro132.png",
   "socials": [
     {
       "name": "Twitter/X",
@@ -109,11 +109,11 @@
       "link": ""
     }
   ],
-  "heroImg": "/hero10.png",
-  "lifeTimeImg": "/lifetime10.png",
-  "quarterImg": "/quarter10.png",
-  "monthImg": "/month10.png",
-  "yearImg": "/year10.png",
+  "heroImg": "/hero13.png",
+  "lifeTimeImg": "/lifetime13.png",
+  "quarterImg": "/quarter13.png",
+  "monthImg": "/month13.png",
+  "yearImg": "/year13.png",
   "positionImg": "/position10.png",
   "verifyImgs": ["/aave10.png", "/bnb10.png", "/polygon10.png"],
   "showMemberOption": true

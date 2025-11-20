@@ -11,6 +11,9 @@ importers:
       '@fontsource-variable/poltawski-nowy':
         specifier: ^5.2.7
         version: 5.2.7
+      '@fontsource/jersey-25':
+        specifier: ^5.2.8
+        version: 5.2.8
       '@fontsource/poller-one':
         specifier: ^5.2.8
         version: 5.2.8
@@ -579,6 +582,9 @@ packages:
 
   '@fontsource-variable/poltawski-nowy@5.2.7':
     resolution: {integrity: sha512-bueMNyG/o97qsxV/rdXbKkHR/rqegYTvK0EpvStAWp3ZrnCuI1PCEjQuzsjSf954Hl8wRrMHA423jAQLhipiDw==}
+
+  '@fontsource/jersey-25@5.2.8':
+    resolution: {integrity: sha512-hreXFGgtiWaGtmj4NEtC7jaBOEEx2oxCehMUAqi2bRakS500S41S10wS22pOtaVVGgaR1Iht6+gUfJWJrMEt+A==}
 
   '@fontsource/poller-one@5.2.8':
     resolution: {integrity: sha512-iGUyIWfB/K5RQeA210ICMPDsqXgtmqrJplD1nDRZlZk7cygwCFDHmF/87JnoI2iyD1o4cgBE15rdFdaBEwIPGQ==}
@@ -4460,6 +4466,8 @@ snapshots:
   '@floating-ui/utils@0.2.10': {}
 
   '@fontsource-variable/poltawski-nowy@5.2.7': {}
+
+  '@fontsource/jersey-25@5.2.8': {}
 
   '@fontsource/poller-one@5.2.8': {}
 

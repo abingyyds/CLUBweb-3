@@ -52,6 +52,7 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
   };
   const [open, setOpen] = React.useState(false);
   const [isSaving, setIsSaving] = React.useState(false);
+  const [imagePreview, setImagePreview] = React.useState<string | null>(null);
 
   const form = useForm<ITheme>({
     defaultValues: config,
@@ -170,75 +171,110 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
                     name="templateId"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Template ID</FormLabel>
-                        <div className="flex items-center gap-2">
-                          <Select
-                            value={field.value}
-                            onValueChange={(id) => {
-                              field.onChange(id);
-                              (async () => {
+                        <FormLabel>Template</FormLabel>
+                        <div className="space-y-3">
+                          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            {Array.from({ length: 13 }, (_, i) =>
+                              String(i + 1)
+                            ).map((id) => {
+                              const selected = field.value === id;
+                              const imgSrc = `/template/P${id}.png`;
+                              return (
+                                <div
+                                  key={id}
+                                  className={`relative cursor-pointer rounded-lg border ${
+                                    selected
+                                      ? "ring-2 ring-primary"
+                                      : "hover:border-primary/50"
+                                  }`}
+                                  onClick={async () => {
+                                    field.onChange(id);
+                                    try {
+                                      const res = await fetch(
+                                        `/data/config${id}.json`
+                                      );
+                                      const data = await res.json();
+                                      if (data?.lifeTimeImg)
+                                        form.setValue(
+                                          "lifeTimeImg",
+                                          data.lifeTimeImg
+                                        );
+                                      if (data?.quarterImg)
+                                        form.setValue(
+                                          "quarterImg",
+                                          data.quarterImg
+                                        );
+                                      if (data?.monthImg)
+                                        form.setValue(
+                                          "monthImg",
+                                          data.monthImg
+                                        );
+                                      if (data?.yearImg)
+                                        form.setValue("yearImg", data.yearImg);
+                                    } catch (e) {
+                                      console.error(e);
+                                    }
+                                  }}
+                                >
+                                  <img
+                                    src={imgSrc}
+                                    alt={`Template ${id}`}
+                                    className="w-full h-28 object-cover rounded-lg"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      setImagePreview(imgSrc);
+                                    }}
+                                  />
+                                  <div className="absolute top-1 right-1 flex gap-1">
+                                    <Button
+                                      type="button"
+                                      size="sm"
+                                      variant="outline"
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        const base =
+                                          window.location.origin +
+                                          window.location.pathname;
+                                        window.open(
+                                          `${base}?template=${id}`,
+                                          "_blank"
+                                        );
+                                      }}
+                                    >
+                                      Preview
+                                    </Button>
+                                  </div>
+                                  <div className="p-2 text-xs text-center">
+                                    P{id}
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Button
+                              type="button"
+                              size="sm"
+                              variant="destructive"
+                              onClick={async () => {
+                                const id = field.value;
+                                console.log(id, "id");
+                                if (!id) return;
                                 try {
                                   const res = await fetch(
                                     `/data/config${id}.json`
                                   );
                                   const data = await res.json();
-                                  if (data?.lifeTimeImg)
-                                    form.setValue(
-                                      "lifeTimeImg",
-                                      data.lifeTimeImg
-                                    );
-                                  if (data?.quarterImg)
-                                    form.setValue(
-                                      "quarterImg",
-                                      data.quarterImg
-                                    );
-                                  if (data?.monthImg)
-                                    form.setValue("monthImg", data.monthImg);
-                                  if (data?.yearImg)
-                                    form.setValue("yearImg", data.yearImg);
+                                  form.reset(data as ITheme);
+                                  await form.handleSubmit(handleSave)();
                                 } catch (e) {
                                   console.error(e);
                                 }
-                              })();
-                            }}
-                            defaultValue={field.value}
-                          >
-                            <FormControl>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Select a template" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              {Array.from({ length: 13 }, (_, i) =>
-                                String(i + 1)
-                              ).map((v) => (
-                                <SelectItem key={v} value={v}>
-                                  {v}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                          <Button
-                            type="button"
-                            size="sm"
-                            variant="destructive"
-                            onClick={async () => {
-                              const id = field.value;
-                              if (!id) return;
-                              try {
-                                const res = await fetch(
-                                  `/data/config${id}.json`
-                                );
-                                const data = await res.json();
-                                form.reset(data as ITheme);
-                                await form.handleSubmit(handleSave)();
-                              } catch (e) {
-                                console.error(e);
-                              }
-                            }}
-                          >
-                            Load Template Defaults
-                          </Button>
+                              }}
+                            >
+                              Load Template Defaults
+                            </Button>
+                          </div>
                         </div>
                         <FormMessage />
                       </FormItem>
@@ -344,7 +380,7 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
                     )}
                   />
 
-                  {["9"].includes(templateId) ? (
+                  {["9", "13", "11", "12"].includes(templateId) ? (
                     <>
                       <FormField
                         control={form.control}
@@ -544,36 +580,6 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
                       </FormItem>
                     )}
                   />
-
-                  <FormField
-                    control={form.control}
-                    name="clubImg1"
-                    rules={linkRule}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Club Image 1</FormLabel>
-                        <FormControl>
-                          <Input {...field} placeholder="/club1.png" />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="clubImg2"
-                    rules={linkRule}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Club Image 2</FormLabel>
-                        <FormControl>
-                          <Input {...field} placeholder="/club2.png" />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
                 </div>
 
                 {/* Avatar Settings */}
@@ -706,6 +712,68 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
                     )}
                   />
                 </div>
+
+                {templateId === "13" && (
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold">Membership Texts</h3>
+
+                    <FormField
+                      control={form.control}
+                      name="lifeTimeText"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Lifetime Member Text</FormLabel>
+                          <FormControl>
+                            <Input {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="monthText"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Monthly Member Text</FormLabel>
+                          <FormControl>
+                            <Input {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="quarterText"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Quarterly Member Text</FormLabel>
+                          <FormControl>
+                            <Input {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="yearText"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Yearly Member Text</FormLabel>
+                          <FormControl>
+                            <Input {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                )}
 
                 <div className="space-y-4">
                   <h3 className="text-lg font-semibold">Display Settings</h3>
@@ -1045,6 +1113,18 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
             </Form>
           </div>
         </ScrollArea>
+
+        {imagePreview && (
+          <div
+            className="fixed inset-0 bg-black/60 flex items-center justify-center z-50"
+            onClick={() => setImagePreview(null)}
+          >
+            <img
+              src={imagePreview}
+              className="max-w-[90vw] max-h-[90vh] rounded-lg"
+            />
+          </div>
+        )}
 
         <SheetFooter className="border-t bg-background p-4">
           <div className="flex gap-2">

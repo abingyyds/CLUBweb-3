@@ -32,6 +32,10 @@ export interface ITheme {
   positionImg: string;
   clubImg1: string;
   clubImg2: string;
+  lifeTimeText: string;
+  monthText: string;
+  yearText: string;
+  quarterText: string;
 }
 
 export interface News {

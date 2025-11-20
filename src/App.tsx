@@ -103,7 +103,7 @@ function App() {
 
   if (!theme) return null;
 
-  console.log(theme, owner, domainName);
+  console.log(theme, owner, domainName, "owner");
 
   return (
     <div className="App">

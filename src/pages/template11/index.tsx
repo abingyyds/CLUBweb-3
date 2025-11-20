@@ -167,8 +167,12 @@ const Template11: React.FC<{ theme?: ITheme; club: string }> = ({
                   src={opt.icon || "/lifetime.png"}
                   className="w-full h-[80px] md:w-[200px] md:h-[140px] object-cover"
                 />
-                <p className="text-[#564119] text-sm md:text-lg min-h-[40px]">{opt.title}</p>
-                <p className="text-[#573f19] text-md font-bold md:text-2xl">{opt.price}</p>
+                <p className="text-[#564119] text-sm md:text-lg min-h-[40px]">
+                  {opt.title}
+                </p>
+                <p className="text-[#573f19] text-md font-bold md:text-2xl">
+                  {opt.price}
+                </p>
                 <button
                   onClick={() => handleJoin(opt.type)}
                   className="w-full inline-flex text-sm md:text-base items-center justify-center gap-2 border border-[#787a40] rounded-sm bg-[#9a9d5f] text-white px-4 py-2 shadow"
@@ -312,6 +316,7 @@ const Template11: React.FC<{ theme?: ITheme; club: string }> = ({
           <Pagination
             dotClassName="bg-transparent"
             hoverTextClassName="text-[#787A40]/80"
+            activeTextClassName="text-white"
             bgClassName="border-[2px] border-[#989B5D] bg-[#D2C099] text-[#787A40]"
             currentPage={currentPage}
             totalPages={totalPages}
