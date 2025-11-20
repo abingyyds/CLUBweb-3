@@ -345,7 +345,7 @@ export const Template1: React.FC<{ theme?: ITheme; club: string }> = ({
                   />
                 </div>
                 <div className="flex flex-col items-center justify-center flex-1 px-1">
-                  <p className="text-black text-[10px] sm:text-xs font-bold text-center break-words line-clamp-2 leading-tight">
+                  <p className="text-black text-[16px] font-bold text-center break-words line-clamp-2 leading-tight">
                     {app.name}
                   </p>
                 </div>
