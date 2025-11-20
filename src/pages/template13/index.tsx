@@ -47,20 +47,19 @@ const Template13: React.FC<{ theme?: ITheme; club: string }> = ({ theme, club })
       <div className="w-full bg-black py-12">
         <div className="max-w-[1180px] mx-auto px-6 grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
           <div className="relative">
-            <div className="w-full max-w-[520px] h-[420px] bg-white rounded-xl shadow-lg">
-              <img src={theme?.heroImg} alt="Hero" className="absolute top-6 left-6 right-6 bottom-6 object-cover rounded-lg" />
-            </div>
+            <img src="RectangleImg.png" alt="Hero" className="w-[580px] h-auto" />
+            <img src="lightning.png" alt="Hero" className="absolute top-[-8%] left-[16%] w-[540px] h-auto" />
           </div>
-          <div className="flex flex-col items-start gap-4">
-            <div className="flex items-center gap-3">
+          <div className="flex flex-col items-center md:items-start gap-4 ml-14">
+            <div className="flex flex-col items-center md:items-start gap-2">
               <div className="w-16 h-16 rounded-full overflow-hidden">
                 <img src={theme?.heroImg} className="w-full h-full object-cover" />
               </div>
-              <span className="text-[#eb2832] font-bold uppercase">{domainName}.web3.club</span>
+              <span className="text-[#eb2832] mt-2 font-bold uppercase">{domainName}.web3.club</span>
             </div>
-            <h1 className="text-white text-4xl md:text-5xl font-extrabold uppercase">Eternal Profit Community</h1>
+            <h1 className="text-white text-center md:text-left text-4xl md:text-5xl font-extrabold uppercase">Eternal Profit Community</h1>
             <div className="inline-flex bg-[#eb2832] text-white font-black rounded px-5 py-2">
-              <ConnectButton />
+              <ConnectButton className="bg-[#eb2832] text-white font-black rounded px-5 py-2" />
             </div>
           </div>
         </div>

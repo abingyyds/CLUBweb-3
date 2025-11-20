@@ -150,28 +150,28 @@ const Template11: React.FC<{ theme?: ITheme; club: string }> = ({
       </div>
 
       {theme?.showMemberOption ? (
-        <div className="w-full bg-[#d3c29d] py-16 px-8 flex flex-col items-center gap-10">
+        <div className="w-full bg-[#d3c29d] py-16 px-5 md:px-8 flex flex-col items-center gap-10">
           <div className="text-center">
             <p className="text-[#564119] text-4xl leading-[49px]">
               Join The Option
             </p>
             {/* <p className="text-[#564119] text-sm">little text description</p> */}
           </div>
-          <div className="flex justify-center flex-wrap items-center gap-6 w-full max-w-[1080px]">
+          <div className="flex md:justify-center justify-between flex-wrap items-center w-full max-w-[1080px]">
             {membershipOptions.map((opt, i) => (
               <div
                 key={opt.title}
-                className="flex flex-col items-start gap-4 border-2 border-[#ae9a76] rounded-sm shadow-md bg-white/30 p-6"
+                className="w-[48%] md:w-auto flex flex-col items-start gap-2 md:gap-4 border-2 border-[#ae9a76] rounded-sm shadow-md bg-white/30 p-3 md:p-6 mb-4 md:m-4"
               >
                 <img
                   src={opt.icon || "/lifetime.png"}
-                  className="w-[200px] h-[140px] object-cover"
+                  className="w-full h-[80px] md:w-[200px] md:h-[140px] object-cover"
                 />
-                <p className="text-[#564119] text-lg">{opt.title}</p>
-                <p className="text-[#573f19] text-2xl">{opt.price}</p>
+                <p className="text-[#564119] text-sm md:text-lg min-h-[40px]">{opt.title}</p>
+                <p className="text-[#573f19] text-md font-bold md:text-2xl">{opt.price}</p>
                 <button
                   onClick={() => handleJoin(opt.type)}
-                  className="inline-flex items-center justify-center gap-2 border border-[#787a40] rounded-sm bg-[#9a9d5f] text-white px-4 py-2 shadow"
+                  className="w-full inline-flex text-sm md:text-base items-center justify-center gap-2 border border-[#787a40] rounded-sm bg-[#9a9d5f] text-white px-4 py-2 shadow"
                 >
                   Get started
                 </button>
@@ -276,23 +276,31 @@ const Template11: React.FC<{ theme?: ITheme; club: string }> = ({
           {currentNewsData.map((news, idx) => (
             <div
               key={idx}
-              className="flex items-center justify-between border-b border-[#c2b191] pb-3"
+              className="w-full flex flex-col md:flex-row items-start md:items-center justify-start md:justify-between border-b border-[#c2b191] pb-3"
             >
-              <div className="flex items-center gap-6">
+              <div className="flex flex-col w-full md:flex-row items-start md:items-center gap-2 md:gap-6">
                 <img
                   src={news.image}
-                  className="w-[248px] h-[90px] object-cover"
+                  className="w-full md:w-[248px] h-[90px] object-cover"
                 />
-                <div>
+                <div className="flex flex-col w-full md:w-[700px]">
                   <p className="text-[#564119] text-lg">{news.title}</p>
-                  <div className="flex gap-3 text-[#121212] text-sm">
-                    <span>Source: {news.source}</span>
-                    <span>{news.time}</span>
+                  <div className="flex items-center justify-between w-full md:justify-start">
+                    <div className="flex flex-col md:flex-row gap-3 text-[#121212] text-sm">
+                      <span>Source: {news.source}</span>
+                      <span>{news.time}</span>
+                    </div>
+                    <button
+                      className="inline-flex items-center justify-center gap-2 border border-[#77793f] rounded bg-[#989b5d] text-white px-4 py-2 shadow whitespace-nowrap ml-3 md:hidden"
+                      onClick={() => window.open(news.link, "_blank")}
+                    >
+                      View More
+                    </button>
                   </div>
                 </div>
               </div>
               <button
-                className="inline-flex items-center justify-center gap-2 border border-[#77793f] rounded bg-[#989b5d] text-white px-4 py-2 shadow"
+                className="hidden md:inline-flex whitespace-nowrap items-center justify-center gap-2 border border-[#77793f] rounded bg-[#989b5d] text-white px-4 py-2 shadow"
                 onClick={() => window.open(news.link, "_blank")}
               >
                 View More

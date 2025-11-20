@@ -39,6 +39,13 @@ const Template12: React.FC<{ theme?: ITheme; club: string }> = ({ theme, club })
     yearPrice && { icon: theme?.yearImg, title: "Yearly Membership", price: `${yearPrice} ETH`, type: "year" },
   ].filter(Boolean) as Array<{ icon?: string; title: string; price: string; type: string }>;
 
+  const sectionAImg = [
+    "/SectionA.png",
+    "/SectionB.png",
+    "/SectionC.png",
+    "/SectionD.png",
+  ]
+
   return (
     <div className="flex flex-col items-center bg-white w-full min-h-screen overflow-hidden">
       <MemberModal open={modalOpen} setOpen={setModalOpen} data={memberData} onConfirm={handleConfirmJoin} isVerifyMode={isVerifyMode} />
@@ -48,12 +55,12 @@ const Template12: React.FC<{ theme?: ITheme; club: string }> = ({ theme, club })
         <ConnectButton className="hidden md:inline-flex" />
       </div>
 
-      <div className="w-full max-w-[1180px] px-5 md:px-10 py-10 flex flex-col items-center gap-8 bg-gradient-to-br from-[#fefefe] to-[#eef7ff]">
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div className="flex items-center justify-center">
-            <div className="relative w-[360px] h-[440px] rounded-2xl bg-white shadow-lg">
-              <img src={theme?.heroImg} alt="Hero" className="absolute left-1/2 -translate-x-1/2 top-6 w-[320px] h-[380px] object-cover rounded-xl" />
-            </div>
+      <div className="w-full flex flex-col items-center gap-0 bg-gradient-to-br from-[#fefefe] to-[#eef7ff]">
+        <div className=" w-full bg-[url('/FrameBg.png')] bg-cover bg-center grid grid-cols-1 md:grid-cols-2 gap-0 items-center">
+          <div className="w-full relative px-15 py-15">
+            <img src="/Rectangle 2.png" alt="Hero" className="w-[400px] h-full object-cover rounded-xl" />
+            <img src="/great 1.png" alt="Hero" className="absolute top-[20px] left-[350px] w-[200px] h-[200px] object-cover rounded-xl" />
+            <img src="/avatar.png" alt="Hero" className="absolute top-[330px] left-[310px] w-[160px] h-[160px] object-cover rounded-xl" />
           </div>
           <div className="flex flex-col items-start gap-4">
             <h1 className="text-black text-4xl md:text-5xl font-extrabold uppercase leading-tight">ETERNAL PROFIT COMMUNITY</h1>
@@ -63,11 +70,11 @@ const Template12: React.FC<{ theme?: ITheme; club: string }> = ({ theme, club })
           </div>
         </div>
 
-        <div className="w-full bg-[#ff3b3b] rounded-none py-10">
-          <div className="mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[980px] px-6">
+        <div className="flex z-[99] mt-[-90px] w-full bg-[url('/FrameRed.png')] bg-cover bg-center rounded-none pt-15 pb-15">
+          <div className="mx-auto grid grid-cols-1 md:grid-cols-2 gap-0 max-w-[980px] px-6">
             {[theme?.clubIntroduction1, theme?.clubIntroduction2].map((txt, i) => (
-              <div key={i} className="flex items-center gap-4 bg-white rounded-lg shadow p-5">
-                <img src={theme?.heroImg} className="w-20 h-20 object-cover rounded" />
+              <div key={i} className="flex mx-6 items-center gap-4 bg-white rounded-lg shadow p-3 md:p-5">
+                <img src={theme?.heroImg} className="w-20 h-28 object-cover rounded" />
                 <div className="flex-1">
                   <p className="text-[#333] text-sm">{txt}</p>
                   <button className="text-[#ff3b3b] text-sm font-semibold mt-2">View more →</button>
@@ -80,10 +87,12 @@ const Template12: React.FC<{ theme?: ITheme; club: string }> = ({ theme, club })
 
       {theme?.showMemberOption ? (
         <div className="w-full max-w-[1180px] px-5 md:px-10 py-12">
-          <div className="w-full bg-black text-white text-center font-extrabold uppercase tracking-wider rounded-md py-3">Join The Option</div>
+          <div className="w-full bg-cover bg-center text-white text-center font-extrabold uppercase tracking-wider rounded-md py-3" style={{ backgroundImage: `url(${sectionAImg[0]})` }}>
+            <img src="/JoinTheOption.png" className="w-full h-auto mt-[-15px] inline-block mr-2" />
+          </div>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-4 gap-6">
-            {membershipOptions.map((opt) => (
-              <div key={opt.title} className="flex flex-col items-center gap-3 rounded-xl shadow border p-6 bg-white">
+            {membershipOptions.map((opt, i) => (
+              <div key={opt.title} className="bg-cover bg-top flex flex-col items-center gap-3 p-6" style={{ backgroundImage: `url(${sectionAImg[i % sectionAImg.length]})` }}>
                 <img src={opt.icon || "/lifetime.png"} className="w-16 h-16 rounded-full" />
                 <p className="text-black font-bold">{opt.title}</p>
                 <p className="text-black text-2xl font-extrabold">{opt.price}</p>
@@ -96,7 +105,10 @@ const Template12: React.FC<{ theme?: ITheme; club: string }> = ({ theme, club })
 
       {verifyData?.length ? (
         <div className="w-full max-w-[1180px] px-5 md:px-10 py-12">
-          <div className="w-full bg-black text-white text-center font-extrabold uppercase tracking-wider rounded-md py-3">Position Verification</div>
+          <div className="relative w-full bg-[url('/BBgr.png')] bg-cover bg-center text-white text-center font-extrabold uppercase tracking-wider rounded-md py-3">
+            <img src="/GoImg.png" className="absolute top-[-30px] left-[15%] w-[140px] h-auto mt-[-15px] inline-block mr-2" />
+            <img src="/PositionImg.png" className="w-full h-auto mt-[-15px] inline-block mr-2" />
+          </div>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
             {verifyData.map((it, idx) => (
               <div key={idx} className="flex flex-col gap-3 rounded-xl shadow border p-5 bg-white">
@@ -113,8 +125,10 @@ const Template12: React.FC<{ theme?: ITheme; club: string }> = ({ theme, club })
       ) : null}
 
       <div className="w-full max-w-[1180px] px-5 md:px-10 py-12">
-        <div className="w-full bg-black text-white text-center font-extrabold uppercase tracking-wider rounded-md py-3">Links & Apps</div>
-        <div className="mt-8 grid grid-cols-2 md:grid-cols-6 gap-6">
+          <div className="w-full bg-cover bg-center text-white text-center font-extrabold uppercase tracking-wider rounded-md py-3" style={{ backgroundImage: `url(${sectionAImg[1]})` }}>
+            <img src="/linksApp.png" className="w-full h-auto mt-[-15px] inline-block mr-2" />
+          </div>        
+          <div className="mt-8 grid grid-cols-2 md:grid-cols-6 gap-6">
           {theme?.socials?.map((app, i) => (
             <div key={i} className="flex flex-col items-center gap-3 rounded-xl shadow border p-5 bg-white">
               <img src={app.icon} className="w-10 h-10" />
@@ -127,7 +141,9 @@ const Template12: React.FC<{ theme?: ITheme; club: string }> = ({ theme, club })
 
       {theme?.news && theme.news.length > 0 && (
         <div className="w-full max-w-[1180px] px-5 md:px-10 py-12">
-          <div className="w-full bg-black text-white text-center font-extrabold uppercase tracking-wider rounded-md py-3">Community News</div>
+          <div className="w-full bg-cover bg-center text-white text-center font-extrabold uppercase tracking-wider rounded-md py-3" style={{ backgroundImage: `url(${sectionAImg[2]})` }}>
+            <img src="/communityNews.png" className="w-full h-auto mt-[-15px] inline-block mr-2" />
+          </div>        
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
             {currentNewsData.map((news, idx) => (
               <div key={idx} className="flex flex-col gap-3 rounded-xl shadow border p-5 bg-white">
@@ -149,8 +165,13 @@ const Template12: React.FC<{ theme?: ITheme; club: string }> = ({ theme, club })
         </div>
       )}
 
-      <div className="w-full bg-[#ffe06c] px-6 py-8 flex items-center justify-between">
-        <span className="text-[#1f1f1f] text-sm font-semibold">{domainName}.web3.club</span>
+      <img src="/LabiImg.png" className="w-[400px]" alt="" />
+
+      <div className="w-full bg-[#F8F49B] px-6 py-8 flex items-center justify-between">
+        <div className="pl-10 flex justify-center items-center">
+          <img src="/pets.png" className="w-[30px] h-auto mr-2" />
+          <span className="text-[#1f1f1f] text-sm font-semibold">{domainName}.web3.club</span>
+        </div>
         <p className="text-[#1f1f1f] text-sm">
           <span>Powered by </span>
           <a href="https://web3.club" className="underline">Web3.Club</a>
