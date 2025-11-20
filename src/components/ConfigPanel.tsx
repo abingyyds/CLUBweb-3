@@ -500,7 +500,7 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
                     )}
                   />
 
-                  {templateId === "9" && (
+                  {["9", "12"].includes(templateId) && (
                     <FormField
                       control={form.control}
                       name="footImg"
@@ -566,71 +566,79 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
                     </>
                   )}
 
-                  <FormField
-                    control={form.control}
-                    name="positionImg"
-                    rules={linkRule}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Position Image</FormLabel>
-                        <FormControl>
-                          <Input {...field} placeholder="/position.png" />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                  {templateId === "11" && (
+                    <FormField
+                      control={form.control}
+                      name="positionImg"
+                      rules={linkRule}
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Position Image</FormLabel>
+                          <FormControl>
+                            <Input {...field} placeholder="/position.png" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  )}
                 </div>
 
                 {/* Avatar Settings */}
-                {["1", "2"].includes(templateId) ? (
+                {["1", "2", "11", "12", "13"].includes(templateId) ? (
                   <div className="space-y-4">
                     <h3 className="text-lg font-semibold">Avatar Settings</h3>
 
-                    <FormField
-                      control={form.control}
-                      name="avatar1"
-                      rules={linkRule}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Avatar 1</FormLabel>
-                          <FormControl>
-                            <Input {...field} placeholder="/avatar1.png" />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                    {["1", "2", "11", "12", "13"].includes(templateId) && (
+                      <FormField
+                        control={form.control}
+                        name="avatar1"
+                        rules={linkRule}
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Avatar 1</FormLabel>
+                            <FormControl>
+                              <Input {...field} placeholder="/avatar1.png" />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    )}
 
-                    <FormField
-                      control={form.control}
-                      name="avatar2"
-                      rules={linkRule}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Avatar 2</FormLabel>
-                          <FormControl>
-                            <Input {...field} placeholder="/avatar2.png" />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                    {["1", "2"].includes(templateId) && (
+                      <>
+                        <FormField
+                          control={form.control}
+                          name="avatar2"
+                          rules={linkRule}
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Avatar 2</FormLabel>
+                              <FormControl>
+                                <Input {...field} placeholder="/avatar2.png" />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
 
-                    <FormField
-                      control={form.control}
-                      name="avatar3"
-                      rules={linkRule}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Avatar 3</FormLabel>
-                          <FormControl>
-                            <Input {...field} placeholder="/avatar3.png" />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                        <FormField
+                          control={form.control}
+                          name="avatar3"
+                          rules={linkRule}
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Avatar 3</FormLabel>
+                              <FormControl>
+                                <Input {...field} placeholder="/avatar3.png" />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </>
+                    )}
                   </div>
                 ) : null}
 
