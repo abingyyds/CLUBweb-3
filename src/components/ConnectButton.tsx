@@ -6,10 +6,12 @@ export const ConnectButton = ({
   className,
   icon,
   style,
+  iconClassName,
 }: {
   className?: string;
   style?: React.CSSProperties;
   icon?: string;
+  iconClassName?: string;
 }) => {
   const { open, close } = useAppKit();
   const { walletInfo } = useWalletInfo();
@@ -34,7 +36,11 @@ export const ConnectButton = ({
       )}
 
       {icon && (
-        <img src={icon || "/arrow.png"} className="w-6 h-6" alt="Arrow" />
+        <img
+          src={icon || "/arrow.png"}
+          className={cn("w-6 h-6", iconClassName)}
+          alt="Arrow"
+        />
       )}
     </div>
   );

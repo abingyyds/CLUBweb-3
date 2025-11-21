@@ -114,7 +114,7 @@ const Template12: React.FC<{ theme?: ITheme; club: string }> = ({
         <p className="text-white text-xs font-bold tracking-wide uppercase">
           {domainName}.WEB3.CLUB
         </p>
-        <ConnectButton className="hidden md:flex px-[11px] py-1.5 items-start gap-2.5 rounded-[0.3125rem] !bg-[#FB3] shadow-[0_0.020375rem_0.0458125rem_0_rgba(0,0,0,0.12),0_0.0963125rem_0.1791875rem_0_rgba(0,0,0,0.07),0_0.25rem_0.5625rem_0_rgba(0,0,0,0.05)]" />
+        <ConnectButton className="flex px-[11px] py-1.5 items-start gap-2.5 rounded-[0.3125rem] !bg-[#FB3] shadow-[0_0.020375rem_0.0458125rem_0_rgba(0,0,0,0.12),0_0.0963125rem_0.1791875rem_0_rgba(0,0,0,0.07),0_0.25rem_0.5625rem_0_rgba(0,0,0,0.05)]" />
       </div>
 
       <div className="w-full flex flex-col items-center gap-0 bg-gradient-to-br from-[#fefefe] to-[#eef7ff]">
@@ -138,17 +138,17 @@ const Template12: React.FC<{ theme?: ITheme; club: string }> = ({
               />
             </div>
           </div>
-          <div className="flex flex-col items-center md:items-start gap-4 pb-10 md:pb-0">
-            <h1 className="text-black text-center text-4xl md:text-5xl font-extrabold uppercase leading-tight">
+          <div className="flex flex-col items-start gap-4 pb-10 md:pb-0 pl-10 md:pl-0">
+            <h1 className="text-black text-4xl md:text-5xl font-extrabold uppercase leading-tight">
               {theme.heroTitle}
             </h1>
-            <div>
-              <ConnectButton className="flex h-[52px] text-[36px] py-[6px] pl-[16px] pr-2.5 justify-center items-center gap-5 rounded-[3.75rem] !bg-[#FFBB33] shadow-[0_0.625rem_0_0_rgba(0,0,0,0.25)]" />
+            <div className="mt-4 relative">
+              <ConnectButton icon="/arrow_W.png" iconClassName="w-12 h-12" className="flex h-[60px] text-[22px] py-[12px] pl-[30px] pr-2.5 justify-center items-center gap-5 rounded-[3.75rem] !bg-[#FFBB33] shadow-[0_0.625rem_0_0_rgba(0,0,0,0.25)]" />
             </div>
           </div>
         </div>
 
-        <div className="flex z-[10] md:mt-[-90px] w-full bg-[url('/FrameRed.png')] bg-cover bg-center rounded-none pt-15 pb-15">
+        <div className="flex z-[10] md:mt-[-90px] w-full bg-[url('/phoneBg.png')] md:bg-[url('/FrameRed.png')] bg-cover bg-center rounded-none pt-15 pb-15">
           <div className="mx-auto flex gap-6 flex-col md:flex-row  max-w-[980px] px-6">
             {[theme?.clubIntroduction1, theme?.clubIntroduction2].map(
               (txt, i) => (
@@ -182,18 +182,22 @@ const Template12: React.FC<{ theme?: ITheme; club: string }> = ({
       </div>
 
       {theme?.showMemberOption ? (
-        <div className="w-full max-w-[1180px] px-5 md:px-10 py-12">
+        <div className="w-full max-w-[1180px] px-0 md:px-10 py-12">
           <div className="w-full bg-cover bg-center text-white text-center font-extrabold uppercase tracking-wider rounded-md py-3">
             <img
               src="/join12.png"
-              className="w-full h-auto mt-[-15px] inline-block mr-2"
+              className="hidden md:block w-full h-auto mt-[-15px] inline-block mr-2"
+            />
+            <img
+              src="/joinPhone.png"
+              className="block md:hidden w-full h-auto mt-[-15px] inline-block"
             />
           </div>
-          <div className="mt-8 flex flex-wrap justify-center items-center gap-6">
+          <div className="mt-0 md:mt-8 flex flex-wrap px-5 justify-between md:justify-center items-center gap-6">
             {membershipOptions.map((opt, i) => (
               <div
                 key={opt.title}
-                className="bg-cover bg-top flex flex-col justify-between items-center gap-3 p-4 md:p-6 w-[152px] md:w-[218px] h-[220px] md:h-[330px]"
+                className="bg-cover bg-top flex flex-col justify-between items-center gap-3 p-4 md:p-6 w-[160px] md:w-[218px] h-[240px] md:h-[330px]"
                 style={{
                   backgroundImage: `url(${
                     sectionAImg[i % sectionAImg.length]
@@ -230,20 +234,24 @@ const Template12: React.FC<{ theme?: ITheme; club: string }> = ({
       ) : null}
 
       {verifyData?.length ? (
-        <div className="w-full max-w-[1180px] px-5 md:px-10 py-12">
-          <div className="relative w-full bg-[url('/BBgr.png')] bg-cover bg-center text-white text-center font-extrabold uppercase tracking-wider rounded-md py-3">
+        <div className="relative w-full max-w-[1180px] px-0 md:px-10 py-12">
+          <div className="absolute top-[-20px] left-0 w-full py-3">
             {/* <img
               src="/GoImg.png"
               className="absolute top-[-30px] left-[15%] w-[140px] h-auto mt-[-15px] inline-block mr-2"
             /> */}
             <img
               src="/position12.png"
-              className="w-full h-auto mt-[-15px] inline-block mr-2"
+              className="hidden md:block w-full h-auto mt-[-15px] block px-10"
+            />
+            <img
+              src="/positionPhone.png"
+              className="block md:hidden w-full h-auto mt-[-15px] inline-block"
             />
           </div>
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="mt-[-20px] grid grid-cols-1 md:grid-cols-3 gap-6 bg-black px-4 py-6 pt-10">
             {verifyData.map((it, idx) => (
-              <div key={idx} className="flex flex-col gap-3">
+              <div key={idx} className="flex flex-col gap-3 bg-white px-0 md:px-5 py-4 pt-0 md:pt-15">
                 <div className="flex p-5 flex-col items-center gap-2.5 self-stretch bg-[#FEE46B]">
                   <img
                     src={
@@ -254,15 +262,15 @@ const Template12: React.FC<{ theme?: ITheme; club: string }> = ({
                     className="w-auto h-10"
                   />
                 </div>
-                <p className="flex h-6 flex-col justify-center self-stretch text-[#050505] font-jersey-25 text-[28px] font-not-italic tracking--0.0325">
+                <p className="flex h-6 px-3 md:px-0 flex-col justify-center self-stretch text-[#050505] font-jersey-25 text-[18px] md:text-[28px] font-not-italic tracking--0.0325">
                   {it.chainName} Chain
                 </p>
-                <p className="self-stretch text-[#121212] font-[Inter] text-[16px] font-not-italic font-400 lh-5.75 tracking-0.002">
+                <p className="self-stretch px-3 md:px-0 text-[#121212] font-[Inter] text-[14px] md:text-[16px] font-not-italic font-400 lh-5.75 tracking-0.002">
                   Hold {it.tokenSymbol} ≥{" "}
                   {formatUnits(it.threshold, it.decimals)}
                 </p>
                 <button
-                  className="text-[#960] flex gap-2 items-center font-[Inter] text-[16px] font-not-italic font-400 lh-6"
+                  className="px-3 md:px-0 text-[#960] flex gap-2 items-center font-[Inter] text-[16px] font-not-italic font-400 lh-6"
                   onClick={() => handleVerify(it)}
                 >
                   Verify
@@ -274,18 +282,22 @@ const Template12: React.FC<{ theme?: ITheme; club: string }> = ({
         </div>
       ) : null}
 
-      <div className="w-full max-w-[1180px] px-5 md:px-10 py-12">
-        <div className="w-full bg-cover bg-center text-white text-center font-extrabold uppercase tracking-wider rounded-md py-3">
+      <div className="relative w-full max-w-[1180px] px-0 md:px-10 py-12">
+        <div className="absolute top-[20px] left-0 w-full py-3">
           <img
             src="/app12.png"
-            className="w-full h-auto mt-[-15px] inline-block mr-2"
+            className="hidden md:block w-full h-auto mt-[-15px] block px-10"
           />
+          <img
+              src="/appsPhone.png"
+              className="block md:hidden w-full h-auto mt-[-15px] inline-block"
+            />
         </div>
-        <div className="mt-8 flex justify-center items-center flex-wrap gap-6">
+        <div className="flex justify-center items-center flex-wrap bg-black px-4 py-6 pt-5">
           {theme?.socials?.map((app, i) => (
             <div
               key={i}
-              className="flex flex-col items-center gap-3 px-5 py-[30px] w-[122px] md:w-[180px]"
+              className="flex m-2 flex-col items-center bg-white gap-3 px-5 py-[30px] pt-16 w-[122px] md:w-[150px]"
             >
               <img src={app.icon} className="w-10 h-10" />
               <p className="text-[#333] font-jersey-25 text-5.5 font-not-italic font-400 lh-normal">
@@ -303,11 +315,15 @@ const Template12: React.FC<{ theme?: ITheme; club: string }> = ({
       </div>
 
       {theme?.news && theme.news.length > 0 && (
-        <div className="w-full max-w-[1180px] px-5 md:px-10 py-12">
+        <div className="w-full max-w-[1180px] px-0 md:px-10 py-12">
           <div className="w-full bg-cover bg-center text-white text-center font-extrabold uppercase tracking-wider rounded-md py-3">
             <img
               src="/news12.png"
-              className="w-full h-auto mt-[-15px] inline-block mr-2"
+              className="hidden md:block w-full h-auto mt-[-15px] inline-block mr-2"
+            />
+            <img
+              src="/communityPhone.png"
+              className="block md:hidden w-full h-auto mt-[-15px] inline-block"
             />
           </div>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
