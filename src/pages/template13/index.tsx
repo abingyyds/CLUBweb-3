@@ -4,7 +4,7 @@ import { useAccount } from "wagmi";
 import { formatUnits } from "viem";
 import Pagination from "../../components/Pagination";
 import { ITheme } from "@/types";
-import { MemberModal } from "../template3/MemberModal";
+import { MemberModal } from "./MemberModal";
 import { usePagination } from "../../hooks/usePagination";
 import { useClubData } from "../../hooks/useClubData";
 import { useClubMembership } from "../../hooks/useClubMembership";
@@ -148,12 +148,28 @@ const Template13: React.FC<{ theme?: ITheme; club: string }> = ({
                     <div className="text-[#FFF] lining-nums tabular-nums text-4 font-not-italic font-bold lh-[100%] tracking-0.08 uppercase">
                       SECTION {i + 1}
                     </div>
-                    <button className="block md:hidden mt-2 border-b-[2px] border-[#f8cf01] text-white font-bold uppercase text-sm">
+                    <button
+                      className="block md:hidden mt-2 border-b-[2px] border-[#f8cf01] text-white font-bold uppercase text-sm"
+                      onClick={() => {
+                        window.open(
+                          i === 0 ? theme?.clubLink1 : theme?.clubLink2,
+                          "_blank"
+                        );
+                      }}
+                    >
                       View more
                     </button>
                   </div>
                   <p className="text-[14px] text-white/80 font-medium">{txt}</p>
-                  <button className="mt-2 hidden md:block border-b-[2px] border-[#f8cf01] text-white font-bold uppercase text-sm">
+                  <button
+                    onClick={() => {
+                      window.open(
+                        i === 0 ? theme?.clubLink1 : theme?.clubLink2,
+                        "_blank"
+                      );
+                    }}
+                    className="mt-2 hidden md:block border-b-[2px] border-[#f8cf01] text-white font-bold uppercase text-sm"
+                  >
                     View more
                   </button>
                 </div>
@@ -176,7 +192,7 @@ const Template13: React.FC<{ theme?: ITheme; club: string }> = ({
             <div className="mt-8 flex flex-col md:flex-row items-center flex-wrap justify-center gap-6">
               {membershipOptions.map((opt, i) => (
                 <React.Fragment key={opt.title}>
-                  <div className="flex items-center gap-5 bg-transparent w-full">
+                  <div className="flex items-center gap-5 bg-transparent w-full md:w-auto">
                     <img
                       src={opt.icon || "/lifetime.png"}
                       className="size-[50px] md:size-[80px] rounded-full"

@@ -113,5 +113,8 @@
   "monthImg": "/month6.png",
   "yearImg": "/year6.png",
   "verifyImgs": ["/aave1.png", "/bnb.png", "/polygon.png"],
-  "showMemberOption": true
+  "showMemberOption": true,
+  "blockText1": "Free with summer",
+  "blockText2": "42+ Join us",
+  "blockText3": "300+ wealth"
 }

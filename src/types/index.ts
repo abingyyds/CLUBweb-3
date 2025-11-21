@@ -30,12 +30,13 @@ export interface ITheme {
   clubIcon2: string;
   footImg: string;
   positionImg: string;
-  clubImg1: string;
-  clubImg2: string;
   lifeTimeText: string;
   monthText: string;
   yearText: string;
   quarterText: string;
+  blockText1: string;
+  blockText2: string;
+  blockText3: string;
 }
 
 export interface News {

@@ -241,30 +241,30 @@ export const Template10: React.FC<{ theme?: ITheme; club: string }> = ({
               {/* Stats Cards */}
               <div className="w-full inline-flex items-start gap-[5px] flex-wrap justify-center md:justify-start">
                 <div className="h-[93px] inline-flex flex-col items-center justify-center gap-1 rounded-[5px] bg-[#ffe7e2] px-5 py-[10px]">
-                  <span className="text-black text-xl font-bold leading-6 tracking-[-0.2px] text-center">
-                    Free
+                  <span className="text-black text-lg font-bold leading-6 tracking-[-0.2px] text-center">
+                    {theme.blockText1}
                   </span>
-                  <span className="text-black text-sm leading-[17px] tracking-[-0.14px] text-center">
+                  {/* <span className="text-black text-sm leading-[17px] tracking-[-0.14px] text-center">
                     with summer
-                  </span>
+                  </span> */}
                 </div>
 
                 <div className="flex flex-col gap-[5px]">
                   <div className="flex items-center gap-[10px] rounded-[5px] bg-[#f9e1f1] px-5 py-[10px]">
-                    <span className="text-black text-lg font-bold leading-6 tracking-[-0.2px]">
-                      42+
+                    <span className="text-black text-md font-bold leading-6 tracking-[-0.2px]">
+                      {theme.blockText2}
                     </span>
-                    <span className="text-black text-sm leading-[17px] tracking-[-0.14px]">
+                    {/* <span className="text-black text-sm leading-[17px] tracking-[-0.14px]">
                       Join us
-                    </span>
+                    </span> */}
                   </div>
                   <div className="flex items-center gap-[10px] rounded-[5px] bg-[#ede5fd] px-5 py-[10px]">
-                    <span className="text-black text-lg font-bold leading-6 tracking-[-0.2px]">
-                      300+
+                    <span className="text-black text-md font-bold leading-6 tracking-[-0.2px]">
+                      {theme.blockText3}
                     </span>
-                    <span className="text-black text-sm leading-[17px] tracking-[-0.14px]">
+                    {/* <span className="text-black text-sm leading-[17px] tracking-[-0.14px]">
                       wealth
-                    </span>
+                    </span> */}
                   </div>
                 </div>
               </div>

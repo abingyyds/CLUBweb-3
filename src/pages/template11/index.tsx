@@ -3,7 +3,7 @@ import { ConnectButton } from "../../components/ConnectButton";
 import { useAccount } from "wagmi";
 import Pagination from "../../components/Pagination";
 import { ITheme } from "@/types";
-import { MemberModal } from "../template3/MemberModal";
+import { MemberModal } from "./MemberModal";
 import { usePagination } from "../../hooks/usePagination";
 import { useClubData } from "../../hooks/useClubData";
 import { useClubMembership } from "../../hooks/useClubMembership";
@@ -130,11 +130,19 @@ const Template11: React.FC<{ theme?: ITheme; club: string }> = ({
                   className="flex flex-col items-center gap-6 rounded-md bg-[#dccfb3] p-10 shadow-md"
                 >
                   <img
-                    src={i === 0 ? theme?.clubImg1 : theme?.clubImg2}
+                    src={i === 0 ? theme?.clubIcon1 : theme?.clubIcon2}
                     className="w-[422px] h-[100px] object-cover"
                   />
                   <p className="text-[#050505] text-sm text-center">{txt}</p>
-                  <button className="text-[#573f19] text-base">
+                  <button
+                    className="text-[#573f19] text-base"
+                    onClick={() => {
+                      window.open(
+                        i === 0 ? theme?.clubLink1 : theme?.clubLink2,
+                        "_blank"
+                      );
+                    }}
+                  >
                     View more
                   </button>
                 </div>
@@ -280,7 +288,7 @@ const Template11: React.FC<{ theme?: ITheme; club: string }> = ({
           {currentNewsData.map((news, idx) => (
             <div
               key={idx}
-              className="w-full flex flex-col md:flex-row items-start md:items-center justify-start md:justify-between border-b border-[#c2b191] pb-3"
+              className="w-full cursor-pointer flex flex-col md:flex-row items-start md:items-center justify-start md:justify-between border-b border-[#c2b191] pb-3"
             >
               <div className="flex flex-col w-full md:flex-row items-start md:items-center gap-2 md:gap-6">
                 <img
@@ -325,7 +333,7 @@ const Template11: React.FC<{ theme?: ITheme; club: string }> = ({
         </div>
       </div>
 
-      <div className="w-full bg-[#d2c19c] px-10 py-8 flex items-center justify-between">
+      <div className="w-full bg-[#d2c19c] px-10 py-8 flex flex-col md:flex-row items-center justify-between">
         <div className="inline-flex items-center gap-2">
           <span className="text-[#554018] text-base">
             {domainName}.web3.club

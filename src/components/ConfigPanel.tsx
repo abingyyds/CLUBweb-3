@@ -783,6 +783,51 @@ export const ConfigPanel: React.FC<ConfigPanelProps> = ({ config, onSave }) => {
                   </div>
                 )}
 
+                {templateId === "10" && (
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold">Block Texts</h3>
+                    <FormField
+                      control={form.control}
+                      name="blockText1"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Block Text 1</FormLabel>
+                          <FormControl>
+                            <Input {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="blockText2"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Block Text 2</FormLabel>
+                          <FormControl>
+                            <Input {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="blockText3"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Block Text 3</FormLabel>
+                          <FormControl>
+                            <Input {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                )}
+
                 <div className="space-y-4">
                   <h3 className="text-lg font-semibold">Display Settings</h3>
                   <FormField

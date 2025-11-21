@@ -4,7 +4,7 @@ import { useAccount } from "wagmi";
 import { formatUnits } from "viem";
 import Pagination from "../../components/Pagination";
 import { ITheme } from "@/types";
-import { MemberModal } from "../template3/MemberModal";
+import { MemberModal } from "./MemberModal";
 import { usePagination } from "../../hooks/usePagination";
 import { useClubData } from "../../hooks/useClubData";
 import { useClubMembership } from "../../hooks/useClubMembership";
@@ -143,7 +143,11 @@ const Template12: React.FC<{ theme?: ITheme; club: string }> = ({
               {theme.heroTitle}
             </h1>
             <div className="mt-4 relative">
-              <ConnectButton icon="/arrow_W.png" iconClassName="w-12 h-12" className="flex h-[60px] text-[22px] py-[12px] pl-[30px] pr-2.5 justify-center items-center gap-5 rounded-[3.75rem] !bg-[#FFBB33] shadow-[0_0.625rem_0_0_rgba(0,0,0,0.25)]" />
+              <ConnectButton
+                icon="/arrow_W.png"
+                iconClassName="w-12 h-12"
+                className="flex h-[60px] text-[22px] py-[12px] pl-[30px] pr-2.5 justify-center items-center gap-5 rounded-[3.75rem] !bg-[#FFBB33] shadow-[0_0.625rem_0_0_rgba(0,0,0,0.25)]"
+              />
             </div>
           </div>
         </div>
@@ -251,7 +255,10 @@ const Template12: React.FC<{ theme?: ITheme; club: string }> = ({
           </div>
           <div className="mt-[-20px] grid grid-cols-1 md:grid-cols-3 gap-6 bg-black px-4 py-6 pt-10">
             {verifyData.map((it, idx) => (
-              <div key={idx} className="flex flex-col gap-3 bg-white px-0 md:px-5 py-4 pt-0 md:pt-15">
+              <div
+                key={idx}
+                className="flex flex-col gap-3 bg-white px-0 md:px-5 py-4 pt-0 md:pt-15"
+              >
                 <div className="flex p-5 flex-col items-center gap-2.5 self-stretch bg-[#FEE46B]">
                   <img
                     src={
@@ -289,9 +296,9 @@ const Template12: React.FC<{ theme?: ITheme; club: string }> = ({
             className="hidden md:block w-full h-auto mt-[-15px] block px-10"
           />
           <img
-              src="/appsPhone.png"
-              className="block md:hidden w-full h-auto mt-[-15px] inline-block"
-            />
+            src="/appsPhone.png"
+            className="block md:hidden w-full h-auto mt-[-15px] inline-block"
+          />
         </div>
         <div className="flex justify-center items-center flex-wrap bg-black px-4 py-6 pt-5">
           {theme?.socials?.map((app, i) => (
@@ -331,7 +338,7 @@ const Template12: React.FC<{ theme?: ITheme; club: string }> = ({
               <div
                 key={idx}
                 onClick={() => window.open(news.link, "_blank")}
-                className="flex p-5 flex-col justify-center items-start gap-7.5 flex-[1_0_0] bg-[#F7F7F7]"
+                className="flex p-5 cursor-pointer flex-col justify-center items-start gap-7.5 flex-[1_0_0] bg-[#F7F7F7]"
               >
                 <img
                   src={news.image}
