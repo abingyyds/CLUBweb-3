@@ -265,7 +265,7 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
                       <button
                         onClick={() => handleJoin(selectedMembership)}
                         disabled={!selectedMembership}
-                        className="flex items-center gap-4 bg-[#f38406] border-2 border-[#f38406] rounded-full px-8 py-3 text-white font-medium hover:bg-[#e67300] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="flex items-center gap-4 bg-[#f38406] border-2 border-[#f38406] rounded-full px-8 py-3 text-white font-medium hover:bg-[#e67300] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0.35rem_0.35rem_0_0_rgba(0,0,0,0.25)] disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         <span>JOIN NOW</span>
                         <ChevronsRight />
@@ -385,6 +385,12 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
                       <span className="text-black text-xs md:text-sm">
                         {app.name}
                       </span>
+                      <button
+                        className="flex px-5 py-2 justify-center items-center gap-2.5 rounded-[1.25rem] bg-[#F38406] text-[#000] lining-nums tabular-nums text-[13px] font-not-italic font-400 lh-normal transition-all duration-200 hover:-translate-y-0.5 hover:brightness-95 hover:shadow-[0_0.35rem_0_0_rgba(0,0,0,0.15)]"
+                        onClick={() => window.open(app.link, "_blank")}
+                      >
+                        {app.text}
+                      </button>
                     </div>
                   ))}
                 </div>
@@ -442,7 +448,7 @@ export const Template7: React.FC<Template7Props> = ({ theme, club }) => {
                 <button
                   onClick={() => handlePageChange(currentPage + 1)}
                   disabled={currentPage >= totalPages}
-                  className="flex-1 md:flex-none bg-[#292F36] text-white h-[56px] rounded-[32px] px-8 md:px-8 py-2 md:py-4 text-sm disabled:opacity-50 transition-colors"
+                  className="flex-1 md:flex-none bg-[#292F36] text-white h-[56px] rounded-[32px] px-8 md:px-8 py-2 md:py-4 text-sm disabled:opacity-50 transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#3a4452]"
                 >
                   Next
                 </button>

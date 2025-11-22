@@ -8,6 +8,7 @@ import { usePagination } from "../../hooks/usePagination";
 import { useClubData } from "../../hooks/useClubData";
 import { useClubMembership } from "../../hooks/useClubMembership";
 import { formatUnits } from "viem";
+import "@fontsource/song-myung";
 
 const Template11: React.FC<{ theme?: ITheme; club: string }> = ({
   theme,
@@ -87,7 +88,7 @@ const Template11: React.FC<{ theme?: ITheme; club: string }> = ({
   }>;
 
   return (
-    <div className="flex flex-col items-center bg-[#ffffff] w-full min-h-screen overflow-hidden">
+    <div className="template11 flex flex-col items-center bg-[#ffffff] w-full min-h-screen overflow-hidden">
       <MemberModal
         open={modalOpen}
         setOpen={setModalOpen}
@@ -165,7 +166,7 @@ const Template11: React.FC<{ theme?: ITheme; club: string }> = ({
             </p>
             {/* <p className="text-[#564119] text-sm">little text description</p> */}
           </div>
-          <div className="flex md:justify-center justify-between flex-wrap items-center w-full max-w-[1080px]">
+          <div className="flex md:justify-center justify-between flex-wrap items-center w-full">
             {membershipOptions.map((opt, i) => (
               <div
                 key={opt.title}
@@ -202,9 +203,9 @@ const Template11: React.FC<{ theme?: ITheme; club: string }> = ({
             {/* <p className="text-[#564119] text-sm">little text description</p> */}
           </div>
           <div className="flex flex-col md:flex-row items-start gap-10 w-full max-w-[1080px]">
-            <div className="relative">
+            <div className="relative w-full">
               <div
-                className="w-[295px] md:w-[487px] h-[240px] md:h-[360px] border border-[#ae9a76] bg-center bg-cover shadow-md"
+                className="w-full md:w-[487px] h-[240px] md:h-[360px] border border-[#ae9a76] bg-center bg-cover shadow-md"
                 style={{ backgroundImage: `url(${theme?.positionImg})` }}
               />
               {/* <div className="absolute -top-5 -left-4 w-[487px] h-[360px] bg-[#ae9a76] -rotate-3" /> */}
@@ -249,7 +250,7 @@ const Template11: React.FC<{ theme?: ITheme; club: string }> = ({
         </div>
       ) : null}
 
-      <div className="w-full h-[35px] bg-[#dfd1b3]" />
+      <img src={"/separate-area.png"} className="h-[35px] object-cover" />
 
       <div className="w-full bg-[#d3c29d] py-16 px-8 flex flex-col items-center gap-10">
         <div className="text-center">
@@ -260,7 +261,12 @@ const Template11: React.FC<{ theme?: ITheme; club: string }> = ({
           {theme?.socials?.map((app, i) => (
             <div
               key={i}
-              className="flex flex-col items-center gap-4 border border-[#ae9a76] rounded-sm bg-[#dfd1b3] p-6 shadow"
+              className="w-[145px] h-[245px] flex flex-col items-center gap-4 p-6 pt-10 shadow"
+              style={{
+                backgroundImage: `url(/bgapp.png)`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
             >
               <div className="flex items-center justify-center w-16 h-16 ">
                 <img src={app.icon} className="w-full" />
@@ -276,15 +282,19 @@ const Template11: React.FC<{ theme?: ITheme; club: string }> = ({
           ))}
         </div>
       </div>
+      <img
+        src={"/separate-area.png"}
+        className="h-[35px] object-cover transform rotate-180"
+      />
 
-      <div className="w-full bg-[#ddcfb0] py-24 px-8 flex flex-col items-center gap-12">
+      <div className="w-full bg-[#ddcfb0]  py-24 px-8 flex flex-col items-center gap-12">
         <div className="text-center">
           <p className="text-[#564119] text-4xl leading-[49px]">
             Community News
           </p>
           {/* <p className="text-[#564119] text-sm">little text description</p> */}
         </div>
-        <div className="flex flex-col gap-6 w-full max-w-[1080px]">
+        <div className="flex flex-col gap-6 w-full max-w-[1080px] rounded-[0.25rem] border border-[#AE9A76] bg-[#E1D3B9] p-10">
           {currentNewsData.map((news, idx) => (
             <div
               key={idx}

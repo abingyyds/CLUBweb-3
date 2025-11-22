@@ -327,13 +327,22 @@ export const Template2 = ({
           {theme.socials.map((link, index) => (
             <div
               key={index}
-              className="bg-gray-100 rounded-xl p-4 md:p-8 flex flex-col items-center justify-center"
+              className="bg-[#ECEDF2] w-[98px] md:w-[146px] rounded-xl p-4 md:p-8 flex flex-col gap-3 items-center justify-center"
             >
               <div
                 className={`w-12 md:w-16 h-12 md:h-16 rounded-xl md:rounded-2xl flex items-center justify-center`}
               >
                 <img src={link.icon} alt={link.name} className="w-full" />
               </div>
+              <div className="text-[#333] font-[Inter] text-[16px] font-not-italic font-bold lh-normal">
+                {link.name}
+              </div>
+              <button
+                className="flex px-5 py-2 justify-center items-center gap-2.5 rounded-[1.25rem] bg-[#2AADA5] text-[#FFF] lining-nums tabular-nums font-[Inter] text-[14px] font-not-italic font-medium lh-normal transition-all duration-200 hover:-translate-y-0.5 hover:brightness-95 hover:shadow-[0_0.35rem_0_0_rgba(0,0,0,0.15)]"
+                onClick={() => window.open(link.link, "_blank")}
+              >
+                {link.text}
+              </button>
             </div>
           ))}
         </div>

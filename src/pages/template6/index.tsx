@@ -309,11 +309,11 @@ const Template6: React.FC<{ theme?: ITheme; club: string }> = ({
             </div>
           </div>
 
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-6 max-w-4xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-6 md:gap-10 mx-auto">
             {theme?.socials?.map((app, index) => (
               <div
                 key={index}
-                className="flex px-5 text-black group cursor-pointer py-[30px] flex-col justify-center items-center gap-2.5 flex-[1_0_0] rounded-[5rem] bg-[#FFF] shadow-[0_0.625rem_1.5rem_0_rgba(0,0,0,0.06)] hover:bg-[#EF5DA8] hover:shadow-[0_0.625rem_1.5rem_0_rgba(239,93,168,0.30)] hover:text-white"
+                className="flex px-5 text-black group cursor-pointer py-[30px] flex-col justify-center items-center gap-2.5 rounded-[5rem] bg-[#FFF] shadow-[0_0.625rem_1.5rem_0_rgba(0,0,0,0.06)] hover:bg-[#EF5DA8] hover:shadow-[0_0.625rem_1.5rem_0_rgba(239,93,168,0.30)] hover:text-white"
               >
                 <img
                   src={app.icon}

@@ -400,19 +400,28 @@ export const Template4 = ({ club, theme }: { club: string; theme: ITheme }) => {
           Links & Apps
         </h2>
 
-        <div className="grid grid-cols-3 md:grid-cols-6 gap-6 md:gap-10">
+        <div className="flex flex-wrap justify-center gap-6 md:gap-10">
           {theme?.socials?.slice(0, 6).map((app, index) => (
             <div
               key={index}
-              className="bg-[#f7dc75] rounded-[20px] p-5 md:p-7 rounded-2xl flex items-center justify-center overflow-hidden"
+              className="bg-[#f7dc75] rounded-[20px] p-5 md:p-7 flex flex-col justify-center items-center gap-3 overflow-hidden"
             >
-              <div className="w-16 h-16 lg:w-16 lg:h-16 rounded-2xl flex items-center justify-center overflow-hidden">
+              <div className="w-[98px] h-16 md:w-[146px] lg:h-16 rounded-2xl flex items-center justify-center overflow-hidden">
                 <img
                   src={app.icon}
                   alt={app.name}
                   className="w-full h-full object-contain"
                 />
               </div>
+              <div className="text-[#333] font-[Inter] text-4 font-not-italic font-700 lh-normal">
+                {app.name}
+              </div>
+              <button
+                className="flex px-5 py-2 justify-center items-center gap-2.5 rounded-[1.25rem] bg-[#9FB471] text-[#000] lining-nums tabular-nums font-[Inter] text-3.5 font-not-italic font-500 lh-normal transition-all duration-200 hover:-translate-y-0.5 hover:brightness-95 hover:shadow-[0_0.35rem_0_0_rgba(0,0,0,0.15)]"
+                onClick={() => window.open(app.link, "_blank")}
+              >
+                {app.text}
+              </button>
             </div>
           ))}
         </div>

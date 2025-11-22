@@ -17,6 +17,9 @@ importers:
       '@fontsource/poller-one':
         specifier: ^5.2.8
         version: 5.2.8
+      '@fontsource/song-myung':
+        specifier: ^5.2.8
+        version: 5.2.8
       '@hookform/resolvers':
         specifier: ^5.2.2
         version: 5.2.2(react-hook-form@7.65.0(react@18.3.1))
@@ -588,6 +591,9 @@ packages:
 
   '@fontsource/poller-one@5.2.8':
     resolution: {integrity: sha512-iGUyIWfB/K5RQeA210ICMPDsqXgtmqrJplD1nDRZlZk7cygwCFDHmF/87JnoI2iyD1o4cgBE15rdFdaBEwIPGQ==}
+
+  '@fontsource/song-myung@5.2.8':
+    resolution: {integrity: sha512-GZXFd5ezAKXEfoAeI+VAqYBAdPhzDamMpYPi1UlBcSq+l78KFkH5x1sTzwo5auQup6xTz/SS15DyesnKPZ0W7g==}
 
   '@gemini-wallet/core@0.2.0':
     resolution: {integrity: sha512-vv9aozWnKrrPWQ3vIFcWk7yta4hQW1Ie0fsNNPeXnjAxkbXr2hqMagEptLuMxpEP2W3mnRu05VDNKzcvAuuZDw==}
@@ -4470,6 +4476,8 @@ snapshots:
   '@fontsource/jersey-25@5.2.8': {}
 
   '@fontsource/poller-one@5.2.8': {}
+
+  '@fontsource/song-myung@5.2.8': {}
 
   '@gemini-wallet/core@0.2.0(viem@2.38.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@4.1.12))':
     dependencies:

@@ -244,26 +244,25 @@ export const Template5: React.FC<{ theme?: ITheme; club: string }> = ({
 
           <div className="flex flex-wrap justify-around gap-4 w-full place-items-center">
             {theme?.socials?.map((social, index) => (
-              <div
-                key={index}
-                className="bg-black/80 rounded p-4 w-16 h-16 flex items-center justify-center mx-auto"
-              >
-                <img
-                  src={social.icon}
-                  alt={social.name}
-                  className="w-8 h-8 object-contain filter invert"
-                />
-              </div>
-            )) ||
-              // Default social icons if no theme socials
-              Array.from({ length: 6 }, (_, index) => (
-                <div
-                  key={index}
-                  className="bg-black/80 rounded p-4 w-16 h-16 flex items-center justify-center mx-auto"
-                >
-                  <div className="w-8 h-8 bg-white rounded"></div>
+              <div key={index} className="space-y-3">
+                <div className="bg-black/80 text-center rounded p-4 w-16 h-16 flex items-center justify-center mx-auto">
+                  <img
+                    src={social.icon}
+                    alt={social.name}
+                    className="w-8 h-8 object-contain filter invert"
+                  />
                 </div>
-              ))}
+                <div className="text-[#333] text-center text-[13px] font-not-italic font-700 lh-normal">
+                  {social.name}
+                </div>
+                <button
+                  className="flex px-5 py-2 justify-center items-center gap-2.5 rounded-[0.125rem] bg-[#454545] text-[#FFF] lining-nums tabular-nums text-3 font-not-italic font-medium lh-normal transition-all duration-200 hover:-translate-y-0.5 hover:brightness-95 hover:shadow-[0_0.35rem_0_0_rgba(0,0,0,0.15)]"
+                  onClick={() => window.open(social.link, "_blank")}
+                >
+                  {social.text}
+                </button>
+              </div>
+            ))}
           </div>
         </div>
 
