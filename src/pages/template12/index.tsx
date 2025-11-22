@@ -225,7 +225,7 @@ const Template12: React.FC<{ theme?: ITheme; club: string }> = ({
                     {opt.price}
                   </p>
                   <button
-                    className="w-[108px] md:w-[158px] flex px-0.5 py-1.5 justify-center items-center gap-2.5 self-stretch rounded-[0.3125rem] border-1 border-solid border-[rgba(0,0,0,0.10)] bg-[#FFF] shadow-[0_0.25rem_0_0_rgba(0,0,0,0.10)]"
+                    className="w-[108px] md:w-[158px] flex px-0.5 py-1.5 justify-center items-center gap-2.5 self-stretch rounded-[0.3125rem] border-1 border-solid border-[rgba(0,0,0,0.10)] bg-[#FFF] shadow-[0_0.25rem_0_0_rgba(0,0,0,0.10)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0.35rem_0_0_rgba(0,0,0,0.15)] hover:brightness-95"
                     onClick={() => handleJoin(opt.type)}
                   >
                     Get started
@@ -277,7 +277,7 @@ const Template12: React.FC<{ theme?: ITheme; club: string }> = ({
                   {formatUnits(it.threshold, it.decimals)}
                 </p>
                 <button
-                  className="px-3 md:px-0 text-[#960] flex gap-2 items-center font-[Inter] text-[16px] font-not-italic font-400 lh-6"
+                  className="px-3 md:px-0 text-[#960] flex gap-2 items-center font-[Inter] text-[16px] font-not-italic font-400 lh-6 transition-all duration-200 hover:translate-x-0.5 hover:text-[#7a5500]"
                   onClick={() => handleVerify(it)}
                 >
                   Verify
@@ -311,7 +311,7 @@ const Template12: React.FC<{ theme?: ITheme; club: string }> = ({
                 {app.name}
               </p>
               <button
-                className="text-black text-[14px] flex px-5 py-2 justify-center items-center gap-2.5 rounded-[1.25rem] bg-[#FEE46B]"
+                className="text-black text-[14px] flex px-5 py-2 justify-center items-center gap-2.5 rounded-[1.25rem] bg-[#FEE46B] transition-all duration-200 hover:-translate-y-0.5 hover:brightness-95 hover:shadow-[0_0.35rem_0_0_rgba(0,0,0,0.15)]"
                 onClick={() => window.open(app.link, "_blank")}
               >
                 {app.text}

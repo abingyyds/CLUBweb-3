@@ -14,7 +14,13 @@ export const ConnectButton = ({ className }: { className?: string }) => {
     >
       {walletInfo?.name ? (
         <>
-          <img src={walletInfo.icon} alt={walletInfo.name} className="size-4" />
+          {walletInfo.icon && (
+            <img
+              src={walletInfo.icon}
+              alt={walletInfo.name}
+              className="size-4"
+            />
+          )}
           <span>{shortenAddress(address || "")}</span>
         </>
       ) : (

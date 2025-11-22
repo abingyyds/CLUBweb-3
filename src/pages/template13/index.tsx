@@ -111,7 +111,7 @@ const Template13: React.FC<{ theme?: ITheme; club: string }> = ({
               className="absolute top-[-8%] left-[16%] w-[540px] h-auto"
             />
           </div>
-          <div className="flex flex-col items-center md:items-start gap-4 ml-14">
+          <div className="flex flex-col items-center md:items-start gap-4 md:ml-14">
             <div className="flex flex-col items-center md:items-start gap-2">
               <div className="w-16 h-16 rounded-full overflow-hidden">
                 <img
@@ -205,7 +205,7 @@ const Template13: React.FC<{ theme?: ITheme; club: string }> = ({
                         </p>
                       </div>
                       <button
-                        className="inline-flex items-center gap-2 bg-[#f8cf01] text-black rounded px-2 h-[34px] md:px-4 py-2 text-[12px] font-bold uppercase shadow-[0.25rem_0.25rem_0_0_rgba(0,0,0,0.25)]"
+                        className="inline-flex items-center gap-2 bg-[#f8cf01] text-black rounded px-2 h-[34px] md:px-4 py-2 text-[12px] font-bold uppercase shadow-[0.25rem_0.25rem_0_0_rgba(0,0,0,0.25)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0.35rem_0.35rem_0_0_rgba(0,0,0,0.25)] hover:brightness-95"
                         onClick={() => handleJoin(opt.type)}
                       >
                         Join now
@@ -261,7 +261,7 @@ const Template13: React.FC<{ theme?: ITheme; club: string }> = ({
                       </p>
                     </div>
                     <button
-                      className="shadow-[0.25rem_0.25rem_0_0_rgba(0,0,0,0.50)] inline-flex items-center gap-2 bg-[#f8cf01] text-black rounded px-4 py-2 font-bold uppercase"
+                      className="shadow-[0.25rem_0.25rem_0_0_rgba(0,0,0,0.50)] inline-flex items-center gap-2 bg-[#f8cf01] text-black rounded px-4 py-2 font-bold uppercase transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0.35rem_0.35rem_0_0_rgba(0,0,0,0.50)] hover:brightness-95"
                       onClick={() => handleVerify(it)}
                     >
                       Verify
@@ -306,7 +306,7 @@ const Template13: React.FC<{ theme?: ITheme; club: string }> = ({
                 </div>
                 <p className="font-bold text-[16px] text-[#333]">{app.name}</p>
                 <button
-                  className="inline-flex items-center gap-2 bg-black text-white rounded px-5 py-2 shadow-[0.25rem_0.25rem_0_0_rgba(0,0,0,0.25)]"
+                  className="inline-flex items-center gap-2 bg-black text-white rounded px-5 py-2 shadow-[0.25rem_0.25rem_0_0_rgba(0,0,0,0.25)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0.35rem_0.35rem_0_0_rgba(0,0,0,0.25)] hover:brightness-95"
                   onClick={() => window.open(app.link, "_blank")}
                 >
                   {app.text}

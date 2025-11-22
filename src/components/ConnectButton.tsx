@@ -17,6 +17,8 @@ export const ConnectButton = ({
   const { walletInfo } = useWalletInfo();
   const { address } = useAccount();
 
+  console.log(walletInfo, "wc");
+
   return (
     <div
       style={style}
@@ -28,7 +30,13 @@ export const ConnectButton = ({
     >
       {walletInfo?.name ? (
         <>
-          <img src={walletInfo.icon} alt={walletInfo.name} className="size-4" />
+          {walletInfo.icon && (
+            <img
+              src={walletInfo.icon}
+              alt={walletInfo.name}
+              className="size-4"
+            />
+          )}
           <span>{shortenAddress(address || "")}</span>
         </>
       ) : (

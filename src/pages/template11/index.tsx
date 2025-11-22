@@ -183,7 +183,7 @@ const Template11: React.FC<{ theme?: ITheme; club: string }> = ({
                 </p>
                 <button
                   onClick={() => handleJoin(opt.type)}
-                  className="w-full inline-flex text-sm md:text-base items-center justify-center gap-2 border border-[#787a40] rounded-sm bg-[#9a9d5f] text-white px-4 py-2 shadow"
+                  className="w-full inline-flex text-sm md:text-base items-center justify-center gap-2 border border-[#787a40] rounded-sm bg-[#9a9d5f] text-white px-4 py-2 shadow transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:brightness-95"
                 >
                   Get started
                 </button>
@@ -237,7 +237,7 @@ const Template11: React.FC<{ theme?: ITheme; club: string }> = ({
                     </div>
                     <button
                       onClick={() => handleVerify(it)}
-                      className="text-[#996600]"
+                      className="text-[#996600] transition-all duration-200 hover:translate-x-0.5 hover:text-[#7a5500]"
                     >
                       Verify →
                     </button>
@@ -267,7 +267,7 @@ const Template11: React.FC<{ theme?: ITheme; club: string }> = ({
               </div>
               <p className="text-[#715d36] text-lg">{app.name}</p>
               <button
-                className="inline-flex items-center justify-center gap-2 border border-[#77793f] rounded bg-[#989b5d] text-white px-4 py-2 shadow"
+                className="inline-flex items-center justify-center gap-2 border border-[#77793f] rounded bg-[#989b5d] text-white px-4 py-2 shadow transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:brightness-95"
                 onClick={() => window.open(app.link, "_blank")}
               >
                 {app.text}
@@ -282,7 +282,7 @@ const Template11: React.FC<{ theme?: ITheme; club: string }> = ({
           <p className="text-[#564119] text-4xl leading-[49px]">
             Community News
           </p>
-          <p className="text-[#564119] text-sm">little text description</p>
+          {/* <p className="text-[#564119] text-sm">little text description</p> */}
         </div>
         <div className="flex flex-col gap-6 w-full max-w-[1080px]">
           {currentNewsData.map((news, idx) => (
